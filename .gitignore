@@ -1,0 +1,32 @@
+# Training data — transfer separately via scp/rsync
+Training-Data/
+*-Training-Data/
+
+# Claude Code project files
+.claude/
+
+# Generated model weights
+SupervisedValueNetwork/Models/
+*.pth
+
+# Generated plots and split file (auto-recreated on first run)
+SupervisedValueNetwork/pngs/
+SupervisedValueNetwork/data_split.json
+
+# Large archive
+archive.zip
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
