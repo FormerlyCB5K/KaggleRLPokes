@@ -13,6 +13,9 @@ SupervisedValueNetwork/Models/
 SupervisedValueNetwork/pngs/
 SupervisedValueNetwork/data_split.json
 
+# Preprocessed numpy caches (regenerate with preprocess.py)
+*_cache.npz
+
 # Large archive
 archive.zip
 
