@@ -1,0 +1,132 @@
+[
+  {
+    "generation": 0,
+    "sigma": 0.4,
+    "win_rates": [
+      0.5,
+      0.3,
+      0.4,
+      0.3,
+      0.2
+    ],
+    "best_candidate": 0,
+    "best_win_rate": 0.5
+  },
+  {
+    "generation": 1,
+    "sigma": 0.36111111111111116,
+    "win_rates": [
+      0.3,
+      0.6,
+      0.3,
+      0.6,
+      0.5
+    ],
+    "best_candidate": 1,
+    "best_win_rate": 0.6
+  },
+  {
+    "generation": 2,
+    "sigma": 0.32222222222222224,
+    "win_rates": [
+      0.5,
+      0.5,
+      0.8,
+      0.3,
+      0.7
+    ],
+    "best_candidate": 2,
+    "best_win_rate": 0.8
+  },
+  {
+    "generation": 3,
+    "sigma": 0.2833333333333333,
+    "win_rates": [
+      0.6,
+      0.5,
+      0.7,
+      0.7,
+      0.3
+    ],
+    "best_candidate": 2,
+    "best_win_rate": 0.7
+  },
+  {
+    "generation": 4,
+    "sigma": 0.24444444444444446,
+    "win_rates": [
+      0.6,
+      0.5,
+      0.7,
+      0.5,
+      0.5
+    ],
+    "best_candidate": 2,
+    "best_win_rate": 0.7
+  },
+  {
+    "generation": 5,
+    "sigma": 0.20555555555555555,
+    "win_rates": [
+      0.7,
+      0.3,
+      0.5,
+      0.4,
+      0.5
+    ],
+    "best_candidate": 0,
+    "best_win_rate": 0.7
+  },
+  {
+    "generation": 6,
+    "sigma": 0.16666666666666669,
+    "win_rates": [
+      0.6,
+      0.8,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "best_candidate": 1,
+    "best_win_rate": 0.8
+  },
+  {
+    "generation": 7,
+    "sigma": 0.12777777777777777,
+    "win_rates": [
+      0.5,
+      0.5,
+      0.6,
+      0.6,
+      0.5
+    ],
+    "best_candidate": 2,
+    "best_win_rate": 0.6
+  },
+  {
+    "generation": 8,
+    "sigma": 0.0888888888888889,
+    "win_rates": [
+      0.3,
+      0.4,
+      0.7,
+      0.9,
+      0.7
+    ],
+    "best_candidate": 3,
+    "best_win_rate": 0.9
+  },
+  {
+    "generation": 9,
+    "sigma": 0.04999999999999999,
+    "win_rates": [
+      0.4,
+      0.4,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "best_candidate": 2,
+    "best_win_rate": 0.5
+  }
+]
