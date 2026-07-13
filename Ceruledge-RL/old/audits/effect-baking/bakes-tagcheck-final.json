@@ -1,0 +1,14328 @@
+{
+"1": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"10": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"100": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"discard_energy": 1,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"1000": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"1001": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"1002": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"damage": 180,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 180
+},
+"1003": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1004": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"1005": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 150,
+"discard_energy": 2,
+"energy_cost": 3,
+"snipe": 50
+}
+],
+"max_damage": 150
+},
+"1006": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 20,
+"energy_cost": 3
+}
+],
+"max_damage": 20
+},
+"1007": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"1008": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"retreat_lock": 1
+},
+{
+"damage": 120,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 120
+},
+"1009": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"101": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1010": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"1011": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 10
+},
+"1012": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 50
+},
+"1013": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1014": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"1015": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"1016": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"1017": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"1018": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 0
+},
+"1019": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+}
+],
+"max_damage": 60
+},
+"102": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"1020": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"1021": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"discard_energy": 3,
+"energy_cost": 3,
+"snipe": 90
+}
+],
+"max_damage": 90
+},
+"1022": {
+"ability": {},
+"attacks": [
+{
+"damage": 240,
+"discard_energy": 1,
+"energy_cost": 4
+}
+],
+"max_damage": 240
+},
+"1023": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"1024": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 2
+}
+],
+"max_damage": 110
+},
+"1025": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"1026": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 2
+}
+],
+"max_damage": 100
+},
+"1027": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"1028": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"1029": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"103": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"1030": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"1031": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 1,
+"snipe": 50
+},
+{
+"damage": 210,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"1032": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"1033": {
+"ability": {},
+"attacks": [
+{
+"cubchoo": 1,
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"1034": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"1035": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"1036": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"1037": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 200,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"1038": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"1039": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"104": {
+"ability": {
+"damage": 10
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"1040": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"discard_energy": 4,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"1041": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"1042": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1043": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1044": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1045": {
+"ability": {
+"search": 2
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"1046": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"1047": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 260,
+"discard_energy": 3,
+"energy_cost": 4
+}
+],
+"max_damage": 260
+},
+"1048": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"1049": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"deckout": 1,
+"energy_cost": 3
+},
+{
+"damage": 130,
+"energy_cost": 4
+}
+],
+"max_damage": 130
+},
+"105": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1050": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"1051": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"1052": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"1053": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"outrage": 1
+}
+],
+"max_damage": 20
+},
+"1054": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"deckout": 1,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 160
+},
+"1055": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1056": {
+"ability": {},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 3
+},
+{
+"damage": 150,
+"energy_cost": 5,
+"probabilistic": 1
+}
+],
+"max_damage": 200
+},
+"1057": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"1058": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"1059": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"106": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"1060": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"1061": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"recoil": 70
+}
+],
+"max_damage": 100
+},
+"1062": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 3
+},
+{
+"cooldown": 1,
+"damage": 210,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"1063": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"1064": {
+"ability": {},
+"attacks": [
+{
+"damage": 220,
+"energy_cost": 3,
+"snipe": 220
+}
+],
+"max_damage": 220
+},
+"1065": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1066": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"1067": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+},
+{
+"cooldown": 1,
+"damage": 230,
+"energy_cost": 4
+}
+],
+"max_damage": 230
+},
+"1068": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1069": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"107": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 250,
+"energy_cost": 1
+}
+],
+"max_damage": 250
+},
+"1070": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"1071": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"1072": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 160,
+"energy_cost": 4
+}
+],
+"max_damage": 160
+},
+"1073": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1074": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"1075": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"1076": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1077": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1078": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1079": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"108": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"retreat_lock": 1
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"snipe": 120
+}
+],
+"max_damage": 100
+},
+"1080": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1081": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1082": {
+"ability": {
+"search": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1083": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1084": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1085": {
+"ability": {
+"draw": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1086": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1087": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1088": {
+"ability": {
+"gust": 1,
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1089": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"109": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"1090": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1091": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1092": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1093": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1094": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1095": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1096": {
+"ability": {
+"heal": 150
+},
+"attacks": [],
+"max_damage": 0
+},
+"1097": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1098": {
+"ability": {
+"energy_bench": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1099": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"11": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"110": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"1100": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1101": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1102": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1103": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1104": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1105": {
+"ability": {
+"heal": 60
+},
+"attacks": [],
+"max_damage": 0
+},
+"1106": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1107": {
+"ability": {
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1108": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1109": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"111": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"1110": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1111": {
+"ability": {
+"search": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1112": {
+"ability": {
+"heal": 60
+},
+"attacks": [],
+"max_damage": 0
+},
+"1113": {
+"ability": {
+"energy_bench": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1114": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1115": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1116": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1117": {
+"ability": {
+"heal": 30
+},
+"attacks": [],
+"max_damage": 0
+},
+"1118": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1119": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"112": {
+"ability": {
+"damage": 30,
+"heal": 30
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"1120": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1121": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1122": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1123": {
+"ability": {
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1124": {
+"ability": {
+"gust": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1125": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1126": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1127": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1128": {
+"ability": {
+"search": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1129": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"113": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 40
+},
+"1130": {
+"ability": {
+"heal": 30
+},
+"attacks": [],
+"max_damage": 0
+},
+"1131": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1132": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1133": {
+"ability": {
+"damage": 20
+},
+"attacks": [],
+"max_damage": 0
+},
+"1134": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1135": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1136": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1137": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1138": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1139": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"114": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 50
+},
+"1140": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1141": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1142": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1143": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1144": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1145": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1146": {
+"ability": {
+"energy_bench": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1147": {
+"ability": {
+"heal": 80
+},
+"attacks": [],
+"max_damage": 0
+},
+"1148": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1149": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"115": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 1
+},
+{
+"damage": 250,
+"energy_cost": 4
+}
+],
+"max_damage": 250
+},
+"1150": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1151": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1152": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1153": {
+"ability": {
+"heal": 20
+},
+"attacks": [],
+"max_damage": 0
+},
+"1154": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1155": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1156": {
+"ability": {
+"draw": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1157": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1158": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1159": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"116": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 170
+},
+"1160": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1161": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1162": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1163": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1164": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1165": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1166": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1167": {
+"ability": {
+"damage": 120
+},
+"attacks": [],
+"max_damage": 0
+},
+"1168": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1169": {
+"ability": {
+"search": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"117": {
+"ability": {
+"immunity": 1
+},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"1170": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1171": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1172": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1173": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1174": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1175": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1176": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1177": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1178": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1179": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"118": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"1180": {
+"ability": {},
+"attacks": [
+{
+"damage": 350,
+"discard_energy": 4,
+"energy_cost": 4
+}
+],
+"max_damage": 350
+},
+"1181": {
+"ability": {
+"draw": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1182": {
+"ability": {
+"gust": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1183": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1184": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1185": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1186": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1187": {
+"ability": {
+"draw": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1188": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1189": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"119": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"1190": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1191": {
+"ability": {
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1192": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1193": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1194": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1195": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1196": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1197": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1198": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1199": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"12": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"120": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"1200": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"1201": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1202": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1203": {
+"ability": {
+"draw": 5,
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1204": {
+"ability": {
+"gust": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1205": {
+"ability": {
+"search": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1206": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1207": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"1208": {
+"ability": {
+"draw": 6
+},
+"attacks": [],
+"max_damage": 0
+},
+"1209": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"121": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1
+},
+{
+"counter_snipe": 60,
+"damage": 200,
+"energy_cost": 2
+}
+],
+"max_damage": 200
+},
+"1210": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1211": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1212": {
+"ability": {
+"heal": 70
+},
+"attacks": [],
+"max_damage": 0
+},
+"1213": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"1214": {
+"ability": {
+"draw": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1215": {
+"ability": {
+"search": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1216": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1217": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1218": {
+"ability": {
+"gust": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1219": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"122": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"1220": {
+"ability": {
+"search": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1221": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1222": {
+"ability": {
+"heal": 40
+},
+"attacks": [],
+"max_damage": 0
+},
+"1223": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"1224": {
+"ability": {
+"draw": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1225": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1226": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"1227": {
+"ability": {
+"draw": 6
+},
+"attacks": [],
+"max_damage": 0
+},
+"1228": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1229": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"123": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"1230": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1231": {
+"ability": {
+"search": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1232": {
+"ability": {
+"search": 7
+},
+"attacks": [],
+"max_damage": 0
+},
+"1233": {
+"ability": {
+"search": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"1234": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1235": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1236": {
+"ability": {
+"draw": 3
+},
+"attacks": [],
+"max_damage": 0
+},
+"1237": {
+"ability": {
+"draw": 6
+},
+"attacks": [],
+"max_damage": 0
+},
+"1238": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1239": {
+"ability": {
+"draw": 5
+},
+"attacks": [],
+"max_damage": 0
+},
+"124": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"1240": {
+"ability": {
+"energy_active": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1241": {
+"ability": {
+"heal": 150
+},
+"attacks": [],
+"max_damage": 0
+},
+"1242": {
+"ability": {
+"heal": 10
+},
+"attacks": [],
+"max_damage": 0
+},
+"1243": {
+"ability": {
+"damage": 20
+},
+"attacks": [],
+"max_damage": 0
+},
+"1244": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1245": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1246": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1247": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1248": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1249": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"125": {
+"ability": {},
+"attacks": [
+{
+"damage": 180,
+"draws_cards": 6,
+"energy_cost": 3
+}
+],
+"max_damage": 180
+},
+"1250": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1251": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1252": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1253": {
+"ability": {
+"switch": 1
+},
+"attacks": [],
+"max_damage": 0
+},
+"1254": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1255": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1256": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1257": {
+"ability": {
+"draw": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"1258": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1259": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"126": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"1260": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1261": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1262": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1263": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1264": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1265": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1266": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"1267": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"127": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"128": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"129": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 7,
+"energy_cost": 1
+},
+{
+"damage": 170,
+"discard_energy": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 170
+},
+"13": {
+"ability": {
+"draw": 4
+},
+"attacks": [],
+"max_damage": 0
+},
+"130": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 250,
+"energy_cost": 3
+}
+],
+"max_damage": 250
+},
+"131": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"132": {
+"ability": {
+"damage": 50
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"133": {
+"ability": {
+"damage": 130
+},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 3,
+"retreat_lock": 1
+}
+],
+"max_damage": 150
+},
+"134": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"135": {
+"ability": {
+"energy_active": 2
+},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"136": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"137": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"138": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"139": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 190,
+"energy_cost": 3
+}
+],
+"max_damage": 190
+},
+"14": {
+"ability": {
+"damage": 20
+},
+"attacks": [],
+"max_damage": 0
+},
+"140": {
+"ability": {
+"draw": 3
+},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3,
+"snipe": 100
+}
+],
+"max_damage": 100
+},
+"141": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"142": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"143": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"144": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"discard_energy": 5,
+"energy_cost": 5,
+"snipe": 110
+}
+],
+"max_damage": 110
+},
+"145": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"146": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 50
+},
+"147": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 1
+}
+],
+"max_damage": 100
+},
+"148": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"149": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"15": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"150": {
+"ability": {
+"energy_active": 1,
+"heal": 30
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"151": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"152": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"153": {
+"ability": {},
+"attacks": [
+{
+"damage": 180,
+"energy_cost": 3,
+"snipe": 180
+},
+{
+"cooldown": 1,
+"damage": 280,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"154": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 40
+},
+"155": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 2
+}
+],
+"max_damage": 150
+},
+"156": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 250,
+"energy_cost": 5
+}
+],
+"max_damage": 250
+},
+"157": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"158": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"159": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 4
+}
+],
+"max_damage": 110
+},
+"16": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"160": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"161": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 2
+},
+{
+"damage": 180,
+"discard_energy": 3,
+"energy_cost": 3,
+"item_lock": 1
+}
+],
+"max_damage": 180
+},
+"162": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"163": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"164": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"draws_cards": 3,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"165": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"166": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"recoil": 20
+}
+],
+"max_damage": 60
+},
+"167": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"168": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"169": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3,
+"outrage": 1
+}
+],
+"max_damage": 30
+},
+"17": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"170": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"171": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"snipe": 30
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"172": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"173": {
+"ability": {
+"search": 2
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"174": {
+"ability": {
+"search": 3
+},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1
+}
+],
+"max_damage": 70
+},
+"175": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"176": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 180,
+"energy_cost": 3
+}
+],
+"max_damage": 180
+},
+"177": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"178": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"179": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 3
+},
+{
+"damage": 250,
+"energy_cost": 4,
+"recoil": 30
+}
+],
+"max_damage": 250
+},
+"18": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"180": {
+"ability": {
+"damage": 30
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"retreat_lock": 1
+}
+],
+"max_damage": 50
+},
+"181": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"182": {
+"ability": {
+"draw": 5
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"183": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2
+}
+],
+"max_damage": 0
+},
+"184": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"185": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"186": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"187": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"188": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"189": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"snipe": 100
+}
+],
+"max_damage": 130
+},
+"19": {
+"ability": {
+"search": 2
+},
+"attacks": [],
+"max_damage": 0
+},
+"190": {
+"ability": {
+"energy_active": 2
+},
+"attacks": [
+{
+"damage": 220,
+"energy_cost": 3,
+"outrage": 1
+}
+],
+"max_damage": 220
+},
+"191": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"192": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"193": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 2
+},
+{
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 150
+},
+"194": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 2,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"195": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"196": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 1,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"197": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"198": {
+"ability": {
+"mill": 1
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"199": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"2": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"20": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"200": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"201": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"snipe": 120
+},
+{
+"damage": 130,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 130
+},
+"202": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"203": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"204": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"205": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 2,
+"outrage": 1
+}
+],
+"max_damage": 10
+},
+"206": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"207": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"208": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"209": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"21": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"210": {
+"ability": {},
+"attacks": [
+{
+"damage": 300,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 300
+},
+"211": {
+"ability": {
+"energy_active": 3
+},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"212": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"213": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"214": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"215": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"216": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 2
+}
+],
+"max_damage": 160
+},
+"217": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 2
+}
+],
+"max_damage": 10
+},
+"218": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"219": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"22": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"220": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"221": {
+"ability": {
+"gust": 1
+},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"222": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"223": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 3
+},
+{
+"damage": 160,
+"energy_cost": 3,
+"retreat_lock": 1
+}
+],
+"max_damage": 160
+},
+"224": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 1
+},
+{
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"225": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"226": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"227": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"228": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"229": {
+"ability": {},
+"attacks": [
+{
+"damage": 200,
+"deckout": 1,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 4,
+"snipe": 130
+}
+],
+"max_damage": 200
+},
+"23": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 150,
+"energy_cost": 3,
+"snipe": 40
+}
+],
+"max_damage": 150
+},
+"230": {
+"ability": {
+"damage": 50
+},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 2,
+"retreat_lock": 1
+}
+],
+"max_damage": 10
+},
+"231": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2
+},
+{
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"232": {
+"ability": {},
+"attacks": [
+{
+"damage": 280,
+"discard_energy": 1,
+"energy_cost": 2
+}
+],
+"max_damage": 280
+},
+"233": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 150,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 150
+},
+"234": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"235": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"item_lock": 1
+}
+],
+"max_damage": 10
+},
+"236": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 230,
+"energy_cost": 3
+}
+],
+"max_damage": 230
+},
+"237": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"238": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"239": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_accel": 2,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 280,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"24": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"240": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"draws_cards": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 260
+},
+"241": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"snipe": 60
+},
+{
+"cooldown": 1,
+"damage": 280,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"242": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"outrage": 1
+}
+],
+"max_damage": 10
+},
+"243": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 2,
+"snipe": 30
+},
+{
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"244": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"discard_energy": 2,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 280,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"245": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"246": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 3
+},
+{
+"damage": 160,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 160
+},
+"247": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"248": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 3,
+"energy_cost": 3
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"249": {
+"ability": {},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"25": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 2,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"250": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"251": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 4
+}
+],
+"max_damage": 100
+},
+"252": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"253": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"254": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 60
+},
+"255": {
+"ability": {
+"damage": 60
+},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 20
+},
+"256": {
+"ability": {
+"damage": 30
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"257": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"258": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"discard_energy": 3,
+"energy_cost": 3,
+"snipe": 90
+}
+],
+"max_damage": 90
+},
+"259": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"26": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"260": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"261": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"262": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"263": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"264": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 4
+}
+],
+"max_damage": 10
+},
+"265": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"266": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2,
+"probabilistic": 1,
+"recoil": 100
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"267": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"268": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"269": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 230,
+"energy_cost": 4
+}
+],
+"max_damage": 230
+},
+"27": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"revenge": 1
+}
+],
+"max_damage": 100
+},
+"270": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"271": {
+"ability": {
+"draw": 6
+},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"272": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"273": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"274": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"275": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"276": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"277": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"energy_cost": 3
+}
+],
+"max_damage": 20
+},
+"278": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"279": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"28": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"280": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"281": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"282": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"283": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 180,
+"energy_cost": 2
+}
+],
+"max_damage": 180
+},
+"284": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"discard_energy": 1,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"285": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"recoil": 20
+}
+],
+"max_damage": 60
+},
+"286": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"287": {
+"ability": {
+"energy_active": 2
+},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"288": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"289": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"retreat_lock": 1
+},
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"29": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 20,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"290": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"deckout": 1,
+"energy_cost": 2
+}
+],
+"max_damage": 150
+},
+"291": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"292": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"293": {
+"ability": {
+"draw": 2
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 250,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"discard_energy": 2,
+"energy_cost": 2,
+"snipe": 90
+}
+],
+"max_damage": 290
+},
+"294": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"295": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"296": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 120
+},
+"297": {
+"ability": {
+"heal": 90
+},
+"attacks": [
+{
+"damage": 20,
+"draws_cards": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"298": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"snipe": 50
+},
+{
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"299": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"snipe": 30
+},
+{
+"cooldown": 1,
+"damage": 240,
+"energy_cost": 4
+}
+],
+"max_damage": 240
+},
+"3": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"30": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 140,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 140
+},
+"300": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2,
+"recoil": 10
+}
+],
+"max_damage": 50
+},
+"301": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"302": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 3,
+"snipe": 50
+},
+{
+"damage": 300,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 300
+},
+"303": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"outrage": 1
+},
+{
+"damage": 170,
+"energy_cost": 4
+}
+],
+"max_damage": 170
+},
+"304": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 3,
+"recoil": 80
+}
+],
+"max_damage": 230
+},
+"305": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"306": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"307": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 110
+},
+"308": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 170
+},
+"309": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"31": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"310": {
+"ability": {
+"gust": 1
+},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 170
+},
+"311": {
+"ability": {},
+"attacks": [
+{
+"conditional": 1,
+"damage": 120,
+"energy_cost": 1
+}
+],
+"max_damage": 210
+},
+"312": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"313": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 220,
+"energy_cost": 3
+}
+],
+"max_damage": 220
+},
+"314": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"315": {
+"ability": {},
+"attacks": [
+{
+"damage": 230,
+"energy_cost": 4,
+"recoil": 50
+}
+],
+"max_damage": 230
+},
+"316": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 3
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"317": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"318": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"319": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"32": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"320": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 280,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"321": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"322": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"323": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"324": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"325": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"326": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 200,
+"energy_cost": 2
+}
+],
+"max_damage": 200
+},
+"327": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"328": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 220,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 220
+},
+"329": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"33": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"330": {
+"ability": {
+"immunity": 1
+},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"331": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"332": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3,
+"retreat_lock": 1
+},
+{
+"damage": 130,
+"energy_cost": 4
+}
+],
+"max_damage": 130
+},
+"333": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"334": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"335": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"336": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 210,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"337": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"discard_energy": 1,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 140
+},
+"338": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 3,
+"revenge": 1
+}
+],
+"max_damage": 70
+},
+"339": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"34": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"340": {
+"ability": {
+"search": 3
+},
+"attacks": [
+{
+"damage": 210,
+"energy_cost": 4
+}
+],
+"max_damage": 210
+},
+"341": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"342": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"343": {
+"ability": {
+"barrier": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"344": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"345": {
+"ability": {
+"immunity": 1
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"346": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"347": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"348": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 6,
+"energy_cost": 1
+},
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"349": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"35": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 3
+}
+],
+"max_damage": 20
+},
+"350": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"351": {
+"ability": {
+"draw": 1
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"352": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"discard_energy": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"353": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"354": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"355": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"356": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"discard_energy": 5,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"357": {
+"ability": {
+"energy_bench": 2
+},
+"attacks": [
+{
+"damage": 160,
+"energy_cost": 4
+}
+],
+"max_damage": 160
+},
+"358": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"359": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"36": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"360": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"361": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+}
+],
+"max_damage": 60
+},
+"362": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"363": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"364": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"365": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"366": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"snipe": 30
+}
+],
+"max_damage": 60
+},
+"367": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"368": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"discard_energy": 1,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"369": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"outrage": 1
+},
+{
+"damage": 120,
+"energy_cost": 4,
+"recoil": 50
+}
+],
+"max_damage": 120
+},
+"37": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"370": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"371": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"372": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"snipe": 50
+},
+{
+"damage": 180,
+"energy_cost": 3
+}
+],
+"max_damage": 180
+},
+"373": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"draws_cards": 1
+}
+],
+"max_damage": 30
+},
+"374": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"375": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"376": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"377": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 210,
+"discard_energy": 3,
+"energy_cost": 3,
+"snipe": 210
+}
+],
+"max_damage": 210
+},
+"378": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"retreat_lock": 1
+},
+{
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"379": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"38": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"380": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"381": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"draws_cards": 6,
+"energy_cost": 1
+},
+{
+"damage": 260,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 260
+},
+"382": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 40
+},
+"383": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"384": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"385": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 120
+},
+"386": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"deckout": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"387": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"388": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"389": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 210,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"39": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"390": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"391": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"392": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"393": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"394": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"395": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"396": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"397": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"398": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 130
+},
+"399": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"4": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"40": {
+"ability": {},
+"attacks": [
+{
+"damage": 170,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 2,
+"energy_cost": 3,
+"snipe": 120
+}
+],
+"max_damage": 170
+},
+"400": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"401": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 180
+},
+"402": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"403": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"404": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"405": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"406": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"407": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 3
+},
+{
+"energy_cost": 4
+}
+],
+"max_damage": 110
+},
+"408": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"409": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 1,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"41": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"snipe": 30
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"410": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"411": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 40
+},
+"412": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"discard_energy": 2,
+"energy_cost": 3,
+"snipe": 120
+}
+],
+"max_damage": 120
+},
+"413": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"414": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"415": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"416": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"417": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"418": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"419": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 3
+},
+{
+"damage": 120,
+"energy_cost": 4
+}
+],
+"max_damage": 120
+},
+"42": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"420": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"421": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"422": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 60
+},
+"423": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 80,
+"energy_cost": 4
+}
+],
+"max_damage": 80
+},
+"424": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"425": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"426": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"427": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"428": {
+"ability": {
+"damage": 40
+},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"429": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"43": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"430": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"431": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 280
+},
+"432": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"433": {
+"ability": {},
+"attacks": [
+{
+"probabilistic": 1
+}
+],
+"max_damage": 0
+},
+"434": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+}
+],
+"max_damage": 0
+},
+"435": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"436": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"437": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"438": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"439": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 160,
+"energy_cost": 2
+}
+],
+"max_damage": 160
+},
+"44": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 240,
+"energy_cost": 5
+}
+],
+"max_damage": 240
+},
+"440": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"deckout": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"441": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"442": {
+"ability": {
+"damage": 20
+},
+"attacks": [
+{
+"damage": 180,
+"discard_energy": 1,
+"energy_cost": 4
+}
+],
+"max_damage": 180
+},
+"443": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"444": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"445": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"446": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"447": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"448": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"449": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 3,
+"snipe": 30
+}
+],
+"max_damage": 30
+},
+"45": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1,
+"snipe": 60
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"450": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"451": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"452": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"453": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"454": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"455": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+},
+{
+"damage": 240,
+"energy_cost": 4
+}
+],
+"max_damage": 240
+},
+"456": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"457": {
+"ability": {
+"damage": 20
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"458": {
+"ability": {
+"damage": 20
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"459": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+}
+],
+"max_damage": 0
+},
+"46": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 260,
+"energy_cost": 3
+}
+],
+"max_damage": 260
+},
+"460": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2,
+"retreat_lock": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"461": {
+"ability": {
+"search": 2
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"462": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"463": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"464": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2,
+"snipe": 20
+}
+],
+"max_damage": 20
+},
+"465": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 4,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"466": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"467": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"468": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"469": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 1,
+"probabilistic": 1,
+"recoil": 90
+}
+],
+"max_damage": 90
+},
+"47": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 10
+},
+"470": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"471": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"472": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"473": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"474": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 3
+}
+],
+"max_damage": 20
+},
+"475": {
+"ability": {
+"draw": 1
+},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"476": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"477": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 3,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"478": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"479": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"48": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"480": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"481": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 4
+}
+],
+"max_damage": 150
+},
+"482": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"483": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"484": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"485": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"486": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"487": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"488": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"489": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"49": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 160,
+"energy_cost": 2
+}
+],
+"max_damage": 160
+},
+"490": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"491": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"492": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 180,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 180
+},
+"493": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 0
+},
+"494": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"deckout": 1,
+"discard_energy": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"495": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"deckout": 1,
+"energy_cost": 1
+},
+{
+"damage": 180,
+"deckout": 1,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 180
+},
+"496": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"497": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"498": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"499": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"5": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"50": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2,
+"recoil": 20
+}
+],
+"max_damage": 40
+},
+"500": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"501": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"502": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+},
+{
+"damage": 160,
+"energy_cost": 4
+}
+],
+"max_damage": 160
+},
+"503": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"504": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 3,
+"retreat_lock": 1
+}
+],
+"max_damage": 150
+},
+"505": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"506": {
+"ability": {},
+"attacks": [
+{
+"cubchoo": 1,
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"507": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"cubchoo": 1,
+"damage": 150,
+"energy_cost": 4
+}
+],
+"max_damage": 150
+},
+"508": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"509": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 3,
+"snipe": 10
+}
+],
+"max_damage": 130
+},
+"51": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 130
+},
+"510": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"511": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"512": {
+"ability": {
+"energy_bench": 1
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"513": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 4,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"514": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 110,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"515": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 130
+},
+"516": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"517": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"518": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"519": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"52": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"discard_energy": 3,
+"energy_cost": 1,
+"snipe": 60
+},
+{
+"damage": 120,
+"energy_cost": 2,
+"retreat_lock": 1
+}
+],
+"max_damage": 120
+},
+"520": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"521": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"522": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"523": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 60
+},
+"524": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3,
+"probabilistic": 1
+},
+{
+"damage": 200,
+"energy_cost": 5
+}
+],
+"max_damage": 200
+},
+"525": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"526": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"527": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"snipe": 60
+},
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"528": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"529": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"deckout": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"53": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"530": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 4,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"531": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"532": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"outrage": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"533": {
+"ability": {
+"immunity": 1
+},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"534": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"535": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"536": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"537": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"538": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"539": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"54": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"540": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"541": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"542": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"543": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 1,
+"recoil": 30
+}
+],
+"max_damage": 90
+},
+"544": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 10
+},
+"545": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"546": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"547": {
+"ability": {
+"search": 2
+},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"548": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"549": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"55": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"550": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 2
+},
+{
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"551": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"552": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 40
+},
+"553": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 4,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 2,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 120
+},
+"554": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"draws_cards": 6,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"555": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"556": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"557": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"558": {
+"ability": {
+"heal": 20
+},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"559": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"56": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 20,
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"560": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"561": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 3,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"562": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"563": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"564": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"565": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 1,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"566": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"567": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"568": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"569": {
+"ability": {
+"energy_active": 1
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 4
+}
+],
+"max_damage": 120
+},
+"57": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"570": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"571": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"572": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"573": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"574": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"575": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"576": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"577": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"578": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 1,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"579": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"58": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 2
+},
+{
+"damage": 160,
+"energy_cost": 4
+}
+],
+"max_damage": 160
+},
+"580": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"581": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 50,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"582": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"583": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"584": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"585": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"snipe": 30
+}
+],
+"max_damage": 100
+},
+"586": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"587": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"588": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"589": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"59": {
+"ability": {},
+"attacks": [
+{
+"discard_energy": 1,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"590": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"591": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 3,
+"snipe": 70
+}
+],
+"max_damage": 70
+},
+"592": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"593": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"594": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"595": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"596": {
+"ability": {
+"draw": 3
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"597": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"item_lock": 1
+}
+],
+"max_damage": 20
+},
+"598": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 2
+}
+],
+"max_damage": 80
+},
+"599": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"6": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"60": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"600": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"601": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"602": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 1
+}
+],
+"max_damage": 90
+},
+"603": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"604": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2
+}
+],
+"max_damage": 100
+},
+"605": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"606": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 2
+}
+],
+"max_damage": 80
+},
+"607": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"revenge": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"608": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"609": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"61": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 4
+}
+],
+"max_damage": 120
+},
+"610": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"611": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 60
+},
+"612": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"613": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"614": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"615": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"616": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"617": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 4
+}
+],
+"max_damage": 100
+},
+"618": {
+"ability": {},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 5,
+"retreat_lock": 1
+}
+],
+"max_damage": 200
+},
+"619": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"62": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"620": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+},
+{
+"damage": 130,
+"energy_cost": 4
+}
+],
+"max_damage": 130
+},
+"621": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"622": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"623": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"624": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"625": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"626": {
+"ability": {
+"barrier": 1
+},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"627": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"628": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"629": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"63": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 6,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"630": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 4
+}
+],
+"max_damage": 100
+},
+"631": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"632": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"633": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 130,
+"energy_cost": 4
+}
+],
+"max_damage": 130
+},
+"634": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"635": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"636": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 220,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 220
+},
+"637": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"638": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 50,
+"energy_cost": 3,
+"snipe": 50
+}
+],
+"max_damage": 50
+},
+"639": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"64": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"640": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"641": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"642": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"643": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"644": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"645": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 160
+},
+"646": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"647": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"648": {
+"ability": {
+"energy_active": 5,
+"energy_bench": 5,
+"search": 5
+},
+"attacks": [
+{
+"damage": 180,
+"energy_cost": 2,
+"snipe": 30
+}
+],
+"max_damage": 180
+},
+"649": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 3
+}
+],
+"max_damage": 20
+},
+"65": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"650": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 10
+},
+"651": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"652": {
+"ability": {},
+"attacks": [
+{
+"damage": 240,
+"energy_cost": 4
+}
+],
+"max_damage": 240
+},
+"653": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"654": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"655": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"656": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"657": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"658": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 2
+}
+],
+"max_damage": 100
+},
+"659": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"66": {
+"ability": {
+"draw": 3
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"660": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"661": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"662": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 1
+},
+{
+"damage": 280,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 280
+},
+"663": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"664": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"665": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1,
+"snipe": 40
+}
+],
+"max_damage": 40
+},
+"666": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_accel": 3,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"667": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"668": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"669": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"67": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"670": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"671": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 4
+}
+],
+"max_damage": 100
+},
+"672": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"673": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"674": {
+"ability": {
+"gust": 1
+},
+"attacks": [
+{
+"damage": 210,
+"energy_cost": 3,
+"recoil": 70
+}
+],
+"max_damage": 210
+},
+"675": {
+"ability": {
+"draw": 3
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"676": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1
+}
+],
+"max_damage": 70
+},
+"677": {
+"ability": {},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"678": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_accel": 3,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 270,
+"energy_cost": 2
+}
+],
+"max_damage": 270
+},
+"679": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"68": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"680": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1,
+"recoil": 20
+}
+],
+"max_damage": 70
+},
+"681": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"immunity": 1
+}
+],
+"max_damage": 60
+},
+"682": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+},
+{
+"cooldown": 1,
+"damage": 140,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"683": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"684": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"685": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"686": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"687": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"688": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"deckout": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"689": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"retreat_lock": 1
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"69": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"690": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"691": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"draws_cards": 6,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"692": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"693": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 90
+},
+"694": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"695": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 2
+},
+{
+"damage": 260,
+"energy_cost": 3
+}
+],
+"max_damage": 260
+},
+"696": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"697": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"698": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"699": {
+"ability": {},
+"attacks": [
+{
+"damage": 240,
+"energy_cost": 1
+}
+],
+"max_damage": 240
+},
+"7": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"70": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 140,
+"energy_cost": 2
+}
+],
+"max_damage": 140
+},
+"700": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"701": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"702": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"703": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"704": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"705": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"706": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"707": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 4
+}
+],
+"max_damage": 120
+},
+"708": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"709": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"71": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"710": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"711": {
+"ability": {
+"heal": 30
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"712": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"713": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"714": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"715": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"716": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"717": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"718": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 1,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"719": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"72": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"720": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"721": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"722": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"723": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 600
+},
+"724": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"725": {
+"ability": {
+"energy_active": 2
+},
+"attacks": [
+{
+"damage": 210,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"726": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"727": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"728": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 110,
+"discard_energy": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 110
+},
+"729": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 0
+},
+"73": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"730": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+}
+],
+"max_damage": 20
+},
+"731": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"732": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"733": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"734": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 160,
+"energy_cost": 2
+}
+],
+"max_damage": 160
+},
+"735": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"736": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"737": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+},
+{
+"damage": 200,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"738": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"739": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"74": {
+"ability": {
+"barrier": 1
+},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"740": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"741": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"742": {
+"ability": {
+"draw": 2
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"743": {
+"ability": {
+"draw": 3
+},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"744": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"745": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"746": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"747": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 1,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"748": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"749": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"75": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"cooldown": 1,
+"damage": 180,
+"energy_cost": 3
+}
+],
+"max_damage": 180
+},
+"750": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"751": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"752": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 2,
+"recoil": 10
+}
+],
+"max_damage": 40
+},
+"753": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"754": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 300,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 300
+},
+"755": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"756": {
+"ability": {
+"draw": 2
+},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 200
+},
+"757": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"758": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"759": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"snipe": 50
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"76": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"760": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"761": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"762": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"763": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"764": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"765": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"766": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"767": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"768": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"769": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"77": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"770": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"771": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"772": {
+"ability": {},
+"attacks": [
+{
+"damage": 230,
+"energy_cost": 2
+}
+],
+"max_damage": 230
+},
+"773": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"774": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 2,
+"energy_cost": 3,
+"snipe": 120
+}
+],
+"max_damage": 120
+},
+"775": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"776": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"777": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"cooldown": 1,
+"damage": 130,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 130
+},
+"778": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"779": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+}
+],
+"max_damage": 20
+},
+"78": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"780": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 1
+}
+],
+"max_damage": 60
+},
+"781": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2
+},
+{
+"damage": 170,
+"deckout": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 170
+},
+"782": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"783": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"784": {
+"ability": {
+"heal": 60
+},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"785": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+},
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"786": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"787": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"788": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"789": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+}
+],
+"max_damage": 40
+},
+"79": {
+"ability": {},
+"attacks": [
+{
+"damage": 240,
+"energy_cost": 5
+}
+],
+"max_damage": 240
+},
+"790": {
+"ability": {},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"791": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"792": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 3
+}
+],
+"max_damage": 10
+},
+"793": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 4
+}
+],
+"max_damage": 40
+},
+"794": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 240,
+"energy_cost": 4,
+"recoil": 60
+}
+],
+"max_damage": 240
+},
+"795": {
+"ability": {
+"energy_bench": 1
+},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 3
+}
+],
+"max_damage": 110
+},
+"796": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"797": {
+"ability": {},
+"attacks": [
+{
+"damage": 220,
+"discard_energy": 4,
+"energy_cost": 1
+}
+],
+"max_damage": 220
+},
+"798": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"799": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 70
+},
+"8": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"80": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 3,
+"snipe": 50
+}
+],
+"max_damage": 50
+},
+"800": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"801": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"802": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+},
+{
+"damage": 200,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 200
+},
+"803": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"804": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"805": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 3,
+"snipe": 70
+}
+],
+"max_damage": 70
+},
+"806": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"807": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"808": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 70
+},
+"809": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"81": {
+"ability": {
+"search": 3
+},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"810": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"811": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 2,
+"recoil": 60
+}
+],
+"max_damage": 130
+},
+"812": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"813": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"draws_cards": 6,
+"energy_cost": 2
+}
+],
+"max_damage": 150
+},
+"814": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"815": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"816": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"817": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"818": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"819": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2,
+"recoil": 20
+}
+],
+"max_damage": 70
+},
+"82": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 180,
+"energy_cost": 3,
+"recoil": 50
+}
+],
+"max_damage": 180
+},
+"820": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"821": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 50
+},
+"822": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"823": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"824": {
+"ability": {
+"mill": 1
+},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"825": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"826": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"827": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"828": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"829": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"83": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"energy_cost": 3,
+"snipe": 30
+}
+],
+"max_damage": 160
+},
+"830": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"831": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"832": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1,
+"revenge": 1
+},
+{
+"damage": 160,
+"energy_cost": 4
+}
+],
+"max_damage": 160
+},
+"833": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"834": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"835": {
+"ability": {},
+"attacks": [
+{
+"damage": 210,
+"energy_cost": 3
+}
+],
+"max_damage": 210
+},
+"836": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+},
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"837": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 3,
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"838": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"839": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"84": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 120,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 120
+},
+"840": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"841": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"842": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"843": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"844": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 60,
+"discard_energy": 2,
+"energy_cost": 3,
+"snipe": 60
+}
+],
+"max_damage": 60
+},
+"845": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 40,
+"energy_cost": 2
+}
+],
+"max_damage": 40
+},
+"846": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"847": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 1
+}
+],
+"max_damage": 70
+},
+"848": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"849": {
+"ability": {},
+"attacks": [
+{
+"conditional": 1,
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 2
+}
+],
+"max_damage": 230
+},
+"85": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3,
+"recoil": 10
+}
+],
+"max_damage": 50
+},
+"850": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"851": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"852": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 80,
+"energy_cost": 1
+}
+],
+"max_damage": 80
+},
+"853": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"854": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 2
+}
+],
+"max_damage": 100
+},
+"855": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"856": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"857": {
+"ability": {},
+"attacks": [
+{
+"damage": 110,
+"energy_cost": 1
+},
+{
+"damage": 170,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 170
+},
+"858": {
+"ability": {
+"barrier": 1
+},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"859": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"86": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"860": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"861": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 1
+},
+{
+"damage": 150,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"862": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"863": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"cubchoo": 1,
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"864": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 120,
+"energy_cost": 3,
+"snipe": 10
+}
+],
+"max_damage": 120
+},
+"865": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"866": {
+"ability": {
+"draw": 1,
+"mill": 1
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"867": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"snipe": 20
+},
+{
+"cooldown": 1,
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"868": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2,
+"snipe": 60
+},
+{
+"damage": 190,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 190
+},
+"869": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"retreat_lock": 1
+}
+],
+"max_damage": 30
+},
+"87": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"870": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"871": {
+"ability": {
+"search": 2
+},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 70
+},
+"872": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 5,
+"energy_cost": 1
+},
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"873": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"874": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2,
+"probabilistic": 1
+},
+{
+"damage": 150,
+"energy_cost": 3,
+"recoil": 30
+}
+],
+"max_damage": 150
+},
+"875": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"876": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 60,
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"877": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"878": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"879": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"revenge": 1
+},
+{
+"damage": 90,
+"energy_cost": 3,
+"retreat_lock": 1
+}
+],
+"max_damage": 180
+},
+"88": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"880": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"counter_snipe": 120,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"881": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 0
+},
+"882": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"883": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"884": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 1
+}
+],
+"max_damage": 150
+},
+"885": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 20
+},
+"886": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"887": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"888": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"889": {
+"ability": {},
+"attacks": [
+{
+"damage": 140,
+"energy_cost": 1,
+"snipe": 140
+},
+{
+"damage": 220,
+"discard_energy": 3,
+"energy_cost": 4
+}
+],
+"max_damage": 220
+},
+"89": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"890": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"891": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 360
+},
+"892": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"893": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"894": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 2
+},
+{
+"damage": 160,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"895": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"896": {
+"ability": {},
+"attacks": [
+{
+"damage": 160,
+"deckout": 1,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 160
+},
+"897": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"898": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"899": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"9": {
+"ability": {},
+"attacks": [],
+"max_damage": 0
+},
+"90": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"900": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"draws_cards": 2,
+"energy_cost": 1
+}
+],
+"max_damage": 50
+},
+"901": {
+"ability": {},
+"attacks": [
+{
+"damage": 180,
+"energy_cost": 2,
+"recoil": 50
+}
+],
+"max_damage": 180
+},
+"902": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"903": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"904": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"damage": 330,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 330
+},
+"905": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"906": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+},
+{
+"cooldown": 1,
+"damage": 250,
+"energy_cost": 4
+}
+],
+"max_damage": 250
+},
+"907": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"908": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2,
+"immunity": 1,
+"probabilistic": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"909": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"recoil": 10
+}
+],
+"max_damage": 30
+},
+"91": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 180,
+"energy_cost": 2,
+"recoil": 50
+}
+],
+"max_damage": 180
+},
+"910": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"911": {
+"ability": {
+"heal": 30
+},
+"attacks": [
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"912": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"913": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"914": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"915": {
+"ability": {
+"search": 1
+},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"916": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"917": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"918": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"919": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"92": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"920": {
+"ability": {},
+"attacks": [
+{
+"damage": 220,
+"energy_cost": 4,
+"recoil": 30
+}
+],
+"max_damage": 220
+},
+"921": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"922": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"923": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"924": {
+"ability": {
+"switch": 1
+},
+"attacks": [
+{
+"damage": 90,
+"energy_cost": 2
+}
+],
+"max_damage": 90
+},
+"925": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"926": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"927": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"928": {
+"ability": {},
+"attacks": [
+{
+"damage": 280,
+"discard_energy": 3,
+"energy_cost": 3,
+"snipe": 280
+}
+],
+"max_damage": 280
+},
+"929": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"93": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 340
+},
+"930": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"931": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"932": {
+"ability": {},
+"attacks": [
+{
+"damage": 320,
+"energy_cost": 3,
+"recoil": 60
+}
+],
+"max_damage": 320
+},
+"933": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"934": {
+"ability": {},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 1
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"935": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"936": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 30
+},
+"937": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 2,
+"recoil": 10
+}
+],
+"max_damage": 40
+},
+"938": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"discard_energy": 1,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 50
+},
+"939": {
+"ability": {},
+"attacks": [
+{
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"94": {
+"ability": {},
+"attacks": [
+{
+"counter_snipe": 40,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"discard_energy": 3,
+"energy_cost": 1
+}
+],
+"max_damage": 70
+},
+"940": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 140,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"941": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"942": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+},
+{
+"damage": 60,
+"energy_cost": 2
+}
+],
+"max_damage": 60
+},
+"943": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 1
+},
+{
+"damage": 170,
+"energy_cost": 2,
+"recoil": 50
+}
+],
+"max_damage": 170
+},
+"944": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 140,
+"discard_energy": 2,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"945": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"946": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 3,
+"energy_cost": 3,
+"snipe": 120
+}
+],
+"max_damage": 120
+},
+"947": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"948": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1
+},
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"949": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 150,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 150
+},
+"95": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"950": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"951": {
+"ability": {},
+"attacks": [
+{
+"damage": 100,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 100
+},
+"952": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 80,
+"energy_cost": 3
+}
+],
+"max_damage": 80
+},
+"953": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 190,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 190
+},
+"954": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 2
+},
+{
+"damage": 250,
+"discard_energy": 2,
+"energy_cost": 2
+}
+],
+"max_damage": 250
+},
+"955": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 1,
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"956": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"957": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 120,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"958": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"959": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"96": {
+"ability": {
+"draw": 1,
+"energy_active": 1
+},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 3
+}
+],
+"max_damage": 30
+},
+"960": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"961": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"immunity": 1,
+"probabilistic": 1
+},
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"962": {
+"ability": {},
+"attacks": [
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"963": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"964": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"965": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1
+}
+],
+"max_damage": 20
+},
+"966": {
+"ability": {},
+"attacks": [
+{
+"damage": 40,
+"energy_cost": 1
+},
+{
+"damage": 70,
+"energy_cost": 2
+}
+],
+"max_damage": 70
+},
+"967": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 10,
+"energy_cost": 1
+}
+],
+"max_damage": 10
+},
+"968": {
+"ability": {
+"heal": 10
+},
+"attacks": [
+{
+"damage": 130,
+"energy_cost": 2
+}
+],
+"max_damage": 130
+},
+"969": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 120,
+"discard_energy": 1,
+"energy_cost": 3
+}
+],
+"max_damage": 120
+},
+"97": {
+"ability": {},
+"attacks": [
+{
+"deckout": 1,
+"energy_cost": 1
+},
+{
+"damage": 20,
+"deckout": 1,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"970": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"971": {
+"ability": {},
+"attacks": [
+{
+"damage": 170,
+"energy_cost": 2
+}
+],
+"max_damage": 170
+},
+"972": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 6,
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+},
+"973": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3
+},
+{
+"damage": 150,
+"energy_cost": 4,
+"recoil": 30
+}
+],
+"max_damage": 150
+},
+"974": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 2
+}
+],
+"max_damage": 30
+},
+"975": {
+"ability": {},
+"attacks": [
+{
+"damage": 30,
+"energy_cost": 1,
+"retreat_lock": 1
+},
+{
+"damage": 100,
+"energy_cost": 3
+}
+],
+"max_damage": 100
+},
+"976": {
+"ability": {},
+"attacks": [
+{
+"damage": 70,
+"energy_cost": 3
+}
+],
+"max_damage": 70
+},
+"977": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"978": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"979": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"revenge": 1
+},
+{
+"cooldown": 1,
+"damage": 200,
+"energy_cost": 3
+}
+],
+"max_damage": 200
+},
+"98": {
+"ability": {
+"draw": 1,
+"mill": 1
+},
+"attacks": [
+{
+"damage": 30,
+"deckout": 1,
+"energy_cost": 1
+}
+],
+"max_damage": 30
+},
+"980": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 40,
+"energy_cost": 3
+}
+],
+"max_damage": 40
+},
+"981": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1,
+"retreat_lock": 1
+},
+{
+"damage": 60,
+"energy_cost": 3
+}
+],
+"max_damage": 60
+},
+"982": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 2
+},
+{
+"damage": 160,
+"energy_cost": 3
+}
+],
+"max_damage": 160
+},
+"983": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2
+}
+],
+"max_damage": 20
+},
+"984": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2,
+"snipe": 50
+},
+{
+"damage": 160,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 160
+},
+"985": {
+"ability": {},
+"attacks": [
+{
+"draws_cards": 2,
+"energy_cost": 1
+},
+{
+"cooldown": 1,
+"damage": 130,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"986": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 50,
+"energy_cost": 3
+}
+],
+"max_damage": 50
+},
+"987": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 90,
+"energy_cost": 3
+}
+],
+"max_damage": 90
+},
+"988": {
+"ability": {},
+"attacks": [
+{
+"energy_accel": 2,
+"energy_cost": 1
+},
+{
+"damage": 140,
+"energy_cost": 4
+}
+],
+"max_damage": 140
+},
+"989": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 20
+},
+"99": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 3,
+"outrage": 1
+},
+{
+"damage": 140,
+"discard_energy": 3,
+"energy_cost": 3
+}
+],
+"max_damage": 140
+},
+"990": {
+"ability": {},
+"attacks": [
+{
+"damage": 20,
+"energy_cost": 1,
+"probabilistic": 1
+},
+{
+"damage": 80,
+"energy_cost": 2
+}
+],
+"max_damage": 80
+},
+"991": {
+"ability": {},
+"attacks": [
+{
+"damage": 120,
+"energy_cost": 3
+},
+{
+"damage": 230,
+"energy_cost": 5
+}
+],
+"max_damage": 230
+},
+"992": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+},
+{
+"damage": 130,
+"discard_energy": 2,
+"energy_cost": 3
+}
+],
+"max_damage": 130
+},
+"993": {
+"ability": {},
+"attacks": [
+{
+"damage": 150,
+"energy_cost": 4,
+"retreat_lock": 1
+}
+],
+"max_damage": 150
+},
+"994": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"995": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+},
+{
+"damage": 230,
+"energy_cost": 2,
+"probabilistic": 1
+}
+],
+"max_damage": 230
+},
+"996": {
+"ability": {},
+"attacks": [
+{
+"damage": 10,
+"energy_cost": 1,
+"probabilistic": 1
+}
+],
+"max_damage": 10
+},
+"997": {
+"ability": {},
+"attacks": [
+{
+"damage": 80,
+"energy_cost": 3,
+"probabilistic": 1
+}
+],
+"max_damage": 80
+},
+"998": {
+"ability": {},
+"attacks": [
+{
+"energy_cost": 1
+}
+],
+"max_damage": 0
+},
+"999": {
+"ability": {},
+"attacks": [
+{
+"damage": 50,
+"energy_cost": 2
+}
+],
+"max_damage": 50
+}
+}

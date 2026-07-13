@@ -1,0 +1,666 @@
+energy_cost
+damage
+snipe
+counter_snipe
+conditional
+item_lock
+cooldown
+energy_accel
+draws_cards
+discard_energy
+cubchoo
+deckout
+probabilistic
+revenge
+outrage
+
+NEW TAGS:
+
+retreat_lock : "During your opponent's next turn, the Defending Pokémon can't retreat" or similar
+immunity : "during your opponent's next turn, prevent all damage" or similar
+recoil : does damage to self when using the attack
+
+
+
+
+CURRENT_TAGS = {
+    "Trevenant": { #ALL hop's pokemon should have +90 added to max damage.
+        878: {
+            "name": "Hop's Phantump",
+            "attacks": [("Splashing Dodge", "keyword", {"probabilistic": 1})],
+            "max_damage": 10,
+        },
+        879: {
+            "name": "Hop's Trevenant",
+            "attacks": [
+                ("Horrifying Revenge", "keyword", {"revenge": 1}),
+                ("Corner", "none", {}),
+            ],
+            "max_damage": 90,
+        },
+        304: {
+            "name": "Hop’s Snorlax",
+            "attacks": [("Dynamic Press", "none", {})], # should have recoil
+            "ability": ("none", {}),
+            "max_damage": 140,
+        },
+        311: {
+            "name": "Hop’s Cramorant",
+            "attacks": [("Fickle Spitting", "none", {})], # conditional
+            "max_damage": 120,
+        },
+        1115: {
+            "name": "Hop’s Bag",
+            "encoded_as_pokemon": False,
+        },
+    },
+
+    "Alakazam": {
+        109: {
+            "name": "Abra",
+            "attacks": [("Beam", "none", {})],
+            "ability": ("none", {}),
+            "max_damage": 10,
+        },
+        741: {
+            "name": "Abra",
+            "attacks": [("Teleportation Attack", "none", {})],
+            "max_damage": 10,
+        },
+        742: {
+            "name": "Kadabra",
+            "attacks": [("Super Psy Bolt", "none", {})],
+            "ability": ("keyword", {"draw": 2}),
+            "max_damage": 30,
+        },
+        743: {
+            "name": "Alakazam",
+            "attacks": [
+                ("Powerful Hand", "keyword", {"counter_snipe": 20}), # remove counter snipe tag here
+            ],
+            "ability": ("keyword", {"draw": 3}),
+            "max_damage": 0, # shopuld be calculated: 20 * the number of cards in the alakazam players hand.
+        },
+    },
+
+    "Item Lock": {
+        235: {
+            "name": "Budew",
+            "attacks": [
+                ("Itchy Pollen", "override", {"item_lock": 1}),
+            ],
+            "max_damage": 10,
+        },
+    },
+
+    "Dragapult": {
+        119: {
+            "name": "Dreepy",
+            "attacks": [
+                ("Petty Grudge", "none", {}),
+                ("Bite", "none", {}),
+            ],
+            "max_damage": 40,
+        },
+        120: {
+            "name": "Drakloak",
+            "attacks": [("Dragon Headbutt", "none", {})],
+            "ability": ("none", {}),
+            "max_damage": 70,
+        },
+        121: {
+            "name": "Dragapult ex",
+            "attacks": [
+                ("Jet Headbutt", "none", {}),
+                ("Phantom Dive", "keyword", {"counter_snipe": 60}),
+            ],
+            "max_damage": 200,
+        },
+    },
+
+    "Lucario": {
+        333: {
+            "name": "Riolu",
+            "attacks": [
+                ("Quick Attack", "keyword", {"probabilistic": 1}),
+            ],
+            "max_damage": 10, # should be 30, as it does 20 more on a coin flip heads
+        },
+        677: {
+            "name": "Riolu",
+            "attacks": [
+                ("Accelerating Stab", "keyword", {"cooldown": 1}),
+            ],
+            "max_damage": 30,
+        },
+        974: {
+            "name": "Riolu",
+            "attacks": [("Punch", "none", {})],
+            "max_damage": 30,
+        },
+        678: {
+            "name": "Mega Lucario ex",
+            "attacks": [
+                ("Aura Jab", "keyword", {"energy_accel": 3}),
+                ("Mega Brave", "keyword", {"cooldown": 1}),
+            ],
+            "max_damage": 270,
+        },
+        673: {
+            "name": "Makuhita",
+            "attacks": [
+                ("Corkscrew Punch", "none", {}),
+                ("Confront", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        674: {
+            "name": "Hariyama",
+            "attacks": [("Wild Press", "none", {})],  # should get recoil
+            "ability": ("override", {"gust": 1}),
+            "max_damage": 210,
+        },
+    },
+
+    "Mewtwo": {
+        431: {
+            "name": "Team Rocket's Mewtwo ex",
+            "attacks": [
+                ("Erasure Ball", "keyword", {"discard_energy": 2}),
+            ],
+            "ability": ("none", {}),
+            "max_damage": 160,  #should be 280
+        },
+        400: {
+            "name": "Team Rocket's Tarountula",
+            "attacks": [("Take Down", "none", {})],
+            "max_damage": 30,
+        },
+        401: {
+            "name": "Team Rocket's Spidops",
+            "attacks": [("Rocket Rush", "none", {})],
+            "ability": ("keyword", {"energy_active": 1}),
+            "max_damage": 30,  # should be 180
+        },
+    },
+
+    "Big Stage 1s": {
+        666: {
+            "name": "Cinderace",
+            "attacks": [
+                ("Turbo Flare", "keyword", {"energy_accel": 3}),
+            ],
+            "ability": ("none", {}),
+            "max_damage": 50,
+        },
+    },
+
+    "Starmie": {
+        1030: {
+            "name": "Staryu",
+            "attacks": [("Water Gun", "none", {})],
+            "max_damage": 20,
+        },
+        1031: {
+            "name": "Mega Starmie ex",
+            "attacks": [
+                ("Jetting Blow", "keyword", {"snipe": 50}),
+                ("Nebula Beam", "none", {}),
+            ],
+            "max_damage": 210,
+        },
+    },
+
+    "Archaludon": {
+        169: {
+            "name": "Duraludon",
+            "attacks": [
+                ("Hammer In", "none", {}),
+                ("Raging Hammer", "keyword", {"outrage": 1}),
+            ],
+            "max_damage": 80, # Make this 30 as they almost never use the 80
+        },
+        839: {
+            "name": "Duraludon",
+            "attacks": [
+                ("Hyper Beam", "keyword", {"discard_energy": 1}), # remove this keyword for ediscard energy
+            ],
+            "max_damage": 70,
+        },
+        992: {
+            "name": "Duraludon",
+            "attacks": [
+                ("Confront", "none", {}),
+                ("Duralubeam", "keyword", {"discard_energy": 2}),
+            ],
+            "max_damage": 130,
+        },
+        190: {
+            "name": "Archaludon ex",
+            "attacks": [("Metal Defender", "none", {})], # Should have outrage tag
+            "ability": ("keyword", {"energy_active": 2}),
+            "max_damage": 220, # Make this max damage equal to MAX(220, current damage on Archaludon ex + 80)
+        },
+        57: {
+            "name": "Relicanth",
+            "attacks": [("Razor Fin", "none", {})], 
+            "ability": ("none", {}),
+            "max_damage": 30,
+        },
+    },
+
+    "Festival Lead": {
+        89: {
+            "name": "Grookey",
+            "attacks": [
+                ("Smash Kick", "none", {}),
+                ("Branch Poke", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        90: {
+            "name": "Thwackey",
+            "attacks": [("Beat", "none", {})],
+            "ability": ("keyword", {"search": 1}),
+            "max_damage": 50,
+        },
+        42: {
+            "name": "Applin",
+            "attacks": [
+                ("Find a Friend", "none", {}),
+                ("Rolling Tackle", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        92: {
+            "name": "Applin",
+            "attacks": [
+                ("Tumbling Attack", "keyword", {"probabilistic": 1}),
+            ],
+            "max_damage": 10, # shgould be 30
+        },
+        149: {
+            "name": "Applin",
+            "attacks": [("Spray Fluid", "none", {})],
+            "max_damage": 20,
+        },
+        346: {
+            "name": "Applin",
+            "attacks": [("Mini Drain", "none", {})],
+            "max_damage": 10,
+        },
+        93: {
+            "name": "Dipplin",
+            "attacks": [("Do the Wave", "none", {})],
+            "ability": ("none", {}),
+            "max_damage": 20, # make this 340
+        },
+        100: {
+            "name": "Goldeen",
+            "attacks": [
+                (
+                    "Whirlpool",
+                    "keyword",
+                    {"discard_energy": 1, "probabilistic": 1},
+                ),
+            ],
+            "ability": ("none", {}),
+            "max_damage": 10,
+        },
+        240: {
+            "name": "Seaking",
+            "attacks": [
+                ("Rapid Draw", "keyword", {"draws_cards": 2}),
+            ],
+            "ability": ("none", {}),
+            "max_damage": 60, # Make this 260
+        },
+    },
+
+    "Crustle": {
+        345: {
+            "name": "Crustle",
+            "attacks": [("Superb Scissors", "none", {})],
+            "ability": ("override", {"immunity": 1}),
+            "max_damage": 120,
+        },
+        533: {
+            "name": "Crustle",
+            "attacks": [
+                ("Stone Edge", "keyword", {"probabilistic": 1}),
+            ],
+            "ability": ("override", {"immunity": 1}),
+            "max_damage": 80,
+        },
+        344: {
+            "name": "Dwebble",
+            "attacks": [("Ascension", "none", {})],
+            "max_damage": 0,
+        },
+        532: {
+            "name": "Dwebble",
+            "attacks": [
+                ("Flail", "keyword", {"outrage": 1}),
+                ("Dig Claws", "none", {}),
+            ],
+            "max_damage": 20, # Make this MAX(20, amount of damage on this pokemon)
+        },
+    },
+
+    "Garchomp": { # FOR ALL POKEMON IN THIS DECK, add to the max damage 30 * (sum of cynthia's roserade and cynthia's roselia in play)
+        379: {
+            "name": "Cynthia's Gible",
+            "attacks": [("Rock Hurl", "none", {})],
+            "max_damage": 20,
+        },
+        380: {
+            "name": "Cynthia's Gabite",
+            "attacks": [("Dragonslice", "none", {})],
+            "ability": ("keyword", {"search": 1}),
+            "max_damage": 40,
+        },
+        381: {
+            "name": "Cynthia's Garchomp ex",
+            "attacks": [
+                ("Corkscrew Dive", "keyword", {"draws_cards": 6}),
+                ("Draconic Buster", "keyword", {"discard_energy": 2}),
+            ],
+            "max_damage": 260,
+        },
+        342: {
+            "name": "Cynthia's Roserade",
+            "attacks": [("Leaf Step", "none", {})],
+            "ability": ("none", {}),
+            "max_damage": 80,
+        },
+        341: {
+            "name": "Cynthia's Roselia",
+            "attacks": [("Spike Sting", "none", {})],
+            "max_damage": 20,
+        },
+        387: {
+            "name": "Cynthia's Spiritomb",
+            "attacks": [("Raging Curse", "none", {})],
+            "max_damage": 10, # Make its base damage (pre-modifiers) equal to the total amount of damage on their other (i.e., not this specific spiritomb) pokemon combined.
+        },
+    },
+
+    "Lopunny": {
+        758: {
+            "name": "Buneary",
+            "attacks": [
+                ("Charm", "none", {}),
+                ("Skip", "none", {}),
+            ],
+            "max_damage": 10,
+        },
+        848: {
+            "name": "Buneary",
+            "attacks": [
+                ("Run Around", "none", {}),
+                ("Kick", "none", {}),
+            ],
+            "max_damage": 20,
+        },
+        849: {
+            "name": "Mega Lopunny ex",
+            "attacks": [
+                ("Gale Thrust", "none", {}), # conditional tag
+                ("Spiky Hopper", "none", {}),
+            ],
+            "max_damage": 160, # Make this 230
+        },
+    },
+
+    "Honchkrow": {
+        463: {
+            "name": "Team Rocket's Murkrow",
+            "attacks": [
+                ("Deceit", "none", {}),
+                ("Torment", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        891: {
+            "name": "Team Rocket's Honchkrow",
+            "attacks": [
+                ("Rocket Feathers", "none", {}),
+                ("Hammer In", "none", {}),
+            ],
+            "max_damage": 100, # Make this 360
+        },
+        473: {
+            "name": "Team Rocket's Porygon",
+            "attacks": [("Hacking", "none", {})],
+            "max_damage": 0,
+        },
+        474: {
+            "name": "Team Rocket's Porygon2",
+            "attacks": [("R Command", "none", {})],
+            "max_damage": 20, # Make this equal to 20 times the number of supporters in their discard pile.
+        },
+    },
+
+    "Grimmsnarl": {
+        646: {
+            "name": "Marnie's Impidimp",
+            "attacks": [
+                ("Filch", "keyword", {"draws_cards": 1}),
+                ("Corkscrew Punch", "none", {}),
+            ],
+            "max_damage": 10,
+        },
+        647: {
+            "name": "Marnie's Morgrem",
+            "attacks": [("Corkscrew Punch", "none", {})],
+            "max_damage": 60,
+        },
+        648: {
+            "name": "Marnie's Grimmsnarl ex",
+            "attacks": [
+                ("Shadow Bullet", "keyword", {"snipe": 30}),
+            ],
+            "ability": ("keyword", {"search": 5}), # Should have energy_active tag and/or energy_accel tag
+            "max_damage": 180,
+        },
+    },
+
+    "Iono's": {
+        265: {
+            "name": "Iono’s Voltorb",
+            "attacks": [("Voltaic Chain", "none", {})],
+            "max_damage": 20, # Should be 20 plus 20 for each energy atached to their pokemon combined
+        },
+        268: {
+            "name": "Iono’s Tadbulb",
+            "attacks": [("Tiny Charge", "none", {})],
+            "max_damage": 30,
+        },
+        269: {
+            "name": "Iono’s Bellibolt ex",
+            "attacks": [
+                ("Thunderous Bolt", "keyword", {"cooldown": 1}),
+            ],
+            "ability": ("keyword", {"energy_active": 1}),
+            "max_damage": 230,
+        },
+        270: {
+            "name": "Iono’s Wattrel",
+            "attacks": [
+                ("Quick Attack", "keyword", {"probabilistic": 1}),
+            ],
+            "max_damage": 10, # 30
+        },
+        271: {
+            "name": "Iono’s Kilowattrel",
+            "attacks": [("Mach Bolt", "none", {})],
+            "ability": ("keyword", {"draw": 6}),
+            "max_damage": 70,
+        },
+    },
+
+    "Stall": {
+        117: {
+            "name": "Cornerstone Mask Ogerpon ex",
+            "attacks": [("Demolish", "none", {})],
+            "ability": ("override", {"immunity": 1}),
+            "max_damage": 140,
+        },
+        386: {
+            "name": "Cornerstone Mask Ogerpon", # This pokemon should not have an override at all.
+            "attacks": [
+                ("Rock Kagura", "keyword", {"energy_accel": 1}),
+                ("Mountain Ramming", "keyword", {"deckout": 1}),
+            ],
+            "ability": ("override", {"immunity": 1}),
+            "max_damage": 100,
+        },
+    },
+
+    "Cubchoo": {
+        506: {
+            "name": "Cubchoo",
+            "attacks": [
+                ("Snotted Up", "override", {"cubchoo": 1}),
+            ],
+            "max_damage": 10,
+        },
+    },
+
+    "Deck out": {
+        97: {
+            "name": "Litwick",
+            "attacks": [
+                ("Call for Family", "override", {"deckout": 1}),
+                ("Live Coal", "override", {"deckout": 1}),
+            ],
+            "max_damage": 20,
+        },
+        493: {
+            "name": "Litwick",
+            "attacks": [
+                (
+                    "Brighten and Burn",
+                    "override",
+                    {"deckout": 1, "probabilistic": 1},
+                ),
+            ],
+            "max_damage": 0,
+        },
+        494: {
+            "name": "Lampent",
+            "attacks": [
+                (
+                    "Fire Blast",
+                    "override",
+                    {"discard_energy": 1, "deckout": 1},
+                ),
+            ],
+            "max_damage": 50,
+        },
+        98: {
+            "name": "Chandelure",
+            "attacks": [
+                ("Mind Ruler", "override", {"deckout": 1}),
+            ],
+            "ability": ("override", {"draw": 1, "mill": 1}),
+            "max_damage": 30,
+        },
+        495: {
+            "name": "Chandelure",
+            "attacks": [
+                ("Incendiary Pillar", "override", {"deckout": 1}),
+                (
+                    "Burn It All Up",
+                    "override",
+                    {"discard_energy": 2, "deckout": 1},
+                ),
+            ],
+            "max_damage": 180,
+        },
+        164: {
+            "name": "Comfey",
+            "attacks": [
+                (
+                    "Flower Shower",
+                    "override",
+                    {"draws_cards": 3, "deckout": 1},
+                ),
+                ("Play Rough", "override", {"probabilistic": 1}),
+            ],
+            "max_damage": 20,
+        },
+    },
+
+    "Barbaracle": {
+        1052: {
+            "name": "Barbaracle",
+            "attacks": [("Hammer In", "none", {})],
+            "ability": ("keyword", {"energy_active": 1}),
+            "max_damage": 80,
+        },
+        1051: {
+            "name": "Binacle",
+            "attacks": [
+                ("Double Draw", "keyword", {"draws_cards": 2}),
+                ("Scratch", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        116: {
+            "name": "Okidogi", # This pokemon should have HP 230
+            "attacks": [("Good Punch", "none", {})],
+            "ability": ("none", {}),
+            "max_damage": 70, # make this 170
+        },
+        890: {
+            "name": "Okidogi", # This pokemon should not have an override
+            "attacks": [
+                ("Light Punch", "none", {}),
+                ("Settle the Score", "none", {}),
+            ],
+            "max_damage": 80,
+        },
+    },
+
+    "Mega Abomasnow": {
+        418: {
+            "name": "Snover",
+            "attacks": [
+                ("Light Punch", "none", {}),
+                ("Icicle", "none", {}),
+            ],
+            "max_damage": 50,
+        },
+        722: {
+            "name": "Snover",
+            "attacks": [
+                ("Beat", "none", {}),
+                ("Icy Snow", "none", {}),
+            ],
+            "max_damage": 30,
+        },
+        723: {
+            "name": "Mega Abomasnow ex",
+            "attacks": [
+                ("Hammer-lanche", "override", {"probabilistic": 1}),
+                ("Frost Barrier", "override", {}),
+            ],
+            "max_damage": 200, # Should be 600
+        },
+    },
+
+    "N's Zoroark": {
+        292: {
+            "name": "N’s Zorua",
+            "attacks": [("Scratch", "none", {})],
+            "max_damage": 20,
+        },
+        293: {
+            "name": "N’s Zoroark ex", # should have 4 attacks: [[90 damage, discard 2 energy, 90 damage snipe], [250 damage, cooldown], [20 * the number of damage on this pokemon, outrage], [10 + 30 times the number of energy in OUR (zoroark's opponent's discard pile)]
+            "attacks": [("Night Joker", "none", {})],
+            "ability": ("keyword", {"draw": 2}),
+            "max_damage": 0, # should be MAX(250, amount of damage on this zoroark times 2, 10 + 30 * number of energy in our discard pile)
+        },
+    },
+}

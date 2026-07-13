@@ -1,0 +1,179 @@
+CERULEDGE RULES
+
+1. START OF GAME
+    Start pokemon in this order:
+        1. Solrock
+        2. Charcadet
+        3. Lunatone
+        4. Drilbur
+
+
+2. DURING GAME 
+
+    Anti-deckout: NEVER PLAY CARMINE OR EXPLORER'S GUIDANCE IF THERE ARE 8 OR FEWER CARDS IN THE DECK
+
+                NEVER USE LUNAR CYCLE Ability IF THERE ARE 5 OR FEWER CARDS IN DECK
+
+    DO THESE ACTIONS IN THIS ORDER.
+
+        If you just benched Drilbur and are choosing whether to use its ability, always use the ability and discard the maximum number of cards.
+
+        If you have Drilbur, immediately play it and use its ability to full effect.
+
+        Immediately play Lunatone from your hand, unless you already have one in play.
+
+        Immediately play Solrock from your hand, unless you already have 2 in play.
+
+        Immediately play Charcadet from your hand, unless you already have 3 in play in any combination of (Charcadet OR Ceruledge).
+
+        Immediately evolve Chardadet into Ceruledge if possible.
+
+        [add in exception rules for, like, if you have a pokepad and lunatone and 1 fighting]
+
+        Use Lunatone's Lunar Cycle Ability if possible.
+
+        Play Brilliant Blender from your hand, and discard in this order:
+           1.  Discard Fire energy until there will be 3 fire energy in deck (AFTER Blender resolves)
+            2. Fill in the rest of the selections with fighting energy
+            3. Discard Fire energy until you have only 1 left in deck (AFTER Blender resolves)
+            # NOTE: You should never discard the last Fire energy according to this logic.
+            4. Do not discard non-energy cards unless there are zero energy in deck--in that case, discard only one random non-Night Stretcher card.
+
+        If you have Fighting Gong in your hand, immediately play it and pick targets as in the following order:
+            1. If there are no fighting-type pokemon on your board, take a Solrock
+            2. If there is a Solrock and no Lunatone, take a Lunatone
+            3. If you have both Solrock and Lunatone in play, take a fighting energy unless you already have 2 in hand. In that case, take Drilbur.
+            4. Take a fighting energy
+            5. Take any valid target
+
+
+        If you have Poke Pad in hand, play it immediately and choose targets according to this order:
+            1. If you have no Solrock in play, take a Solrock
+            2. If you have no Lunatone in play, take a Lunatone
+            3. Take a Charcadet, unless you already have 2 in play
+            4. Take Drilbur
+            5. Take a Solrock if all of the above fail
+            6. If all of the above fail, take Charcadet
+            7. Take any valid target
+
+        Attach fighting energy IF (we have Solrock in the active spot AND Lunatone on the bench AND the Solrock does not already have a fighting energy AND the active is a non-Ceruledge pokemon that has no energy attached):
+            Always attach the fighting energy to the Solrock
+
+        Attach fire energy to Ceruledge IF (there is no Ceruledge in play that has a fire energy attached)
+            1. Attach this energy to the Active Ceruledge if there is one in the active spot
+            2. If there is no Ceruledge in the active spot, attach to the benched one instead.
+
+        Attach any energy to the active Pokemon IF (Ceruledge on bench with a Fire energy attached OR (Solrock is on the bench with a Fighting energy attached AND Lunatone is on the bench))
+
+        Play night stretcher IF (We have not attached energy this turn AND there is a Ceruledge in the active with no Fire energy attached AND there is a fire energy discarded)
+            Take a fire energy off of this night stretcher
+
+        Ultra Ball IF (we have at least 2 in any combination of the following in our hand:
+            any energy, not counting the first 2 energy in hand;           # So only count starting with the third energy
+            Carmine, not counting the first 1 Carmine in hand;
+            Ultra Ball, not counting the first 2 Ultra Ball in hand;    # So that should include the Ultra Ball that we're considering playing
+            Lunatone, IF we already have a Lunatone on the bench;
+            )
+
+            If you play the Ultra Ball, prioritize discarding cards in the order listed above; you may choose between fighting and fire energy at random, as long as you don't discard your last fire energy or last fighting energy. Never discard your last fire energy or last fighting energy.
+
+            Target the following with Ultra Ball, in this order:
+
+                1. Solrock, IF you have no Solrock in play AND you have a Lunatone in play
+                2. Lunatone, IF you have no Lunatone in play AND you have a Solrock in play
+                3. Ceruledge, IF you have no Ceruledge in play AND you have a Charcadet in play that didn't get played this turn
+                4. Charcadet, IF you have 1 or fewer in any combination of (Charcadet OR Ceruledge) in play
+                5. Solrock, IF there is no Solrock in play
+                6. Lunatone, IF there is no Lunatone in play
+                7. Drilbur
+                8. Ceruledge
+                9. Charcadet
+                10.Solrock
+                11. Lunatone
+                12. Pick a random Pokemon
+                13. If there are no pokemon, fail Ultra Ball
+
+
+        Night Stretcher IF (We have not attached energy this turn AND there is a Solrock in the active with no fighting energy attached AND there is a fighting energy discarded AND there is a Lunatone on the bench)
+            Take a fighting energy off of this night stretcher
+
+        Night Stretcher IF (We have no Ceruledge in hand or in play AND there is a Ceruledge in the discard pile AND there is as Charcadet in play that didn't get played this turn)
+            Take a Ceruledge
+
+        Night Stretcher IF (we have 1 or fewer (Charcadet OR Ceruledge) in play AND Charcadet is in the discard pile)
+            Take Charcadet
+
+        Night Stretcher IF ((We have a Solrock OR Lunatone in play, but NOT both) AND (we have the other pokemon in the discard pile))
+            Take the other pokemon
+            # Note: For example, if you have a Solrock in play & no Lunatone, you should night stretcher and target Lunatone to recover it.
+
+        Night Stretcher IF (we have Solrock AND Lunatone in play AND we have not used Lunar Cycle this turn AND there are no fighting energy in hand AND there is a Fighting Energy in the discard pile)
+            Take the Fighting Energy
+
+        Boss' Orders IF the following conditions are met: (
+            Ceruledge is in the active spot with at least 1 fire energy attached;
+            There is a Pokemon on the opponent's bench that has HP less than or equal to the current damage count;
+            Opponent's active pokemon has greater HP than our current damage count;
+            # Note: Damage count is 30 + 20 * number of energy in our discard possible
+            )
+            If all of these conditions are met, use Boss' orders and target the pokemon with the highest HP that is less than or equal to the current damage count.
+
+
+
+        Play Explorer's Guidance, and keep two cards according to this order:
+            1. Brilliant Blender
+            2. Night Stretcher
+            3. Carmine, UNLESS you have another Carmine or Explorer's Guidance in hand already (excluding the one that's being played right now).
+            4. Solrock, IF there is a Lunatone and no Solrock on your board
+            5. Lunatone, IF there is a Solrock and no Lunatone on your board
+            6. Poke Pad, IF there is exactly one of (Solrock OR Lunatone) on board
+            7. Fighting Gong, IF (there is exactly one of (Solrock OR Lunatone) on board) OR (You have both Solrock and Lunatone in play, but no Fighting energy in hand AND you have not used Lunar Cycle this turn) 
+            8. Explorer's Guidance, UNLESS you have another Carmine or Explorer's Guidance in hand already (excluding the one that's being played right now).
+            9. Fighting energy, IF (You have both Solrock and Lunatone in play, but no Fighting energy in hand AND you have not used Lunar Cycle this turn) OR (You have already selected the first card as Lunatone, Solrock, Poke Pad, or Fighting Gong)
+            10. Ceruledge, IF (there is a Charcadet in play AND there is no Ceruledge in play AND there is no Ceruledge in hand)
+            11. Charcadet, IF there are 1 or fewer Charadet in play
+            12. Fire energy, IF there are no fire energy in play AND you have not attached this turn AND there are no other fire energy in hand AND (there is no Night Stretcher in hand AND you didn't select a Night stretcher as the first card from Explorer's guidance)
+            13. Drilbur
+            14. Boss' Orders
+            15. Poke Pad
+            16. Fighting Gong
+            17. Ultra Ball
+            18. CERULEDGE
+            19. Explorer's Guidance
+            20. Charcadet
+            21. Lunatone
+            22. Solrock
+            23. Carmine
+            24. Fire energy
+            25. Fighting Energy
+            26. Choose the rest randomly
+
+        Carmine # No other conditions
+
+        Attach energy from hand in this priority:
+            IF (Charcadet is in the active AND it is your first turn), attach Fire Energy to the active Charcadet     # Note: You should never attach Fighting energy to a Ceruledge or Charcadet
+            IF (Ceruledge is on the bench with no energy) attach to the Ceruledge on the bench
+            IF (Charcadet is on the bench with no energy) attach to the Charcadet on the bench
+            IF (Solrock is on the bench with no energy attached), attach fighting energy to Solrock # Note: Should never attach fire energy to Solrock
+
+        Retreat IF (Ceruledge on bench with a Fire energy attached) AND (The active Pokemon is NOT Ceruledge)
+            Retreat into Ceruledge that has Fire Energy attached
+
+        Retreat IF (Solrock is on the bench with a Fighting energy attached AND Lunatone is on the bench)
+            Retreat into Solrock that has a Fighting Energy attached
+
+        Attack with Abyssal Flames, Cosmic Beam, or Gather Strength # Those are Ceruledge, Solrock, and Charadet's attacks, respectively
+            If you use Gather Strength, take one Fire and one Fighting if possible; if not, take whatever's available.
+
+        If promoting a pokemon after KO, choose in this order:
+            1. Promote Ceruledge IF it has a Fire energy attached
+            2. Promote Ceruledge
+            3. Promote Charcadet IF it has a Fire energy attached AND there is a Ceruledge in hand
+            4. Promote Charcadet IF there is a Ceruledge in hand
+            5. Promote Solrock IF it has a Fighting energy attached AND there is a Lunatone on bench
+            6. Promote Charcadet IF it has an energy attached
+            7. Promote Charcadet
+            8. Promote Solrock
+            9. Promote Drilbur
+            10. Promote Lunatone
+            11. Any random pokemon

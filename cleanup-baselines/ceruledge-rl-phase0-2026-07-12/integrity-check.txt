@@ -1,0 +1,8 @@
+﻿ZIP manifest rows: 104
+ZIP file rows: 104
+ZIP missing: 0
+ZIP hash mismatches: 0
+ZIP extras: 0
+Active-source rows checked after tests: 81
+Active-source drift after tests: 0
+Archive SHA256: D85419077A13D03BECA2ABCB77E667CB068DF7E77F59F87909DF618F58A618BA

@@ -67,6 +67,9 @@ W_BENCH_ENERGY  =  1.0   # per energy building on a bench attacker
 # ── H13: Prize differential ──────────────────────────────────────────────────
 W_PRIZE_DIFF = 15.0      # multiplied by (their_prizes − our_prizes)
 
+# ── N8: Game point ────────────────────────────────────────────────────────────
+W_GAME_POINT = 5.0       # bonus when we need exactly 1 more prize to win
+
 # ── H14: Damage progress toward 2-shot ───────────────────────────────────────
 W_DMG_PROGRESS = 5.0     # per 100 combined damage (attack + existing on target)
 
@@ -106,3 +109,6 @@ W_PRIZE_LEAD_MOMENTUM = 2.0
 
 # ── P5: Dunsparce + Dudunsparce engine complete ──────────────────────────────
 W_ENGINE_COMPLETE = 1.0
+
+# ── N14: Small-hand supporter readiness ──────────────────────────────────────
+W_SMALL_HAND_SUPPORTER = 1.0  # Lillie's or Morty's in hand when total hand < 4

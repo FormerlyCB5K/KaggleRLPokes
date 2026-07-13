@@ -102,7 +102,7 @@ def _load_card_table() -> dict:
     global _card_table
     if not _card_table:
         try:
-            from cg.api import all_card_data
+            from cg_download.api import all_card_data
             _card_table = {c.cardId: c for c in all_card_data()}
         except ImportError:
             pass

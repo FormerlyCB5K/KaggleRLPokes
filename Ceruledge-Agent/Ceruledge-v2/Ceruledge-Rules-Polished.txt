@@ -1,0 +1,488 @@
+CERULEDGE RULES — POLISHED (engine-compatible)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CARD ID CONSTANTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ceruledge_ex       = 320   # SSP 36 — Abyssal Flames (30 + 20 × energy in discard)
+Charcadet          = 796   # PFL 19 — Gather Strength
+Lunatone           = 675   # MEG 74 — Lunar Cycle ability
+Solrock            = 676   # MEG 75 — Cosmic Beam
+Drilbur            = 81    # TEF 85 — Dig Dig Dig ability
+
+Basic_Fire_Energy    = 2   # {R}
+Basic_Fighting_Energy = 6  # {F}
+
+Night_Stretcher    = 1097
+Brilliant_Blender  = 1128  # ACE SPEC
+Fighting_Gong      = 1142
+Boss_Orders        = 1182
+Explorers_Guidance = 1185
+Carmine            = 1192
+Ultra_Ball         = 1121
+Poke_Pad           = 1152
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GLOBAL ANTI-DECKOUT CONSTRAINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+These override any rule in Section 3 that would otherwise trigger:
+
+  • NEVER play Carmine or Explorer's Guidance if our deck has <= 8 cards.
+  • NEVER use Lunatone's Lunar Cycle ability if our deck has <= 5 cards.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1 — GAME SETUP  (SelectContext.SETUP_ACTIVE_POKEMON / SETUP_BENCH_POKEMON)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Choose Active (SETUP_ACTIVE_POKEMON):
+    1. Solrock
+    2. Charcadet
+    3. Lunatone
+    4. Drilbur
+    5. Any available Basic
+
+Choose Bench (SETUP_BENCH_POKEMON — repeat until bench is full or no basics remain):
+    Place basics in this priority order:
+    1. Charcadet (up to 3 total Charcadet on bench)
+    2. Lunatone (if not already on bench)
+    3. Solrock (if fewer than 2 on bench)
+    4. Drilbur (if not already on bench)
+    5. Any remaining Basic
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2 — DRILBUR ABILITY PROMPT  (SelectContext.ACTIVATE — YES/NO)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+When Drilbur is just played to the bench and the game asks whether to use
+"Dig Dig Dig" (ACTIVATE context, contextCard = Drilbur):
+    Always answer YES.
+
+Drilbur ability DISCARD selection (SelectContext.DISCARD from deck):
+    Discard the maximum allowed (up to 3 Basic Fighting Energy from deck).
+    If fewer than 3 Fighting Energy are in the deck, discard all that exist.
+    Implementation note: select ALL available options up to maxCount
+    regardless of OptionType, since the engine only presents Fighting
+    Energy cards as valid choices for this prompt.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3 — MAIN PHASE ACTION PRIORITY LIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+On each SelectContext.MAIN, scan this list top-to-bottom.
+Execute the FIRST action whose conditions are satisfied, then restart
+the list from the top on the next MAIN prompt.
+
+──────────────────────────────────────────────────────
+3.1  PLAY DRILBUR
+──────────────────────────────────────────────────────
+Condition: Drilbur is in hand AND there is room on the bench AND
+           no Drilbur is already in play.
+Action: PLAY Drilbur (OptionType.PLAY).
+Sub-selection (TO_BENCH): place Drilbur on the bench.
+[After benching, game will immediately prompt ACTIVATE — see Section 2]
+
+──────────────────────────────────────────────────────
+3.2  PLAY LUNATONE
+──────────────────────────────────────────────────────
+Condition: Lunatone is in hand AND there is room on the bench AND
+           no Lunatone is already in play.
+Action: PLAY Lunatone.
+
+──────────────────────────────────────────────────────
+3.3  PLAY SOLROCK
+──────────────────────────────────────────────────────
+Condition: Solrock is in hand AND there is room on the bench AND
+           fewer than 2 Solrock are currently in play.
+Action: PLAY Solrock.
+
+──────────────────────────────────────────────────────
+3.4  PLAY CHARCADET
+──────────────────────────────────────────────────────
+Condition: Charcadet is in hand AND there is room on the bench AND
+           the total count of (Charcadet + Ceruledge_ex) in play < 3.
+Action: PLAY Charcadet.
+
+──────────────────────────────────────────────────────
+3.5  EVOLVE CHARCADET → CERULEDGE EX  (OptionType.EVOLVE)
+──────────────────────────────────────────────────────
+Condition: Ceruledge_ex is in hand AND at least one Charcadet is in play
+           that did NOT appear this turn (appearThisTurn == False).
+Action: EVOLVE that Charcadet into Ceruledge_ex.
+Priority for which Charcadet to evolve:
+    1. Charcadet in the active spot (if any)
+    2. Charcadet on the bench
+
+──────────────────────────────────────────────────────
+3.6  USE LUNATONE LUNAR CYCLE ABILITY  (OptionType.ABILITY)
+──────────────────────────────────────────────────────
+Condition: Lunatone is in play AND Solrock is in play AND
+           at least 1 Basic Fighting Energy is in hand AND
+           Lunar Cycle has NOT been used this turn AND
+           our deck has > 5 cards.  [anti-deckout]
+Note: Fire even when there is EXACTLY 1 Fighting Energy in hand —
+      you discard it and immediately retrieve one from deck (net neutral).
+Action: Use Ability on Lunatone (Lunar Cycle).
+Sub-selection (DISCARD from hand — exactly 1 card):
+    Must select a Basic Fighting Energy card from hand.
+    This fires even if it is the last Fighting Energy in hand.
+    Never select Fire Energy or any non-Fighting card here.
+
+──────────────────────────────────────────────────────
+3.7  PLAY BRILLIANT BLENDER  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Brilliant_Blender is in hand AND at least 1 Energy card
+           (Fire or Fighting) exists in the deck.
+Action: PLAY Brilliant_Blender.
+Sub-selection (DISCARD from deck — up to 5 cards):
+    Let F = count of Basic Fire Energy in deck (before discarding).
+    Let G = count of Basic Fighting Energy in deck.
+    Build discard list in this order:
+    Step A: Discard Fire Energy cards until (F - discarded_fire) == 3.
+            (i.e., if F > 3, discard up to (F - 3) Fire Energies, max 5 total)
+    Step B: Fill remaining slots (up to 5 total) with Fighting Energy.
+    Step C: If slots still remain, discard more Fire Energy until
+            (F - discarded_fire) == 1.  (Never discard the last fire.)
+    If Steps A–C produce zero discards, return an empty selection
+    (discard nothing, draw nothing). NEVER discard non-energy cards.
+    Never exceed 5 total discards. Never discard the last Fire Energy.
+
+──────────────────────────────────────────────────────
+3.8  PLAY FIGHTING GONG  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Fighting_Gong is in hand.
+Action: PLAY Fighting_Gong.
+Sub-selection (TO_HAND from deck — 1 card):
+    Choose target in this order:
+    1. Solrock — IF neither Solrock nor Lunatone is on our board.
+    2. Lunatone — IF Solrock is in play but no Lunatone.
+    3. Solrock — IF Lunatone is in play but no Solrock.
+    4. Drilbur — IF both Solrock and Lunatone are in play AND
+       we have >= 2 Fighting Energy in hand.
+    5. Fighting Energy (always the default when both are in play
+       and we have < 2 Fighting Energy, or as final fallback).
+    6. If none of the above targets exist in deck, do not play
+       Fighting Gong (condition fails).
+
+──────────────────────────────────────────────────────
+3.9  PLAY POKE PAD  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Poke_Pad is in hand.
+Action: PLAY Poke_Pad.
+Sub-selection (TO_HAND from deck — 1 non-Rule-Box Pokémon):
+    Choose target in this order:
+    1. Solrock, IF no Solrock is in play.
+    2. Lunatone, IF no Lunatone is in play.
+    3. Charcadet, IF total (Charcadet + Ceruledge_ex) in play < 2.
+    4. Drilbur.
+    5. Solrock (fallback even if one is already in play).
+    6. Charcadet (final fallback).
+    7. Any valid target.
+
+──────────────────────────────────────────────────────
+3.10  ATTACH FIGHTING ENERGY TO ACTIVE SOLROCK  (OptionType.ATTACH)
+──────────────────────────────────────────────────────
+Condition: NOT state.energyAttached AND
+           Fighting Energy is in hand AND
+           Solrock is in the active spot AND
+           Solrock has NO energy attached (not just no fighting energy) AND
+           Lunatone is on the bench.
+Action: ATTACH the Fighting Energy to the active Solrock.
+[Note: Solrock is non-Ceruledge by definition, so no guard needed there.]
+
+──────────────────────────────────────────────────────
+3.11  ATTACH FIRE ENERGY TO CERULEDGE EX  (OptionType.ATTACH)
+──────────────────────────────────────────────────────
+Condition: NOT state.energyAttached AND
+           Fire Energy is in hand AND
+           no Ceruledge_ex currently in play has a Fire Energy attached.
+Action: ATTACH the Fire Energy.
+Target priority:
+    1. Ceruledge_ex in the active spot (if any).
+    2. Ceruledge_ex on the bench (if any).
+
+──────────────────────────────────────────────────────
+3.12  ATTACH ANY ENERGY TO THE ACTIVE POKÉMON  (OptionType.ATTACH)
+──────────────────────────────────────────────────────
+Condition: NOT state.energyAttached AND energy is in hand AND
+           ( a Ceruledge_ex on the bench has a Fire Energy attached
+             OR (a Solrock is on the bench with a Fighting Energy attached
+                 AND Lunatone is on the bench) ) AND
+           the active Pokémon has NO energy currently attached.
+           [Guard: never attach a second energy to any single Pokémon here.]
+Action: ATTACH any available energy to the active Pokémon.
+    Prefer Fighting if active is Solrock.
+    Prefer Fire if active is Ceruledge_ex or Charcadet.
+    Never attach Fighting Energy to Ceruledge_ex or Charcadet.
+    Never attach Fire Energy to Solrock.
+
+──────────────────────────────────────────────────────
+3.13  NIGHT STRETCHER — recover fire energy for active Ceruledge  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           NOT state.energyAttached AND
+           Ceruledge_ex is in the active spot AND
+           that Ceruledge_ex has NO Fire Energy attached AND
+           at least 1 Fire Energy is in the discard pile.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take a Fire Energy.
+
+──────────────────────────────────────────────────────
+3.14  ULTRA BALL  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Ultra_Ball is in hand AND the discard cost can be met (see below).
+
+Discard-cost check — count "discardable" cards in hand:
+    excess_energy  = max(0, total_energy_in_hand - 2)
+                     [don't count the first 2 energy cards]
+    excess_carmine = max(0, carmine_in_hand - 1)
+    excess_uball   = max(0, ultra_ball_in_hand - 2)
+                     [includes the Ultra Ball being played; exclude 2]
+    excess_lunatone = lunatone_in_hand  IF Lunatone is already on bench
+                      else 0
+    If (excess_energy + excess_carmine + excess_uball + excess_lunatone) >= 2:
+        condition is satisfied.
+
+Action: PLAY Ultra_Ball.
+Sub-selection (DISCARD — 2 cards from hand):
+    Discard priority (pick 2):
+    1. Excess energy (fire or fighting chosen at random, BUT
+       never discard your last Fire Energy or last Fighting Energy).
+    2. Carmine (if > 1 in hand).
+    3. Another Ultra Ball (if > 1 in hand, not counting the played one).
+    4. Lunatone (if Lunatone is already on bench).
+
+Sub-selection (TO_HAND from deck — 1 Pokémon):
+    Target priority:
+    1. Solrock, IF no Solrock in play AND Lunatone is in play.
+    2. Lunatone, IF no Lunatone in play AND Solrock is in play.
+    3. Ceruledge_ex, IF no Ceruledge_ex in play AND a Charcadet in play
+       that did NOT appear this turn.
+    4. Charcadet, IF total (Charcadet + Ceruledge_ex) in play <= 1.
+    5. Solrock, IF no Solrock in play.
+    6. Lunatone, IF no Lunatone in play.
+    7. Drilbur.
+    8. Ceruledge_ex.
+    9. Charcadet.
+    10. Solrock.
+    11. Lunatone.
+    12. Any Pokémon (random).
+    If no Pokémon exists in deck: do not play Ultra Ball (condition fails).
+
+──────────────────────────────────────────────────────
+3.15  NIGHT STRETCHER — recover fighting energy for Solrock  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           NOT state.energyAttached AND
+           Solrock is in the active spot AND
+           Solrock has NO Fighting Energy attached AND
+           Lunatone is on the bench AND
+           at least 1 Fighting Energy is in the discard pile.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take a Fighting Energy.
+
+──────────────────────────────────────────────────────
+3.16  NIGHT STRETCHER — recover Ceruledge from discard  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           no Ceruledge_ex in hand or in play AND
+           at least 1 Ceruledge_ex is in the discard pile AND
+           at least 1 Charcadet in play did NOT appear this turn.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take Ceruledge_ex.
+
+──────────────────────────────────────────────────────
+3.17  NIGHT STRETCHER — recover Charcadet from discard  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           total (Charcadet + Ceruledge_ex) in play <= 1 AND
+           at least 1 Charcadet is in the discard pile.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take Charcadet.
+
+──────────────────────────────────────────────────────
+3.18  NIGHT STRETCHER — recover missing Solrock or Lunatone  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           exactly one of (Solrock, Lunatone) is in play AND
+           the missing one is in the discard pile.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take the missing Pokémon (Solrock or Lunatone).
+
+──────────────────────────────────────────────────────
+3.19  NIGHT STRETCHER — recover fighting energy for Lunar Cycle  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Night_Stretcher is in hand AND
+           Solrock is in play AND Lunatone is in play AND
+           Lunar Cycle has NOT been used this turn AND
+           no Fighting Energy is in hand AND
+           at least 1 Fighting Energy is in the discard pile.
+Action: PLAY Night_Stretcher.
+Sub-selection (TO_HAND): take a Fighting Energy.
+
+──────────────────────────────────────────────────────
+3.20  RETREAT INTO CERULEDGE EX  (OptionType.RETREAT)
+──────────────────────────────────────────────────────
+Condition: Ceruledge_ex is on the bench with a Fire Energy attached AND
+           the active Pokémon is NOT Ceruledge_ex.
+           [Note: we WILL retreat from Solrock into Ceruledge if conditions met]
+Action: RETREAT, then switch into Ceruledge_ex that has Fire Energy attached.
+Sub-selection (SWITCH/TO_ACTIVE): choose Ceruledge_ex with Fire Energy.
+
+──────────────────────────────────────────────────────
+3.21  RETREAT INTO SOLROCK  (OptionType.RETREAT)
+──────────────────────────────────────────────────────
+Condition: Solrock is on the bench with a Fighting Energy attached AND
+           Lunatone is on the bench AND
+           the active Pokémon is NOT Solrock.
+Action: RETREAT, then switch into Solrock that has a Fighting Energy attached.
+Sub-selection (SWITCH/TO_ACTIVE): choose Solrock with Fighting Energy.
+
+──────────────────────────────────────────────────────
+3.22  BOSS'S ORDERS  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Let damage_count = 30 + 20 × (count of Energy cards in our discard pile).
+
+Condition (either trigger A OR trigger B satisfies this rule):
+
+  Global guard: do NOT use Boss's Orders if the opponent's active
+    Pokémon has Hero's Cape (card 1159) attached as a tool.
+    [Rationale: Hero's Cape adds +60 HP and removes Weakness, making
+    the active effectively unkillable; pulling it to bench is pointless
+    as a replacement active will face the same problem.]
+
+  Trigger A — active is not KO-able, bench target is:
+    Boss_Orders is in hand AND
+    Ceruledge_ex is in the active spot AND
+    Ceruledge_ex has >= 1 Fire Energy attached AND
+    the opponent's active Pokémon HP > damage_count AND
+    there exists a Pokémon on the opponent's bench with HP <= damage_count.
+
+  Trigger B — prize efficiency, bench target is worth more prizes:
+    Boss_Orders is in hand AND
+    Ceruledge_ex is in the active spot AND
+    Ceruledge_ex has >= 1 Fire Energy attached AND
+    there exists a Pokémon on the opponent's bench whose prize card
+    value is GREATER than the opponent's active Pokémon's prize value AND
+    that bench Pokémon's HP <= damage_count.
+
+Action: PLAY Boss_Orders.
+Sub-selection (SWITCH — opponent's benched Pokémon):
+    Among all KO-able bench targets (HP <= damage_count) that triggered
+    the condition, target the one with the HIGHEST HP.
+    [Highest HP = most prize-efficient KO among reachable targets.]
+
+──────────────────────────────────────────────────────
+3.23  PLAY EXPLORER'S GUIDANCE  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Explorers_Guidance is in hand AND our deck has > 8 cards.  [anti-deckout]
+Action: PLAY Explorers_Guidance.
+Sub-selection (TO_HAND from top 6 deck cards — pick exactly 2):
+    Score each of the 6 revealed cards using the priority list below.
+    Keep the 2 highest-priority cards.
+
+    Priority (1 = highest; first match wins per card, then move to next):
+    1.  Brilliant_Blender
+    2.  Night_Stretcher
+    3.  Carmine — UNLESS another Carmine or Explorers_Guidance is
+        already in hand (excluding the one being played now).
+    4.  Solrock — IF Lunatone is in play AND no Solrock in play.
+    5.  Lunatone — IF Solrock is in play AND no Lunatone in play.
+    6.  Poke_Pad — IF exactly one of (Solrock, Lunatone) is in play.
+    7.  Fighting_Gong — IF (exactly one of Solrock/Lunatone in play) OR
+        (both in play but no Fighting Energy in hand AND Lunar Cycle
+        not yet used this turn).
+    8.  Explorers_Guidance — UNLESS another Carmine or Explorers_Guidance
+        is already in hand.
+    9.  Fighting Energy — IF (both Solrock and Lunatone in play AND no
+        Fighting Energy in hand AND Lunar Cycle not used this turn) OR
+        (the first already-selected card is Lunatone / Solrock /
+        Poke_Pad / Fighting_Gong).
+    10. Ceruledge_ex — IF a Charcadet in play AND no Ceruledge_ex in
+        play AND no Ceruledge_ex already in hand.
+    11. Charcadet — IF total (Charcadet + Ceruledge_ex) in play <= 1.
+    12. Fire Energy — IF no Fire Energy currently attached to any Pokémon
+        AND NOT energyAttached this turn AND no other Fire Energy in hand
+        AND (no Night_Stretcher in hand AND Night_Stretcher was NOT
+        already selected as the first card from this Explorer's Guidance).
+    13. Drilbur
+    14. Boss_Orders
+    15. Poke_Pad
+    16. Fighting_Gong
+    17. Ultra_Ball
+    18. Ceruledge_ex
+    19. Explorers_Guidance
+    20. Charcadet
+    21. Lunatone
+    22. Solrock
+    23. Carmine
+    24. Fire Energy
+    25. Fighting Energy
+    26. Any remaining card (random tiebreak)
+
+──────────────────────────────────────────────────────
+3.24  PLAY CARMINE  (OptionType.PLAY)
+──────────────────────────────────────────────────────
+Condition: Carmine is in hand AND our deck has > 8 cards.  [anti-deckout]
+Action: PLAY Carmine.
+[Carmine's effect is automatic — no sub-selection needed unless the engine
+ asks for a discard; discard the lowest-priority cards using the
+ Explorer's Guidance priority list in reverse.]
+
+──────────────────────────────────────────────────────
+3.25  ATTACH ENERGY FROM HAND (late)  (OptionType.ATTACH)
+──────────────────────────────────────────────────────
+Condition: NOT state.energyAttached AND an energy card is in hand.
+Evaluate sub-cases in order, use the first that applies:
+
+  A. IF Charcadet is in the active spot AND it is the first turn
+     (state.turn <= 2):
+     → Attach Fire Energy to active Charcadet.
+        (Never attach Fighting Energy to Charcadet.)
+
+  B. IF a Ceruledge_ex is on the bench with NO energy attached:
+     → Attach Fire Energy to that benched Ceruledge_ex.
+
+  C. IF a Charcadet is on the bench with NO energy attached:
+     → Attach Fire Energy to that benched Charcadet.
+        (Never attach Fighting Energy to Charcadet.)
+
+  D. IF a Solrock is on the bench with NO energy attached:
+     → Attach Fighting Energy to that Solrock.
+        (Never attach Fire Energy to Solrock.)
+
+──────────────────────────────────────────────────────
+3.26  ATTACK  (OptionType.ATTACK)
+──────────────────────────────────────────────────────
+Condition: An attack option is available.
+Action: Use the available attack:
+    • If active is Ceruledge_ex → Abyssal Flames  (requires 1 Fire Energy)
+    • If active is Solrock      → Cosmic Beam      (requires 1 Fighting Energy;
+                                                    only works if Lunatone on bench)
+    • If active is Charcadet   → Gather Strength   (takes up to 2 Basic Energy
+                                                    from deck into hand; prefer
+                                                    1 Fire + 1 Fighting if available)
+    • Otherwise                → whichever attack is available
+
+──────────────────────────────────────────────────────
+3.27  END TURN  (OptionType.END)
+──────────────────────────────────────────────────────
+If no other action above was taken, END the turn.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4 — PROMOTE AFTER KO  (SelectContext.TO_ACTIVE after active is KO'd)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Choose replacement in this order:
+    1. Ceruledge_ex with Fire Energy attached.
+    2. Ceruledge_ex (any, no energy required).
+    3. Charcadet with Fire Energy attached AND Ceruledge_ex is in hand.
+    4. Charcadet with Ceruledge_ex in hand (no energy on it).
+    5. Solrock with Fighting Energy attached AND Lunatone on bench.
+    6. Charcadet with any energy attached.
+    7. Charcadet (no energy).
+    8. Solrock.
+    9. Drilbur.
+    10. Lunatone.
+    11. Any Pokémon.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5 — MISC SUB-SELECTIONS (fallback greedy)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+For any context not explicitly covered above
+(MULLIGAN YES/NO, IS_FIRST YES/NO, coin flips, etc.):
+    Use the greedy fallback (score each option and pick the highest).

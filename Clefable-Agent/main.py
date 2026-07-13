@@ -24,7 +24,7 @@ import os
 import random
 import time
 
-from cg.api import (
+from cg_download.api import (
     AreaType,
     Card,
     Observation,
@@ -41,7 +41,7 @@ from cg.api import (
 
 # ── Deck ──────────────────────────────────────────────────────────────────────
 
-_deck_path = "deck.csv"
+_deck_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deck.csv")
 if not os.path.exists(_deck_path):
     _deck_path = "/kaggle_simulations/agent/deck.csv"
 with open(_deck_path) as _f:
@@ -234,6 +234,7 @@ W_WASTED_ENERGY          = -1.0
 W_BENCH_ENERGY           =  1.0
 
 W_PRIZE_DIFF             = 15.0
+W_GAME_POINT             =  5.0
 W_DMG_PROGRESS           =  5.0
 
 W_ATTACK_WITH_TRAINERS   = -1.0
@@ -255,6 +256,7 @@ W_DAWN_LIVE              =  0.5
 W_OPP_BENCH_PENALTY      =  0.5
 W_PRIZE_LEAD_MOMENTUM    =  2.0
 W_ENGINE_COMPLETE        =  1.0
+W_SMALL_HAND_SUPPORTER   =  1.0
 
 
 def heuristic_score(obs: Observation, our_index: int, unknown_cards: int = 0) -> float:
@@ -395,6 +397,10 @@ def heuristic_score(obs: Observation, our_index: int, unknown_cards: int = 0) ->
     # ── H13: Prize differential ────────────────────────────────────────────────
     raw += W_PRIZE_DIFF * (len(them.prize) - len(us.prize))
 
+    # ── N8: Game point — we need exactly 1 more prize ─────────────────────────
+    if len(us.prize) == 1:
+        raw += W_GAME_POINT
+
     # ── H15: Attacking with unused trainers in hand ───────────────────────────
     if can_attack and any(c.id in _TRAINER_IDS for c in hand_cards):
         raw += W_ATTACK_WITH_TRAINERS
@@ -449,6 +455,11 @@ def heuristic_score(obs: Observation, our_index: int, unknown_cards: int = 0) ->
     if (any(p.id == Dunsparce   for p in all_our) and
             any(p.id == Dudunsparce for p in all_our)):
         raw += W_ENGINE_COMPLETE
+
+    # ── N14: Lillie's / Morty's in hand when hand is thin (<4 cards) ─────────
+    if (len(hand_cards) < 4 and
+            (Lillie_Determination in hand_ids or Mortys_Conviction in hand_ids)):
+        raw += W_SMALL_HAND_SUPPORTER
 
     return max(-1.0, min(1.0, raw / HEURISTIC_NORM))
 
@@ -507,6 +518,10 @@ def greedy_action(obs: Observation, our_index: int) -> list[int]:
                     )
                     if other_trainers > 0:
                         score -= 200.0
+
+                # N14: strongly prioritise playing Lillie's or Morty's when hand is thin
+                if card.id in (Lillie_Determination, Mortys_Conviction) and len(ps.hand) < 4:
+                    score += 200.0
 
         elif o.type == OptionType.ATTACH:
             if 0 <= o.index < len(ps.hand):

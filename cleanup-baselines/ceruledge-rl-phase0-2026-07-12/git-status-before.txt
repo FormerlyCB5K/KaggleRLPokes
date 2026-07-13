@@ -1,0 +1,43 @@
+﻿ M Clefable-Agent/heuristic_score.py
+ M Clefable-Agent/main.py
+ M Clefable-Agent/weights.py
+ M Evo/evo.py
+ D Evo/smoke_test.py
+ D beginner-guide-from-deck-list-to-first-valid-sub.ipynb
+D  evo.py
+ D evo_output/gen_00_weights.json
+ D evo_output/gen_01_weights.json
+ D evo_output/gen_02_weights.json
+ D evo_output/gen_03_weights.json
+ D evo_output/gen_04_weights.json
+ D evo_output/gen_05_weights.json
+ D evo_output/gen_06_weights.json
+ D evo_output/gen_07_weights.json
+ D evo_output/gen_08_weights.json
+ D evo_output/gen_09_weights.json
+ D evo_output/history.json
+ D reinforcement-learning-and-mcts-sample-code.ipynb
+ D smoke_test.py
+?? Alakazam-Agent/
+?? "Card_ID List_EN.pdf"
+?? Ceruledge-Agent/
+?? Ceruledge-RL/
+?? Ceruledge-v2/
+?? Decks/
+?? Evo-V2/
+?? Evo/evoV2.py
+?? Evo/other-outputs/
+?? Evo/submit-batch-evo-v2.sh
+?? Evo/submit-batch-evo.sh
+?? Examples/
+?? Lucario-Baseline/
+?? Notepad.md
+?? Submissions/
+?? build_submission_Clefable.py
+?? build_submission_ceruledge.py
+?? cg_download/
+?? cleanup-baselines/
+?? prize_check.py
+?? smoke_test_encoder.py
+?? smoke_test_prize_check.py
+?? utils.py
