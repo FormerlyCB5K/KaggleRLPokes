@@ -1,0 +1,45 @@
+{
+  "registry_schema_version": "1.0.0",
+  "status": "passed",
+  "checks": {
+    "c0_b09_input_is_closed": true,
+    "c0_schema_versions_frozen": true,
+    "c1_registry_ids_equal_catalog_and_handoff": true,
+    "c1_class_counts_exact": true,
+    "c1_effect_rows_equal_audit": true,
+    "c1_source_order_and_no_truncation": true,
+    "c1_all_verdicts_programs_evidence_and_tests_present": true,
+    "c1_attack_printed_fields_preserved": true,
+    "c1_dynamic_profiles_have_no_pending_placeholders": true,
+    "c2_numeric_stable_card_order": true,
+    "c2_id_lists_disjoint_union_exact": true,
+    "c2_index_roundtrip": true,
+    "c2_override_view_is_exact_derivative": true,
+    "c2_formula_reverse_indexes_roundtrip": true,
+    "c3_all_237_serialized_scenarios_pass": true,
+    "c3_every_effect_has_validation_reference": true,
+    "c3_but_no_more_generic_cards_absent_from_override_view": true,
+    "c4_handoff_contract_has_no_tensor_layout": [
+      "current_hp",
+      "effective_max_hp",
+      "retreat",
+      "typing",
+      "weakness",
+      "resistance",
+      "new_in_play",
+      "zone_position"
+    ],
+    "c4_unseen_fallback_is_explicit": true,
+    "c4_engine_baked_rows_marked_no_double_count": true
+  },
+  "counts": {
+    "cards": 232,
+    "effects": 314,
+    "override_cards": 201,
+    "override_effects": 237,
+    "formulas": 79,
+    "scenarios": 237,
+    "issues": 0
+  },
+  "issues": []
+}

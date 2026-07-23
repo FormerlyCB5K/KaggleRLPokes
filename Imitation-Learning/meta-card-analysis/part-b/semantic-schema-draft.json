@@ -1,0 +1,194 @@
+{
+  "canonical_model": "ordered_compositional_effect_program",
+  "compatibility_policy": "flat tags are derived outputs, never semantic authority",
+  "effect_program": {
+    "activation": {
+      "fields": [
+        "event",
+        "timing",
+        "frequency",
+        "source_zone",
+        "requirements"
+      ],
+      "values_are_raw": true
+    },
+    "audit": {
+      "fields": [
+        "verdict",
+        "human_review_ids",
+        "reviewer_notes",
+        "status"
+      ]
+    },
+    "damage_profile": {
+      "fields": [
+        "printed_base",
+        "live_formula",
+        "credible_max",
+        "theoretical_max",
+        "expected_value",
+        "required_inputs",
+        "unknown_reason"
+      ],
+      "ordinary_zero_or_no_damage_is_explicit": true,
+      "selection_policy": "live, credible, and theoretical values are peers selected by use case; unsupported bounds are null with a reason"
+    },
+    "duration": {
+      "fields": [
+        "start",
+        "end",
+        "while_condition",
+        "stacking",
+        "reset_event"
+      ]
+    },
+    "evidence": {
+      "fields": [
+        "card_text",
+        "engine_source",
+        "engine_handler_tokens",
+        "current_encoder_comparison",
+        "validation_refs"
+      ]
+    },
+    "expression": {
+      "common_fields": [
+        "kind",
+        "value",
+        "path",
+        "arguments",
+        "observability"
+      ],
+      "kinds": [
+        "literal",
+        "read",
+        "count",
+        "add",
+        "subtract",
+        "multiply",
+        "divide",
+        "minimum",
+        "maximum",
+        "compare",
+        "and",
+        "or",
+        "not",
+        "coin_flip",
+        "random_choice"
+      ],
+      "observability_kinds": [
+        "static",
+        "observation_direct",
+        "observation_derived",
+        "public_history",
+        "hidden_information",
+        "stochastic",
+        "engine_internal",
+        "unavailable"
+      ]
+    },
+    "operation": {
+      "common_fields": [
+        "operation_id",
+        "kind",
+        "target",
+        "value",
+        "duration",
+        "parameters"
+      ],
+      "kinds": [
+        "deal_damage",
+        "place_damage_counters",
+        "remove_damage_counters",
+        "knock_out",
+        "apply_special_condition",
+        "clear_special_conditions",
+        "move_cards",
+        "shuffle_cards",
+        "attach_card",
+        "detach_card",
+        "switch_active",
+        "evolve",
+        "devolve",
+        "modify_stat",
+        "modify_damage_rule",
+        "modify_action_rule",
+        "modify_card_rule",
+        "modify_prize_rule",
+        "provide_energy",
+        "copy_or_use_attack",
+        "reveal_or_inspect",
+        "end_turn",
+        "win_game",
+        "no_op"
+      ]
+    },
+    "program": {
+      "branching_is_explicit": true,
+      "node_kinds": [
+        "sequence",
+        "operation",
+        "conditional",
+        "choice",
+        "for_each",
+        "repeat",
+        "reference"
+      ],
+      "ordered": true,
+      "root": "program_node"
+    },
+    "required_fields": [
+      "effect_id",
+      "card_id",
+      "card_class",
+      "source_kind",
+      "activation",
+      "program",
+      "damage_profile",
+      "evidence",
+      "audit"
+    ],
+    "target": {
+      "compound_filters_are_explicit": true,
+      "fields": [
+        "controller",
+        "zone",
+        "entity",
+        "filters",
+        "quantity",
+        "chooser",
+        "ordering",
+        "visibility"
+      ]
+    }
+  },
+  "non_goals": [
+    "final tensor dimensions",
+    "normalization constants",
+    "model architecture",
+    "runtime feature ordering"
+  ],
+  "schema_version": 1,
+  "semantic_families": [
+    "damage",
+    "healing",
+    "knockout",
+    "special_condition",
+    "zone_movement",
+    "attachment",
+    "pokemon_position",
+    "evolution",
+    "stat_modifier",
+    "damage_rule",
+    "action_rule",
+    "card_rule",
+    "prize_rule",
+    "energy_provision",
+    "attack_delegation",
+    "information",
+    "game_flow",
+    "random_control",
+    "no_non_obvious_effect"
+  ],
+  "status": "approved_provisionally_lossless_and_efficient_required"
+}

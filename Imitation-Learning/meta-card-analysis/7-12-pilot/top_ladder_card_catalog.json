@@ -1,0 +1,5783 @@
+{
+  "cards": [
+    {
+      "card_class": "energy",
+      "card_id": 1,
+      "card_name": "Basic {G} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3173,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2730,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 9,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3173,
+          "games_with_card": 2730,
+          "total_copies": 7983
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 7983
+    },
+    {
+      "card_class": "energy",
+      "card_id": 2,
+      "card_name": "Basic {R} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 600,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 589,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 600,
+          "games_with_card": 589,
+          "total_copies": 2247
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 2247
+    },
+    {
+      "card_class": "energy",
+      "card_id": 3,
+      "card_name": "Basic {W} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1274,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1203,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 12,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1274,
+          "games_with_card": 1203,
+          "total_copies": 5593
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 5593
+    },
+    {
+      "card_class": "energy",
+      "card_id": 4,
+      "card_name": "Basic {L} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 12
+    },
+    {
+      "card_class": "energy",
+      "card_id": 5,
+      "card_name": "Basic {P} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4362,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3498,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 8,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4362,
+          "games_with_card": 3498,
+          "total_copies": 11482
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 11482
+    },
+    {
+      "card_class": "energy",
+      "card_id": 6,
+      "card_name": "Basic {F} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1139,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1075,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 14,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1139,
+          "games_with_card": 1075,
+          "total_copies": 4185
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 4185
+    },
+    {
+      "card_class": "energy",
+      "card_id": 7,
+      "card_name": "Basic {D} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2057,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1841,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 15,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2057,
+          "games_with_card": 1841,
+          "total_copies": 12702
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 12702
+    },
+    {
+      "card_class": "energy",
+      "card_id": 8,
+      "card_name": "Basic {M} Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 117,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 115,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 14,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 11,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 117,
+          "games_with_card": 115,
+          "total_copies": 1494
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Energy",
+      "total_copies": 1494
+    },
+    {
+      "card_class": "energy",
+      "card_id": 11,
+      "card_name": "Mist Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2430,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2216,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2430,
+          "games_with_card": 2216,
+          "total_copies": 9717
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 9717
+    },
+    {
+      "card_class": "energy",
+      "card_id": 12,
+      "card_name": "Legacy Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 8,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8,
+          "games_with_card": 8,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 8
+    },
+    {
+      "card_class": "energy",
+      "card_id": 13,
+      "card_name": "Enriching Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3360,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2863,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3360,
+          "games_with_card": 2863,
+          "total_copies": 3360
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 3360
+    },
+    {
+      "card_class": "energy",
+      "card_id": 14,
+      "card_name": "Spiky Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2298,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2109,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2298,
+          "games_with_card": 2109,
+          "total_copies": 9186
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 9186
+    },
+    {
+      "card_class": "energy",
+      "card_id": 15,
+      "card_name": "Team Rocket's Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 1828
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 1828
+    },
+    {
+      "card_class": "energy",
+      "card_id": 16,
+      "card_name": "Prism Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 501,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 488,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 501,
+          "games_with_card": 488,
+          "total_copies": 1901
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 1901
+    },
+    {
+      "card_class": "energy",
+      "card_id": 17,
+      "card_name": "Ignition Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 304,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 303,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 304,
+          "games_with_card": 303,
+          "total_copies": 1216
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 1216
+    },
+    {
+      "card_class": "energy",
+      "card_id": 18,
+      "card_name": "Grow Grass Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2741,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2454,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2741,
+          "games_with_card": 2454,
+          "total_copies": 9999
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 9999
+    },
+    {
+      "card_class": "energy",
+      "card_id": 19,
+      "card_name": "Telepath Psychic Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3854,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3197,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3854,
+          "games_with_card": 3197,
+          "total_copies": 15416
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 15416
+    },
+    {
+      "card_class": "energy",
+      "card_id": 20,
+      "card_name": "Rock Fighting Energy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 797,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 763,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 797,
+          "games_with_card": 763,
+          "total_copies": 3058
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Special Energy",
+      "total_copies": 3058
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 31,
+      "card_name": "Chi-Yu",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 5,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 5,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 5,
+          "games_with_card": 5,
+          "total_copies": 5
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 5
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 42,
+      "card_name": "Applin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 2
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 2
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 57,
+      "card_name": "Relicanth",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 101,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 100,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 101,
+          "games_with_card": 100,
+          "total_copies": 185
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 185
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 58,
+      "card_name": "Great Tusk",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 122,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 122,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 122,
+          "games_with_card": 122,
+          "total_copies": 398
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 398
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 63,
+      "card_name": "Raging Bolt ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 12
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 65,
+      "card_name": "Dunsparce",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 238,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 235,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 238,
+          "games_with_card": 235,
+          "total_copies": 595
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 595
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 66,
+      "card_name": "Dudunsparce",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3548,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4457,
+          "games_with_card": 3548,
+          "total_copies": 10244
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 10244
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 89,
+      "card_name": "Grookey",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 4
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 90,
+      "card_name": "Thwackey",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 4
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 92,
+      "card_name": "Applin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 2
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 2
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 93,
+      "card_name": "Dipplin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 4
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 96,
+      "card_name": "Teal Mask Ogerpon ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 18
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 18
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 104,
+      "card_name": "Froslass",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 455,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 449,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 455,
+          "games_with_card": 449,
+          "total_copies": 910
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 910
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 108,
+      "card_name": "Wellspring Mask Ogerpon ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 6
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 6
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 109,
+      "card_name": "Abra",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 101,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 101,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 101,
+          "games_with_card": 101,
+          "total_copies": 101
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 101
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 112,
+      "card_name": "Munkidori",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2078,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1857,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2078,
+          "games_with_card": 1857,
+          "total_copies": 6561
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 6561
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 116,
+      "card_name": "Okidogi",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4,
+          "games_with_card": 4,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 12
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 117,
+      "card_name": "Cornerstone Mask Ogerpon ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 521,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 507,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 521,
+          "games_with_card": 507,
+          "total_copies": 992
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 992
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 119,
+      "card_name": "Dreepy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 499,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 492,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 499,
+          "games_with_card": 492,
+          "total_copies": 1996
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1996
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 120,
+      "card_name": "Drakloak",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 499,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 492,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 499,
+          "games_with_card": 492,
+          "total_copies": 1996
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 1996
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 121,
+      "card_name": "Dragapult ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 499,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 492,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 499,
+          "games_with_card": 492,
+          "total_copies": 1497
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 1497
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 122,
+      "card_name": "Tatsugiri",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 43,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 43,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 43,
+          "games_with_card": 43,
+          "total_copies": 43
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 43
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 131,
+      "card_name": "Duskull",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 292,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 292,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 292,
+          "games_with_card": 292,
+          "total_copies": 584
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 584
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 132,
+      "card_name": "Dusclops",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 292,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 292,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 292,
+          "games_with_card": 292,
+          "total_copies": 584
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 584
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 133,
+      "card_name": "Dusknoir",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 292,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 292,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 292,
+          "games_with_card": 292,
+          "total_copies": 584
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 584
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 140,
+      "card_name": "Fezandipiti ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4036,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3313,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4036,
+          "games_with_card": 3313,
+          "total_copies": 4036
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 4036
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 141,
+      "card_name": "Pecharunt ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 8,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8,
+          "games_with_card": 8,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 8
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 164,
+      "card_name": "Comfey",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 220,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 219,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 220,
+          "games_with_card": 219,
+          "total_copies": 880
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 880
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 169,
+      "card_name": "Duraludon",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 117,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 115,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 117,
+          "games_with_card": 115,
+          "total_copies": 468
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 468
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 174,
+      "card_name": "Fan Rotom",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 111,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 111,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 111,
+          "games_with_card": 111,
+          "total_copies": 115
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 115
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 183,
+      "card_name": "Smoochum",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 25
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 25
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 184,
+      "card_name": "Latias ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 72,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 72,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 72,
+          "games_with_card": 72,
+          "total_copies": 78
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 78
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 190,
+      "card_name": "Archaludon ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 117,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 115,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 117,
+          "games_with_card": 115,
+          "total_copies": 468
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 468
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 214,
+      "card_name": "Togekiss",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 186,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 186,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 186,
+          "games_with_card": 186,
+          "total_copies": 186
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 186
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 235,
+      "card_name": "Budew",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 896,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 869,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 896,
+          "games_with_card": 869,
+          "total_copies": 1316
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1316
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 245,
+      "card_name": "Alakazam",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 115,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 115,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 115,
+          "games_with_card": 115,
+          "total_copies": 115
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 115
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 257,
+      "card_name": "N’s Darumaka",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 8,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8,
+          "games_with_card": 8,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 8
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 258,
+      "card_name": "N’s Darmanitan",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 8,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8,
+          "games_with_card": 8,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 8
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 272,
+      "card_name": "Lillie’s Clefairy ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 36,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 36,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 36,
+          "games_with_card": 36,
+          "total_copies": 36
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 36
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 292,
+      "card_name": "N’s Zorua",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 40
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 40
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 293,
+      "card_name": "N’s Zoroark ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 40
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 40
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 303,
+      "card_name": "N’s Reshiram",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 20
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 20
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 305,
+      "card_name": "Dunsparce",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4320,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3471,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4320,
+          "games_with_card": 3471,
+          "total_copies": 13102
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 13102
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 306,
+      "card_name": "Dudunsparce ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 82,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 82,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 82,
+          "games_with_card": 82,
+          "total_copies": 82
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 82
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 341,
+      "card_name": "Cynthia's Roselia",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 2267
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 2267
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 342,
+      "card_name": "Cynthia's Roserade",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 1830
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 1830
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 343,
+      "card_name": "Shaymin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4252,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3355,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4252,
+          "games_with_card": 3355,
+          "total_copies": 4284
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 4284
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 344,
+      "card_name": "Dwebble",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2833,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2528,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2833,
+          "games_with_card": 2528,
+          "total_copies": 10756
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 10756
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 345,
+      "card_name": "Crustle",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2833,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2528,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2833,
+          "games_with_card": 2528,
+          "total_copies": 10720
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 10720
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 379,
+      "card_name": "Cynthia's Gible",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 2268
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 2268
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 380,
+      "card_name": "Cynthia's Gabite",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 2268
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 2268
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 381,
+      "card_name": "Cynthia's Garchomp ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 1701
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 1701
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 387,
+      "card_name": "Cynthia's Spiritomb",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 436,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 434,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 436,
+          "games_with_card": 434,
+          "total_copies": 872
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 872
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 400,
+      "card_name": "Team Rocket's Tarountula",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 451,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 451,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 451,
+          "games_with_card": 451,
+          "total_copies": 1804
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1804
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 401,
+      "card_name": "Team Rocket's Spidops",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 451,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 451,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 451,
+          "games_with_card": 451,
+          "total_copies": 1804
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 1804
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 414,
+      "card_name": "Team Rocket's Articuno",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1277,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1221,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1277,
+          "games_with_card": 1221,
+          "total_copies": 2256
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 2256
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 431,
+      "card_name": "Team Rocket's Mewtwo ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 451,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 451,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 451,
+          "games_with_card": 451,
+          "total_copies": 902
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 902
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 434,
+      "card_name": "Team Rocket's Mimikyu",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 451,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 451,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 451,
+          "games_with_card": 451,
+          "total_copies": 1353
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1353
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 463,
+      "card_name": "Team Rocket's Murkrow",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 24
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 24
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 473,
+      "card_name": "Team Rocket's Porygon",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 12
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 474,
+      "card_name": "Team Rocket's Porygon2",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 12
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 506,
+      "card_name": "Cubchoo",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 176,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 176,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 176,
+          "games_with_card": 176,
+          "total_copies": 704
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 704
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 597,
+      "card_name": "Frillish",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 25
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 25
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 607,
+      "card_name": "Terrakion",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 84,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 84,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 84,
+          "games_with_card": 84,
+          "total_copies": 84
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 84
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 646,
+      "card_name": "Marnie's Impidimp",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 955,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 920,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 955,
+          "games_with_card": 920,
+          "total_copies": 3820
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 3820
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 647,
+      "card_name": "Marnie's Morgrem",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 955,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 920,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 955,
+          "games_with_card": 920,
+          "total_copies": 2346
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 2346
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 648,
+      "card_name": "Marnie's Grimmsnarl ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 955,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 920,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 955,
+          "games_with_card": 920,
+          "total_copies": 3344
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 3344
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 649,
+      "card_name": "Marnie's Morpeko",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 81,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 81,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 81,
+          "games_with_card": 81,
+          "total_copies": 161
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 161
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 655,
+      "card_name": "Celebi",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 4
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 666,
+      "card_name": "Cinderace",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 144,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 144,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 144,
+          "games_with_card": 144,
+          "total_copies": 366
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 366
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 673,
+      "card_name": "Makuhita",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 11
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 11
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 674,
+      "card_name": "Hariyama",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 11
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 11
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 675,
+      "card_name": "Lunatone",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 111,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 110,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 111,
+          "games_with_card": 110,
+          "total_copies": 252
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 252
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 676,
+      "card_name": "Solrock",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 111,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 110,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 111,
+          "games_with_card": 110,
+          "total_copies": 333
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 333
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 677,
+      "card_name": "Riolu",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 107,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 106,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 107,
+          "games_with_card": 106,
+          "total_copies": 425
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 425
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 678,
+      "card_name": "Mega Lucario ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 107,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 106,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 107,
+          "games_with_card": 106,
+          "total_copies": 427
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 427
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 689,
+      "card_name": "Yveltal",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 396,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 396,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 396,
+          "games_with_card": 396,
+          "total_copies": 396
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 396
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 741,
+      "card_name": "Abra",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3609,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3029,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3609,
+          "games_with_card": 3029,
+          "total_copies": 14436
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 14436
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 742,
+      "card_name": "Kadabra",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3609,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3029,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3609,
+          "games_with_card": 3029,
+          "total_copies": 14436
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 14436
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 743,
+      "card_name": "Alakazam",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3609,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3029,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3609,
+          "games_with_card": 3029,
+          "total_copies": 14275
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 14275
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 745,
+      "card_name": "Ralts",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 100
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 100
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 746,
+      "card_name": "Kirlia",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 75
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 75
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 747,
+      "card_name": "Mega Gardevoir ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 75
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 2 Pokémon",
+      "total_copies": 75
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 756,
+      "card_name": "Mega Kangaskhan ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2234,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2056,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2234,
+          "games_with_card": 2056,
+          "total_copies": 8926
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 8926
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 791,
+      "card_name": "Moltres",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 101,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 101,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 101,
+          "games_with_card": 101,
+          "total_copies": 202
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 202
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 817,
+      "card_name": "Bramblin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 220,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 219,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 220,
+          "games_with_card": 219,
+          "total_copies": 588
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 588
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 818,
+      "card_name": "Brambleghast",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 220,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 219,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 220,
+          "games_with_card": 219,
+          "total_copies": 442
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 442
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 848,
+      "card_name": "Buneary",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 174,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 174,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 174,
+          "games_with_card": 174,
+          "total_copies": 394
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 394
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 849,
+      "card_name": "Mega Lopunny ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 174,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 174,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 174,
+          "games_with_card": 174,
+          "total_copies": 388
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 388
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 860,
+      "card_name": "Snorunt",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 564,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 557,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 564,
+          "games_with_card": 557,
+          "total_copies": 1241
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1241
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 861,
+      "card_name": "Mega Froslass ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 109,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 109,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 109,
+          "games_with_card": 109,
+          "total_copies": 331
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 331
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 891,
+      "card_name": "Team Rocket's Honchkrow",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 24
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 24
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 906,
+      "card_name": "N's Zekrom",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 12
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 959,
+      "card_name": "Togepi",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 186,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 186,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 186,
+          "games_with_card": 186,
+          "total_copies": 186
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 186
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 970,
+      "card_name": "Fezandipiti",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3,
+          "games_with_card": 3,
+          "total_copies": 6
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 6
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 1030,
+      "card_name": "Staryu",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 403,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 402,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 403,
+          "games_with_card": 402,
+          "total_copies": 1507
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 1507
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 1031,
+      "card_name": "Mega Starmie ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 403,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 402,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 403,
+          "games_with_card": 402,
+          "total_copies": 1215
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 1215
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 1051,
+      "card_name": "Binacle",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4,
+          "games_with_card": 4,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 8
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 1052,
+      "card_name": "Barbaracle",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4,
+          "games_with_card": 4,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stage 1 Pokémon",
+      "total_copies": 8
+    },
+    {
+      "card_class": "pokemon",
+      "card_id": 1071,
+      "card_name": "Meowth ex",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 470,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 464,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 470,
+          "games_with_card": 464,
+          "total_copies": 482
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Basic Pokémon",
+      "total_copies": 482
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1077,
+      "card_name": "Roto-Stick",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 18
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 18
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1079,
+      "card_name": "Rare Candy",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4647,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3670,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4647,
+          "games_with_card": 3670,
+          "total_copies": 15215
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 15215
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1080,
+      "card_name": "Unfair Stamp",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1518,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1418,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1518,
+          "games_with_card": 1418,
+          "total_copies": 1518
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 1518
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1081,
+      "card_name": "Enhanced Hammer",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4006,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3286,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4006,
+          "games_with_card": 3286,
+          "total_copies": 13199
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 13199
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1086,
+      "card_name": "Buddy-Buddy Poffin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 9384,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 5039,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 9384,
+          "games_with_card": 5039,
+          "total_copies": 36590
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 36590
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1087,
+      "card_name": "Hand Trimmer",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2239,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2058,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2239,
+          "games_with_card": 2058,
+          "total_copies": 3159
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 3159
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1088,
+      "card_name": "Prime Catcher",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 6
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 6
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1094,
+      "card_name": "Bug Catching Set",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 516,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 516,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 516,
+          "games_with_card": 516,
+          "total_copies": 1613
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 1613
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1095,
+      "card_name": "Dangerous Laser",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 148,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 147,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 148,
+          "games_with_card": 147,
+          "total_copies": 148
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 148
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1097,
+      "card_name": "Night Stretcher",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 5794,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4208,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 5794,
+          "games_with_card": 4208,
+          "total_copies": 9504
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 9504
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1098,
+      "card_name": "Glass Trumpet",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 12
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1102,
+      "card_name": "Dusk Ball",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 108,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 107,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 108,
+          "games_with_card": 107,
+          "total_copies": 429
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 429
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1109,
+      "card_name": "Miracle Headset",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 6
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 6
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1113,
+      "card_name": "N’s PP Up",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 40
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 40
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1116,
+      "card_name": "Energy Switch",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 7,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 7,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 7,
+          "games_with_card": 7,
+          "total_copies": 25
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 25
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1118,
+      "card_name": "Energy Retrieval",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4,
+          "games_with_card": 4,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 4
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1119,
+      "card_name": "Energy Search",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 147,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 147,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 147,
+          "games_with_card": 147,
+          "total_copies": 293
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 293
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1120,
+      "card_name": "Crushing Hammer",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1553,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1433,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1553,
+          "games_with_card": 1433,
+          "total_copies": 4207
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 4207
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1121,
+      "card_name": "Ultra Ball",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1960,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1825,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1960,
+          "games_with_card": 1825,
+          "total_copies": 4987
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 4987
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1122,
+      "card_name": "Pokégear 3.0",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3529,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2999,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3529,
+          "games_with_card": 2999,
+          "total_copies": 12166
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 12166
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1123,
+      "card_name": "Switch",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2462,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2233,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2462,
+          "games_with_card": 2233,
+          "total_copies": 8739
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 8739
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1129,
+      "card_name": "Sacred Ash",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3729,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3101,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3729,
+          "games_with_card": 3101,
+          "total_copies": 4041
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 4041
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1134,
+      "card_name": "Team Rocket's Transceiver",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 1828
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 1828
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1137,
+      "card_name": "Tool Scrapper",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 778,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 761,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 778,
+          "games_with_card": 761,
+          "total_copies": 778
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 778
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1139,
+      "card_name": "Energy Recycler",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 149,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 148,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 149,
+          "games_with_card": 148,
+          "total_copies": 445
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 445
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1141,
+      "card_name": "Premium Power Pro",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 111,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 110,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 111,
+          "games_with_card": 110,
+          "total_copies": 440
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 440
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1142,
+      "card_name": "Fighting Gong",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 770,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 736,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 770,
+          "games_with_card": 736,
+          "total_copies": 2954
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 2954
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1145,
+      "card_name": "Mega Signal",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 140,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 140,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 140,
+          "games_with_card": 140,
+          "total_copies": 397
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 397
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1146,
+      "card_name": "Wondrous Patch",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 269,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 267,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 269,
+          "games_with_card": 267,
+          "total_copies": 269
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 269
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1147,
+      "card_name": "Jumbo Ice Cream",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2810,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2503,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2810,
+          "games_with_card": 2503,
+          "total_copies": 11074
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 11074
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1152,
+      "card_name": "Poké Pad",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 7869,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4872,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 7869,
+          "games_with_card": 4872,
+          "total_copies": 30868
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Item",
+      "total_copies": 30868
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1155,
+      "card_name": "Survival Brace",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 1,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1,
+          "games_with_card": 1,
+          "total_copies": 1
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 1
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1156,
+      "card_name": "Lucky Helmet",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 5,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 5,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 5,
+          "games_with_card": 5,
+          "total_copies": 5
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 5
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1158,
+      "card_name": "Maximum Belt",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 8,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8,
+          "games_with_card": 8,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 8
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1159,
+      "card_name": "Hero’s Cape",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4121,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3318,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4121,
+          "games_with_card": 3318,
+          "total_copies": 4121
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 4121
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1161,
+      "card_name": "Handheld Fan",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 527,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 515,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 527,
+          "games_with_card": 515,
+          "total_copies": 828
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 828
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1166,
+      "card_name": "Gravity Gemstone",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 146,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 146,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 146,
+          "games_with_card": 146,
+          "total_copies": 584
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 584
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1167,
+      "card_name": "Deluxe Bomb",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 295,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 295,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 295,
+          "games_with_card": 295,
+          "total_copies": 295
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 295
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1173,
+      "card_name": "Cynthia's Power Weight",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 567,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 553,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 567,
+          "games_with_card": 553,
+          "total_copies": 1712
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 1712
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1174,
+      "card_name": "Air Balloon",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 112,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 112,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 112,
+          "games_with_card": 112,
+          "total_copies": 336
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 336
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1175,
+      "card_name": "Brave Bangle",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 452,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 452,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 452,
+          "games_with_card": 452,
+          "total_copies": 453
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 453
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1176,
+      "card_name": "Punk Helmet",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2,
+          "games_with_card": 2,
+          "total_copies": 4
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Pokémon Tool",
+      "total_copies": 4
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1182,
+      "card_name": "Boss’s Orders",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8374,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4954,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8374,
+          "games_with_card": 4954,
+          "total_copies": 21686
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 21686
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1184,
+      "card_name": "Lana’s Aid",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 3890,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3213,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 3890,
+          "games_with_card": 3213,
+          "total_copies": 4452
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 4452
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1185,
+      "card_name": "Explorer’s Guidance",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 125,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 125,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 125,
+          "games_with_card": 125,
+          "total_copies": 488
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 488
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1186,
+      "card_name": "Eri",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 426,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 417,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 426,
+          "games_with_card": 417,
+          "total_copies": 766
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 766
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1187,
+      "card_name": "Morty’s Conviction",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 7,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 7,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 7,
+          "games_with_card": 7,
+          "total_copies": 22
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 22
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1188,
+      "card_name": "Ciphermaniac’s Codebreaking",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2,
+          "games_with_card": 2,
+          "total_copies": 2
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 2
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1189,
+      "card_name": "Salvatore",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 106,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 106,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 106,
+          "games_with_card": 106,
+          "total_copies": 224
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 224
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1192,
+      "card_name": "Carmine",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 482,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 472,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 482,
+          "games_with_card": 472,
+          "total_copies": 1532
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1532
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1194,
+      "card_name": "Colress’s Tenacity",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 287,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 282,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 287,
+          "games_with_card": 282,
+          "total_copies": 439
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 439
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1195,
+      "card_name": "Janine’s Secret Art",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2,
+          "games_with_card": 2,
+          "total_copies": 2
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 2
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1197,
+      "card_name": "Xerosic’s Machinations",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 8011,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4871,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 8011,
+          "games_with_card": 4871,
+          "total_copies": 21629
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 21629
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1198,
+      "card_name": "Crispin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1018,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 970,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1018,
+          "games_with_card": 970,
+          "total_copies": 3609
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 3609
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1202,
+      "card_name": "Drayton",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 178,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 175,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 178,
+          "games_with_card": 175,
+          "total_copies": 254
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 254
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1203,
+      "card_name": "Surfer",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 375,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 364,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 375,
+          "games_with_card": 364,
+          "total_copies": 375
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 375
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1204,
+      "card_name": "Lisia’s Appeal",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 372,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 367,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 372,
+          "games_with_card": 367,
+          "total_copies": 464
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 464
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1205,
+      "card_name": "Cyrano",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 16,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 16,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 16,
+          "games_with_card": 16,
+          "total_copies": 42
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 42
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1206,
+      "card_name": "Larry’s Skill",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 14,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 14,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 14,
+          "games_with_card": 14,
+          "total_copies": 14
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 14
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1208,
+      "card_name": "Iris’s Fighting Spirit",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 156,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 155,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 156,
+          "games_with_card": 155,
+          "total_copies": 248
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 248
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1210,
+      "card_name": "Brock’s Scouting",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 551,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 541,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 551,
+          "games_with_card": 541,
+          "total_copies": 2161
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 2161
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1211,
+      "card_name": "Black Belt’s Training",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 9,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 9,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 9,
+          "games_with_card": 9,
+          "total_copies": 17
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 17
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1212,
+      "card_name": "Cook",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 79,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 79,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 79,
+          "games_with_card": 79,
+          "total_copies": 93
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 93
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1213,
+      "card_name": "Judge",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1001,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 965,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1001,
+          "games_with_card": 965,
+          "total_copies": 1875
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1875
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1216,
+      "card_name": "Team Rocket's Ariana",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 1828
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1828
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1217,
+      "card_name": "Team Rocket's Archer",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 469
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 469
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1218,
+      "card_name": "Team Rocket's Giovanni",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 1377
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1377
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1219,
+      "card_name": "Team Rocket's Petrel",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 1000,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 945,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 1000,
+          "games_with_card": 945,
+          "total_copies": 3991
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 3991
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1220,
+      "card_name": "Team Rocket's Proton",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 457,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 457,
+          "games_with_card": 457,
+          "total_copies": 1828
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1828
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1223,
+      "card_name": "Harlequin",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 12
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1224,
+      "card_name": "Cheren",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 105,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 105,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 105,
+          "games_with_card": 105,
+          "total_copies": 210
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 210
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1225,
+      "card_name": "Hilda",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 7125,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4636,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 7125,
+          "games_with_card": 4636,
+          "total_copies": 27027
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 27027
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1227,
+      "card_name": "Lillie's Determination",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6475,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4457,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6475,
+          "games_with_card": 4457,
+          "total_copies": 24982
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 24982
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1228,
+      "card_name": "Acerola's Mischief",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 76,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 76,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 3,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 76,
+          "games_with_card": 76,
+          "total_copies": 228
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 228
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1229,
+      "card_name": "Wally's Compassion",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 615,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 609,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 615,
+          "games_with_card": 609,
+          "total_copies": 2089
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 2089
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1231,
+      "card_name": "Dawn",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4789,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 3764,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4789,
+          "games_with_card": 3764,
+          "total_copies": 16806
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 16806
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1236,
+      "card_name": "Urbain",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 446,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 440,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 446,
+          "games_with_card": 440,
+          "total_copies": 1784
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 1784
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1238,
+      "card_name": "Tarragon",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 4,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 4,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 4,
+          "games_with_card": 4,
+          "total_copies": 8
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 8
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1240,
+      "card_name": "Rosa's Encouragement",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 52,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 52,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 52,
+          "games_with_card": 52,
+          "total_copies": 52
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Supporter",
+      "total_copies": 52
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1242,
+      "card_name": "Community Center",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 354,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 347,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 354,
+          "games_with_card": 347,
+          "total_copies": 368
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 368
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1244,
+      "card_name": "Full Metal Lab",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 117,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 115,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 117,
+          "games_with_card": 115,
+          "total_copies": 468
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 468
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1245,
+      "card_name": "Festival Grounds",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2,
+          "games_with_card": 2,
+          "total_copies": 5
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 5
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1246,
+      "card_name": "Jamming Tower",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 691,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 675,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 691,
+          "games_with_card": 675,
+          "total_copies": 1636
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 1636
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1247,
+      "card_name": "Neutralization Zone",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 603,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 586,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 603,
+          "games_with_card": 586,
+          "total_copies": 603
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 603
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1249,
+      "card_name": "Grand Tree",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 25,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 25,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 1,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 25,
+          "games_with_card": 25,
+          "total_copies": 25
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 25
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1250,
+      "card_name": "Area Zero Underdepths",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 6,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 6,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 6,
+          "games_with_card": 6,
+          "total_copies": 24
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 24
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1252,
+      "card_name": "Gravity Mountain",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 7,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 7,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 7,
+          "games_with_card": 7,
+          "total_copies": 12
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 12
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1253,
+      "card_name": "N’s Castle",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 10,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 10,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 10,
+          "games_with_card": 10,
+          "total_copies": 22
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 22
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1256,
+      "card_name": "Team Rocket's Watchtower",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 75,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 75,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 75,
+          "games_with_card": 75,
+          "total_copies": 269
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 269
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1257,
+      "card_name": "Team Rocket's Factory",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 833,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 813,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 833,
+          "games_with_card": 813,
+          "total_copies": 1757
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 1757
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1259,
+      "card_name": "Spikemuth Gym",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 955,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 920,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 2,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 955,
+          "games_with_card": 920,
+          "total_copies": 3268
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 3268
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1260,
+      "card_name": "Risky Ruins",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 524,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 518,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 524,
+          "games_with_card": 518,
+          "total_copies": 556
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 556
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1261,
+      "card_name": "Forest of Vitality",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 559,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 545,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 2,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 559,
+          "games_with_card": 545,
+          "total_copies": 1117
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 1117
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1262,
+      "card_name": "Surfing Beach",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 105,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 105,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 4,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 105,
+          "games_with_card": 105,
+          "total_copies": 420
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 420
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1264,
+      "card_name": "Battle Cage",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2591,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2349,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 3,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2591,
+          "games_with_card": 2349,
+          "total_copies": 5235
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 5235
+    },
+    {
+      "card_class": "trainer",
+      "card_id": 1266,
+      "card_name": "Nighttime Mine",
+      "dataset_dates": [
+        "2026-07-12"
+      ],
+      "decks_with_card": 2528,
+      "first_dataset_date": "2026-07-12",
+      "games_with_card": 2263,
+      "last_dataset_date": "2026-07-12",
+      "max_copies_in_containing_deck": 4,
+      "metadata_resolved": true,
+      "min_copies_in_containing_deck": 1,
+      "per_date": {
+        "2026-07-12": {
+          "decks_with_card": 2528,
+          "games_with_card": 2263,
+          "total_copies": 6855
+        }
+      },
+      "source_archives": [
+        "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip"
+      ],
+      "subtype": "Stadium",
+      "total_copies": 6855
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,89 @@
+{
+  "archives": [
+    {
+      "accepted_unique_episodes": 5050,
+      "dataset_date": "2026-07-12",
+      "duplicate_episodes": 0,
+      "json_members": 5050,
+      "non_json_members": 1,
+      "path": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+      "rejected_json_members": 0,
+      "sha256": "fba2cc8fd028109ab038dda9b2aca09bd1323cf40200cd2797d66c351fc67646",
+      "size_bytes": 736685052,
+      "zip_members": 5051
+    },
+    {
+      "accepted_unique_episodes": 5039,
+      "dataset_date": "2026-07-13",
+      "duplicate_episodes": 0,
+      "json_members": 5039,
+      "non_json_members": 1,
+      "path": "Imitation-Learning/Top-ladder-data/7-13/pokemon-tcg-ai-battle-episodes-2026-07-13.zip",
+      "rejected_json_members": 0,
+      "sha256": "972100430bce2fc877651fe50a2bdf990548e968405867da14b22f9e87c33464",
+      "size_bytes": 737831265,
+      "zip_members": 5040
+    },
+    {
+      "accepted_unique_episodes": 4929,
+      "dataset_date": "2026-07-14",
+      "duplicate_episodes": 0,
+      "json_members": 4929,
+      "non_json_members": 1,
+      "path": "Imitation-Learning/Top-ladder-data/7-14/pokemon-tcg-ai-battle-episodes-2026-07-14.zip",
+      "rejected_json_members": 0,
+      "sha256": "4c844694ae8fc48e595f1e9d89a4c6b8dcdc9c702e8a3407f360be1a1c803f54",
+      "size_bytes": 737949050,
+      "zip_members": 4930
+    }
+  ],
+  "card_database": {
+    "path": "Decks/Deck-Builder/EN_Card_Data.csv",
+    "sha256": "a0ea63cf7adcb65d35436ce0eb390de6e2e35654a7c67c065a45f4abaa00f373",
+    "size_bytes": 359151
+  },
+  "command": [
+    "python",
+    "Imitation-Learning/analyze_top_ladder_cards.py",
+    "--all",
+    "--card-csv",
+    "Decks/Deck-Builder/EN_Card_Data.csv",
+    "--output-dir",
+    "Imitation-Learning/meta-card-analysis/all-datasets"
+  ],
+  "issue_counts": {},
+  "output_sha256_excluding_manifest": {
+    "energy_ids.json": "c7713e4f04b110ccdfec2517318288258cc05381b9f4d0f8aa5b80335f6d153b",
+    "issues.json": "ef7bc004b5ff7d1272f406388434989f39b8b82b918c8f7a500dc3e2841042c8",
+    "pokemon_ids.json": "ee42d50ff0f4ca4604c11040b2fd658ff697710e216416b0b7467ba0d7b2d15a",
+    "summary.md": "7373c5bea3592445698e417040c7c56331eafe0596c3e2a9a3ede6c2e6d75824",
+    "top_ladder_card_catalog.csv": "b6590d41519c4a7f067ff72e24c0d0ab8ea59bb755b3f30ba3a70257d1f8bd88",
+    "top_ladder_card_catalog.json": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+    "trainer_ids.json": "71fc3192b51d71df187d90bb4bd2930755c421f89f8f0d8c4ae06de8cd045891"
+  },
+  "python_version": "3.14.5",
+  "schema_version": 1,
+  "script_version": "1.0.0",
+  "summary": {
+    "cards_by_class": {
+      "energy": 18,
+      "pokemon": 115,
+      "trainer": 99
+    },
+    "cards_by_subtype": {
+      "Basic Energy": 8,
+      "Basic Pokémon": 74,
+      "Item": 32,
+      "Pokémon Tool": 11,
+      "Special Energy": 10,
+      "Stadium": 17,
+      "Stage 1 Pokémon": 30,
+      "Stage 2 Pokémon": 11,
+      "Supporter": 39
+    },
+    "deck_instances": 30036,
+    "submitted_card_copies": 1802160,
+    "unique_card_ids": 232,
+    "unique_episodes": 15018
+  }
+}

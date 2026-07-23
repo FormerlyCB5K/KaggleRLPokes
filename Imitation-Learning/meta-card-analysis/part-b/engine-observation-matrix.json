@@ -1,0 +1,162 @@
+{
+  "inputs": [
+    {
+      "efficient_access": "O(1) per entity",
+      "input": "exact_card_id",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].id and visible zone cards[*].id"
+    },
+    {
+      "efficient_access": "O(1) per Pokemon",
+      "input": "hp_and_max_hp",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].hp|maxHp"
+    },
+    {
+      "efficient_access": "O(attached energy)",
+      "input": "attached_energy_types",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].energies"
+    },
+    {
+      "efficient_access": "O(attached cards)",
+      "input": "attached_energy_card_ids",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].energyCards[*].id"
+    },
+    {
+      "efficient_access": "O(attached tools)",
+      "input": "attached_tools",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].tools[*].id"
+    },
+    {
+      "efficient_access": "O(evolution depth)",
+      "input": "evolution_stack",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].preEvolution[*].id"
+    },
+    {
+      "efficient_access": "O(1) per Pokemon",
+      "input": "new_in_play",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].active|bench[*].appearThisTurn"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "bench_capacity_and_count",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].benchMax and len(bench)"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "special_conditions",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].poisoned|burned|asleep|paralyzed|confused"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "hand_size_both_players",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].handCount"
+    },
+    {
+      "efficient_access": "O(hand size)",
+      "input": "own_hand_identity",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[yourIndex].hand[*].id"
+    },
+    {
+      "efficient_access": "do not infer",
+      "input": "opponent_hand_identity",
+      "observability": "hidden_information",
+      "observation_path_or_rule": "current.players[opponent].hand is null"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "deck_size_both_players",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].deckCount"
+    },
+    {
+      "efficient_access": "O(discard size), cache counts if needed",
+      "input": "discard_identity_and_count",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.players[*].discard[*].id"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "prize_count",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "len(current.players[*].prize)"
+    },
+    {
+      "efficient_access": "do not infer",
+      "input": "prize_identity",
+      "observability": "hidden_information",
+      "observation_path_or_rule": "prize entries are reversed/null for player observations"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "stadium",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.stadium[*].id"
+    },
+    {
+      "efficient_access": "O(1)",
+      "input": "turn_and_once_turn_flags",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "current.turn|turnActionCount|supporterPlayed|stadiumPlayed|energyAttached|retreated"
+    },
+    {
+      "efficient_access": "O(selection size)",
+      "input": "current_selection",
+      "observability": "observation_direct",
+      "observation_path_or_rule": "select.context|contextCard|effect|option|remaining values"
+    },
+    {
+      "efficient_access": "O(new logs), never replay full game per observation",
+      "input": "public_prior_events",
+      "observability": "public_history",
+      "observation_path_or_rule": "logs plus an incremental tracker"
+    },
+    {
+      "efficient_access": "store distribution/formula",
+      "input": "future_coin_or_random_result",
+      "observability": "stochastic",
+      "observation_path_or_rule": "not determined before resolution"
+    },
+    {
+      "efficient_access": "single O(board or zone) pass with shared cache",
+      "input": "derived_board_counts",
+      "observability": "observation_derived",
+      "observation_path_or_rule": "count/filter visible board and zones"
+    },
+    {
+      "efficient_access": "precompile formula; O(required inputs)",
+      "input": "credible_maximum",
+      "observability": "observation_derived",
+      "observation_path_or_rule": "registry formula plus explicit deck/state constraints"
+    },
+    {
+      "efficient_access": "precompute and cache",
+      "input": "theoretical_maximum",
+      "observability": "static",
+      "observation_path_or_rule": "static registry proof or legal-state calculation"
+    }
+  ],
+  "runtime_policy": [
+    "Compile exact-card static programs once and look them up by integer card ID.",
+    "Compute shared board/zone aggregates once per observation, not once per effect.",
+    "Use incremental public-history trackers only for values absent from current state.",
+    "Never simulate future actions merely to compute an observation feature.",
+    "Never substitute hidden information with an all-zero semantic value."
+  ],
+  "schema_version": 1,
+  "source_evidence": [
+    "Imitation-Learning/ptcg_engine/ptcgProgram 22/ToJson.h:40",
+    "Imitation-Learning/ptcg_engine/ptcgProgram 22/ToJson.h:96",
+    "Imitation-Learning/ptcg_engine/ptcgProgram 22/ToJson.h:134",
+    "A streamed July 12 episode player observation was checked against these paths."
+  ]
+}

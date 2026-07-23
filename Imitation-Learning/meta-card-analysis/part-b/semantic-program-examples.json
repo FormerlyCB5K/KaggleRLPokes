@@ -1,0 +1,264 @@
+{
+  "examples": [
+    {
+      "activation": {
+        "event": "attack_resolution",
+        "frequency": null,
+        "requirements": [],
+        "source_zone": "active",
+        "timing": "immediate"
+      },
+      "audit": {
+        "human_review_ids": [],
+        "reviewer_notes": null,
+        "status": "draft",
+        "verdict": "illustrative"
+      },
+      "card_class": "pokemon",
+      "card_id": 63,
+      "damage_profile": {
+        "credible_max": null,
+        "expected_value": null,
+        "live_formula": "70 * discarded_basic_energy_count",
+        "printed_base": 0,
+        "required_inputs": [
+          "eligible_attached_basic_energy_count"
+        ],
+        "theoretical_max": null,
+        "unknown_reason": "maxima pending B08"
+      },
+      "effect_id": "card:63:attack:1",
+      "evidence": {
+        "card_text": true,
+        "current_encoder_comparison": true,
+        "engine_handler_tokens": true,
+        "engine_source": true,
+        "validation_refs": []
+      },
+      "program": {
+        "kind": "sequence",
+        "nodes": [
+          {
+            "kind": "operation",
+            "operation": {
+              "duration": null,
+              "kind": "detach_card",
+              "operation_id": "discarded_energy",
+              "parameters": {
+                "destination": "discard"
+              },
+              "target": "chosen_attached_basic_energy",
+              "value": {
+                "kind": "read",
+                "observability": "observation_derived",
+                "path": "selection.count"
+              }
+            }
+          },
+          {
+            "kind": "operation",
+            "operation": {
+              "duration": null,
+              "kind": "deal_damage",
+              "operation_id": "damage",
+              "parameters": {},
+              "target": "opponent_active",
+              "value": {
+                "arguments": [
+                  {
+                    "kind": "literal",
+                    "value": 70
+                  },
+                  {
+                    "kind": "read",
+                    "observability": "observation_derived",
+                    "path": "operation.discarded_energy.actual_count"
+                  }
+                ],
+                "kind": "multiply"
+              }
+            }
+          }
+        ]
+      },
+      "source_kind": "attack"
+    },
+    {
+      "activation": {
+        "event": "manual_ability_activation",
+        "frequency": "once_per_turn",
+        "requirements": [
+          "hand_count_at_least_1"
+        ],
+        "source_zone": "battlefield",
+        "timing": "own_turn"
+      },
+      "audit": {
+        "human_review_ids": [],
+        "reviewer_notes": null,
+        "status": "draft",
+        "verdict": "illustrative"
+      },
+      "card_class": "pokemon",
+      "card_id": 293,
+      "damage_profile": {
+        "credible_max": null,
+        "expected_value": null,
+        "live_formula": null,
+        "printed_base": null,
+        "required_inputs": [],
+        "theoretical_max": null,
+        "unknown_reason": "not a damage effect"
+      },
+      "effect_id": "card:293:ability:0",
+      "evidence": {
+        "card_text": true,
+        "current_encoder_comparison": true,
+        "engine_handler_tokens": true,
+        "engine_source": true,
+        "validation_refs": []
+      },
+      "program": {
+        "kind": "sequence",
+        "nodes": [
+          {
+            "kind": "operation",
+            "operation": {
+              "duration": null,
+              "kind": "move_cards",
+              "operation_id": "cost",
+              "parameters": {
+                "destination": "discard",
+                "role": "cost"
+              },
+              "target": "chosen_own_hand_card",
+              "value": {
+                "kind": "literal",
+                "value": 1
+              }
+            }
+          },
+          {
+            "kind": "operation",
+            "operation": {
+              "duration": null,
+              "kind": "move_cards",
+              "operation_id": "draw",
+              "parameters": {
+                "destination": "hand",
+                "mode": "draw"
+              },
+              "target": "own_deck_top",
+              "value": {
+                "kind": "literal",
+                "value": 2
+              }
+            }
+          }
+        ]
+      },
+      "source_kind": "ability"
+    },
+    {
+      "activation": {
+        "event": "continuous_stadium",
+        "frequency": "continuous",
+        "requirements": [],
+        "source_zone": "stadium",
+        "timing": "while_in_play"
+      },
+      "audit": {
+        "human_review_ids": [],
+        "reviewer_notes": null,
+        "status": "draft",
+        "verdict": "illustrative"
+      },
+      "card_class": "trainer",
+      "card_id": 1250,
+      "damage_profile": {
+        "credible_max": null,
+        "expected_value": null,
+        "live_formula": null,
+        "printed_base": null,
+        "required_inputs": [],
+        "theoretical_max": null,
+        "unknown_reason": "not a damage effect"
+      },
+      "effect_id": "card:1250:trainer_effect:0",
+      "evidence": {
+        "card_text": true,
+        "current_encoder_comparison": true,
+        "engine_handler_tokens": true,
+        "engine_source": true,
+        "validation_refs": []
+      },
+      "program": {
+        "condition": {
+          "arguments": [
+            {
+              "filters": {
+                "tera": true
+              },
+              "kind": "count",
+              "path": "player.pokemon_in_play"
+            },
+            {
+              "kind": "literal",
+              "value": 0
+            }
+          ],
+          "kind": "compare",
+          "operator": "greater_than"
+        },
+        "else": {
+          "kind": "operation",
+          "operation": {
+            "duration": null,
+            "kind": "move_cards",
+            "operation_id": "cleanup",
+            "parameters": {
+              "destination": "discard",
+              "resolution_order": "stadium_owner_first"
+            },
+            "target": "chosen_benched_pokemon_over_five",
+            "value": {
+              "arguments": [
+                {
+                  "kind": "count",
+                  "path": "player.bench"
+                },
+                {
+                  "kind": "literal",
+                  "value": 5
+                }
+              ],
+              "kind": "subtract"
+            }
+          }
+        },
+        "kind": "conditional",
+        "then": {
+          "kind": "operation",
+          "operation": {
+            "duration": {
+              "while_condition": "has_tera_pokemon_in_play"
+            },
+            "kind": "modify_stat",
+            "operation_id": "bench_capacity",
+            "parameters": {
+              "mode": "set",
+              "stat": "bench_capacity"
+            },
+            "target": "qualifying_player",
+            "value": {
+              "kind": "literal",
+              "value": 8
+            }
+          }
+        }
+      },
+      "source_kind": "trainer_effect"
+    }
+  ],
+  "schema_version": 1
+}

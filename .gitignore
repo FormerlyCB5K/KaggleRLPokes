@@ -18,8 +18,15 @@ archive.zip
 # Oversized reference document (exceeds GitHub's 100 MB file limit)
 Card_ID List_EN.pdf
 
+# Raw battle episode data (multi-hundred-MB zips, exceeds GitHub's 100 MB file limit)
+Imitation-Learning/Top-ladder-data/
+
+# Smoke-test scratch output (checkpoints/plots regenerated on each run)
+work/audit-smoke-*/
+
 # Python
 .venv/
+.venv-cuda/
 __pycache__/
 *.py[cod]
 *.egg-info/

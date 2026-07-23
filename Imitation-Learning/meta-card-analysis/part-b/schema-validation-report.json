@@ -1,0 +1,166 @@
+{
+  "checks": {
+    "all_effects_have_family_home": true,
+    "every_active_family_has_pair": true,
+    "negative_examples_reject": true,
+    "no_final_tensor_fields": true,
+    "positive_examples_accept": true,
+    "recorded_observation_probe": true,
+    "roundtrip_serialization": true
+  },
+  "family_mapping_issues": [],
+  "family_positive_negative_pairs": [
+    {
+      "family": "action_rule",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:108:attack:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "attachment",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:12:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "attack_delegation",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:57:ability:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "card_rule",
+      "negative_effect_id": "card:13:energy_effect:0",
+      "positive_effect_id": "card:11:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "damage",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:12:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "damage_rule",
+      "negative_effect_id": "card:12:energy_effect:0",
+      "positive_effect_id": "card:11:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "energy_provision",
+      "negative_effect_id": "card:31:attack:0",
+      "positive_effect_id": "card:11:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "evolution",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:190:ability:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "game_flow",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:17:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "healing",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:112:ability:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "information",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:1077:trainer_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "knockout",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:12:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "pokemon_position",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:74:attack:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "prize_rule",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:12:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "random_control",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:65:attack:1",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "special_condition",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:112:attack:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "stat_modifier",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:18:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    },
+    {
+      "family": "zone_movement",
+      "negative_effect_id": "card:11:energy_effect:0",
+      "positive_effect_id": "card:13:energy_effect:0",
+      "validation": "routing_positive_and_nearby_negative_present"
+    }
+  ],
+  "losslessness_status": "schema-level checks passed; effect-level losslessness remains gated by B05-B08 audits",
+  "negative_examples": [
+    {
+      "case": "unknown_program_node",
+      "errors": [
+        "invalid_program_node_kind"
+      ]
+    },
+    {
+      "case": "unknown_operation",
+      "errors": [
+        "invalid_operation_kind"
+      ]
+    }
+  ],
+  "positive_examples": [
+    {
+      "effect_id": "card:63:attack:1",
+      "errors": []
+    },
+    {
+      "effect_id": "card:293:ability:0",
+      "errors": []
+    },
+    {
+      "effect_id": "card:1250:trainer_effect:0",
+      "errors": []
+    }
+  ],
+  "recorded_observation_probe": {
+    "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+    "checks": {
+      "board_live_fields_visible": true,
+      "both_deck_counts_visible": true,
+      "both_hand_counts_visible": true,
+      "opponent_hand_identity_hidden": true,
+      "own_hand_identity_visible": true,
+      "prize_identity_reversed": true,
+      "turn_flags_visible": true
+    },
+    "member": "85480905.json"
+  },
+  "roundtrip_serialization": true,
+  "schema_version": 1
+}

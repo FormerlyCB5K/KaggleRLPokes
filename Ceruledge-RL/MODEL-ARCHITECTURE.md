@@ -238,7 +238,7 @@ Our side is intentionally deck-specific.
 | 9 | Fire Energy attached | Count divided by 2 and clipped. |
 | 10 | Fighting Energy attached | Count divided by 2 and clipped. |
 | 11 | Attacks survivable | Hit ratio using this Pokémon's effective current HP and the opponent Active's effective maximum credible damage against this slot. |
-| 12 | Attack damage | Friendly base damage plus applicable outgoing damage bonuses, divided by 270. |
+| 12 | Attack damage | Friendly base damage plus applicable outgoing damage bonuses, divided by 440. |
 | 13 | Hits to KO opponent | Hit ratio using the opponent Active's effective HP and this Pokémon's target-specific effective damage. |
 | 14 | Asleep | Active only. |
 | 15 | Paralyzed | Active only. |
@@ -249,12 +249,14 @@ Our side is intentionally deck-specific.
 Friendly base attack damage is hard-coded because species identity fully determines the
 relevant attack:
 
-- Ceruledge ex: `30 + 20 × friendly Fire/Fighting Energy in discard`, capped at 270
+- Ceruledge ex: `30 + 20 × friendly Fire/Fighting Energy in discard`, capped at 440
   for the raw attack-damage feature;
 - Solrock: 70;
 - Lunatone: 50;
 - Drilbur: 20; and
-- Charcadet: 0.
+- Charcadet: 0. This deliberately ignores Charcadet's minor 1-Energy 10-damage attack;
+  its non-damaging Energy-search attack is almost always preferred, so a 0-damage feature
+  is the right strategic summary.
 
 Dimension 12 adds outgoing damage bonuses but does not apply target Weakness,
 Resistance, or damage reduction. Those target-specific effects are applied in dimension
@@ -278,10 +280,10 @@ the opponent Pokémon by species. Instead, every Pokémon is converted into:
 
 | Dim | Feature | Meaning |
 |---:|---|---|
-| 0 | Effective maximum HP | Maximum of observed HP, database HP, and reviewed override HP, plus applicable HP auras; divided by 340. |
+| 0 | Effective maximum HP | Maximum of observed HP, database HP, and reviewed override HP, plus applicable HP auras; divided by 440. |
 | 1 | Current HP fraction | Effective current HP divided by effective maximum HP. |
 | 2 | No rule | Plain/non-ex Pokémon. |
-| 3 | Pokémon ex | Rule one-hot. |
+| 3 | Pokémon ex | Rule one-hot; excludes Mega ex (those set dimension 4 instead). |
 | 4 | Mega Pokémon ex | Rule one-hot. |
 | 5 | Has Tool | Any Tool is attached, even if the Tool is currently suppressed. |
 | 6 | Effective retreat cost | Effective retreat cost divided by 4. |
@@ -299,7 +301,7 @@ the opponent Pokémon by species. Instead, every Pokémon is converted into:
 | 18 | Weak to Fighting | Effective weakness flag. |
 | 19 | Resists Fire | Effective resistance flag. |
 | 20 | Resists Fighting | Effective resistance flag. |
-| 21 | Survives Ceruledge | Hit ratio using effective current HP and Ceruledge's target-specific effective damage. |
+| 21 | Survives Ceruledge | Hit ratio using effective current HP and Ceruledge's target-specific effective damage. | 
 | 22 | Attached Energy count | Total Energy cards, type-blind, divided by 5. |
 | 23 | Asleep | Active only. |
 | 24 | Paralyzed | Active only. |
@@ -334,7 +336,7 @@ Attack 1 occupies dimensions 28–45. Attack 2 occupies dimensions 46–63.
 | Relative dim | Feature | Encoding and meaning |
 |---:|---|---|
 | 0 | Energy cost | Effective total Energy cost divided by 5. Energy types are not distinguished. |
-| 1 | Damage | Printed, overridden, or approximated damage divided by 270. |
+| 1 | Damage | Printed, overridden, or approximated damage divided by 270 (our max HP; damage above that is overkill). |
 | 2 | Snipe | Bench or spread damage divided by 100. |
 | 3 | Counter snipe | Damage-counter placement converted to HP and divided by 100. |
 | 4 | Conditional | Some additional condition must hold; normally supplied by an override. |
@@ -596,8 +598,9 @@ count are left for the network to consider separately.
 Clipping removes distinctions above the configured scales, including:
 
 - friendly HP above 270;
-- opponent HP above 340;
-- damage above 270;
+- opponent HP above 440;
+- friendly attack damage above 440;
+- opponent attack damage above 270;
 - snipe/counter damage above 100;
 - recoil above 70;
 - more than two friendly Fire or Fighting Energy;
@@ -683,6 +686,19 @@ The 19 Stage 1 actions are:
 | 17 | Use Lunatone's ability |
 | 18 | End turn/pass |
 
+**Drilbur's ability is not one of these 19 categories.** Only Lunatone's Lunar Cycle is
+promoted to a learned Stage 1 action (ID 17). Like other optional triggered abilities,
+Drilbur's surfaces to the agent as a separate `ACTIVATE` (YES/NO) sub-selection, which is
+resolved heuristically as always-YES (§3.3–3.4), not by the learned head. So the *choice*
+to use it is not currently a learned decision.
+
+**Each hand card has its own Stage 1 category,** so the network never confuses Ultra Ball
+(ID 8) with Brilliant Blender (ID 6) *at Stage 1*. The follow-up cost/discard selection is
+also effect-aware: the triggering card (`obs.select.effect`) is encoded through the shared
+zone MLP and added to the pooled state before the Stage 2 card scorer ranks candidates, so
+discarding for an Ultra Ball cost and discarding for a Brilliant Blender cost use
+different conditioned states rather than one purpose-agnostic ranking (§3.3).
+
 ### 3.3 Stage 2 and follow-up selections
 
 Stage 2 assigns each candidate the score:
@@ -694,6 +710,11 @@ pooled_state · candidate_vector
 Friendly and opponent Pokémon candidates reuse their post-transformer words. Cards from
 hand, discard, deck, or a temporary revealed pile use a 16-feature card identity vector
 passed through the shared zone MLP.
+
+For sub-selection card contexts (discard, search-to-hand), the pooled state is first
+conditioned on the triggering effect card: `obs.select.effect` is encoded through the same
+zone MLP and added to `pooled_state`, so the ranking depends on *why* the cards are being
+chosen (e.g. an Ultra Ball cost versus a Brilliant Blender cost).
 
 Examples:
 
@@ -727,15 +748,20 @@ The output system is functional but contains several important limitations:
 - **Multiple attacks are not cleanly distinguished.** All legal attacks map to the one
   `ACTION_ATTACK` category. If several raw attacks are legal, their current Stage 2
   candidates are zero vectors, so the first tied engine option normally wins.
-- **MAIN candidate support is incomplete.** Fire/Fighting attachments and Bench
-  Ceruledge evolution targets receive meaningful candidate words. Other duplicate raw
-  options generally receive zero vectors. A non-Bench Ceruledge evolution target also
-  receives a zero candidate.
+- **MAIN candidate support is incomplete.** Fire/Fighting attachments and Ceruledge
+  evolution targets receive meaningful candidate words: `select_main_stage2` maps a Bench
+  `EVOLVE` candidate to its Bench word and an Active `EVOLVE` candidate to the Active word
+  (`words[0]`), so evolving the Active Charcadet is now ranked on equal footing with Bench
+  evolutions. Other duplicate raw options generally still receive zero vectors.
 - **Retreat Energy discard is uninformed.** Attached Energy choices use zero candidate
   vectors, so the model cannot deliberately preserve one Energy type over another.
 - **Optional activation is heuristic.** `ACTIVATE` chooses YES when available.
-- **Setup is heuristic.** Opening Active and Bench choices use fixed species priority
-  lists rather than learned outputs.
+- **Setup is heuristic.** The opening Active is chosen by a fixed species priority list
+  rather than a learned output (`train.py` `_setup_active`): the first of
+  Solrock → Charcadet → Lunatone → Drilbur present in hand. Ceruledge ex is absent because
+  it is a Stage 1 evolution and cannot be put directly into play during setup. The agent
+  deliberately **benches nothing at setup** (`_setup_bench` declines whenever the engine
+  allows it); bench development happens later through normal MAIN play.
 - **Unsupported selection contexts fall back to option order.** They return the first
   required option indices rather than using a learned decision.
 - **Multi-pick selections are not combination-aware.** Removing selected candidates is

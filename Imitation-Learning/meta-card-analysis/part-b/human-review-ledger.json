@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "blocking_gate": "B01",
+      "decision": "Approved local use throughout the working project. The code and derived work will remain private and will not be shared.",
+      "evidence": [
+        "Imitation-Learning/ptcg_engine/ptcgProgram 22/README.md",
+        "Imitation-Learning/ptcg_engine/ptcgProgram 22/LICENSES/LicenseRef-PTCG-ABC-Competition-Use-Only.txt"
+      ],
+      "id": "HR-B01-001",
+      "options": [
+        "Use only inside this local competition workspace and keep source-derived evidence private",
+        "Stop using the supplied engine source"
+      ],
+      "question": "May the audit use this competition-use-only package locally while avoiding reproduction of engine code in reports?",
+      "recommendation": "Use it locally under the competition terms; report file/handler references and paraphrased conclusions, not engine code.",
+      "status": "resolved",
+      "step": "B01",
+      "type": "license_and_scope"
+    },
+    {
+      "blocking_gate": "B01",
+      "decision": "Confirmed that ptcg_engine.zip is exactly the engine that ran the July 12-14 module_version 1.32.0 games.",
+      "evidence": [
+        "The episode datasets record module_version 1.32.0",
+        "The supplied ZIP has no Git metadata or embedded 1.32.0 version string",
+        "The supplied source, English database, and installed simulator each cover IDs 1-1267",
+        "The supplied source and installed simulator each define 1556 attacks"
+      ],
+      "id": "HR-B01-002",
+      "options": [
+        "Treat ptcg_engine.zip as authoritative for the July 12-14 datasets",
+        "Treat it as a newer/different engine and record possible behavioral drift",
+        "Provenance is unknown; require another engine package or version proof"
+      ],
+      "question": "What is the intended version relationship between ptcg_engine.zip and the July 12-14 module_version 1.32.0 episodes?",
+      "recommendation": "Treat it as authoritative only if you obtained it as the engine package governing those competition games.",
+      "status": "resolved",
+      "step": "B01",
+      "type": "source_provenance"
+    },
+    {
+      "blocking_gate": "B01",
+      "decision": "Approved exact source tracing plus focused scenarios on the installed cg_download simulator. Primary purpose is to find faster, less breakable observation-tracking methods.",
+      "evidence": [
+        "The package requires Visual Studio 2022 C++20",
+        "Neither msbuild nor cl is installed in the current environment",
+        "cg_download/cg.dll is executable locally and exposes the same 1267 cards and 1556 attacks"
+      ],
+      "id": "HR-B01-003",
+      "options": [
+        "Validate with exact source traces plus focused scenarios on the installed cg_download simulator",
+        "Require a separately built DLL from the supplied source",
+        "Require a Visual Studio C++ build environment before semantic auditing"
+      ],
+      "question": "Which engine-validation route should Part B require?",
+      "recommendation": "Use source traces plus focused cg_download behavior scenarios, while recording the unproven binary/source build identity as a provenance caveat.",
+      "status": "resolved",
+      "step": "B01",
+      "type": "validation_strategy"
+    },
+    {
+      "blocking_gate": "B04",
+      "decision": "Approved option 1: make an ordered compositional effect program the sole canonical semantic representation, with old flat tags retained only as derived compatibility labels.",
+      "evidence": [
+        "The original canonical taxonomy has 16 attack tags and 11 ability tags, with overlapping concepts split by source kind.",
+        "Of 201 meta attack/ability rows, only 71 produce any nonzero generic tag; 76 nonempty-text rows produce an all-zero tag result.",
+        "The original general parser has no path for 99 Trainer effects, 10 Special Energy effects, or 4 Tera rules.",
+        "Meta engine definitions express ordered targeting, conditions, costs, operations, triggers, duration, and continuations through composable handler chains.",
+        "Some single effects execute multiple operations, which a single flat category/value cannot preserve losslessly."
+      ],
+      "id": "HR-B04-001",
+      "options": [
+        "Make a compositional, engine-aligned effect-program schema canonical; retain old tags only as derived compatibility labels",
+        "Keep flat tags canonical and expand them exhaustively across attacks, abilities, Trainers, Energy, and Tera",
+        "Use a hybrid canonical schema with both compositional programs and independently maintained flat tags"
+      ],
+      "question": "Should the new registry's canonical semantic representation be an ordered compositional effect program, an expanded flat-tag taxonomy, or both as coequal sources of truth?",
+      "recommendation": "Use the compositional effect program as the sole canonical representation and derive any convenient flat tags from it. This preserves exact multi-step behavior, avoids attack/ability duplication, and gives unseen cards a structured fallback without maintaining two semantic authorities.",
+      "status": "resolved",
+      "step": "B04",
+      "type": "category_restructure"
+    },
+    {
+      "blocking_gate": "B04",
+      "decision": "Approved provisionally, conditioned on demonstrably lossless coverage of the complete observed meta-card set and efficient compilation for later implementation. Any coverage or efficiency failure reopens this decision and blocks B04.",
+      "evidence": [
+        "Imitation-Learning/meta-card-analysis/part-b/mechanic-inventory.json",
+        "Imitation-Learning/meta-card-analysis/part-b/schema-family-worklist.json",
+        "Imitation-Learning/meta-card-analysis/part-b/semantic-schema-draft.json",
+        "Imitation-Learning/meta-card-analysis/part-b/category-diff-draft.json",
+        "All 314 effects have at least one engine-backed audit-family home; none are unassigned.",
+        "The draft has 7 program-node kinds, 24 operation kinds, 15 expression kinds, 8 observability classes, and 19 overlapping audit families."
+      ],
+      "id": "HR-B04-002",
+      "options": [
+        "Approve the proposed category set as the provisional B04 schema and continue effect-level auditing",
+        "Approve the compositional model but revise category granularity or names before effect-level auditing",
+        "Reject this category set and produce a different compositional taxonomy"
+      ],
+      "question": "Does the proposed compositional category set provide the right semantic granularity for the canonical registry?",
+      "recommendation": "Approve it provisionally. The small operation vocabulary preserves distinctions through targets, parameters, expressions, timing, and duration instead of multiplying flat categories; effect-level ambiguities will still receive separate human-review records.",
+      "status": "resolved",
+      "step": "B04",
+      "type": "new_merge_deprecate_categories"
+    },
+    {
+      "blocking_gate": "B08",
+      "decision": "Approved exact live formulas plus separately retained credible and theoretical maxima, using null rather than unsupported guesses. Live is not universally preferred: credible or theoretical maxima may be the more decision-relevant threat feature, including hand-scaling Alakazam attacks after draw-heavy turns.",
+      "evidence": [
+        "card:63:attack:1 Bellowing Thunder reads: discard any amount of Basic Energy from your Pokemon; deal 70 damage per card discarded.",
+        "The engine uses targetAttachedEnergy, targetBasicEnergy, selectEnergyAny, effectEffectedCard, and AttackDamageChangeTargetCount.",
+        "The current encoder records reviewed_max_damage=70 for card ID 63, which represents only one discarded Energy rather than the variable attack.",
+        "The proposed schema separates live formula, credible maximum, theoretical maximum, and expected value."
+      ],
+      "id": "HR-B04-003",
+      "options": [
+        "Use exact live formulas as primary; compute a deck/state-reachable credible maximum when context exists, keep legal theoretical maximum separate, and use null rather than guess when a bound is not justified",
+        "Use one universal legal maximum per card for both credible and theoretical maximum",
+        "Use a manually selected practical meta maximum as the primary maximum-damage value"
+      ],
+      "question": "What maximum-damage policy should govern variable attacks such as Bellowing Thunder?",
+      "recommendation": "Use exact live formulas as primary, keep credible and theoretical maxima separate, derive credible maxima only from explicit deck/state constraints, and store null plus a reason instead of guessing.",
+      "status": "resolved",
+      "step": "B04/B08",
+      "type": "current_encoder_mismatch_and_maximum_policy"
+    },
+    {
+      "blocking_gate": "pokemon-01/B08",
+      "decision": "Approved: store exact counter counts canonically and derive 10 HP per counter for KO/threat calculations, while retaining damage_kind=damage_counters so ordinary damage rules never apply.",
+      "evidence": [
+        "Alakazam card:743:attack:0 places 2 damage counters per card in the player's hand.",
+        "Munkidori card:112:ability:0 moves up to 3 damage counters and must preserve the same removed/placed amount.",
+        "Froslass card:104:ability:0 places one counter on every matching Pokemon during Pokemon Checkup.",
+        "Damage counters cause HP loss but are not attack damage and do not use Weakness, Resistance, or ordinary damage modifiers/prevention."
+      ],
+      "id": "HR-B05-001",
+      "options": [
+        "Store exact counter counts as canonical and also derive HP-loss equivalents, while always retaining damage_kind=damage_counters",
+        "Store only counter counts and leave all HP-equivalent derivation to the later encoder",
+        "Fold counters into ordinary damage values"
+      ],
+      "question": "How should counter placement/removal participate in calculated damage and maximum-threat fields?",
+      "recommendation": "Store exact counters canonically and derive 10-HP-per-counter values for KO/threat calculations, but keep damage_kind=damage_counters so Weakness, Resistance, and damage-only effects are never applied.",
+      "status": "resolved",
+      "step": "B05/B08",
+      "type": "effect_mapping_boundary"
+    },
+    {
+      "blocking_gate": "pokemon-01/B08",
+      "decision": "Approved a conservative practical approximation: enumerate outcomes for 0, 1, 2, and at most 3 consecutive heads; do not calculate outcomes at 4 or more heads for top-meta features. For Mega Kangaskhan ex this yields practical outcomes 200, 250, 300, and optionally 350, with practical ceiling 350. Record the omitted tail explicitly. This is an approved exception to lossless coverage; any other approximation requires separate human review.",
+      "evidence": [
+        "Mega Kangaskhan ex card:756:attack:0 starts at 200 and adds 50 per heads while flipping until the first tails.",
+        "The exact expected damage is 250 and the legal theoretical maximum is unbounded.",
+        "Damage quantiles are deterministic: p50=200, p90=350, p95=400, p99=500.",
+        "The current encoder's reviewed maximum is 200 and loses all heads bonuses."
+      ],
+      "id": "HR-B05-002",
+      "options": [
+        "Store the exact distribution and a quantile table; do not force one universal credible-max scalar",
+        "Use the 95th-percentile value as canonical credible maximum while retaining the distribution",
+        "Use the 99th-percentile value as canonical credible maximum while retaining the distribution"
+      ],
+      "question": "How should credible maximum be represented for attacks with an unbounded but rapidly decaying random tail?",
+      "recommendation": "Store the exact distribution plus named quantiles and leave credible maximum as that structured profile rather than an arbitrary scalar. A later encoder can select its risk tolerance without losing information.",
+      "status": "resolved",
+      "step": "B05/B08",
+      "type": "stochastic_maximum_policy"
+    },
+    {
+      "blocking_gate": "pokemon-02",
+      "decision": "Approved exact competition-engine execution order: self-KO first, then place the selected damage counters.",
+      "evidence": [
+        "The English Cursed Blast text describes placing 5 or 13 damage counters, then says the source Pokemon is Knocked Out if the Ability is used.",
+        "CardImpl.h:1182-1183 and 1195-1196 register effectKoMe before the DamageCounter effect.",
+        "CreateCard.h:1657-1659 turns effectKoMe into the first Ko effect in the Ability effect vector.",
+        "EffectProc.h:798-821 and State.h:1695-1728 execute that vector in ascending effect-index order.",
+        "The exact engine therefore resolves self-KO before counter placement; this can expose a different intermediate public state and Prize-processing order."
+      ],
+      "id": "HR-B05-003",
+      "options": [
+        "Use exact engine execution order: self-KO, then place the selected damage counters",
+        "Use the natural-language presentation order: place counters, then self-KO",
+        "Represent both operations as an unordered atomic bundle, requiring a schema change"
+      ],
+      "question": "Which ordering should the canonical Cursed Blast program preserve when the natural-language presentation and exact competition-engine execution order differ?",
+      "recommendation": "Use exact engine execution order because this registry targets the engine that generated the training games; preserve the natural-text discrepancy in evidence rather than changing runtime semantics.",
+      "status": "resolved",
+      "step": "B05",
+      "type": "natural_text_engine_order_discrepancy"
+    }
+  ]
+}

@@ -1,0 +1,4482 @@
+{
+  "batch_id": "pokemon-02",
+  "card_ids": [
+    117,
+    400,
+    401,
+    431,
+    434,
+    131,
+    132,
+    133,
+    666,
+    689,
+    341,
+    342,
+    379,
+    380,
+    381,
+    861,
+    119,
+    120,
+    121,
+    1071
+  ],
+  "cards": [
+    {
+      "audit_status": "complete",
+      "card_id": 117,
+      "card_name": "Cornerstone Mask Ogerpon ex",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_source_is_benched",
+            "event": "continuous_card_rule"
+          },
+          "audit_status": "complete",
+          "change_from_current": "Tera Bench damage prevention is absent from the current tag blocks",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "Tera not represented by current tag blocks"
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:117:tera:0",
+          "engine": {
+            "effect_tokens": [],
+            "method_calls": [
+              "tera"
+            ],
+            "source_line_end": 1023,
+            "source_line_start": 1023,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "tera"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "tera",
+          "name": "[Tera]",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_damage_rule",
+                  "parameters": {
+                    "attacker_controller": "either_player",
+                    "effects_are_not_prevented": true,
+                    "rule": "prevent_attack_damage"
+                  },
+                  "target": "this_pokemon_while_benched",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent’s).",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1023"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "duration": "while_source_in_play",
+            "event": "continuous_ability"
+          },
+          "audit_status": "complete",
+          "change_from_current": "immunity=1 loses the attacker-has-Ability and attack-damage-only boundaries",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 1,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:117:ability:0",
+          "engine": {
+            "chain_sha256": "97abbdf40138043f2ce933e19e0532c0436d45473470e95931829f0ba76a7481",
+            "effect_tokens": [
+              "NoDamageEnemyAbilityPokemonAttack"
+            ],
+            "engine_name": "Cornerstone Stance",
+            "kind": "skill",
+            "method_calls": [
+              "abilityBattleField",
+              "textEn",
+              "effectMe"
+            ],
+            "source_line_end": 1027,
+            "source_line_start": 1024,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "abilityBattleField"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Cornerstone Stance",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_damage_rule",
+                  "parameters": {
+                    "attacker_controller": "opponent",
+                    "attacker_filter": "pokemon_with_an_ability",
+                    "effects_are_not_prevented": true,
+                    "rule": "prevent_attack_damage"
+                  },
+                  "target": "this_pokemon",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Prevent all damage from attacks done to this Pokémon by your opponent’s Pokémon that have an Ability.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1024"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "old tags omit all three damage-bypass rules",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 140,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 140,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 140
+            },
+            "printed_base": 140,
+            "required_inputs": [],
+            "theoretical_max": 140,
+            "unknown_reason": null
+          },
+          "effect_id": "card:117:attack:0",
+          "engine": {
+            "attack_id": 148,
+            "chain_sha256": "7f63c2b6c0ef7ed553269d9f1ea8fcfbefd3e8471f4cb62d519c37cf66b4e940",
+            "effect_tokens": [],
+            "engine_name": "Demolish",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "noTargetEffectAndWeakness"
+            ],
+            "source_line_end": 1031,
+            "source_line_start": 1027,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Demolish",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{F}●●",
+          "printed_damage": "140",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {
+                    "ignore_resistance": true,
+                    "ignore_target_effects": true,
+                    "ignore_weakness": true
+                  },
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 140
+                  }
+                }
+              }
+            ]
+          },
+          "text": "This attack’s damage isn’t affected by Weakness or Resistance, or by any effects on your opponent’s Active Pokémon.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1027",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:117:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1231,
+        "games_with_card": 1208,
+        "total_copies": 2002
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 400,
+      "card_name": "Team Rocket's Tarountula",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 30,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 10,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 30,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 30
+            },
+            "printed_base": 30,
+            "required_inputs": [],
+            "theoretical_max": 30,
+            "unknown_reason": null
+          },
+          "effect_id": "card:400:attack:0",
+          "engine": {
+            "attack_id": 559,
+            "chain_sha256": "78d39c05cfaf80fdc83e862dfe5e065785ebae3ca8c053e81521305f38de5d4f",
+            "effect_tokens": [],
+            "engine_name": "Take Down",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffectDamageMe"
+            ],
+            "source_line_end": 4904,
+            "source_line_start": 4900,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Take Down",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{G}",
+          "printed_damage": "30",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 30
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {
+                    "damage_source": "self_recoil"
+                  },
+                  "target": "this_pokemon",
+                  "value": {
+                    "kind": "literal",
+                    "value": 10
+                  }
+                }
+              }
+            ]
+          },
+          "text": "This Pokémon also does 10 damage to itself.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4900",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:400:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "generic_exact"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1213,
+        "games_with_card": 1208,
+        "total_copies": 4852
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 401,
+      "card_name": "Team Rocket's Spidops",
+      "effects": [
+        {
+          "activation": {
+            "event": "manual_ability_activation",
+            "frequency": "once_per_turn",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "energy_active=1 loses the discard source, Basic-Energy filter, self target, and once-per-turn limit",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 1,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:401:ability:0",
+          "engine": {
+            "chain_sha256": "d9c65e6d78dea0a4d1d9f25f7087d9bbad9bbbaaf0febf5142f58e14fcb852e9",
+            "effect_tokens": [],
+            "engine_name": " Charging Up",
+            "kind": "skill",
+            "method_calls": [
+              "activateSkillOnceTurn",
+              "textEn",
+              "effectTrashAttachEnergyMe",
+              "targetBasicEnergy"
+            ],
+            "source_line_end": 4913,
+            "source_line_start": 4910,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "activateSkillOnceTurn"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Charging Up",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "attach_card",
+                  "parameters": {
+                    "filter": "basic_energy",
+                    "source": "own_discard"
+                  },
+                  "target": "this_pokemon",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, you may attach a Basic Energy card from your discard pile to this Pokémon.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4910"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "reviewed damage 30 omits multiplication by all own in-play Team Rocket Pokémon, including the attacker",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 30,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 180,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": "30 * own_team_rocket_pokemon_in_play",
+            "printed_base": 30,
+            "required_inputs": [
+              "own_in_play_card_ids_or_team_rocket_flags"
+            ],
+            "theoretical_max": 180,
+            "unknown_reason": null
+          },
+          "effect_id": "card:401:attack:0",
+          "engine": {
+            "attack_id": 560,
+            "chain_sha256": "63811142f5eb606621cbb00f8ded7ad5f4d1da7bc6a611c5fff69c304a6a7186",
+            "effect_tokens": [
+              "AttackDamageChangeTargetCount",
+              "Me",
+              "TargetType",
+              "TeamRocket"
+            ],
+            "engine_name": "Rocket Rush",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "preEffect",
+              "eVal",
+              "targetPokemon",
+              "targetCondition"
+            ],
+            "source_line_end": 4917,
+            "source_line_start": 4913,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": "pokemon_02_team_rockets_spidops_rocket_rush",
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Rocket Rush",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "printed_cost": "{G}●",
+          "printed_damage": "30×",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "arguments": [
+                      {
+                        "kind": "literal",
+                        "value": 30
+                      },
+                      {
+                        "filter": "team_rocket",
+                        "kind": "count",
+                        "path": "own_pokemon_in_play"
+                      }
+                    ],
+                    "kind": "multiply"
+                  }
+                }
+              }
+            ]
+          },
+          "text": "This attack does 30 damage for each of your Team Rocket’s Pokémon in play.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4913",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:401:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1213,
+        "games_with_card": 1208,
+        "total_copies": 4852
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 431,
+      "card_name": "Team Rocket's Mewtwo ex",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_source_in_play",
+            "event": "continuous_ability"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current ability vector is all zero and omits the four-Pokémon attack gate",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_availability",
+            "expected_value": null,
+            "live_formula": "can_attack = own_team_rocket_pokemon_in_play >= 4",
+            "printed_base": null,
+            "required_inputs": [
+              "own_in_play_card_ids_or_team_rocket_flags"
+            ],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:431:ability:0",
+          "engine": {
+            "chain_sha256": "c9e8c8fa2b538c7ff0e008dd140a4ec7bee870aafc199401780f32b0ac91228b",
+            "effect_tokens": [
+              "TargetType",
+              "TeamRocket",
+              "CannotAttack"
+            ],
+            "engine_name": " Power Saver",
+            "kind": "skill",
+            "method_calls": [
+              "abilityBattleField",
+              "textEn",
+              "conditionLess",
+              "targetPokemon",
+              "targetCondition",
+              "effectMe"
+            ],
+            "source_line_end": 5271,
+            "source_line_start": 5267,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "abilityBattleField"
+          },
+          "formula_key": "pokemon_02_team_rockets_mewtwo_power_saver",
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Power Saver",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "condition": {
+              "arguments": [
+                {
+                  "filter": "team_rocket",
+                  "kind": "count",
+                  "path": "own_pokemon_in_play"
+                },
+                {
+                  "kind": "literal",
+                  "value": 4
+                }
+              ],
+              "kind": "compare",
+              "operator": "less_than"
+            },
+            "else": null,
+            "kind": "conditional",
+            "then": {
+              "kind": "sequence",
+              "nodes": [
+                {
+                  "kind": "operation",
+                  "operation": {
+                    "kind": "modify_action_rule",
+                    "parameters": {
+                      "duration": "while_count_below_four",
+                      "prohibited_action": "attack"
+                    },
+                    "target": "this_pokemon",
+                    "value": null
+                  }
+                }
+              ]
+            }
+          },
+          "text": "This Pokémon can’t attack unless you have 4 or more Team Rocket’s Pokémon in play.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:5267"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution",
+            "timing": "optional_pre_damage_cost"
+          },
+          "audit_status": "complete",
+          "change_from_current": "damage=160/discard_energy=2 omits the optional 0-to-2 selection, Bench-only source, and +60 per actual discard",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 160,
+              "deckout": 0,
+              "discard_energy": 2,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 280,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": "160 + 60 * discarded_bench_energy_count",
+            "printed_base": 160,
+            "required_inputs": [
+              "eligible_energy_attached_to_own_bench",
+              "selected_discard_count"
+            ],
+            "theoretical_max": 280,
+            "unknown_reason": null
+          },
+          "effect_id": "card:431:attack:0",
+          "engine": {
+            "attack_id": 608,
+            "chain_sha256": "20d89b4363e45988436bcd4c780736b07a1303224357c5ce0c204ddee546cc06",
+            "effect_tokens": [
+              "TargetType",
+              "AttachedBenchPokemon",
+              "ToTrash",
+              "Me",
+              "AttackDamageChangeTargetCount"
+            ],
+            "engine_name": "Erasure Ball",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "setPreEffect",
+              "exist",
+              "targetCondition",
+              "preEffect",
+              "targetAttachedEnergy",
+              "targetCondition",
+              "maxSelectEnergy",
+              "canNoSelect",
+              "effectEffectedCard",
+              "eVal"
+            ],
+            "source_line_end": 5278,
+            "source_line_start": 5271,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": "pokemon_02_team_rockets_mewtwo_erasure_ball",
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Erasure Ball",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "printed_cost": "{P}{P}●",
+          "printed_damage": "160",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "bind_actual_count": "discarded_count",
+                    "destination": "own_discard"
+                  },
+                  "target": "chosen_energy_attached_to_own_benched_pokemon",
+                  "value": "chosen_count_0_to_min(2,eligible)"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "arguments": [
+                      {
+                        "kind": "literal",
+                        "value": 160
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "kind": "literal",
+                            "value": 60
+                          },
+                          {
+                            "kind": "read",
+                            "path": "discarded_count"
+                          }
+                        ],
+                        "kind": "multiply"
+                      }
+                    ],
+                    "kind": "add"
+                  }
+                }
+              }
+            ]
+          },
+          "text": "You may discard up to 2 Energy from your Benched Pokémon. This attack does 60 more damage for each card you discarded in this way.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:5271",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:431:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1213,
+        "games_with_card": 1208,
+        "total_copies": 2426
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 434,
+      "card_name": "Team Rocket's Mimikyu",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution",
+            "requirements": [
+              "opponent_active_is_tera_pokemon"
+            ]
+          },
+          "audit_status": "complete",
+          "change_from_current": "reviewed damage zero drops the entire copied-attack program",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 0,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": "resolve chosen attack of opponent Active Tera Pokémon",
+            "printed_base": 0,
+            "required_inputs": [
+              "opponent_active_exact_card_id",
+              "chosen_attack_ordinal",
+              "referenced_attack_program"
+            ],
+            "theoretical_max": null,
+            "unknown_reason": "credible and theoretical copied-attack maxima pending cross-card resolution in B08"
+          },
+          "effect_id": "card:434:attack:0",
+          "engine": {
+            "attack_id": 612,
+            "chain_sha256": "d2a1c6ba6db6241f3384bda45ea5e1b655707e97b151d330d9b8adb525cd541d",
+            "effect_tokens": [],
+            "engine_name": "Gemstone Mimicry",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "asActiveEnemyTerastalPokemonAttack"
+            ],
+            "source_line_end": 5315,
+            "source_line_start": 5311,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry",
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Gemstone Mimicry",
+          "observability": [
+            "observation_direct",
+            "static"
+          ],
+          "printed_cost": "{P}●",
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "copy_or_use_attack",
+                  "parameters": {
+                    "use_as_this_attack": true
+                  },
+                  "target": "chosen_attack_of_opponent_active_tera_pokemon",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Choose 1 of your opponent’s Active Tera Pokémon’s attacks and use it as this attack.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "no_recorded_execution_with_exact_source_fallback": true,
+              "recorded_engine_coverage_accounted": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:5311",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:434:attack:0 (0 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1213,
+        "games_with_card": 1208,
+        "total_copies": 3237
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 131,
+      "card_name": "Duskull",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "old tags omit the up-to-three same-name discard-to-Bench movement",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 0,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 0,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 0
+            },
+            "printed_base": 0,
+            "required_inputs": [],
+            "theoretical_max": 0,
+            "unknown_reason": null
+          },
+          "effect_id": "card:131:attack:0",
+          "engine": {
+            "attack_id": 169,
+            "chain_sha256": "ee151af885dc8369d285ff7443714e6392fd119563e2656da8af6037d5605eb2",
+            "effect_tokens": [
+              "ToBench",
+              "Me"
+            ],
+            "engine_name": "Come and Get You",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffect",
+              "targetTrash",
+              "targetMyName",
+              "maxSelect"
+            ],
+            "source_line_end": 1171,
+            "source_line_start": 1168,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Come and Get You",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": "{P}",
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_bench"
+                  },
+                  "target": "chosen_own_discarded_duskull",
+                  "value": "chosen_count_0_to_min(3,eligible,open_bench_slots)"
+                }
+              }
+            ]
+          },
+          "text": "Put up to 3 Duskull from your discard pile onto your Bench.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "no_recorded_execution_with_exact_source_fallback": true,
+              "recorded_engine_coverage_accounted": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1168",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:131:attack:0 (0 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 30,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 30,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 30
+            },
+            "printed_base": 30,
+            "required_inputs": [],
+            "theoretical_max": 30,
+            "unknown_reason": null
+          },
+          "effect_id": "card:131:attack:1",
+          "engine": {
+            "attack_id": 170,
+            "chain_sha256": "ddb92b5fd427c5eb9ac1ed2f5feced4f41fc07d4b9d3ee535af057c0048cc7c1",
+            "effect_tokens": [],
+            "engine_name": "Mumble",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1174,
+            "source_line_start": 1171,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Mumble",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{P}{P}",
+          "printed_damage": "30",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 30
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1035,
+        "games_with_card": 1031,
+        "total_copies": 2070
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 132,
+      "card_name": "Dusclops",
+      "effects": [
+        {
+          "activation": {
+            "event": "manual_ability_activation",
+            "frequency": "once_per_turn",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "damage=50 loses exact counter semantics, any-opponent-Pokémon targeting, once-per-turn timing, mandatory self-KO, and engine execution order",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 50,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 50,
+            "damage_kind": "damage_counters",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 50
+            },
+            "printed_base": null,
+            "required_inputs": [
+              "chosen_opponent_pokemon"
+            ],
+            "theoretical_max": 50,
+            "unknown_reason": null
+          },
+          "effect_id": "card:132:ability:0",
+          "engine": {
+            "chain_sha256": "f0cb2f6ac90335a93e57ba888f8ab9f2c19062e003cdd024cf4a9a871f5e9741",
+            "effect_tokens": [
+              "DamageCounter",
+              "Enemy"
+            ],
+            "engine_name": "Cursed Blast",
+            "kind": "skill",
+            "method_calls": [
+              "activateSkillOnceTurn",
+              "textEn",
+              "effectKoMe",
+              "effect",
+              "eVal",
+              "targetPokemon",
+              "singleSelect"
+            ],
+            "source_line_end": 1184,
+            "source_line_start": 1180,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "activateSkillOnceTurn"
+          },
+          "formula_key": null,
+          "human_review_ids": [
+            "HR-B05-001",
+            "HR-B05-003"
+          ],
+          "kind": "ability",
+          "name": "[Ability] Cursed Blast",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "knock_out",
+                  "parameters": {},
+                  "target": "this_pokemon",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "place_damage_counters",
+                  "parameters": {},
+                  "target": "chosen_opponent_pokemon",
+                  "value": {
+                    "kind": "literal",
+                    "value": 5
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, you may put 5 damage counters on 1 of your opponent’s Pokémon. If you use this Ability, this Pokémon is Knocked Out.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1180"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 50,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 50,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 50
+            },
+            "printed_base": 50,
+            "required_inputs": [],
+            "theoretical_max": 50,
+            "unknown_reason": null
+          },
+          "effect_id": "card:132:attack:0",
+          "engine": {
+            "attack_id": 171,
+            "chain_sha256": "64c3a09b0fda920947a5a1e5eccc5c0dd2c2e25a8bc746009089ff7684e75f7b",
+            "effect_tokens": [],
+            "engine_name": "Will-O-Wisp",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1187,
+            "source_line_start": 1184,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Will-O-Wisp",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{P}{P}",
+          "printed_damage": "50",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 50
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1035,
+        "games_with_card": 1031,
+        "total_copies": 2070
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 133,
+      "card_name": "Dusknoir",
+      "effects": [
+        {
+          "activation": {
+            "event": "manual_ability_activation",
+            "frequency": "once_per_turn",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "damage=130 loses exact counter semantics, any-opponent-Pokémon targeting, once-per-turn timing, mandatory self-KO, and engine execution order",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 130,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 130,
+            "damage_kind": "damage_counters",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 130
+            },
+            "printed_base": null,
+            "required_inputs": [
+              "chosen_opponent_pokemon"
+            ],
+            "theoretical_max": 130,
+            "unknown_reason": null
+          },
+          "effect_id": "card:133:ability:0",
+          "engine": {
+            "chain_sha256": "009d39ec78bc0f5d376ce1c32cea0b7f1b1c5c389d871862baef8e9451cacfa1",
+            "effect_tokens": [
+              "DamageCounter",
+              "Enemy"
+            ],
+            "engine_name": "Cursed Blast",
+            "kind": "skill",
+            "method_calls": [
+              "activateSkillOnceTurn",
+              "textEn",
+              "effectKoMe",
+              "effect",
+              "eVal",
+              "targetPokemon",
+              "singleSelect"
+            ],
+            "source_line_end": 1197,
+            "source_line_start": 1193,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "activateSkillOnceTurn"
+          },
+          "formula_key": null,
+          "human_review_ids": [
+            "HR-B05-001",
+            "HR-B05-003"
+          ],
+          "kind": "ability",
+          "name": "[Ability] Cursed Blast",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "knock_out",
+                  "parameters": {},
+                  "target": "this_pokemon",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "place_damage_counters",
+                  "parameters": {},
+                  "target": "chosen_opponent_pokemon",
+                  "value": {
+                    "kind": "literal",
+                    "value": 13
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, you may put 13 damage counters on 1 of your opponent’s Pokémon. If you use this Ability, this Pokémon is Knocked Out.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1193"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 150,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 1,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 150,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 150
+            },
+            "printed_base": 150,
+            "required_inputs": [],
+            "theoretical_max": 150,
+            "unknown_reason": null
+          },
+          "effect_id": "card:133:attack:0",
+          "engine": {
+            "attack_id": 172,
+            "chain_sha256": "97799d11a3cd98611e3d68980887844de8ec5eba9ebca34dd1d3d739b2725041",
+            "effect_tokens": [
+              "CannotRetreatNextTurn"
+            ],
+            "engine_name": "Shadow Bind",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffectActiveEnemy"
+            ],
+            "source_line_end": 1201,
+            "source_line_start": 1197,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Shadow Bind",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{P}{P}●",
+          "printed_damage": "150",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 150
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_action_rule",
+                  "parameters": {
+                    "duration": "opponent_next_turn",
+                    "prohibited_action": "retreat"
+                  },
+                  "target": "defending_pokemon",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "During your opponent’s next turn, the Defending Pokémon can’t retreat.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "no_recorded_execution_with_exact_source_fallback": true,
+              "recorded_engine_coverage_accounted": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1197",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:133:attack:0 (0 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "generic_exact"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 1035,
+        "games_with_card": 1031,
+        "total_copies": 1982
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 666,
+      "card_name": "Cinderace",
+      "effects": [
+        {
+          "activation": {
+            "event": "game_setup",
+            "source_zone": "own_hand",
+            "timing": "before_opening_active_is_revealed"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the all-zero ability vector omits the setup-only hand-to-Active rule",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:666:ability:0",
+          "engine": {
+            "chain_sha256": "de04076bf0cf2db6b8a67fad8aae83bbda93716717b53bf04180aef9fa011f9c",
+            "effect_tokens": [],
+            "engine_name": " Explosiveness",
+            "kind": "skill",
+            "method_calls": [
+              "abilityBattleField",
+              "textEn",
+              "toActiveOnlySetup"
+            ],
+            "source_line_end": 7962,
+            "source_line_start": 7959,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "abilityBattleField"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Explosiveness",
+          "observability": [
+            "public_history",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_active",
+                    "face_down": true,
+                    "optional": true,
+                    "source": "own_hand"
+                  },
+                  "target": "this_pokemon",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              }
+            ]
+          },
+          "text": "If this Pokémon is in your hand when you are setting up to play, you may put it face down in the Active Spot.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:7959"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "energy_accel=3 omits deck source, Basic-Energy filter, Bench-only targets, arbitrary distribution, up-to choice, and shuffle",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 50,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 3,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 50,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 50
+            },
+            "printed_base": 50,
+            "required_inputs": [],
+            "theoretical_max": 50,
+            "unknown_reason": null
+          },
+          "effect_id": "card:666:attack:0",
+          "engine": {
+            "attack_id": 965,
+            "chain_sha256": "43df33ac6ec82d70929481cdbe79637783e96dbb42aadd0e10d3d0b6f7f6e8ce",
+            "effect_tokens": [],
+            "engine_name": "Turbo Flare",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "setPostEffect",
+              "effectDeckAttachEnergyBenchAndShuffle",
+              "targetBasicEnergy"
+            ],
+            "source_line_end": 7967,
+            "source_line_start": 7962,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Turbo Flare",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": "●",
+          "printed_damage": "50",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 50
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "attach_card",
+                  "parameters": {
+                    "filter": "basic_energy",
+                    "shared_total_cap": 3,
+                    "source": "own_deck"
+                  },
+                  "target": "any_distribution_among_own_benched_pokemon",
+                  "value": "chosen_count_0_to_min(3,eligible)"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Search your deck for up to 3 Basic Energy cards and attach them to your Benched Pokémon in any way you like. Then, shuffle your deck.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:7962",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:666:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 942,
+        "games_with_card": 940,
+        "total_copies": 2320
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 689,
+      "card_name": "Yveltal",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 20,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 1,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 20,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 20
+            },
+            "printed_base": 20,
+            "required_inputs": [],
+            "theoretical_max": 20,
+            "unknown_reason": null
+          },
+          "effect_id": "card:689:attack:0",
+          "engine": {
+            "attack_id": 997,
+            "chain_sha256": "4fdbdee9d31fefaeb1d1ef1964a4badc5cf2dc0d40e06174c255f3debde9a2e6",
+            "effect_tokens": [
+              "CannotRetreatNextTurn"
+            ],
+            "engine_name": "Clutch",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffectActiveEnemy"
+            ],
+            "source_line_end": 8197,
+            "source_line_start": 8194,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Clutch",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{D}",
+          "printed_damage": "20",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 20
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_action_rule",
+                  "parameters": {
+                    "duration": "opponent_next_turn",
+                    "prohibited_action": "retreat"
+                  },
+                  "target": "defending_pokemon",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "During your opponent’s next turn, the Defending Pokémon can’t retreat.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:8194",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:689:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "generic_exact"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 110,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 110,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 110
+            },
+            "printed_base": 110,
+            "required_inputs": [],
+            "theoretical_max": 110,
+            "unknown_reason": null
+          },
+          "effect_id": "card:689:attack:1",
+          "engine": {
+            "attack_id": 998,
+            "chain_sha256": "178b462adbe7a953317cf33a8fb824b20b058a145c55d4e0cec90d3b76c03faf",
+            "effect_tokens": [],
+            "engine_name": "Dark Feather",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 8200,
+            "source_line_start": 8197,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Dark Feather",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{D}{D}●",
+          "printed_damage": "110",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 110
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 868,
+        "games_with_card": 868,
+        "total_copies": 868
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 341,
+      "card_name": "Cynthia's Roselia",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 20,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 20,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 20
+            },
+            "printed_base": 20,
+            "required_inputs": [],
+            "theoretical_max": 20,
+            "unknown_reason": null
+          },
+          "effect_id": "card:341:attack:0",
+          "engine": {
+            "attack_id": 475,
+            "chain_sha256": "74a63c4243abaf7b22cc4db8bbd7691e7b0636667197f7ef30f2577f78b2edfb",
+            "effect_tokens": [],
+            "engine_name": "Spike Sting",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 4252,
+            "source_line_start": 4249,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Spike Sting",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "●",
+          "printed_damage": "20",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 20
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 866,
+        "games_with_card": 850,
+        "total_copies": 3463
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 342,
+      "card_name": "Cynthia's Roserade",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_source_in_play",
+            "event": "continuous_ability"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the generic ability vector is all zero; current stat_bakes.py separately preserves the +30 Cynthia/Active modifier",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:342:ability:0",
+          "engine": {
+            "chain_sha256": "e38ad7e2a988fd41c34af4e6e4c73936e2daf8df3f8a66ce842cd91344259ba9",
+            "effect_tokens": [
+              "DamageChangeActive",
+              "Me",
+              "TargetType",
+              "Cynthia"
+            ],
+            "engine_name": " Cheer On to Glory",
+            "kind": "skill",
+            "method_calls": [
+              "abilityBattleField",
+              "textEn",
+              "effect",
+              "eVal",
+              "targetPokemon",
+              "targetCondition"
+            ],
+            "source_line_end": 4261,
+            "source_line_start": 4258,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "abilityBattleField"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Cheer On to Glory",
+          "observability": [
+            "static",
+            "observation_direct",
+            "observation_derived"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_stat",
+                  "parameters": {
+                    "stacking": "per_source_in_play",
+                    "stat": "damage_dealt",
+                    "timing": "before_weakness_and_resistance"
+                  },
+                  "target": "attacks_used_by_own_cynthias_pokemon_against_opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 30
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Attacks used by your Cynthia’s Pokémon do 30 more damage to your opponent’s Active Pokémon (before applying Weakness and Resistance).",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4258"
+            ],
+            "status": "passed"
+          },
+          "verdict": "engine_baked"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 80,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 80,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 80
+            },
+            "printed_base": 80,
+            "required_inputs": [],
+            "theoretical_max": 80,
+            "unknown_reason": null
+          },
+          "effect_id": "card:342:attack:0",
+          "engine": {
+            "attack_id": 476,
+            "chain_sha256": "8d7403eb3a486d5e521d090e013c696017c8c3409e5557c2322a3a1a546afa29",
+            "effect_tokens": [],
+            "engine_name": "Leaf Step",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 4264,
+            "source_line_start": 4261,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Leaf Step",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{G}●●",
+          "printed_damage": "80",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 80
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 866,
+        "games_with_card": 850,
+        "total_copies": 2827
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 379,
+      "card_name": "Cynthia's Gible",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "old tags omit resistance bypass while Weakness and target effects still apply",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 20,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 20,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 20
+            },
+            "printed_base": 20,
+            "required_inputs": [],
+            "theoretical_max": 20,
+            "unknown_reason": null
+          },
+          "effect_id": "card:379:attack:0",
+          "engine": {
+            "attack_id": 529,
+            "chain_sha256": "6f0266870279d850cd9f50102a0516591af0dd83cdd94864762a7964e448eced",
+            "effect_tokens": [],
+            "engine_name": "Rock Hurl",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "noTargetResistance"
+            ],
+            "source_line_end": 4676,
+            "source_line_start": 4672,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Rock Hurl",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{F}",
+          "printed_damage": "20",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {
+                    "apply_target_effects": true,
+                    "apply_weakness": true,
+                    "ignore_resistance": true
+                  },
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 20
+                  }
+                }
+              }
+            ]
+          },
+          "text": "This attack’s damage isn’t affected by Resistance.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4672",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:379:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 866,
+        "games_with_card": 850,
+        "total_copies": 3464
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 380,
+      "card_name": "Cynthia's Gabite",
+      "effects": [
+        {
+          "activation": {
+            "event": "manual_ability_activation",
+            "frequency": "once_per_turn",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "search=1 loses the Cynthia's-Pokémon filter, once-per-turn limit, reveal, destination, and shuffle",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 1,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:380:ability:0",
+          "engine": {
+            "chain_sha256": "a2559750ca6b5cd4421d94744d9d5859d3de0c328d19c46df1f438753badf321",
+            "effect_tokens": [
+              "TargetType",
+              "Cynthia"
+            ],
+            "engine_name": " Champion’s Call",
+            "kind": "skill",
+            "method_calls": [
+              "activateSkillOnceTurn",
+              "textEn",
+              "effectDeckToHandAndShuffle",
+              "targetCondition",
+              "targetPokemonCard"
+            ],
+            "source_line_end": 4685,
+            "source_line_start": 4682,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "activateSkillOnceTurn"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Champion’s Call",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "reveal": true,
+                    "source": "own_deck"
+                  },
+                  "target": "chosen_cynthias_pokemon_card",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, you may search your deck for a Cynthia’s Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4682"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 40,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 40,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 40
+            },
+            "printed_base": 40,
+            "required_inputs": [],
+            "theoretical_max": 40,
+            "unknown_reason": null
+          },
+          "effect_id": "card:380:attack:0",
+          "engine": {
+            "attack_id": 530,
+            "chain_sha256": "f1ec6febf3df869dff9d5f9fcb4c085b8f4259042a54383bff192b9ae633ef42",
+            "effect_tokens": [],
+            "engine_name": "Dragonslice",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 4688,
+            "source_line_start": 4685,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Dragonslice",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{F}",
+          "printed_damage": "40",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 40
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 866,
+        "games_with_card": 850,
+        "total_copies": 3464
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 381,
+      "card_name": "Cynthia's Garchomp ex",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution",
+            "timing": "optional_post_damage"
+          },
+          "audit_status": "complete",
+          "change_from_current": "draws_cards=6 can imply drawing six; the effect is optional and draws only until the hand reaches six",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 100,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 6,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 100,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 100
+            },
+            "printed_base": 100,
+            "required_inputs": [],
+            "theoretical_max": 100,
+            "unknown_reason": null
+          },
+          "effect_id": "card:381:attack:0",
+          "engine": {
+            "attack_id": 531,
+            "chain_sha256": "e54e57d24fc26e072bf899d59b1d0692dbc8e067acb40e05b69a4c61eb69a0ee",
+            "effect_tokens": [],
+            "engine_name": "Corkscrew Dive",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "setPostEffect",
+              "conditionLess",
+              "targetHand",
+              "postEffectSelectActivate",
+              "effectDrawUntil"
+            ],
+            "source_line_end": 4700,
+            "source_line_start": 4694,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Corkscrew Dive",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": "{F}",
+          "printed_damage": "100",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 100
+                  }
+                }
+              },
+              {
+                "condition": {
+                  "arguments": [
+                    {
+                      "kind": "read",
+                      "path": "own_hand_count"
+                    },
+                    {
+                      "kind": "literal",
+                      "value": 6
+                    }
+                  ],
+                  "kind": "compare",
+                  "operator": "less_than"
+                },
+                "else": null,
+                "kind": "conditional",
+                "then": {
+                  "chooser": "owner",
+                  "kind": "choice",
+                  "options": [
+                    {
+                      "kind": "sequence",
+                      "nodes": [
+                        {
+                          "kind": "operation",
+                          "operation": {
+                            "kind": "move_cards",
+                            "parameters": {
+                              "destination": "own_hand",
+                              "mode": "draw_until_six"
+                            },
+                            "target": "own_deck_top",
+                            "value": "6 - own_hand_count"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "sequence",
+                      "nodes": [
+                        {
+                          "kind": "operation",
+                          "operation": {
+                            "kind": "no_op",
+                            "parameters": {},
+                            "target": "game_state",
+                            "value": null
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": "You may draw cards until you have 6 cards in your hand.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4694",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:381:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "discard_energy=2 incorrectly looks capped at the printed cost; the attack discards every Energy attached to the attacker",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 260,
+              "deckout": 0,
+              "discard_energy": 2,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 260,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 260
+            },
+            "printed_base": 260,
+            "required_inputs": [],
+            "theoretical_max": 260,
+            "unknown_reason": null
+          },
+          "effect_id": "card:381:attack:1",
+          "engine": {
+            "attack_id": 532,
+            "chain_sha256": "e7414d5e4248422c0ced2420d580ecfaff92d350458554f5fcad28aae4f28251",
+            "effect_tokens": [],
+            "engine_name": "Draconic Buster",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffectTrashEnergyMeAll"
+            ],
+            "source_line_end": 4704,
+            "source_line_start": 4700,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Draconic Buster",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": "{F}{F}",
+          "printed_damage": "260",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 260
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_discard"
+                  },
+                  "target": "all_energy_attached_to_this_pokemon",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Discard all Energy from this Pokémon.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4700",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:381:attack:1 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 866,
+        "games_with_card": 850,
+        "total_copies": 2598
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 861,
+      "card_name": "Mega Froslass ex",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "reviewed damage 50 omits multiplication by the opponent's public hand count",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 50,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": "50 * opponent_hand_count",
+            "printed_base": 50,
+            "required_inputs": [
+              "opponent_hand_count"
+            ],
+            "theoretical_max": 2900,
+            "unknown_reason": "credible meta-relevant maximum pending B08; theoretical legal attack-state bound is 58 cards in a 60-card deck because at least one opposing Active card and one unclaimed Prize remain"
+          },
+          "effect_id": "card:861:attack:0",
+          "engine": {
+            "attack_id": 1240,
+            "chain_sha256": "f3354947b492f0dd76e5bb55577cfa8ee5b606b165256ccac80b83011c60af96",
+            "effect_tokens": [
+              "AttackDamageChangeTargetCount",
+              "Enemy"
+            ],
+            "engine_name": "Resentful Refrain",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "preEffect",
+              "eVal",
+              "targetHand"
+            ],
+            "source_line_end": 10538,
+            "source_line_start": 10535,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": "pokemon_02_mega_froslass_resentful_refrain",
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Resentful Refrain",
+          "observability": [
+            "observation_direct"
+          ],
+          "printed_cost": "{W}",
+          "printed_damage": "50×",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "arguments": [
+                      {
+                        "kind": "literal",
+                        "value": 50
+                      },
+                      {
+                        "kind": "read",
+                        "observability": "observation_direct",
+                        "path": "opponent_hand_count"
+                      }
+                    ],
+                    "kind": "multiply"
+                  }
+                }
+              }
+            ]
+          },
+          "text": "This attack does 50 damage for each card in your opponent’s hand.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10535",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:861:attack:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "old tags omit the guaranteed Asleep condition",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 150,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 150,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 150
+            },
+            "printed_base": 150,
+            "required_inputs": [],
+            "theoretical_max": 150,
+            "unknown_reason": null
+          },
+          "effect_id": "card:861:attack:1",
+          "engine": {
+            "attack_id": 1241,
+            "chain_sha256": "105d2d6e48b4bec265ccfd9489f2424c82fe2c8435e81765c25a2f6331057ddd",
+            "effect_tokens": [
+              "Sleep",
+              "Enemy"
+            ],
+            "engine_name": "Absolute Snow",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffect"
+            ],
+            "source_line_end": 10542,
+            "source_line_start": 10538,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Absolute Snow",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{W}●●",
+          "printed_damage": "150",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 150
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "apply_special_condition",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": "asleep"
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Your opponent’s Active Pokémon is now Asleep.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10538",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:861:attack:1 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 782,
+        "games_with_card": 782,
+        "total_copies": 2298
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 119,
+      "card_name": "Dreepy",
+      "effects": [
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 10,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 10,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 10
+            },
+            "printed_base": 10,
+            "required_inputs": [],
+            "theoretical_max": 10,
+            "unknown_reason": null
+          },
+          "effect_id": "card:119:attack:0",
+          "engine": {
+            "attack_id": 150,
+            "chain_sha256": "a06a292332772f14fb6faba1f0448f634b5f24b5993d6a7656ebd531289b89ac",
+            "effect_tokens": [],
+            "engine_name": "Petty Grudge",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1036,
+            "source_line_start": 1034,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Petty Grudge",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{P}",
+          "printed_damage": "10",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 10
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 40,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 40,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 40
+            },
+            "printed_base": 40,
+            "required_inputs": [],
+            "theoretical_max": 40,
+            "unknown_reason": null
+          },
+          "effect_id": "card:119:attack:1",
+          "engine": {
+            "attack_id": 151,
+            "chain_sha256": "671c66918faffda44191db716487bd57e93a7eb12ff480fc1476e3832751b5b9",
+            "effect_tokens": [],
+            "engine_name": "Bite",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1039,
+            "source_line_start": 1036,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Bite",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{R}{P}",
+          "printed_damage": "40",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 40
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 715,
+        "games_with_card": 708,
+        "total_copies": 2860
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 120,
+      "card_name": "Drakloak",
+      "effects": [
+        {
+          "activation": {
+            "event": "manual_ability_activation",
+            "frequency": "once_per_turn",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the all-zero ability vector omits private top-two inspection, choice, hand movement, and bottom-deck ordering",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 0,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:120:ability:0",
+          "engine": {
+            "chain_sha256": "a4a47dc4097351db71ecedee62b50955f40959762f01fb7ae9258a8fc0137a61",
+            "effect_tokens": [],
+            "engine_name": "Recon Directive",
+            "kind": "skill",
+            "method_calls": [
+              "activateSkillOnceTurn",
+              "textEn",
+              "effectLookAndToHandReverseRestDeckBottom"
+            ],
+            "source_line_end": 1046,
+            "source_line_start": 1043,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "activateSkillOnceTurn"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Recon Directive",
+          "observability": [
+            "hidden_information",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "reveal_or_inspect",
+                  "parameters": {
+                    "visibility": "owner_only"
+                  },
+                  "target": "own_deck_top",
+                  "value": {
+                    "kind": "literal",
+                    "value": 2
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand"
+                  },
+                  "target": "chosen_one_of_inspected_cards",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_deck_bottom"
+                  },
+                  "target": "other_inspected_card",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, you may look at the top 2 cards of your deck and put 1 of them into your hand. Put the other card on the bottom of your deck.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1043"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 70,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 70,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 70
+            },
+            "printed_base": 70,
+            "required_inputs": [],
+            "theoretical_max": 70,
+            "unknown_reason": null
+          },
+          "effect_id": "card:120:attack:0",
+          "engine": {
+            "attack_id": 152,
+            "chain_sha256": "e4927ef8e04513b5ad9a07b3a898fa4eae93062c6a56803d7f84fe5131fe3130",
+            "effect_tokens": [],
+            "engine_name": "Dragon Headbutt",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1049,
+            "source_line_start": 1046,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Dragon Headbutt",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "{R}{P}",
+          "printed_damage": "70",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 70
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 715,
+        "games_with_card": 708,
+        "total_copies": 2860
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 121,
+      "card_name": "Dragapult ex",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_source_is_benched",
+            "event": "continuous_card_rule"
+          },
+          "audit_status": "complete",
+          "change_from_current": "Tera Bench damage prevention is absent from the current tag blocks",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "Tera not represented by current tag blocks"
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:121:tera:0",
+          "engine": {
+            "effect_tokens": [],
+            "method_calls": [
+              "tera"
+            ],
+            "source_line_end": 1053,
+            "source_line_start": 1053,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "tera"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "tera",
+          "name": "[Tera]",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_damage_rule",
+                  "parameters": {
+                    "attacker_controller": "either_player",
+                    "effects_are_not_prevented": true,
+                    "rule": "prevent_attack_damage"
+                  },
+                  "target": "this_pokemon_while_benched",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent’s).",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1053"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": null,
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 70,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 1,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 70,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 70
+            },
+            "printed_base": 70,
+            "required_inputs": [],
+            "theoretical_max": 70,
+            "unknown_reason": null
+          },
+          "effect_id": "card:121:attack:0",
+          "engine": {
+            "attack_id": 153,
+            "chain_sha256": "c04f4c80d59b2c99706ddab8fac433e679409024be744054d231d212f2730be1",
+            "effect_tokens": [],
+            "engine_name": "Jet Headbutt",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn"
+            ],
+            "source_line_end": 1056,
+            "source_line_start": 1054,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Jet Headbutt",
+          "observability": [
+            "static"
+          ],
+          "printed_cost": "●",
+          "printed_damage": "70",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 70
+                  }
+                }
+              }
+            ]
+          },
+          "text": "",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "ordinary_engine_shape": true
+            },
+            "refs": [
+              "binary/database printed damage and active source attack chain"
+            ],
+            "status": "passed"
+          },
+          "verdict": "ordinary_field"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "counter_snipe=60 loses exact six-counter units and arbitrary distribution across any number of opposing Benched Pokémon",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 60,
+              "cubchoo": 0,
+              "damage": 200,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 2,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 200,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 200
+            },
+            "printed_base": 200,
+            "required_inputs": [],
+            "theoretical_max": 200,
+            "unknown_reason": null
+          },
+          "effect_id": "card:121:attack:1",
+          "engine": {
+            "attack_id": 154,
+            "chain_sha256": "f47457dabbd3ec9b6d27d576150f192eec088587202cb092f43ce64509d38870",
+            "effect_tokens": [
+              "DamageCounterAny",
+              "Enemy"
+            ],
+            "engine_name": "Phantom Dive",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffect",
+              "eVal",
+              "targetBench"
+            ],
+            "source_line_end": 1060,
+            "source_line_start": 1056,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [
+            "HR-B05-001"
+          ],
+          "kind": "attack",
+          "name": "Phantom Dive",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": "{R}{P}",
+          "printed_damage": "200",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 200
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "place_damage_counters",
+                  "parameters": {
+                    "distribution": "chosen_nonnegative_integer_partition",
+                    "total_counters": 6
+                  },
+                  "target": "opponent_benched_pokemon_any_distribution",
+                  "value": {
+                    "kind": "literal",
+                    "value": 6
+                  }
+                }
+              }
+            ]
+          },
+          "text": "Put 6 damage counters on your opponent’s Benched Pokémon in any way you like.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:1056",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:121:attack:1 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 715,
+        "games_with_card": 708,
+        "total_copies": 2145
+      }
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1071,
+      "card_name": "Meowth ex",
+      "effects": [
+        {
+          "activation": {
+            "event": "on_play_from_hand_to_bench",
+            "frequency": "once_per_turn_abilities_named_last_ditch",
+            "source_zone": "own_hand",
+            "timing": "own_turn"
+          },
+          "audit_status": "complete",
+          "change_from_current": "search=1 loses the hand-to-Bench trigger, Supporter filter, reveal/shuffle, optionality, and shared Last-Ditch-name limit",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "barrier": 0,
+              "damage": 0,
+              "draw": 0,
+              "energy_active": 0,
+              "energy_bench": 0,
+              "gust": 0,
+              "heal": 0,
+              "immunity": 0,
+              "mill": 0,
+              "search": 1,
+              "switch": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": null,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": null,
+            "printed_base": null,
+            "required_inputs": [],
+            "theoretical_max": null,
+            "unknown_reason": "not a damage effect"
+          },
+          "effect_id": "card:1071:ability:0",
+          "engine": {
+            "chain_sha256": "363086edb68fa80b2505eb094a14678b77b1ae1cd46a934b08200127ee095bad",
+            "effect_tokens": [],
+            "engine_name": " Last-Ditch Catch",
+            "kind": "skill",
+            "method_calls": [
+              "abilityPlay",
+              "textEn",
+              "conditionNoSameNameSkillThisTurn",
+              "effectDeckToHandAndShuffle",
+              "targetSupporter"
+            ],
+            "source_line_end": 12335,
+            "source_line_start": 12331,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "abilityPlay"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "ability",
+          "name": "[Ability] Last-Ditch Catch",
+          "observability": [
+            "public_history",
+            "observation_direct"
+          ],
+          "printed_cost": null,
+          "printed_damage": null,
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "reveal": true,
+                    "source": "own_deck"
+                  },
+                  "target": "chosen_supporter_card",
+                  "value": {
+                    "kind": "literal",
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Once during your turn, when you play this Pokémon from your hand onto your Bench, you may use this Ability. Search your deck for a Supporter card, reveal it, and put it into your hand. Then, shuffle your deck. You can’t use more than 1 Ability that has “Last-Ditch” in its name each turn.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:12331"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        },
+        {
+          "activation": {
+            "event": "attack_resolution"
+          },
+          "audit_status": "complete",
+          "change_from_current": "old tags omit returning the attacker and every attachment to hand",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "conditional": 0,
+              "cooldown": 0,
+              "counter_snipe": 0,
+              "cubchoo": 0,
+              "damage": 60,
+              "deckout": 0,
+              "discard_energy": 0,
+              "draws_cards": 0,
+              "energy_accel": 0,
+              "energy_cost": 3,
+              "immunity": 0,
+              "item_lock": 0,
+              "outrage": 0,
+              "probabilistic": 0,
+              "recoil": 0,
+              "retreat_lock": 0,
+              "revenge": 0,
+              "snipe": 0
+            },
+            "reason": null
+          },
+          "damage_profile": {
+            "credible_max": 60,
+            "damage_kind": "attack_damage",
+            "expected_value": null,
+            "live_formula": {
+              "kind": "literal",
+              "value": 60
+            },
+            "printed_base": 60,
+            "required_inputs": [],
+            "theoretical_max": 60,
+            "unknown_reason": null
+          },
+          "effect_id": "card:1071:attack:0",
+          "engine": {
+            "attack_id": 1546,
+            "chain_sha256": "285635d1614231de68da0ae7703ad8ba6b0a1cfc71c19efbab0a38a1e4903543",
+            "effect_tokens": [
+              "ToHandWithAttach"
+            ],
+            "engine_name": "Tuck Tail",
+            "kind": "attack",
+            "method_calls": [
+              "attack",
+              "textEn",
+              "postEffectMe"
+            ],
+            "source_line_end": 12339,
+            "source_line_start": 12335,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attack"
+          },
+          "formula_key": null,
+          "human_review_ids": [],
+          "kind": "attack",
+          "name": "Tuck Tail",
+          "observability": [
+            "static",
+            "observation_direct"
+          ],
+          "printed_cost": "●●●",
+          "printed_damage": "60",
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "deal_damage",
+                  "parameters": {},
+                  "target": "opponent_active",
+                  "value": {
+                    "kind": "literal",
+                    "value": 60
+                  }
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand"
+                  },
+                  "target": "this_pokemon_and_all_attached_cards",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Put this Pokémon and all attached cards into your hand.",
+          "validation": {
+            "checks": {
+              "human_reviews_resolved": true,
+              "no_recorded_execution_with_exact_source_fallback": true,
+              "recorded_engine_coverage_accounted": true,
+              "required_engine_methods": true,
+              "required_engine_tokens": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:12335",
+              "pokemon-02-recorded-engine-evidence.json#samples/card:1071:attack:0 (0 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "frequency": {
+        "decks_with_card": 685,
+        "games_with_card": 679,
+        "total_copies": 709
+      }
+    }
+  ],
+  "formula_queue": [
+    {
+      "effect_id": "card:401:attack:0",
+      "formula_key": "pokemon_02_team_rockets_spidops_rocket_rush",
+      "owner": "B08",
+      "question": "30 * own_team_rocket_pokemon_in_play",
+      "required_inputs": [
+        "own_in_play_card_ids_or_team_rocket_flags"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:431:ability:0",
+      "formula_key": "pokemon_02_team_rockets_mewtwo_power_saver",
+      "owner": "B08",
+      "question": "can_attack = own_team_rocket_pokemon_in_play >= 4",
+      "required_inputs": [
+        "own_in_play_card_ids_or_team_rocket_flags"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:431:attack:0",
+      "formula_key": "pokemon_02_team_rockets_mewtwo_erasure_ball",
+      "owner": "B08",
+      "question": "160 + 60 * discarded_bench_energy_count",
+      "required_inputs": [
+        "eligible_energy_attached_to_own_bench",
+        "selected_discard_count"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:434:attack:0",
+      "formula_key": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry",
+      "owner": "B08",
+      "question": "resolve chosen attack of opponent Active Tera Pokémon",
+      "required_inputs": [
+        "opponent_active_exact_card_id",
+        "chosen_attack_ordinal",
+        "referenced_attack_program"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:861:attack:0",
+      "formula_key": "pokemon_02_mega_froslass_resentful_refrain",
+      "owner": "B08",
+      "question": "50 * opponent_hand_count",
+      "required_inputs": [
+        "opponent_hand_count"
+      ],
+      "status": "queued"
+    }
+  ],
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "cards": 20,
+    "effects": 38,
+    "formula_queue": 5,
+    "issues": 0,
+    "verdicts": {
+      "engine_baked": 1,
+      "generic_exact": 3,
+      "ordinary_field": 10,
+      "override_dynamic": 5,
+      "override_static": 19
+    }
+  }
+}

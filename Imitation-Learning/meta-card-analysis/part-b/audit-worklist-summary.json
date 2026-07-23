@@ -1,0 +1,23 @@
+{
+  "cards": 232,
+  "cards_by_class": {
+    "energy": 18,
+    "pokemon": 115,
+    "trainer": 99
+  },
+  "cards_with_dynamic_references": 15,
+  "cards_with_overrides": 23,
+  "cards_with_stat_bakes": 14,
+  "effects": 314,
+  "effects_by_kind": {
+    "ability": 46,
+    "attack": 155,
+    "energy_effect": 10,
+    "tera": 4,
+    "trainer_effect": 99
+  },
+  "issues": 0,
+  "schema_version": 1,
+  "source_catalog_sha256": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+  "source_crosswalk_sha256": "f2ab100915f773e2b84f7f4117bf3acd8f5cd1168035a22e497c46e313102140"
+}

@@ -1,0 +1,1739 @@
+{
+  "batch_count": 12,
+  "batches": [
+    {
+      "batch_id": "pokemon-01",
+      "card_class": "pokemon",
+      "card_ids": [
+        343,
+        66,
+        305,
+        140,
+        741,
+        742,
+        743,
+        344,
+        345,
+        756,
+        112,
+        646,
+        647,
+        648,
+        860,
+        414,
+        104,
+        235,
+        1030,
+        1031
+      ],
+      "cards": [
+        {
+          "card_id": 343,
+          "card_name": "Shaymin",
+          "decks_with_card": 14182,
+          "effect_count": 2
+        },
+        {
+          "card_id": 66,
+          "card_name": "Dudunsparce",
+          "decks_with_card": 14039,
+          "effect_count": 2
+        },
+        {
+          "card_id": 305,
+          "card_name": "Dunsparce",
+          "decks_with_card": 13878,
+          "effect_count": 2
+        },
+        {
+          "card_id": 140,
+          "card_name": "Fezandipiti ex",
+          "decks_with_card": 13028,
+          "effect_count": 2
+        },
+        {
+          "card_id": 741,
+          "card_name": "Abra",
+          "decks_with_card": 12588,
+          "effect_count": 1
+        },
+        {
+          "card_id": 742,
+          "card_name": "Kadabra",
+          "decks_with_card": 12588,
+          "effect_count": 2
+        },
+        {
+          "card_id": 743,
+          "card_name": "Alakazam",
+          "decks_with_card": 12588,
+          "effect_count": 2
+        },
+        {
+          "card_id": 344,
+          "card_name": "Dwebble",
+          "decks_with_card": 7397,
+          "effect_count": 1
+        },
+        {
+          "card_id": 345,
+          "card_name": "Crustle",
+          "decks_with_card": 7397,
+          "effect_count": 2
+        },
+        {
+          "card_id": 756,
+          "card_name": "Mega Kangaskhan ex",
+          "decks_with_card": 6477,
+          "effect_count": 2
+        },
+        {
+          "card_id": 112,
+          "card_name": "Munkidori",
+          "decks_with_card": 5480,
+          "effect_count": 2
+        },
+        {
+          "card_id": 646,
+          "card_name": "Marnie's Impidimp",
+          "decks_with_card": 3774,
+          "effect_count": 2
+        },
+        {
+          "card_id": 647,
+          "card_name": "Marnie's Morgrem",
+          "decks_with_card": 3774,
+          "effect_count": 1
+        },
+        {
+          "card_id": 648,
+          "card_name": "Marnie's Grimmsnarl ex",
+          "decks_with_card": 3774,
+          "effect_count": 2
+        },
+        {
+          "card_id": 860,
+          "card_name": "Snorunt",
+          "decks_with_card": 3461,
+          "effect_count": 1
+        },
+        {
+          "card_id": 414,
+          "card_name": "Team Rocket's Articuno",
+          "decks_with_card": 2837,
+          "effect_count": 2
+        },
+        {
+          "card_id": 104,
+          "card_name": "Froslass",
+          "decks_with_card": 2732,
+          "effect_count": 2
+        },
+        {
+          "card_id": 235,
+          "card_name": "Budew",
+          "decks_with_card": 1950,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1030,
+          "card_name": "Staryu",
+          "decks_with_card": 1756,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1031,
+          "card_name": "Mega Starmie ex",
+          "decks_with_card": 1756,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "pokemon-02",
+      "card_class": "pokemon",
+      "card_ids": [
+        117,
+        400,
+        401,
+        431,
+        434,
+        131,
+        132,
+        133,
+        666,
+        689,
+        341,
+        342,
+        379,
+        380,
+        381,
+        861,
+        119,
+        120,
+        121,
+        1071
+      ],
+      "cards": [
+        {
+          "card_id": 117,
+          "card_name": "Cornerstone Mask Ogerpon ex",
+          "decks_with_card": 1231,
+          "effect_count": 3
+        },
+        {
+          "card_id": 400,
+          "card_name": "Team Rocket's Tarountula",
+          "decks_with_card": 1213,
+          "effect_count": 1
+        },
+        {
+          "card_id": 401,
+          "card_name": "Team Rocket's Spidops",
+          "decks_with_card": 1213,
+          "effect_count": 2
+        },
+        {
+          "card_id": 431,
+          "card_name": "Team Rocket's Mewtwo ex",
+          "decks_with_card": 1213,
+          "effect_count": 2
+        },
+        {
+          "card_id": 434,
+          "card_name": "Team Rocket's Mimikyu",
+          "decks_with_card": 1213,
+          "effect_count": 1
+        },
+        {
+          "card_id": 131,
+          "card_name": "Duskull",
+          "decks_with_card": 1035,
+          "effect_count": 2
+        },
+        {
+          "card_id": 132,
+          "card_name": "Dusclops",
+          "decks_with_card": 1035,
+          "effect_count": 2
+        },
+        {
+          "card_id": 133,
+          "card_name": "Dusknoir",
+          "decks_with_card": 1035,
+          "effect_count": 2
+        },
+        {
+          "card_id": 666,
+          "card_name": "Cinderace",
+          "decks_with_card": 942,
+          "effect_count": 2
+        },
+        {
+          "card_id": 689,
+          "card_name": "Yveltal",
+          "decks_with_card": 868,
+          "effect_count": 2
+        },
+        {
+          "card_id": 341,
+          "card_name": "Cynthia's Roselia",
+          "decks_with_card": 866,
+          "effect_count": 1
+        },
+        {
+          "card_id": 342,
+          "card_name": "Cynthia's Roserade",
+          "decks_with_card": 866,
+          "effect_count": 2
+        },
+        {
+          "card_id": 379,
+          "card_name": "Cynthia's Gible",
+          "decks_with_card": 866,
+          "effect_count": 1
+        },
+        {
+          "card_id": 380,
+          "card_name": "Cynthia's Gabite",
+          "decks_with_card": 866,
+          "effect_count": 2
+        },
+        {
+          "card_id": 381,
+          "card_name": "Cynthia's Garchomp ex",
+          "decks_with_card": 866,
+          "effect_count": 2
+        },
+        {
+          "card_id": 861,
+          "card_name": "Mega Froslass ex",
+          "decks_with_card": 782,
+          "effect_count": 2
+        },
+        {
+          "card_id": 119,
+          "card_name": "Dreepy",
+          "decks_with_card": 715,
+          "effect_count": 2
+        },
+        {
+          "card_id": 120,
+          "card_name": "Drakloak",
+          "decks_with_card": 715,
+          "effect_count": 2
+        },
+        {
+          "card_id": 121,
+          "card_name": "Dragapult ex",
+          "decks_with_card": 715,
+          "effect_count": 3
+        },
+        {
+          "card_id": 1071,
+          "card_name": "Meowth ex",
+          "decks_with_card": 685,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "pokemon-03",
+      "card_class": "pokemon",
+      "card_ids": [
+        387,
+        245,
+        92,
+        93,
+        89,
+        90,
+        65,
+        247,
+        214,
+        959,
+        169,
+        190,
+        848,
+        849,
+        164,
+        817,
+        818,
+        791,
+        506,
+        184
+      ],
+      "cards": [
+        {
+          "card_id": 387,
+          "card_name": "Cynthia's Spiritomb",
+          "decks_with_card": 659,
+          "effect_count": 1
+        },
+        {
+          "card_id": 245,
+          "card_name": "Alakazam",
+          "decks_with_card": 565,
+          "effect_count": 2
+        },
+        {
+          "card_id": 92,
+          "card_name": "Applin",
+          "decks_with_card": 499,
+          "effect_count": 1
+        },
+        {
+          "card_id": 93,
+          "card_name": "Dipplin",
+          "decks_with_card": 499,
+          "effect_count": 2
+        },
+        {
+          "card_id": 89,
+          "card_name": "Grookey",
+          "decks_with_card": 493,
+          "effect_count": 2
+        },
+        {
+          "card_id": 90,
+          "card_name": "Thwackey",
+          "decks_with_card": 493,
+          "effect_count": 2
+        },
+        {
+          "card_id": 65,
+          "card_name": "Dunsparce",
+          "decks_with_card": 326,
+          "effect_count": 2
+        },
+        {
+          "card_id": 247,
+          "card_name": "Swirlix",
+          "decks_with_card": 294,
+          "effect_count": 2
+        },
+        {
+          "card_id": 214,
+          "card_name": "Togekiss",
+          "decks_with_card": 278,
+          "effect_count": 2
+        },
+        {
+          "card_id": 959,
+          "card_name": "Togepi",
+          "decks_with_card": 278,
+          "effect_count": 1
+        },
+        {
+          "card_id": 169,
+          "card_name": "Duraludon",
+          "decks_with_card": 273,
+          "effect_count": 2
+        },
+        {
+          "card_id": 190,
+          "card_name": "Archaludon ex",
+          "decks_with_card": 273,
+          "effect_count": 2
+        },
+        {
+          "card_id": 848,
+          "card_name": "Buneary",
+          "decks_with_card": 273,
+          "effect_count": 2
+        },
+        {
+          "card_id": 849,
+          "card_name": "Mega Lopunny ex",
+          "decks_with_card": 273,
+          "effect_count": 2
+        },
+        {
+          "card_id": 164,
+          "card_name": "Comfey",
+          "decks_with_card": 271,
+          "effect_count": 2
+        },
+        {
+          "card_id": 817,
+          "card_name": "Bramblin",
+          "decks_with_card": 271,
+          "effect_count": 1
+        },
+        {
+          "card_id": 818,
+          "card_name": "Brambleghast",
+          "decks_with_card": 271,
+          "effect_count": 2
+        },
+        {
+          "card_id": 791,
+          "card_name": "Moltres",
+          "decks_with_card": 229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 506,
+          "card_name": "Cubchoo",
+          "decks_with_card": 227,
+          "effect_count": 1
+        },
+        {
+          "card_id": 184,
+          "card_name": "Latias ex",
+          "decks_with_card": 217,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "pokemon-04",
+      "card_class": "pokemon",
+      "card_ids": [
+        649,
+        432,
+        73,
+        74,
+        675,
+        676,
+        678,
+        174,
+        272,
+        677,
+        58,
+        109,
+        57,
+        607,
+        31,
+        306,
+        122,
+        183,
+        597,
+        745
+      ],
+      "cards": [
+        {
+          "card_id": 649,
+          "card_name": "Marnie's Morpeko",
+          "decks_with_card": 204,
+          "effect_count": 1
+        },
+        {
+          "card_id": 432,
+          "card_name": "Team Rocket's Wobbuffet",
+          "decks_with_card": 201,
+          "effect_count": 2
+        },
+        {
+          "card_id": 73,
+          "card_name": "Rellor",
+          "decks_with_card": 198,
+          "effect_count": 1
+        },
+        {
+          "card_id": 74,
+          "card_name": "Rabsca",
+          "decks_with_card": 198,
+          "effect_count": 2
+        },
+        {
+          "card_id": 675,
+          "card_name": "Lunatone",
+          "decks_with_card": 194,
+          "effect_count": 2
+        },
+        {
+          "card_id": 676,
+          "card_name": "Solrock",
+          "decks_with_card": 194,
+          "effect_count": 1
+        },
+        {
+          "card_id": 678,
+          "card_name": "Mega Lucario ex",
+          "decks_with_card": 174,
+          "effect_count": 2
+        },
+        {
+          "card_id": 174,
+          "card_name": "Fan Rotom",
+          "decks_with_card": 172,
+          "effect_count": 2
+        },
+        {
+          "card_id": 272,
+          "card_name": "Lillie’s Clefairy ex",
+          "decks_with_card": 171,
+          "effect_count": 2
+        },
+        {
+          "card_id": 677,
+          "card_name": "Riolu",
+          "decks_with_card": 169,
+          "effect_count": 1
+        },
+        {
+          "card_id": 58,
+          "card_name": "Great Tusk",
+          "decks_with_card": 156,
+          "effect_count": 2
+        },
+        {
+          "card_id": 109,
+          "card_name": "Abra",
+          "decks_with_card": 141,
+          "effect_count": 2
+        },
+        {
+          "card_id": 57,
+          "card_name": "Relicanth",
+          "decks_with_card": 125,
+          "effect_count": 2
+        },
+        {
+          "card_id": 607,
+          "card_name": "Terrakion",
+          "decks_with_card": 118,
+          "effect_count": 2
+        },
+        {
+          "card_id": 31,
+          "card_name": "Chi-Yu",
+          "decks_with_card": 109,
+          "effect_count": 2
+        },
+        {
+          "card_id": 306,
+          "card_name": "Dudunsparce ex",
+          "decks_with_card": 96,
+          "effect_count": 2
+        },
+        {
+          "card_id": 122,
+          "card_name": "Tatsugiri",
+          "decks_with_card": 55,
+          "effect_count": 2
+        },
+        {
+          "card_id": 183,
+          "card_name": "Smoochum",
+          "decks_with_card": 53,
+          "effect_count": 1
+        },
+        {
+          "card_id": 597,
+          "card_name": "Frillish",
+          "decks_with_card": 53,
+          "effect_count": 1
+        },
+        {
+          "card_id": 745,
+          "card_name": "Ralts",
+          "decks_with_card": 53,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "pokemon-05",
+      "card_class": "pokemon",
+      "card_ids": [
+        746,
+        747,
+        673,
+        674,
+        116,
+        1051,
+        1052,
+        96,
+        463,
+        473,
+        474,
+        891,
+        292,
+        293,
+        303,
+        906,
+        63,
+        108,
+        141,
+        257
+      ],
+      "cards": [
+        {
+          "card_id": 746,
+          "card_name": "Kirlia",
+          "decks_with_card": 53,
+          "effect_count": 2
+        },
+        {
+          "card_id": 747,
+          "card_name": "Mega Gardevoir ex",
+          "decks_with_card": 53,
+          "effect_count": 2
+        },
+        {
+          "card_id": 673,
+          "card_name": "Makuhita",
+          "decks_with_card": 40,
+          "effect_count": 2
+        },
+        {
+          "card_id": 674,
+          "card_name": "Hariyama",
+          "decks_with_card": 40,
+          "effect_count": 2
+        },
+        {
+          "card_id": 116,
+          "card_name": "Okidogi",
+          "decks_with_card": 20,
+          "effect_count": 2
+        },
+        {
+          "card_id": 1051,
+          "card_name": "Binacle",
+          "decks_with_card": 20,
+          "effect_count": 2
+        },
+        {
+          "card_id": 1052,
+          "card_name": "Barbaracle",
+          "decks_with_card": 20,
+          "effect_count": 2
+        },
+        {
+          "card_id": 96,
+          "card_name": "Teal Mask Ogerpon ex",
+          "decks_with_card": 16,
+          "effect_count": 3
+        },
+        {
+          "card_id": 463,
+          "card_name": "Team Rocket's Murkrow",
+          "decks_with_card": 16,
+          "effect_count": 2
+        },
+        {
+          "card_id": 473,
+          "card_name": "Team Rocket's Porygon",
+          "decks_with_card": 16,
+          "effect_count": 1
+        },
+        {
+          "card_id": 474,
+          "card_name": "Team Rocket's Porygon2",
+          "decks_with_card": 16,
+          "effect_count": 1
+        },
+        {
+          "card_id": 891,
+          "card_name": "Team Rocket's Honchkrow",
+          "decks_with_card": 16,
+          "effect_count": 2
+        },
+        {
+          "card_id": 292,
+          "card_name": "N’s Zorua",
+          "decks_with_card": 12,
+          "effect_count": 1
+        },
+        {
+          "card_id": 293,
+          "card_name": "N’s Zoroark ex",
+          "decks_with_card": 12,
+          "effect_count": 2
+        },
+        {
+          "card_id": 303,
+          "card_name": "N’s Reshiram",
+          "decks_with_card": 12,
+          "effect_count": 2
+        },
+        {
+          "card_id": 906,
+          "card_name": "N's Zekrom",
+          "decks_with_card": 12,
+          "effect_count": 2
+        },
+        {
+          "card_id": 63,
+          "card_name": "Raging Bolt ex",
+          "decks_with_card": 9,
+          "effect_count": 2
+        },
+        {
+          "card_id": 108,
+          "card_name": "Wellspring Mask Ogerpon ex",
+          "decks_with_card": 9,
+          "effect_count": 3
+        },
+        {
+          "card_id": 141,
+          "card_name": "Pecharunt ex",
+          "decks_with_card": 9,
+          "effect_count": 2
+        },
+        {
+          "card_id": 257,
+          "card_name": "N’s Darumaka",
+          "decks_with_card": 9,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "pokemon-06",
+      "card_class": "pokemon",
+      "card_ids": [
+        258,
+        150,
+        709,
+        710,
+        917,
+        920,
+        333,
+        970,
+        42,
+        655,
+        827,
+        828,
+        829,
+        833,
+        834
+      ],
+      "cards": [
+        {
+          "card_id": 258,
+          "card_name": "N’s Darmanitan",
+          "decks_with_card": 9,
+          "effect_count": 2
+        },
+        {
+          "card_id": 150,
+          "card_name": "Hydrapple ex",
+          "decks_with_card": 6,
+          "effect_count": 2
+        },
+        {
+          "card_id": 709,
+          "card_name": "Bayleef",
+          "decks_with_card": 6,
+          "effect_count": 1
+        },
+        {
+          "card_id": 710,
+          "card_name": "Meganium",
+          "decks_with_card": 6,
+          "effect_count": 2
+        },
+        {
+          "card_id": 917,
+          "card_name": "Chikorita",
+          "decks_with_card": 6,
+          "effect_count": 2
+        },
+        {
+          "card_id": 920,
+          "card_name": "Tapu Bulu",
+          "decks_with_card": 6,
+          "effect_count": 1
+        },
+        {
+          "card_id": 333,
+          "card_name": "Riolu",
+          "decks_with_card": 5,
+          "effect_count": 1
+        },
+        {
+          "card_id": 970,
+          "card_name": "Fezandipiti",
+          "decks_with_card": 3,
+          "effect_count": 2
+        },
+        {
+          "card_id": 42,
+          "card_name": "Applin",
+          "decks_with_card": 1,
+          "effect_count": 2
+        },
+        {
+          "card_id": 655,
+          "card_name": "Celebi",
+          "decks_with_card": 1,
+          "effect_count": 2
+        },
+        {
+          "card_id": 827,
+          "card_name": "Carvanha",
+          "decks_with_card": 1,
+          "effect_count": 1
+        },
+        {
+          "card_id": 828,
+          "card_name": "Mega Sharpedo ex",
+          "decks_with_card": 1,
+          "effect_count": 2
+        },
+        {
+          "card_id": 829,
+          "card_name": "Seviper",
+          "decks_with_card": 1,
+          "effect_count": 2
+        },
+        {
+          "card_id": 833,
+          "card_name": "Toxel",
+          "decks_with_card": 1,
+          "effect_count": 2
+        },
+        {
+          "card_id": 834,
+          "card_name": "Toxtricity",
+          "decks_with_card": 1,
+          "effect_count": 2
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "trainer-01",
+      "card_class": "trainer",
+      "card_ids": [
+        1086,
+        1182,
+        1197,
+        1152,
+        1225,
+        1097,
+        1227,
+        1079,
+        1231,
+        1184,
+        1081,
+        1129,
+        1159,
+        1122,
+        1266,
+        1147,
+        1264,
+        1123,
+        1087,
+        1080
+      ],
+      "cards": [
+        {
+          "card_id": 1086,
+          "card_name": "Buddy-Buddy Poffin",
+          "decks_with_card": 28277,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1182,
+          "card_name": "Boss’s Orders",
+          "decks_with_card": 26337,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1197,
+          "card_name": "Xerosic’s Machinations",
+          "decks_with_card": 23985,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1152,
+          "card_name": "Poké Pad",
+          "decks_with_card": 23197,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1225,
+          "card_name": "Hilda",
+          "decks_with_card": 22083,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1097,
+          "card_name": "Night Stretcher",
+          "decks_with_card": 18708,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1227,
+          "card_name": "Lillie's Determination",
+          "decks_with_card": 17392,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1079,
+          "card_name": "Rare Candy",
+          "decks_with_card": 16487,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1231,
+          "card_name": "Dawn",
+          "decks_with_card": 16479,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1184,
+          "card_name": "Lana’s Aid",
+          "decks_with_card": 13165,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1081,
+          "card_name": "Enhanced Hammer",
+          "decks_with_card": 13085,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1129,
+          "card_name": "Sacred Ash",
+          "decks_with_card": 13049,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1159,
+          "card_name": "Hero’s Cape",
+          "decks_with_card": 10936,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1122,
+          "card_name": "Pokégear 3.0",
+          "decks_with_card": 10750,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1266,
+          "card_name": "Nighttime Mine",
+          "decks_with_card": 8808,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1147,
+          "card_name": "Jumbo Ice Cream",
+          "decks_with_card": 7504,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1264,
+          "card_name": "Battle Cage",
+          "decks_with_card": 7412,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1123,
+          "card_name": "Switch",
+          "decks_with_card": 6971,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1087,
+          "card_name": "Hand Trimmer",
+          "decks_with_card": 6345,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1080,
+          "card_name": "Unfair Stamp",
+          "decks_with_card": 4534,
+          "effect_count": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "trainer-02",
+      "card_class": "trainer",
+      "card_ids": [
+        1121,
+        1259,
+        1219,
+        1120,
+        1247,
+        1229,
+        1161,
+        1213,
+        1257,
+        1094,
+        1175,
+        1198,
+        1137,
+        1246,
+        1134,
+        1216,
+        1217,
+        1218,
+        1220,
+        1142
+      ],
+      "cards": [
+        {
+          "card_id": 1121,
+          "card_name": "Ultra Ball",
+          "decks_with_card": 4398,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1259,
+          "card_name": "Spikemuth Gym",
+          "decks_with_card": 3774,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1219,
+          "card_name": "Team Rocket's Petrel",
+          "decks_with_card": 3510,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1120,
+          "card_name": "Crushing Hammer",
+          "decks_with_card": 2875,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1247,
+          "card_name": "Neutralization Zone",
+          "decks_with_card": 2209,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1229,
+          "card_name": "Wally's Compassion",
+          "decks_with_card": 2095,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1161,
+          "card_name": "Handheld Fan",
+          "decks_with_card": 1942,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1213,
+          "card_name": "Judge",
+          "decks_with_card": 1832,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1257,
+          "card_name": "Team Rocket's Factory",
+          "decks_with_card": 1805,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1094,
+          "card_name": "Bug Catching Set",
+          "decks_with_card": 1793,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1175,
+          "card_name": "Brave Bangle",
+          "decks_with_card": 1706,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1198,
+          "card_name": "Crispin",
+          "decks_with_card": 1526,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1137,
+          "card_name": "Tool Scrapper",
+          "decks_with_card": 1443,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1246,
+          "card_name": "Jamming Tower",
+          "decks_with_card": 1276,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1134,
+          "card_name": "Team Rocket's Transceiver",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1216,
+          "card_name": "Team Rocket's Ariana",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1217,
+          "card_name": "Team Rocket's Archer",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1218,
+          "card_name": "Team Rocket's Giovanni",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1220,
+          "card_name": "Team Rocket's Proton",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1142,
+          "card_name": "Fighting Gong",
+          "decks_with_card": 1186,
+          "effect_count": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "trainer-03",
+      "card_class": "trainer",
+      "card_ids": [
+        1192,
+        1260,
+        1210,
+        1167,
+        1145,
+        1173,
+        1261,
+        1174,
+        1262,
+        1224,
+        1236,
+        1186,
+        1203,
+        1242,
+        1204,
+        1245,
+        1146,
+        1189,
+        1194,
+        1202
+      ],
+      "cards": [
+        {
+          "card_id": 1192,
+          "card_name": "Carmine",
+          "decks_with_card": 1178,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1260,
+          "card_name": "Risky Ruins",
+          "decks_with_card": 1094,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1210,
+          "card_name": "Brock’s Scouting",
+          "decks_with_card": 954,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1167,
+          "card_name": "Deluxe Bomb",
+          "decks_with_card": 950,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1145,
+          "card_name": "Mega Signal",
+          "decks_with_card": 868,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1173,
+          "card_name": "Cynthia's Power Weight",
+          "decks_with_card": 866,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1261,
+          "card_name": "Forest of Vitality",
+          "decks_with_card": 823,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1174,
+          "card_name": "Air Balloon",
+          "decks_with_card": 786,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1262,
+          "card_name": "Surfing Beach",
+          "decks_with_card": 784,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1224,
+          "card_name": "Cheren",
+          "decks_with_card": 777,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1236,
+          "card_name": "Urbain",
+          "decks_with_card": 718,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1186,
+          "card_name": "Eri",
+          "decks_with_card": 617,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1203,
+          "card_name": "Surfer",
+          "decks_with_card": 580,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1242,
+          "card_name": "Community Center",
+          "decks_with_card": 534,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1204,
+          "card_name": "Lisia’s Appeal",
+          "decks_with_card": 497,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1245,
+          "card_name": "Festival Grounds",
+          "decks_with_card": 494,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1146,
+          "card_name": "Wondrous Patch",
+          "decks_with_card": 490,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1189,
+          "card_name": "Salvatore",
+          "decks_with_card": 459,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1194,
+          "card_name": "Colress’s Tenacity",
+          "decks_with_card": 436,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1202,
+          "card_name": "Drayton",
+          "decks_with_card": 313,
+          "effect_count": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "trainer-04",
+      "card_class": "trainer",
+      "card_ids": [
+        1185,
+        1244,
+        1256,
+        1208,
+        1141,
+        1211,
+        1092,
+        1191,
+        1119,
+        1166,
+        1102,
+        1212,
+        1139,
+        1095,
+        1228,
+        1249,
+        1240,
+        1223,
+        1206,
+        1187
+      ],
+      "cards": [
+        {
+          "card_id": 1185,
+          "card_name": "Explorer’s Guidance",
+          "decks_with_card": 309,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1244,
+          "card_name": "Full Metal Lab",
+          "decks_with_card": 273,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1256,
+          "card_name": "Team Rocket's Watchtower",
+          "decks_with_card": 242,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1208,
+          "card_name": "Iris’s Fighting Spirit",
+          "decks_with_card": 220,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1141,
+          "card_name": "Premium Power Pro",
+          "decks_with_card": 216,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1211,
+          "card_name": "Black Belt’s Training",
+          "decks_with_card": 208,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1092,
+          "card_name": "Secret Box",
+          "decks_with_card": 198,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1191,
+          "card_name": "Kieran",
+          "decks_with_card": 198,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1119,
+          "card_name": "Energy Search",
+          "decks_with_card": 197,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1166,
+          "card_name": "Gravity Gemstone",
+          "decks_with_card": 197,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1102,
+          "card_name": "Dusk Ball",
+          "decks_with_card": 175,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1212,
+          "card_name": "Cook",
+          "decks_with_card": 169,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1139,
+          "card_name": "Energy Recycler",
+          "decks_with_card": 149,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1095,
+          "card_name": "Dangerous Laser",
+          "decks_with_card": 148,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1228,
+          "card_name": "Acerola's Mischief",
+          "decks_with_card": 128,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1249,
+          "card_name": "Grand Tree",
+          "decks_with_card": 77,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1240,
+          "card_name": "Rosa's Encouragement",
+          "decks_with_card": 61,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1223,
+          "card_name": "Harlequin",
+          "decks_with_card": 32,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1206,
+          "card_name": "Larry’s Skill",
+          "decks_with_card": 24,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1187,
+          "card_name": "Morty’s Conviction",
+          "decks_with_card": 23,
+          "effect_count": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "trainer-05",
+      "card_class": "trainer",
+      "card_ids": [
+        1205,
+        1252,
+        1238,
+        1118,
+        1077,
+        1109,
+        1113,
+        1253,
+        1116,
+        1088,
+        1098,
+        1158,
+        1250,
+        1156,
+        1176,
+        1188,
+        1195,
+        1155,
+        1235
+      ],
+      "cards": [
+        {
+          "card_id": 1205,
+          "card_name": "Cyrano",
+          "decks_with_card": 21,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1252,
+          "card_name": "Gravity Mountain",
+          "decks_with_card": 21,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1238,
+          "card_name": "Tarragon",
+          "decks_with_card": 20,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1118,
+          "card_name": "Energy Retrieval",
+          "decks_with_card": 18,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1077,
+          "card_name": "Roto-Stick",
+          "decks_with_card": 16,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1109,
+          "card_name": "Miracle Headset",
+          "decks_with_card": 16,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1113,
+          "card_name": "N’s PP Up",
+          "decks_with_card": 12,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1253,
+          "card_name": "N’s Castle",
+          "decks_with_card": 12,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1116,
+          "card_name": "Energy Switch",
+          "decks_with_card": 10,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1088,
+          "card_name": "Prime Catcher",
+          "decks_with_card": 9,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1098,
+          "card_name": "Glass Trumpet",
+          "decks_with_card": 9,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1158,
+          "card_name": "Maximum Belt",
+          "decks_with_card": 9,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1250,
+          "card_name": "Area Zero Underdepths",
+          "decks_with_card": 9,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1156,
+          "card_name": "Lucky Helmet",
+          "decks_with_card": 5,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1176,
+          "card_name": "Punk Helmet",
+          "decks_with_card": 3,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1188,
+          "card_name": "Ciphermaniac’s Codebreaking",
+          "decks_with_card": 3,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1195,
+          "card_name": "Janine’s Secret Art",
+          "decks_with_card": 3,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1155,
+          "card_name": "Survival Brace",
+          "decks_with_card": 1,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1235,
+          "card_name": "Waitress",
+          "decks_with_card": 1,
+          "effect_count": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "batch_id": "energy-01",
+      "card_class": "energy",
+      "card_ids": [
+        5,
+        19,
+        13,
+        1,
+        18,
+        11,
+        14,
+        7,
+        3,
+        6,
+        15,
+        20,
+        17,
+        2,
+        16,
+        8,
+        12,
+        4
+      ],
+      "cards": [
+        {
+          "card_id": 5,
+          "card_name": "Basic {P} Energy",
+          "decks_with_card": 13840,
+          "effect_count": 0
+        },
+        {
+          "card_id": 19,
+          "card_name": "Telepath Psychic Energy",
+          "decks_with_card": 12912,
+          "effect_count": 1
+        },
+        {
+          "card_id": 13,
+          "card_name": "Enriching Energy",
+          "decks_with_card": 10921,
+          "effect_count": 1
+        },
+        {
+          "card_id": 1,
+          "card_name": "Basic {G} Energy",
+          "decks_with_card": 8957,
+          "effect_count": 0
+        },
+        {
+          "card_id": 18,
+          "card_name": "Grow Grass Energy",
+          "decks_with_card": 7271,
+          "effect_count": 1
+        },
+        {
+          "card_id": 11,
+          "card_name": "Mist Energy",
+          "decks_with_card": 6765,
+          "effect_count": 1
+        },
+        {
+          "card_id": 14,
+          "card_name": "Spiky Energy",
+          "decks_with_card": 6576,
+          "effect_count": 1
+        },
+        {
+          "card_id": 7,
+          "card_name": "Basic {D} Energy",
+          "decks_with_card": 5419,
+          "effect_count": 0
+        },
+        {
+          "card_id": 3,
+          "card_name": "Basic {W} Energy",
+          "decks_with_card": 2967,
+          "effect_count": 0
+        },
+        {
+          "card_id": 6,
+          "card_name": "Basic {F} Energy",
+          "decks_with_card": 2142,
+          "effect_count": 0
+        },
+        {
+          "card_id": 15,
+          "card_name": "Team Rocket's Energy",
+          "decks_with_card": 1229,
+          "effect_count": 1
+        },
+        {
+          "card_id": 20,
+          "card_name": "Rock Fighting Energy",
+          "decks_with_card": 1212,
+          "effect_count": 1
+        },
+        {
+          "card_id": 17,
+          "card_name": "Ignition Energy",
+          "decks_with_card": 995,
+          "effect_count": 1
+        },
+        {
+          "card_id": 2,
+          "card_name": "Basic {R} Energy",
+          "decks_with_card": 856,
+          "effect_count": 0
+        },
+        {
+          "card_id": 16,
+          "card_name": "Prism Energy",
+          "decks_with_card": 826,
+          "effect_count": 1
+        },
+        {
+          "card_id": 8,
+          "card_name": "Basic {M} Energy",
+          "decks_with_card": 273,
+          "effect_count": 0
+        },
+        {
+          "card_id": 12,
+          "card_name": "Legacy Energy",
+          "decks_with_card": 25,
+          "effect_count": 1
+        },
+        {
+          "card_id": 4,
+          "card_name": "Basic {L} Energy",
+          "decks_with_card": 9,
+          "effect_count": 0
+        }
+      ],
+      "status": "pending"
+    }
+  ],
+  "ordering": "card_class order; decks_with_card descending; card_id ascending; max 20",
+  "schema_version": 1
+}

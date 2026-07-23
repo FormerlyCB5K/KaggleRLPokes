@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "all_changed_fields_explained": true,
+    "all_effect_validation_passed": true,
+    "all_engine_evidence_linked": true,
+    "card_counts_exact": true,
+    "card_sets_equal_catalog_worklist_crosswalk_ledger_handoff": true,
+    "dynamic_effects_equal_formula_effects": true,
+    "dynamic_registry_and_scenarios_pass": true,
+    "effect_sets_equal_worklist_ledger_handoff": true,
+    "effect_verdicts_final": true,
+    "formula_keys_close_exact_queue": true,
+    "formula_references_not_dangling": true,
+    "handoff_clean_room_fields_complete": true,
+    "handoff_has_no_open_semantic_decision": true,
+    "human_review_triggers_reconcile": true,
+    "human_reviews_all_resolved": true,
+    "only_approved_approximation": true,
+    "schema_lossless_and_all_effects_routed": true,
+    "source_manifest_complete": true
+  },
+  "counts": {
+    "cards": 232,
+    "effects": 314,
+    "formula_scenarios": 237,
+    "formulas": 79,
+    "human_reviews": 9,
+    "issues": 0
+  },
+  "issues": [],
+  "review_reconciliation": {
+    "artifact_bound_ids": [
+      "HR-B01-001",
+      "HR-B01-002",
+      "HR-B01-003",
+      "HR-B04-001",
+      "HR-B04-002",
+      "HR-B04-003",
+      "HR-B05-001",
+      "HR-B05-002",
+      "HR-B05-003"
+    ],
+    "ledger_ids": [
+      "HR-B01-001",
+      "HR-B01-002",
+      "HR-B01-003",
+      "HR-B04-001",
+      "HR-B04-002",
+      "HR-B04-003",
+      "HR-B05-001",
+      "HR-B05-002",
+      "HR-B05-003"
+    ],
+    "pending_ids": []
+  },
+  "schema_version": 1,
+  "status": "passed"
+}

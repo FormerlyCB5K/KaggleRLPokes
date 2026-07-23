@@ -1,0 +1,151 @@
+{
+  "canonical_change": {
+    "decision_record": "HR-B04-001",
+    "from": "independent flat attack/ability tags, modifier vector, keyword bag, and stat bakes",
+    "to": "one ordered effect-program AST with typed operations, expressions, targets, and durations"
+  },
+  "deprecated_as_canonical": [
+    "effect keyword bag",
+    "separate attack/ability category namespaces"
+  ],
+  "human_review_record": "HR-B04-002",
+  "merges_and_rehomes": {
+    "action_rules": [
+      "item_lock",
+      "cooldown",
+      "cubchoo",
+      "retreat_lock"
+    ],
+    "attachment": [
+      "energy_accel",
+      "ability.energy_active",
+      "ability.energy_bench",
+      "discard_energy"
+    ],
+    "control_and_expressions": [
+      "conditional",
+      "probabilistic",
+      "revenge",
+      "outrage",
+      "modifier scale variables",
+      "modifier conditions"
+    ],
+    "damage": [
+      "snipe",
+      "counter_snipe",
+      "recoil",
+      "ability.damage",
+      "modifier bench/self damage"
+    ],
+    "damage_rules": [
+      "immunity",
+      "ability.immunity",
+      "ability.barrier",
+      "modifier bypass"
+    ],
+    "pokemon_position": [
+      "ability.gust",
+      "ability.switch"
+    ],
+    "stat_and_rule_operations": [
+      "stat bake stats",
+      "stat bake scopes",
+      "stat bake conditions"
+    ],
+    "zone_movement": [
+      "draws_cards",
+      "ability.draw",
+      "ability.search",
+      "deckout",
+      "ability.mill"
+    ]
+  },
+  "new_canonical_categories": {
+    "expression_kinds": [
+      "literal",
+      "read",
+      "count",
+      "add",
+      "subtract",
+      "multiply",
+      "divide",
+      "minimum",
+      "maximum",
+      "compare",
+      "and",
+      "or",
+      "not",
+      "coin_flip",
+      "random_choice"
+    ],
+    "observability_kinds": [
+      "static",
+      "observation_direct",
+      "observation_derived",
+      "public_history",
+      "hidden_information",
+      "stochastic",
+      "engine_internal",
+      "unavailable"
+    ],
+    "operation_kinds": [
+      "deal_damage",
+      "place_damage_counters",
+      "remove_damage_counters",
+      "knock_out",
+      "apply_special_condition",
+      "clear_special_conditions",
+      "move_cards",
+      "shuffle_cards",
+      "attach_card",
+      "detach_card",
+      "switch_active",
+      "evolve",
+      "devolve",
+      "modify_stat",
+      "modify_damage_rule",
+      "modify_action_rule",
+      "modify_card_rule",
+      "modify_prize_rule",
+      "provide_energy",
+      "copy_or_use_attack",
+      "reveal_or_inspect",
+      "end_turn",
+      "win_game",
+      "no_op"
+    ],
+    "program_node_kinds": [
+      "sequence",
+      "operation",
+      "conditional",
+      "choice",
+      "for_each",
+      "repeat",
+      "reference"
+    ],
+    "semantic_families": [
+      "damage",
+      "healing",
+      "knockout",
+      "special_condition",
+      "zone_movement",
+      "attachment",
+      "pokemon_position",
+      "evolution",
+      "stat_modifier",
+      "damage_rule",
+      "action_rule",
+      "card_rule",
+      "prize_rule",
+      "energy_provision",
+      "attack_delegation",
+      "information",
+      "game_flow",
+      "random_control",
+      "no_non_obvious_effect"
+    ]
+  },
+  "preservation_rule": "No old capability is deleted; it is rehomed or emitted as a derived label.",
+  "schema_version": 1,
+  "status": "approved_provisionally_lossless_and_efficient_required"
+}

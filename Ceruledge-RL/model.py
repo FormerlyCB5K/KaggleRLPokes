@@ -192,6 +192,21 @@ class CeruledgePolicy(nn.Module):
         t = torch.tensor(zone_vec, dtype=torch.float32).unsqueeze(0)
         return self.pile_mlp(t).squeeze(0)  # (D_MODEL,)
 
+    def condition_on_effect(self, pooled: torch.Tensor,
+                            effect_zone_vec: list[float] | None) -> torch.Tensor:
+        """
+        Bias the pooled state toward the card that triggered a Stage 2 sub-selection so
+        the card scorer knows *why* it is discarding/searching (e.g. an Ultra Ball cost
+        vs. a Brilliant Blender cost). effect_zone_vec is a 16-float encode_card_as_zone()
+        vector for obs.select.effect; None leaves the pooled state unchanged.
+        """
+        if effect_zone_vec is None:
+            return pooled
+        eff = self.encode_pile_candidate(effect_zone_vec)   # (D_MODEL,)
+        if pooled.dim() == 2:
+            eff = eff.unsqueeze(0)
+        return pooled + eff
+
     def get_value(self, pooled: torch.Tensor) -> torch.Tensor:
         """State value estimate. Shape: (B,) or scalar."""
         return self.value_head(pooled).squeeze(-1)

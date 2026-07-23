@@ -31,6 +31,8 @@ OPPONENTS: dict[str, dict[str, str]] = {
     "ceruledge_rules": {"module": "Ceruledge-Agent/main.py",                   "deck": "Ceruledge-Agent/deck.csv"},
     "clefable":        {"module": "Clefable-Agent/main.py",                    "deck": "Clefable-Agent/deck.csv"},
     "alakazam":        {"module": "Alakazam-Agent/main.py",                    "deck": "Alakazam-Agent/Deck.csv"},  # capital D
+    "archaludon":      {"module": "sample-archaludon/main.py",                 "deck": "sample-archaludon/deck.csv"},
+    "garchomp":        {"module": "garchomp-baseline/main.py",                 "deck": "garchomp-baseline/deck.csv"},
     "lucario":         {"module": "Lucario-Baseline/mega_lucario_baseline.py", "deck": "inline:DECK"},
     "random":          {"callable": "random_agent",                            "deck": "FULL_DECK"},
     "self":            {"model": "frozen_snapshot",                            "deck": "FULL_DECK"},
@@ -210,14 +212,16 @@ def parse_pool_spec(spec: str) -> dict[str, float]:
 if __name__ == "__main__":
     from features import FULL_DECK
 
-    # 1. Simultaneous load without collision (three files all named main.py)
-    mods = {n: load_module(n) for n in ("ceruledge_rules", "clefable", "alakazam")}
-    assert len({id(m) for m in mods.values()}) == 3, "modules not distinct"
+    # 1. Simultaneous load without collision (five files all named main.py)
+    mods = {n: load_module(n)
+            for n in ("ceruledge_rules", "clefable", "alakazam", "archaludon",
+                      "garchomp")}
+    assert len({id(m) for m in mods.values()}) == 5, "modules not distinct"
     for n, m in mods.items():
         assert callable(getattr(m, "agent", None)), f"{n}: no callable agent"
         assert sys.modules.get("main") is not m, f"{n} cached under 'main'"
         assert sys.modules.get(f"opp_{n}") is m
-    print("1. simultaneous load: OK (3 distinct modules, none under 'main')")
+    print("1. simultaneous load: OK (5 distinct modules, none under 'main')")
 
     # 2. Deck resolution — exact counts observed in the repo (all 60)
     for n in OPPONENTS:
@@ -233,7 +237,7 @@ if __name__ == "__main__":
         "clefable module loaded a different deck.csv than the registry resolves"
     assert list(mods["alakazam"].MY_DECK) == load_deck("alakazam"), \
         "alakazam module loaded a different Deck.csv than the registry resolves"
-    print("2. deck resolution: OK (all 6 opponents, 60 cards each)")
+    print("2. deck resolution: OK (all 8 opponents, 60 cards each)")
 
     # 3. Casing trap — wrong-cased Alakazam deck path must raise with a hint
     try:

@@ -1,0 +1,149 @@
+{
+  "crosswalk": {
+    "cards": 232,
+    "definition_statuses": {
+      "exact_after_format_normalization": 232
+    },
+    "mapping_statuses": {
+      "mapped": 232
+    },
+    "path": "Imitation-Learning/meta-card-analysis/part-b/card-id-crosswalk.json"
+  },
+  "engine": {
+    "archive_path": "Imitation-Learning/ptcg_engine.zip",
+    "archive_sha256": "d1a824b2740e9447acb988cc54f9d5de70af77f2be4f54b891cfa2d74e2a3802",
+    "competition_module_version": "1.32.0",
+    "license_scope": {
+      "classification": "competition-use-only; not open-source",
+      "decision": "Approved for private use throughout this working project; do not share",
+      "license": "Imitation-Learning/ptcg_engine/ptcgProgram 22/LICENSES/LicenseRef-PTCG-ABC-Competition-Use-Only.txt",
+      "readme": "Imitation-Learning/ptcg_engine/ptcgProgram 22/README.md"
+    },
+    "source_binary_card_id_sets_equal": true
+  },
+  "evidence_policy": {
+    "nontrivial_effects": "exact source path/line, parsed source chain when applicable, canonical program, and focused validation",
+    "ordinary_effects": "exact source path/line plus validated ordinary engine shape",
+    "recorded_game_evidence": "full 15,018-episode scans retained in class batch evidence artifacts",
+    "tera_rows": "exact one-line tera() source call; a multi-call chain hash is not applicable"
+  },
+  "frozen_inputs": [
+    {
+      "path": "Imitation-Learning/meta-card-analysis/all-datasets/top_ladder_card_catalog.json",
+      "sha256": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+      "size_bytes": 275514
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/audit-worklist.json",
+      "sha256": "338fbd810960461b423affed4e0c33a2714ef3dabb13afd57e82dba5fdfb801b",
+      "size_bytes": 1147959
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/card-id-crosswalk.json",
+      "sha256": "f2ab100915f773e2b84f7f4117bf3acd8f5cd1168035a22e497c46e313102140",
+      "size_bytes": 223307
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/engine-source-manifest.json",
+      "sha256": "4589258bf173457643894bdc0a6e99ae0c3cfda8e0de1158fea55f12d03c7137",
+      "size_bytes": 9890
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/semantic-schema-draft.json",
+      "sha256": "3f3484b919760066a7da7043187127d693f7ed3bd0b9e04ae7575b91599f9a3a",
+      "size_bytes": 4168
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/schema-validation-report.json",
+      "sha256": "e31b29e0b6e04c31beeb440f653a0df58b5b46d67770b4358a159128a26a9feb",
+      "size_bytes": 5458
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/category-diff-draft.json",
+      "sha256": "71f088843f154ec7cd1e61d11604ba93c601753bae2f667b67e1a305aec50228",
+      "size_bytes": 3403
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/human-review-ledger.json",
+      "sha256": "0e8296d819a99494b50825eba6827767635f60dd82ab691c82546c393fcabaef",
+      "size_bytes": 13867
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/approved-approximations.json",
+      "sha256": "5b8daa9cca2dffba044ef0f6190045477dc1353bd02806353ac9a8972f5f45f1",
+      "size_bytes": 656
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/dynamic-formulas.json",
+      "sha256": "c94c7f88eddee1535194819ce6207fd4963520f0b4b28b1ae8bb8566ba4452cc",
+      "size_bytes": 316341
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/dynamic-formula-validation.json",
+      "sha256": "92cd9f7219ce8a8cadcc53de0fc95e839ff3569904add91dff7021ad4edbc756",
+      "size_bytes": 107087
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-01.json",
+      "sha256": "fb62b4142c3603f63a2175654082266557b7f85cac8fe8927e02974c0725a6af",
+      "size_bytes": 125690
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-02.json",
+      "sha256": "2d0f065ba872f24a3f0e5ca8707d6b344d50f97ebcbef019497bc0a2fc5a3938",
+      "size_bytes": 143409
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-03.json",
+      "sha256": "edf9dd5087754d0f3b9e1f34800651ffdd4081c09cfc87754368ae9127e56612",
+      "size_bytes": 137441
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-04.json",
+      "sha256": "59e0040cd20dd2e90f99d76d4a5b9d4e37c9c10e8df60ca24ebd80f2dd622d58",
+      "size_bytes": 139016
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-05.json",
+      "sha256": "6ee0a47530df6ade369337d0398af8fbd55d2d569700eed0e903b3fcd00c8ddb",
+      "size_bytes": 154460
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/pokemon-audit/pokemon-06.json",
+      "sha256": "5849c3487c8313f14adb519a453e17b76279c0b7f3da8392a8d9d09c6bbe6f68",
+      "size_bytes": 106685
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/trainer-audit/trainer-01.json",
+      "sha256": "1b72a96a1515b8d2bbaecb9533773ee17b21b0e835cded2dd6b338841c040aa7",
+      "size_bytes": 82207
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/trainer-audit/trainer-02.json",
+      "sha256": "a2e17e3585173d64fb0c5d2ebe261acd0202d0bac483bbe2099caa771e3ce9de",
+      "size_bytes": 90502
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/trainer-audit/trainer-03.json",
+      "sha256": "e3064f45a4f3178b476664a409c4400f3ce7076b6ad21f1f05dbc4b1619505ae",
+      "size_bytes": 84106
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/trainer-audit/trainer-04.json",
+      "sha256": "5a0167c62b7c20ba399262384f66fef019f2ec9e0c62183fc6e17ae771a4fa37",
+      "size_bytes": 91614
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/trainer-audit/trainer-05.json",
+      "sha256": "a92723764c7c7517e784aeb1addcc81c9a7257b9c3e66cf8e22161641a5f697f",
+      "size_bytes": 79630
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/energy-audit/energy-01.json",
+      "sha256": "52a63a7644f42844b28cc704716659ddf266e9a810e5acf235ac441dcb0c52aa",
+      "size_bytes": 71927
+    }
+  ],
+  "schema_version": 1,
+  "status": "complete"
+}

@@ -1,0 +1,2180 @@
+{
+  "batch_id": "energy-01",
+  "card_ids": [
+    5,
+    19,
+    13,
+    1,
+    18,
+    11,
+    14,
+    7,
+    3,
+    6,
+    15,
+    20,
+    17,
+    2,
+    16,
+    8,
+    12,
+    4
+  ],
+  "cards": [
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 5,
+      "card_name": "Basic {P} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "psychic"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "psychic"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 40,
+        "line_start": 36,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 13840,
+        "games_with_card": 10873,
+        "total_copies": 32700
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:36",
+          "energy-01-recorded-attachment-evidence.json#samples/card:5:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 19,
+      "card_name": "Telepath Psychic Energy",
+      "effects": [
+        {
+          "activation": {
+            "event": "attach_from_hand",
+            "requirements": [
+              "holder_is_psychic_pokemon"
+            ]
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Psychic provision and the hand-attach-to-Psychic trigger that benches up to two Basic Psychic Pokémon and shuffles",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:19:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "psychic"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "psychic"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "5ae480895452ef76aa131faa00c24b441112110d7723b5f9aaa3b65d7614c815",
+            "effect_tokens": [
+              "Psychic",
+              "EnergyType"
+            ],
+            "engine_name": "Telepath Psychic Energy",
+            "kind": "skill",
+            "method_calls": [
+              "attachSkill",
+              "textEn",
+              "exist",
+              "targetEnergyType",
+              "effectDeckToBenchAndShuffle",
+              "targetEnergyType",
+              "targetBasicPokemon",
+              "specialEnergy"
+            ],
+            "source_line_end": 10403,
+            "source_line_start": 10397,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attachSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "hidden_information",
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "psychic"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_bench",
+                    "source": "own_deck"
+                  },
+                  "target": "chosen_basic_psychic_pokemon_cards",
+                  "value": "chosen_count_0_to_min(2,open_bench_slots)"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {P} Energy.\nWhen you attach this card from your hand to a {P} Pokémon, search your deck for up to 2 Basic {P} Pokémon and put them onto your Bench. Then, shuffle your deck.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10395",
+              "energy-01-recorded-attachment-evidence.json#samples/card:19:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10397"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "psychic"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "psychic"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 10403,
+        "line_start": 10395,
+        "method_calls": [
+          "nameEn",
+          "attachSkill",
+          "textEn",
+          "exist",
+          "targetEnergyType",
+          "effectDeckToBenchAndShuffle",
+          "targetEnergyType",
+          "targetBasicPokemon",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 12912,
+        "games_with_card": 10329,
+        "total_copies": 51647
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10395",
+          "energy-01-recorded-attachment-evidence.json#samples/card:19:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 13,
+      "card_name": "Enriching Energy",
+      "effects": [
+        {
+          "activation": {
+            "event": "attach_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Colorless provision and the attach-from-hand draw-four trigger",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:13:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "colorless"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "colorless"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "2753518a92071d381aaf7dfe908ceca502df6452e3d0f023425edebc5407a2e1",
+            "effect_tokens": [],
+            "engine_name": "Enriching Energy",
+            "kind": "skill",
+            "method_calls": [
+              "attachSkill",
+              "textEn",
+              "effectDraw",
+              "specialEnergy"
+            ],
+            "source_line_end": 93,
+            "source_line_start": 88,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "attachSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "hidden_information"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "colorless"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "mode": "draw",
+                    "source": "own_deck"
+                  },
+                  "target": "own_deck_top",
+                  "value": 4
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {C} Energy.\n\nWhen you attach this card from your hand to a Pokémon, draw 4 cards.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:85",
+              "energy-01-recorded-attachment-evidence.json#samples/card:13:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:88"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "colorless"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "colorless"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 93,
+        "line_start": 85,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "attachSkill",
+          "textEn",
+          "effectDraw",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 10921,
+        "games_with_card": 9106,
+        "total_copies": 10921
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:85",
+          "energy-01-recorded-attachment-evidence.json#samples/card:13:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 1,
+      "card_name": "Basic {G} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "grass"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "grass"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 24,
+        "line_start": 20,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 8957,
+        "games_with_card": 7786,
+        "total_copies": 22494
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:20",
+          "energy-01-recorded-attachment-evidence.json#samples/card:1:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 18,
+      "card_name": "Grow Grass Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "energy_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Grass provision and the Grass-holder-only +20 effective maximum HP",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:18:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "grass"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "grass"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "e0dda9a182de20a661d66af71b389392d6dd7985da1c9385f6d542a284fd16c4",
+            "effect_tokens": [
+              "MaxHpChange",
+              "Grass"
+            ],
+            "engine_name": "Grow Grass Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "effectEnergyContinual",
+              "eVal",
+              "targetEnergyType",
+              "specialEnergy"
+            ],
+            "source_line_end": 10395,
+            "source_line_start": 10390,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "grass"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "condition": {
+                  "kind": "read",
+                  "path": "holder_is_grass_pokemon"
+                },
+                "else": null,
+                "kind": "conditional",
+                "then": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "modify_stat",
+                        "parameters": {
+                          "mode": "add",
+                          "stat": "max_hp"
+                        },
+                        "target": "holder",
+                        "value": 20
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {G} Energy.\nThe {G} Pokémon this card is attached to gets +20 HP.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10388",
+              "energy-01-recorded-attachment-evidence.json#samples/card:18:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10390"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "grass"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "grass"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 10395,
+        "line_start": 10388,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "effectEnergyContinual",
+          "eVal",
+          "targetEnergyType",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 7271,
+        "games_with_card": 6552,
+        "total_copies": 27558
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10388",
+          "energy-01-recorded-attachment-evidence.json#samples/card:18:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 11,
+      "card_name": "Mist Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "energy_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Colorless provision and damage-excluding prevention of future opposing attack effects without removing existing effects",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:11:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "colorless"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "colorless"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "a077318aa33043c09f54e65cbd8593441d57647bd1bc3b19260a3ca8da50c250",
+            "effect_tokens": [
+              "NoEffectEnemyAttack"
+            ],
+            "engine_name": "Mist Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "effectEnergyContinual",
+              "specialEnergy"
+            ],
+            "source_line_end": 76,
+            "source_line_start": 71,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "colorless"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_effect_rule",
+                  "parameters": {
+                    "damage_is_not_prevented": true,
+                    "existing_effects_are_not_removed": true,
+                    "rule": "prevent_effects_of_opponent_pokemon_attacks"
+                  },
+                  "target": "holder",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {C} Energy.\n\nPrevent all effects of attacks used by your opponent’s Pokémon done to the Pokémon this card is attached to. (Existing effects are not removed. Damage is not an effect.)",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:69",
+              "energy-01-recorded-attachment-evidence.json#samples/card:11:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:71"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "colorless"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "colorless"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 76,
+        "line_start": 69,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "effectEnergyContinual",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 6765,
+        "games_with_card": 6164,
+        "total_copies": 27057
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:69",
+          "energy-01-recorded-attachment-evidence.json#samples/card:11:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 14,
+      "card_name": "Spiky Energy",
+      "effects": [
+        {
+          "activation": {
+            "even_if_holder_knocked_out": true,
+            "event": "holder_damaged_by_opponent_attack_while_active"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Colorless provision, the Active-holder damage trigger including KO, and exact two-counter retaliation",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:14:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "colorless"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "colorless"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "4a4b090c115c6dca11a5bfc7d4832dbad09c69fc5778947b2917017179f166db",
+            "effect_tokens": [
+              "TriggerType",
+              "DamagedEnemyAttackActive",
+              "DamageCounter"
+            ],
+            "engine_name": "Spiky Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "triggerAttachedCard",
+              "effectTriggerObject",
+              "eVal",
+              "specialEnergy"
+            ],
+            "source_line_end": 101,
+            "source_line_start": 95,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [
+            "HR-B05-001"
+          ],
+          "kind": "energy_effect",
+          "observability": [
+            "public_history"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "colorless"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "place_damage_counters",
+                  "parameters": {},
+                  "target": "attacking_pokemon",
+                  "value": 2
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {C} Energy.\n\nIf the Pokémon this card is attached to is in the Active Spot and is damaged by an attack from your opponent’s Pokémon (even if this Pokémon is Knocked Out), put 2 damage counters on the Attacking Pokémon.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:93",
+              "energy-01-recorded-attachment-evidence.json#samples/card:14:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:95"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "colorless"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "colorless"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 101,
+        "line_start": 93,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "triggerAttachedCard",
+          "effectTriggerObject",
+          "eVal",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 6576,
+        "games_with_card": 6011,
+        "total_copies": 26278
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:93",
+          "energy-01-recorded-attachment-evidence.json#samples/card:14:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 7,
+      "card_name": "Basic {D} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "darkness"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "darkness"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 48,
+        "line_start": 44,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 5419,
+        "games_with_card": 4953,
+        "total_copies": 42384
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:44",
+          "energy-01-recorded-attachment-evidence.json#samples/card:7:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 3,
+      "card_name": "Basic {W} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "water"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "water"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 32,
+        "line_start": 28,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 2967,
+        "games_with_card": 2846,
+        "total_copies": 18041
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:28",
+          "energy-01-recorded-attachment-evidence.json#samples/card:3:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 6,
+      "card_name": "Basic {F} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "fighting"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "fighting"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 44,
+        "line_start": 40,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 2142,
+        "games_with_card": 2051,
+        "total_copies": 7112
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:40",
+          "energy-01-recorded-attachment-evidence.json#samples/card:6:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 15,
+      "card_name": "Team Rocket's Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "energy_continuous_and_attachment_legality"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the Team Rocket-only attachment rule, refresh-time illegal-holder discard, and two units in any Psychic/Darkness combination",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:15:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 2,
+            "default_provided_types": [
+              "psychic",
+              "darkness"
+            ],
+            "live_formula": {
+              "count": 2,
+              "types": "any chosen combination of psychic/darkness"
+            },
+            "required_inputs": [
+              "energy_payment_type_allocation"
+            ]
+          },
+          "engine": {
+            "chain_sha256": "4c3850d26e7c37aa96ae926b6ed9330b07d7f0257c8cf5a2941d2cb74633d89a",
+            "effect_tokens": [],
+            "engine_name": "Team Rocket's Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "specialEnergy",
+              "getCard"
+            ],
+            "source_line_end": 4190,
+            "source_line_start": 4185,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [
+            "holder_team_rocket_flag",
+            "requested_attack_cost_types",
+            "other_attached_energy"
+          ],
+          "formula_key": "energy_01_team_rocket_energy_payment",
+          "formula_question": "all legal allocations of exactly 2 units across Psychic and Darkness for payment",
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_attachment_rule",
+                  "parameters": {
+                    "allowed_holder": "team_rocket_pokemon",
+                    "discard_if_illegally_attached": true
+                  },
+                  "target": "this_energy",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "allocation": "any_combination_per_payment",
+                    "types": [
+                      "psychic",
+                      "darkness"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 2
+                }
+              }
+            ]
+          },
+          "runtime_engine_refs": [
+            "Imitation-Learning/ptcg_engine/ptcgProgram 22/State.h:1313",
+            "Imitation-Learning/ptcg_engine/ptcgProgram 22/EffectProc.h:1168"
+          ],
+          "text": "This card can only be attached to a Team Rocket’s Pokémon. If this card is attached to anything other than a Team Rocket’s Pokémon, discard this card.\n\nAs long as this card is attached to a Pokémon, it provides 2 in any combination of {P} Energy and {D} Energy.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4183",
+              "energy-01-recorded-attachment-evidence.json#samples/card:15:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4185"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 2,
+        "default_provided_types": [
+          "psychic",
+          "darkness"
+        ],
+        "live_formula": {
+          "count": 2,
+          "types": "any chosen combination of psychic/darkness"
+        },
+        "required_inputs": [
+          "energy_payment_type_allocation"
+        ]
+      },
+      "engine_card_source": {
+        "line_end": 4190,
+        "line_start": 4183,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "specialEnergy",
+          "getCard"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 1229,
+        "games_with_card": 1224,
+        "total_copies": 4916
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4183",
+          "energy-01-recorded-attachment-evidence.json#samples/card:15:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_dynamic"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 20,
+      "card_name": "Rock Fighting Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "energy_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Fighting provision and Fighting-holder-only prevention of future opposing attack effects while preserving damage/existing effects",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:20:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "fighting"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": [
+                "fighting"
+              ]
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "bceda5ad29dbf43449c47ae6515eec7601ebbe27dddb000f68c0661b8010fa12",
+            "effect_tokens": [
+              "NoEffectEnemyAttack",
+              "Fighting"
+            ],
+            "engine_name": "Rock Fighting Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "effectEnergyContinual",
+              "targetEnergyType",
+              "specialEnergy"
+            ],
+            "source_line_end": 10410,
+            "source_line_start": 10405,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "types": [
+                      "fighting"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "condition": {
+                  "kind": "read",
+                  "path": "holder_is_fighting_pokemon"
+                },
+                "else": null,
+                "kind": "conditional",
+                "then": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "modify_effect_rule",
+                        "parameters": {
+                          "damage_is_not_prevented": true,
+                          "existing_effects_are_not_removed": true,
+                          "rule": "prevent_effects_of_opponent_pokemon_attacks"
+                        },
+                        "target": "holder",
+                        "value": null
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides {F} Energy.\nPrevent all effects of attacks used by your opponent’s Pokémon done to the {F} Pokémon this card is attached to. (Existing effects are not removed. Damage is not an effect.)",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10403",
+              "energy-01-recorded-attachment-evidence.json#samples/card:20:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10405"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "fighting"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "fighting"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 10410,
+        "line_start": 10403,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "effectEnergyContinual",
+          "targetEnergyType",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 1212,
+        "games_with_card": 1175,
+        "total_copies": 4578
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10403",
+          "energy-01-recorded-attachment-evidence.json#samples/card:20:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_static"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 17,
+      "card_name": "Ignition Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached_until_owner_turn_end",
+            "event": "energy_continuous_and_owner_turn_end"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits 1-versus-3 Colorless provision by holder stage and mandatory owner-turn-end discard",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:17:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "colorless"
+            ],
+            "live_formula": {
+              "count": "3 if holder is Stage 1 or Stage 2 else 1",
+              "types": [
+                "colorless"
+              ]
+            },
+            "required_inputs": [
+              "holder_evolution_stage"
+            ]
+          },
+          "engine": {
+            "chain_sha256": "5f570c900fff4be317fb3294194e302a34f0c02e7361fc40f4561fa667876d5a",
+            "effect_tokens": [],
+            "engine_name": "Ignition Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "trashMyTurnEnd",
+              "specialEnergy"
+            ],
+            "source_line_end": 4203,
+            "source_line_start": 4198,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [
+            "holder_evolution_stage",
+            "turn_owner"
+          ],
+          "formula_key": "energy_01_ignition_energy_provision",
+          "formula_question": "provide 3 Colorless on Stage 1/2 else 1, then discard at owner's turn end",
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "public_history"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "condition": {
+                  "kind": "read",
+                  "path": "holder_is_evolution_pokemon"
+                },
+                "else": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "provide_energy",
+                        "parameters": {
+                          "types": [
+                            "colorless"
+                          ]
+                        },
+                        "target": "holder",
+                        "value": 1
+                      }
+                    }
+                  ]
+                },
+                "kind": "conditional",
+                "then": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "provide_energy",
+                        "parameters": {
+                          "types": [
+                            "colorless"
+                          ]
+                        },
+                        "target": "holder",
+                        "value": 3
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_discard",
+                    "source": "own_pokemon_attachment",
+                    "timing": "end_of_owners_turn"
+                  },
+                  "target": "this_energy",
+                  "value": 1
+                }
+              }
+            ]
+          },
+          "runtime_engine_refs": [
+            "Imitation-Learning/ptcg_engine/ptcgProgram 22/State.h:1095"
+          ],
+          "text": "If this card is attached to 1 of your Pokémon, discard it at the end of your turn.\n\nAs long as this card is attached to a Pokémon, it provides {C} Energy.\n\nIf this card is attached to an Evolution Pokémon, it provides {C}{C}{C} Energy instead.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4196",
+              "energy-01-recorded-attachment-evidence.json#samples/card:17:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4198"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "colorless"
+        ],
+        "live_formula": {
+          "count": "3 if holder is Stage 1 or Stage 2 else 1",
+          "types": [
+            "colorless"
+          ]
+        },
+        "required_inputs": [
+          "holder_evolution_stage"
+        ]
+      },
+      "engine_card_source": {
+        "line_end": 4203,
+        "line_start": 4196,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "trashMyTurnEnd",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 995,
+        "games_with_card": 991,
+        "total_copies": 3980
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4196",
+          "energy-01-recorded-attachment-evidence.json#samples/card:17:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_dynamic"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 2,
+      "card_name": "Basic {R} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "fire"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "fire"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 28,
+        "line_start": 24,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 856,
+        "games_with_card": 845,
+        "total_copies": 3230
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:24",
+          "energy-01-recorded-attachment-evidence.json#samples/card:2:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 16,
+      "card_name": "Prism Energy",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "energy_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Basic-holder every-type provision with a one-unit cap versus Colorless-only provision otherwise",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:16:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "colorless"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": "all if holder Basic else colorless"
+            },
+            "required_inputs": [
+              "holder_evolution_stage"
+            ]
+          },
+          "engine": {
+            "chain_sha256": "d0a8f6b32092f190724c7559d4c390bba02e185c72348a5931c35dacf32c0ccd",
+            "effect_tokens": [],
+            "engine_name": "Prism Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "specialEnergy"
+            ],
+            "source_line_end": 4196,
+            "source_line_start": 4192,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [
+            "holder_evolution_stage",
+            "requested_attack_cost_types",
+            "other_attached_energy"
+          ],
+          "formula_key": "energy_01_prism_energy_provision",
+          "formula_question": "one unit of any single needed type if holder Basic, else one Colorless",
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "observation_derived"
+          ],
+          "program": {
+            "condition": {
+              "kind": "read",
+              "path": "holder_is_basic_pokemon"
+            },
+            "else": {
+              "kind": "sequence",
+              "nodes": [
+                {
+                  "kind": "operation",
+                  "operation": {
+                    "kind": "provide_energy",
+                    "parameters": {
+                      "types": [
+                        "colorless"
+                      ]
+                    },
+                    "target": "holder",
+                    "value": 1
+                  }
+                }
+              ]
+            },
+            "kind": "conditional",
+            "then": {
+              "kind": "sequence",
+              "nodes": [
+                {
+                  "kind": "operation",
+                  "operation": {
+                    "kind": "provide_energy",
+                    "parameters": {
+                      "simultaneous_count_cap": 1,
+                      "types": [
+                        "all"
+                      ]
+                    },
+                    "target": "holder",
+                    "value": 1
+                  }
+                }
+              ]
+            }
+          },
+          "runtime_engine_refs": [
+            "Imitation-Learning/ptcg_engine/ptcgProgram 22/State.h:1088"
+          ],
+          "text": "As long as this card is attached to a Pokémon, it provides {C} Energy.\n\nIf this card is attached to a Basic Pokémon, this card provides every type of Energy but provides only 1 Energy at a time.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4190",
+              "energy-01-recorded-attachment-evidence.json#samples/card:16:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4192"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "colorless"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": "all if holder Basic else colorless"
+        },
+        "required_inputs": [
+          "holder_evolution_stage"
+        ]
+      },
+      "engine_card_source": {
+        "line_end": 4196,
+        "line_start": 4190,
+        "method_calls": [
+          "nameEn",
+          "energySkill",
+          "textEn",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 826,
+        "games_with_card": 813,
+        "total_copies": 3146
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4190",
+          "energy-01-recorded-attachment-evidence.json#samples/card:16:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_dynamic"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 8,
+      "card_name": "Basic {M} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "metal"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "metal"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 52,
+        "line_start": 48,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 273,
+        "games_with_card": 271,
+        "total_copies": 3492
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:48",
+          "energy-01-recorded-attachment-evidence.json#samples/card:8:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 12,
+      "card_name": "Legacy Energy",
+      "effects": [
+        {
+          "activation": {
+            "event": "energy_continuous_and_holder_ko_by_opponent_attack_damage",
+            "frequency": "once_per_game_per_owner_across_legacy_energy"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits one-unit every-type provision and once-per-game -1 Prize on opponent-attack-damage KO",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:12:energy_effect:0",
+          "energy_profile": {
+            "default_energy_count": 1,
+            "default_provided_types": [
+              "all"
+            ],
+            "live_formula": {
+              "count": 1,
+              "types": "all"
+            },
+            "required_inputs": []
+          },
+          "engine": {
+            "chain_sha256": "a70b58d2ba1eb89b42ee7a7c59c130da439804f428015fb999680c5f03da616e",
+            "effect_tokens": [
+              "TriggerType",
+              "KoEnemyAttackDamage",
+              "KoPrizeDecreaseOnce"
+            ],
+            "engine_name": "Legacy Energy",
+            "kind": "skill",
+            "method_calls": [
+              "energySkill",
+              "textEn",
+              "triggerAttachedCard",
+              "effectAttachedPokemon",
+              "eVal",
+              "specialEnergy"
+            ],
+            "source_line_end": 85,
+            "source_line_start": 79,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "energySkill"
+          },
+          "formula_inputs": [
+            "holder_ko_cause",
+            "legacy_energy_effect_already_used_by_owner"
+          ],
+          "formula_key": "energy_01_legacy_energy_prize_reduction",
+          "formula_question": "reduce prizes taken by 1 iff eligible KO and owner's Legacy effect unused, then mark used",
+          "human_review_ids": [],
+          "kind": "energy_effect",
+          "observability": [
+            "observation_direct",
+            "public_history"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "provide_energy",
+                  "parameters": {
+                    "simultaneous_count_cap": 1,
+                    "types": [
+                      "all"
+                    ]
+                  },
+                  "target": "holder",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_prize_rule",
+                  "parameters": {
+                    "frequency": "once_per_game_per_owner",
+                    "trigger": "holder_ko_by_opponent_attack_damage"
+                  },
+                  "target": "opponent",
+                  "value": -1
+                }
+              }
+            ]
+          },
+          "text": "As long as this card is attached to a Pokémon, it provides every type of Energy but provides only 1 Energy at a time.\n\nIf the Pokémon this card is attached to is Knocked Out by damage from an attack from your opponent’s Pokémon, that player takes 1 fewer Prize card. This effect of your Legacy Energy only works once per game.",
+          "validation": {
+            "checks": {
+              "energy_definition_shape": true,
+              "exact_card_source_present": true,
+              "exact_effect_chain_present": true,
+              "exact_text_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_attachment_coverage_accounted": true,
+              "recorded_attachment_or_exact_source_fallback": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:76",
+              "energy-01-recorded-attachment-evidence.json#samples/card:12:energy_attachment (3 distinct recorded attachments)",
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:79"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "all"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": "all"
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 85,
+        "line_start": 76,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "energySkill",
+          "textEn",
+          "triggerAttachedCard",
+          "effectAttachedPokemon",
+          "eVal",
+          "specialEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 25,
+        "games_with_card": 25,
+        "total_copies": 25
+      },
+      "subtype": "Special Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:76",
+          "energy-01-recorded-attachment-evidence.json#samples/card:12:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "override_dynamic"
+    },
+    {
+      "additional_effects": [],
+      "audit_status": "complete",
+      "card_id": 4,
+      "card_name": "Basic {L} Energy",
+      "change_from_current": "delegated exact Basic Energy type/count; no additional semantics exist",
+      "effects": [],
+      "energy_profile": {
+        "default_energy_count": 1,
+        "default_provided_types": [
+          "lightning"
+        ],
+        "live_formula": {
+          "count": 1,
+          "types": [
+            "lightning"
+          ]
+        },
+        "required_inputs": []
+      },
+      "engine_card_source": {
+        "line_end": 36,
+        "line_start": 32,
+        "method_calls": [
+          "nameEn",
+          "basicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 9,
+        "games_with_card": 9,
+        "total_copies": 18
+      },
+      "subtype": "Basic Energy",
+      "validation": {
+        "checks": {
+          "energy_definition_shape": true,
+          "exact_card_source_present": true,
+          "recorded_attachment_coverage_accounted": true,
+          "recorded_attachment_or_exact_source_fallback": true
+        },
+        "refs": [
+          "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:32",
+          "energy-01-recorded-attachment-evidence.json#samples/card:4:energy_attachment (3 distinct recorded attachments)"
+        ],
+        "status": "passed"
+      },
+      "verdict": "ordinary_field"
+    }
+  ],
+  "formula_queue": [
+    {
+      "effect_id": "card:15:energy_effect:0",
+      "formula_key": "energy_01_team_rocket_energy_payment",
+      "owner": "B08",
+      "question": "all legal allocations of exactly 2 units across Psychic and Darkness for payment",
+      "required_inputs": [
+        "holder_team_rocket_flag",
+        "requested_attack_cost_types",
+        "other_attached_energy"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:17:energy_effect:0",
+      "formula_key": "energy_01_ignition_energy_provision",
+      "owner": "B08",
+      "question": "provide 3 Colorless on Stage 1/2 else 1, then discard at owner's turn end",
+      "required_inputs": [
+        "holder_evolution_stage",
+        "turn_owner"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:16:energy_effect:0",
+      "formula_key": "energy_01_prism_energy_provision",
+      "owner": "B08",
+      "question": "one unit of any single needed type if holder Basic, else one Colorless",
+      "required_inputs": [
+        "holder_evolution_stage",
+        "requested_attack_cost_types",
+        "other_attached_energy"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:12:energy_effect:0",
+      "formula_key": "energy_01_legacy_energy_prize_reduction",
+      "owner": "B08",
+      "question": "reduce prizes taken by 1 iff eligible KO and owner's Legacy effect unused, then mark used",
+      "required_inputs": [
+        "holder_ko_cause",
+        "legacy_energy_effect_already_used_by_owner"
+      ],
+      "status": "queued"
+    }
+  ],
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "cards": 18,
+    "effects": 10,
+    "formula_queue": 4,
+    "issues": 0,
+    "subtypes": {
+      "Basic Energy": 8,
+      "Special Energy": 10
+    },
+    "verdicts": {
+      "ordinary_field": 8,
+      "override_dynamic": 4,
+      "override_static": 6
+    }
+  }
+}

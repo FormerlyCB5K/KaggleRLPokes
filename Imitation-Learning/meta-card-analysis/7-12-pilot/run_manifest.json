@@ -1,0 +1,66 @@
+{
+  "archives": [
+    {
+      "accepted_unique_episodes": 5050,
+      "dataset_date": "2026-07-12",
+      "duplicate_episodes": 0,
+      "json_members": 5050,
+      "non_json_members": 1,
+      "path": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+      "rejected_json_members": 0,
+      "sha256": "fba2cc8fd028109ab038dda9b2aca09bd1323cf40200cd2797d66c351fc67646",
+      "size_bytes": 736685052,
+      "zip_members": 5051
+    }
+  ],
+  "card_database": {
+    "path": "Decks/Deck-Builder/EN_Card_Data.csv",
+    "sha256": "a0ea63cf7adcb65d35436ce0eb390de6e2e35654a7c67c065a45f4abaa00f373",
+    "size_bytes": 359151
+  },
+  "command": [
+    "python",
+    "Imitation-Learning/analyze_top_ladder_cards.py",
+    "--archive",
+    "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+    "--card-csv",
+    "Decks/Deck-Builder/EN_Card_Data.csv",
+    "--output-dir",
+    "Imitation-Learning/meta-card-analysis/7-12-pilot"
+  ],
+  "issue_counts": {},
+  "output_sha256_excluding_manifest": {
+    "energy_ids.json": "c7713e4f04b110ccdfec2517318288258cc05381b9f4d0f8aa5b80335f6d153b",
+    "issues.json": "ef7bc004b5ff7d1272f406388434989f39b8b82b918c8f7a500dc3e2841042c8",
+    "pokemon_ids.json": "caadaca408a54625b218a0bd0965ec5a8623fc347f95e893badca6ccc0e2081c",
+    "summary.md": "d9f1ac19e1ced4006e8e363b0e8d4deb351e3f061a1b3975e20b0080a185139f",
+    "top_ladder_card_catalog.csv": "cf89b5ef2d140a78f756c0d52462f165d5301dfad7eece4764fe275dc8583998",
+    "top_ladder_card_catalog.json": "4193b4215e79135e66dff29ddfa71c6298f85593c5ccce8935ef0f605cda5ec7",
+    "trainer_ids.json": "c752155206b6ea9f804449bfa5d8e039a42a01b79f949e4a52d4e8556c707b2d"
+  },
+  "python_version": "3.14.5",
+  "schema_version": 1,
+  "script_version": "1.0.0",
+  "summary": {
+    "cards_by_class": {
+      "energy": 18,
+      "pokemon": 100,
+      "trainer": 96
+    },
+    "cards_by_subtype": {
+      "Basic Energy": 8,
+      "Basic Pokémon": 65,
+      "Item": 31,
+      "Pokémon Tool": 11,
+      "Special Energy": 10,
+      "Stadium": 17,
+      "Stage 1 Pokémon": 26,
+      "Stage 2 Pokémon": 9,
+      "Supporter": 37
+    },
+    "deck_instances": 10100,
+    "submitted_card_copies": 606000,
+    "unique_card_ids": 214,
+    "unique_episodes": 5050
+  }
+}

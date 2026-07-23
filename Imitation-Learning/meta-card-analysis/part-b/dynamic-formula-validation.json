@@ -1,0 +1,4399 @@
+{
+  "checks": {
+    "all_inputs_declared": true,
+    "all_scenarios_pass": true,
+    "deterministic_formula_order": true,
+    "no_pending_human_review": true,
+    "only_approved_approximation": true,
+    "queue_keys_equal_completed_keys": true,
+    "queue_keys_unique": true
+  },
+  "counts": {
+    "completed": 79,
+    "issues": 0,
+    "queued": 79,
+    "scenarios": 237
+  },
+  "issues": [],
+  "scenario_results": [
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "colorless_units": 1,
+        "discard_at_owner_turn_end": false
+      },
+      "formula_key": "energy_01_ignition_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "basic",
+        "turn_owner": false
+      },
+      "scenario_id": "energy_01_ignition_energy_provision:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "colorless_units": 3,
+        "discard_at_owner_turn_end": true
+      },
+      "formula_key": "energy_01_ignition_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "stage1",
+        "turn_owner": true
+      },
+      "scenario_id": "energy_01_ignition_energy_provision:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "colorless_units": 3,
+        "discard_at_owner_turn_end": true
+      },
+      "formula_key": "energy_01_ignition_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "stage2",
+        "turn_owner": true
+      },
+      "scenario_id": "energy_01_ignition_energy_provision:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "mark_used": false,
+        "prize_reduction": 0
+      },
+      "formula_key": "energy_01_legacy_energy_prize_reduction",
+      "inputs": {
+        "holder_ko_cause": "other",
+        "legacy_energy_effect_already_used_by_owner": false
+      },
+      "scenario_id": "energy_01_legacy_energy_prize_reduction:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "mark_used": false,
+        "prize_reduction": 0
+      },
+      "formula_key": "energy_01_legacy_energy_prize_reduction",
+      "inputs": {
+        "holder_ko_cause": "opponent_attack_damage",
+        "legacy_energy_effect_already_used_by_owner": true
+      },
+      "scenario_id": "energy_01_legacy_energy_prize_reduction:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "mark_used": false,
+        "prize_reduction": 0
+      },
+      "formula_key": "energy_01_legacy_energy_prize_reduction",
+      "inputs": {
+        "holder_ko_cause": "opponent_attack_damage",
+        "legacy_energy_effect_already_used_by_owner": true
+      },
+      "scenario_id": "energy_01_legacy_energy_prize_reduction:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "provided_types": "any_one_requested_type",
+        "unit_count": 1
+      },
+      "formula_key": "energy_01_prism_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "basic",
+        "other_attached_energy": false,
+        "requested_attack_cost_types": false
+      },
+      "scenario_id": "energy_01_prism_energy_provision:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "provided_types": [
+          "colorless"
+        ],
+        "unit_count": 1
+      },
+      "formula_key": "energy_01_prism_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "stage1",
+        "other_attached_energy": true,
+        "requested_attack_cost_types": true
+      },
+      "scenario_id": "energy_01_prism_energy_provision:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "provided_types": [
+          "colorless"
+        ],
+        "unit_count": 1
+      },
+      "formula_key": "energy_01_prism_energy_provision",
+      "inputs": {
+        "holder_evolution_stage": "stage2",
+        "other_attached_energy": true,
+        "requested_attack_cost_types": true
+      },
+      "scenario_id": "energy_01_prism_energy_provision:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "allocations": [],
+        "legal_attachment": false
+      },
+      "formula_key": "energy_01_team_rocket_energy_payment",
+      "inputs": {
+        "holder_team_rocket_flag": false,
+        "other_attached_energy": {},
+        "requested_attack_cost_types": {}
+      },
+      "scenario_id": "energy_01_team_rocket_energy_payment:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "allocations": [
+          {
+            "darkness": 2,
+            "psychic": 0
+          },
+          {
+            "darkness": 1,
+            "psychic": 1
+          },
+          {
+            "darkness": 0,
+            "psychic": 2
+          }
+        ],
+        "legal_attachment": true
+      },
+      "formula_key": "energy_01_team_rocket_energy_payment",
+      "inputs": {
+        "holder_team_rocket_flag": true,
+        "other_attached_energy": {},
+        "requested_attack_cost_types": {}
+      },
+      "scenario_id": "energy_01_team_rocket_energy_payment:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "allocations": [
+          {
+            "darkness": 2,
+            "psychic": 0
+          },
+          {
+            "darkness": 1,
+            "psychic": 1
+          },
+          {
+            "darkness": 0,
+            "psychic": 2
+          }
+        ],
+        "legal_attachment": true
+      },
+      "formula_key": "energy_01_team_rocket_energy_payment",
+      "inputs": {
+        "holder_team_rocket_flag": true,
+        "other_attached_energy": {},
+        "requested_attack_cost_types": {}
+      },
+      "scenario_id": "energy_01_team_rocket_energy_payment:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_01_alakazam_powerful_hand",
+      "inputs": {
+        "own_hand_count": 0
+      },
+      "scenario_id": "pokemon_01_alakazam_powerful_hand:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_01_alakazam_powerful_hand",
+      "inputs": {
+        "own_hand_count": 1
+      },
+      "scenario_id": "pokemon_01_alakazam_powerful_hand:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_01_alakazam_powerful_hand",
+      "inputs": {
+        "own_hand_count": 6
+      },
+      "scenario_id": "pokemon_01_alakazam_powerful_hand:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_01_articuno_dark_frost",
+      "inputs": {
+        "attached_energy_card_names": []
+      },
+      "scenario_id": "pokemon_01_articuno_dark_frost:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_01_articuno_dark_frost",
+      "inputs": {
+        "attached_energy_card_names": [
+          "Team Rocket Admin"
+        ]
+      },
+      "scenario_id": "pokemon_01_articuno_dark_frost:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_01_articuno_dark_frost",
+      "inputs": {
+        "attached_energy_card_names": [
+          "Team Rocket Admin",
+          "Other"
+        ]
+      },
+      "scenario_id": "pokemon_01_articuno_dark_frost:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "can_activate": false,
+        "draw": 0
+      },
+      "formula_key": "pokemon_01_fezandipiti_flip_script_history",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": false,
+        "same_name_ability_used_this_turn": false
+      },
+      "scenario_id": "pokemon_01_fezandipiti_flip_script_history:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "can_activate": true,
+        "draw": 3
+      },
+      "formula_key": "pokemon_01_fezandipiti_flip_script_history",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": true,
+        "same_name_ability_used_this_turn": false
+      },
+      "scenario_id": "pokemon_01_fezandipiti_flip_script_history:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "can_activate": false,
+        "draw": 0
+      },
+      "formula_key": "pokemon_01_fezandipiti_flip_script_history",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": true,
+        "same_name_ability_used_this_turn": true
+      },
+      "scenario_id": "pokemon_01_fezandipiti_flip_script_history:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 200,
+      "formula_key": "pokemon_01_mega_kangaskhan_coin_until_tails",
+      "inputs": {
+        "coin_sequence": 0
+      },
+      "scenario_id": "pokemon_01_mega_kangaskhan_coin_until_tails:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 250,
+      "formula_key": "pokemon_01_mega_kangaskhan_coin_until_tails",
+      "inputs": {
+        "coin_sequence": 1
+      },
+      "scenario_id": "pokemon_01_mega_kangaskhan_coin_until_tails:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 350,
+      "formula_key": "pokemon_01_mega_kangaskhan_coin_until_tails",
+      "inputs": {
+        "coin_sequence": 3
+      },
+      "scenario_id": "pokemon_01_mega_kangaskhan_coin_until_tails:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 0,
+        "moved_counters": 0
+      },
+      "formula_key": "pokemon_01_munkidori_adrena_brain_transfer",
+      "inputs": {
+        "chosen_source_damage_counters": 0,
+        "chosen_target": false
+      },
+      "scenario_id": "pokemon_01_munkidori_adrena_brain_transfer:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 10,
+        "moved_counters": 1
+      },
+      "formula_key": "pokemon_01_munkidori_adrena_brain_transfer",
+      "inputs": {
+        "chosen_source_damage_counters": 1,
+        "chosen_target": true
+      },
+      "scenario_id": "pokemon_01_munkidori_adrena_brain_transfer:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 30,
+        "moved_counters": 3
+      },
+      "formula_key": "pokemon_01_munkidori_adrena_brain_transfer",
+      "inputs": {
+        "chosen_source_damage_counters": 6,
+        "chosen_target": true
+      },
+      "scenario_id": "pokemon_01_munkidori_adrena_brain_transfer:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_02_mega_froslass_resentful_refrain",
+      "inputs": {
+        "opponent_hand_count": 0
+      },
+      "scenario_id": "pokemon_02_mega_froslass_resentful_refrain:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 50,
+      "formula_key": "pokemon_02_mega_froslass_resentful_refrain",
+      "inputs": {
+        "opponent_hand_count": 1
+      },
+      "scenario_id": "pokemon_02_mega_froslass_resentful_refrain:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 300,
+      "formula_key": "pokemon_02_mega_froslass_resentful_refrain",
+      "inputs": {
+        "opponent_hand_count": 6
+      },
+      "scenario_id": "pokemon_02_mega_froslass_resentful_refrain:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage": 160,
+        "discarded": 0
+      },
+      "formula_key": "pokemon_02_team_rockets_mewtwo_erasure_ball",
+      "inputs": {
+        "eligible_energy_attached_to_own_bench": false,
+        "selected_discard_count": 0
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_erasure_ball:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage": 220,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_02_team_rockets_mewtwo_erasure_ball",
+      "inputs": {
+        "eligible_energy_attached_to_own_bench": true,
+        "selected_discard_count": 1
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_erasure_ball:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "damage": 220,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_02_team_rockets_mewtwo_erasure_ball",
+      "inputs": {
+        "eligible_energy_attached_to_own_bench": true,
+        "selected_discard_count": 2
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_erasure_ball:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": false,
+      "formula_key": "pokemon_02_team_rockets_mewtwo_power_saver",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": [
+          false,
+          false,
+          false
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_power_saver:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": true,
+      "formula_key": "pokemon_02_team_rockets_mewtwo_power_saver",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_power_saver:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": true,
+      "formula_key": "pokemon_02_team_rockets_mewtwo_power_saver",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_mewtwo_power_saver:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "attack_program": null,
+        "legal": false
+      },
+      "formula_key": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry",
+      "inputs": {
+        "chosen_attack_ordinal": 0,
+        "opponent_active_exact_card_id": false,
+        "opponent_active_is_tera": false,
+        "referenced_attack_program": []
+      },
+      "scenario_id": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "attack_program": {
+          "attack_id": "a",
+          "raw_damage": 50
+        },
+        "legal": true
+      },
+      "formula_key": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry",
+      "inputs": {
+        "chosen_attack_ordinal": 0,
+        "opponent_active_exact_card_id": true,
+        "opponent_active_is_tera": true,
+        "referenced_attack_program": [
+          {
+            "attack_id": "a",
+            "raw_damage": 50
+          },
+          {
+            "attack_id": "b",
+            "raw_damage": 120
+          }
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "attack_program": {
+          "attack_id": "b",
+          "raw_damage": 120
+        },
+        "legal": true
+      },
+      "formula_key": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry",
+      "inputs": {
+        "chosen_attack_ordinal": 1,
+        "opponent_active_exact_card_id": true,
+        "opponent_active_is_tera": true,
+        "referenced_attack_program": [
+          {
+            "attack_id": "a",
+            "raw_damage": 50
+          },
+          {
+            "attack_id": "b",
+            "raw_damage": 120
+          }
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_mimikyu_gemstone_mimicry:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_02_team_rockets_spidops_rocket_rush",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": []
+      },
+      "scenario_id": "pokemon_02_team_rockets_spidops_rocket_rush:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_02_team_rockets_spidops_rocket_rush",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_spidops_rocket_rush:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 90,
+      "formula_key": "pokemon_02_team_rockets_spidops_rocket_rush",
+      "inputs": {
+        "own_in_play_card_ids_or_team_rocket_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_02_team_rockets_spidops_rocket_rush:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_03_alakazam_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 0
+      },
+      "scenario_id": "pokemon_03_alakazam_psychic:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_03_alakazam_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 1
+      },
+      "scenario_id": "pokemon_03_alakazam_psychic:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 310,
+      "formula_key": "pokemon_03_alakazam_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 6
+      },
+      "scenario_id": "pokemon_03_alakazam_psychic:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 0,
+        "final_counters": [
+          0,
+          0
+        ],
+        "maximum_gain": 0
+      },
+      "formula_key": "pokemon_03_alakazam_strange_hacking",
+      "inputs": {
+        "all_opponent_in_play_damage_counter_counts": [
+          0,
+          0
+        ],
+        "chosen_counter_transfer_allocation": 0
+      },
+      "scenario_id": "pokemon_03_alakazam_strange_hacking:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 0,
+        "final_counters": [
+          2,
+          0
+        ],
+        "maximum_gain": 0
+      },
+      "formula_key": "pokemon_03_alakazam_strange_hacking",
+      "inputs": {
+        "all_opponent_in_play_damage_counter_counts": [
+          2,
+          0
+        ],
+        "chosen_counter_transfer_allocation": 1
+      },
+      "scenario_id": "pokemon_03_alakazam_strange_hacking:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "damage_equivalent": 30,
+        "final_counters": [
+          6,
+          0,
+          0
+        ],
+        "maximum_gain": 3
+      },
+      "formula_key": "pokemon_03_alakazam_strange_hacking",
+      "inputs": {
+        "all_opponent_in_play_damage_counter_counts": [
+          2,
+          3,
+          1
+        ],
+        "chosen_counter_transfer_allocation": 6
+      },
+      "scenario_id": "pokemon_03_alakazam_strange_hacking:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_03_applin_tumbling_attack",
+      "inputs": {
+        "coin_result": "tails"
+      },
+      "scenario_id": "pokemon_03_applin_tumbling_attack:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_03_applin_tumbling_attack",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_03_applin_tumbling_attack:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_03_applin_tumbling_attack",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_03_applin_tumbling_attack:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_03_comfey_play_rough",
+      "inputs": {
+        "coin_result": "tails"
+      },
+      "scenario_id": "pokemon_03_comfey_play_rough:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 40,
+      "formula_key": "pokemon_03_comfey_play_rough",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_03_comfey_play_rough:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 40,
+      "formula_key": "pokemon_03_comfey_play_rough",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_03_comfey_play_rough:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_03_cynthias_spiritomb_raging_curse",
+      "inputs": {
+        "own_bench_damage_counter_counts": [],
+        "own_bench_exact_card_ids_or_cynthia_flags": []
+      },
+      "scenario_id": "pokemon_03_cynthias_spiritomb_raging_curse:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_03_cynthias_spiritomb_raging_curse",
+      "inputs": {
+        "own_bench_damage_counter_counts": [
+          1
+        ],
+        "own_bench_exact_card_ids_or_cynthia_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_03_cynthias_spiritomb_raging_curse:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_03_cynthias_spiritomb_raging_curse",
+      "inputs": {
+        "own_bench_damage_counter_counts": [
+          1,
+          3
+        ],
+        "own_bench_exact_card_ids_or_cynthia_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_03_cynthias_spiritomb_raging_curse:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_03_dipplin_do_the_wave",
+      "inputs": {
+        "own_bench_capacity": 0,
+        "own_bench_occupied_count": 0
+      },
+      "scenario_id": "pokemon_03_dipplin_do_the_wave:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_03_dipplin_do_the_wave",
+      "inputs": {
+        "own_bench_capacity": 1,
+        "own_bench_occupied_count": 1
+      },
+      "scenario_id": "pokemon_03_dipplin_do_the_wave:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_03_dipplin_do_the_wave",
+      "inputs": {
+        "own_bench_capacity": 6,
+        "own_bench_occupied_count": 6
+      },
+      "scenario_id": "pokemon_03_dipplin_do_the_wave:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "attack_count": 1,
+        "maximum_raw_damage": 50
+      },
+      "formula_key": "pokemon_03_dipplin_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": false,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": false
+      },
+      "scenario_id": "pokemon_03_dipplin_festival_lead:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "attack_count": 1,
+        "maximum_raw_damage": 50
+      },
+      "formula_key": "pokemon_03_dipplin_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": false,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": true
+      },
+      "scenario_id": "pokemon_03_dipplin_festival_lead:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "attack_count": 2,
+        "maximum_raw_damage": 100
+      },
+      "formula_key": "pokemon_03_dipplin_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": true,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": true
+      },
+      "scenario_id": "pokemon_03_dipplin_festival_lead:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 80,
+      "formula_key": "pokemon_03_duraludon_raging_hammer",
+      "inputs": {
+        "source_current_hp": 100,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_03_duraludon_raging_hammer:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 90,
+      "formula_key": "pokemon_03_duraludon_raging_hammer",
+      "inputs": {
+        "source_current_hp": 90,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_03_duraludon_raging_hammer:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 170,
+      "formula_key": "pokemon_03_duraludon_raging_hammer",
+      "inputs": {
+        "source_current_hp": 10,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_03_duraludon_raging_hammer:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_03_mega_lopunny_gale_thrust",
+      "inputs": {
+        "source_moved_bench_to_active_this_turn": false
+      },
+      "scenario_id": "pokemon_03_mega_lopunny_gale_thrust:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 230,
+      "formula_key": "pokemon_03_mega_lopunny_gale_thrust",
+      "inputs": {
+        "source_moved_bench_to_active_this_turn": true
+      },
+      "scenario_id": "pokemon_03_mega_lopunny_gale_thrust:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 230,
+      "formula_key": "pokemon_03_mega_lopunny_gale_thrust",
+      "inputs": {
+        "source_moved_bench_to_active_this_turn": true
+      },
+      "scenario_id": "pokemon_03_mega_lopunny_gale_thrust:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_03_moltres_fighting_wings",
+      "inputs": {
+        "opponent_active_exact_card_id_or_rule_box_flags": []
+      },
+      "scenario_id": "pokemon_03_moltres_fighting_wings:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 110,
+      "formula_key": "pokemon_03_moltres_fighting_wings",
+      "inputs": {
+        "opponent_active_exact_card_id_or_rule_box_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_03_moltres_fighting_wings:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 110,
+      "formula_key": "pokemon_03_moltres_fighting_wings",
+      "inputs": {
+        "opponent_active_exact_card_id_or_rule_box_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_03_moltres_fighting_wings:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "attack_count": 1,
+        "maximum_raw_damage": 50
+      },
+      "formula_key": "pokemon_03_swirlix_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": false,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": false
+      },
+      "scenario_id": "pokemon_03_swirlix_festival_lead:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "attack_count": 1,
+        "maximum_raw_damage": 50
+      },
+      "formula_key": "pokemon_03_swirlix_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": false,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": true
+      },
+      "scenario_id": "pokemon_03_swirlix_festival_lead:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "attack_count": 2,
+        "maximum_raw_damage": 100
+      },
+      "formula_key": "pokemon_03_swirlix_festival_lead",
+      "inputs": {
+        "first_attack_ko_and_replacement_state": true,
+        "source_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "stadium_card_id": true
+      },
+      "scenario_id": "pokemon_03_swirlix_festival_lead:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "extra_prizes": 0
+      },
+      "formula_key": "pokemon_03_togekiss_wonder_kiss",
+      "inputs": {
+        "coin_result": "tails",
+        "opponent_active_ko_event": false
+      },
+      "scenario_id": "pokemon_03_togekiss_wonder_kiss:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "extra_prizes": 1
+      },
+      "formula_key": "pokemon_03_togekiss_wonder_kiss",
+      "inputs": {
+        "coin_result": "heads",
+        "opponent_active_ko_event": true
+      },
+      "scenario_id": "pokemon_03_togekiss_wonder_kiss:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "extra_prizes": 1
+      },
+      "formula_key": "pokemon_03_togekiss_wonder_kiss",
+      "inputs": {
+        "coin_result": "heads",
+        "opponent_active_ko_event": true
+      },
+      "scenario_id": "pokemon_03_togekiss_wonder_kiss:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_04_chi_yu_ground_melter",
+      "inputs": {
+        "stadium_card_id_or_presence": false
+      },
+      "scenario_id": "pokemon_04_chi_yu_ground_melter:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_04_chi_yu_ground_melter",
+      "inputs": {
+        "stadium_card_id_or_presence": true
+      },
+      "scenario_id": "pokemon_04_chi_yu_ground_melter:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_04_chi_yu_ground_melter",
+      "inputs": {
+        "stadium_card_id_or_presence": true
+      },
+      "scenario_id": "pokemon_04_chi_yu_ground_melter:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_04_dudunsparce_tenacious_tail",
+      "inputs": {
+        "opponent_bench_capacity": 0,
+        "opponent_in_play_exact_card_ids_or_ex_flags": []
+      },
+      "scenario_id": "pokemon_04_dudunsparce_tenacious_tail:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_04_dudunsparce_tenacious_tail",
+      "inputs": {
+        "opponent_bench_capacity": 1,
+        "opponent_in_play_exact_card_ids_or_ex_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_04_dudunsparce_tenacious_tail:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 180,
+      "formula_key": "pokemon_04_dudunsparce_tenacious_tail",
+      "inputs": {
+        "opponent_bench_capacity": 6,
+        "opponent_in_play_exact_card_ids_or_ex_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_04_dudunsparce_tenacious_tail:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_04_fan_rotom_assault_landing",
+      "inputs": {
+        "stadium_card_id_or_presence": false
+      },
+      "scenario_id": "pokemon_04_fan_rotom_assault_landing:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 70,
+      "formula_key": "pokemon_04_fan_rotom_assault_landing",
+      "inputs": {
+        "stadium_card_id_or_presence": true
+      },
+      "scenario_id": "pokemon_04_fan_rotom_assault_landing:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 70,
+      "formula_key": "pokemon_04_fan_rotom_assault_landing",
+      "inputs": {
+        "stadium_card_id_or_presence": true
+      },
+      "scenario_id": "pokemon_04_fan_rotom_assault_landing:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 1,
+      "formula_key": "pokemon_04_great_tusk_land_collapse",
+      "inputs": {
+        "played_ancient_supporter_from_hand_this_turn": false
+      },
+      "scenario_id": "pokemon_04_great_tusk_land_collapse:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 4,
+      "formula_key": "pokemon_04_great_tusk_land_collapse",
+      "inputs": {
+        "played_ancient_supporter_from_hand_this_turn": true
+      },
+      "scenario_id": "pokemon_04_great_tusk_land_collapse:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 4,
+      "formula_key": "pokemon_04_great_tusk_land_collapse",
+      "inputs": {
+        "played_ancient_supporter_from_hand_this_turn": true
+      },
+      "scenario_id": "pokemon_04_great_tusk_land_collapse:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_04_lillies_clefairy_full_moon_rondo",
+      "inputs": {
+        "both_bench_capacities": false,
+        "opponent_bench_occupied_count": 0,
+        "own_bench_occupied_count": 0
+      },
+      "scenario_id": "pokemon_04_lillies_clefairy_full_moon_rondo:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_04_lillies_clefairy_full_moon_rondo",
+      "inputs": {
+        "both_bench_capacities": true,
+        "opponent_bench_occupied_count": 1,
+        "own_bench_occupied_count": 1
+      },
+      "scenario_id": "pokemon_04_lillies_clefairy_full_moon_rondo:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 260,
+      "formula_key": "pokemon_04_lillies_clefairy_full_moon_rondo",
+      "inputs": {
+        "both_bench_capacities": true,
+        "opponent_bench_occupied_count": 6,
+        "own_bench_occupied_count": 6
+      },
+      "scenario_id": "pokemon_04_lillies_clefairy_full_moon_rondo:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_04_marnies_morpeko_spiky_wheel",
+      "inputs": {
+        "source_attached_energy_types_and_unit_counts": {}
+      },
+      "scenario_id": "pokemon_04_marnies_morpeko_spiky_wheel:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_04_marnies_morpeko_spiky_wheel",
+      "inputs": {
+        "source_attached_energy_types_and_unit_counts": {
+          "darkness": 1,
+          "grass": 1,
+          "psychic": 1
+        }
+      },
+      "scenario_id": "pokemon_04_marnies_morpeko_spiky_wheel:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 140,
+      "formula_key": "pokemon_04_marnies_morpeko_spiky_wheel",
+      "inputs": {
+        "source_attached_energy_types_and_unit_counts": {
+          "darkness": 3,
+          "grass": 3,
+          "psychic": 3
+        }
+      },
+      "scenario_id": "pokemon_04_marnies_morpeko_spiky_wheel:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_04_rabsca_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 0
+      },
+      "scenario_id": "pokemon_04_rabsca_psychic:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 40,
+      "formula_key": "pokemon_04_rabsca_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 1
+      },
+      "scenario_id": "pokemon_04_rabsca_psychic:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 190,
+      "formula_key": "pokemon_04_rabsca_psychic",
+      "inputs": {
+        "opponent_active_attached_energy_unit_count": 6
+      },
+      "scenario_id": "pokemon_04_rabsca_psychic:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "legal_attack_ids": [],
+        "maximum_raw_damage": 0
+      },
+      "formula_key": "pokemon_04_relicanth_memory_dive",
+      "inputs": {
+        "attached_energy_and_attack_costs": false,
+        "own_evolved_pokemon_exact_card_ids": [],
+        "referenced_attack_programs": [],
+        "visible_pre_evolution_stack_ids": false
+      },
+      "scenario_id": "pokemon_04_relicanth_memory_dive:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "legal_attack_ids": [
+          "a"
+        ],
+        "maximum_raw_damage": 50
+      },
+      "formula_key": "pokemon_04_relicanth_memory_dive",
+      "inputs": {
+        "attached_energy_and_attack_costs": true,
+        "own_evolved_pokemon_exact_card_ids": [
+          "active"
+        ],
+        "referenced_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          }
+        ],
+        "visible_pre_evolution_stack_ids": true
+      },
+      "scenario_id": "pokemon_04_relicanth_memory_dive:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "legal_attack_ids": [
+          "a",
+          "b"
+        ],
+        "maximum_raw_damage": 120
+      },
+      "formula_key": "pokemon_04_relicanth_memory_dive",
+      "inputs": {
+        "attached_energy_and_attack_costs": true,
+        "own_evolved_pokemon_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "referenced_attack_programs": [
+          {
+            "attack_id": "a",
+            "payable": true,
+            "raw_damage": 50
+          },
+          {
+            "attack_id": "b",
+            "payable": true,
+            "raw_damage": 120
+          }
+        ],
+        "visible_pre_evolution_stack_ids": true
+      },
+      "scenario_id": "pokemon_04_relicanth_memory_dive:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_04_solrock_cosmic_beam",
+      "inputs": {
+        "own_bench_exact_card_ids": []
+      },
+      "scenario_id": "pokemon_04_solrock_cosmic_beam:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_04_solrock_cosmic_beam",
+      "inputs": {
+        "own_bench_exact_card_ids": [
+          "active"
+        ]
+      },
+      "scenario_id": "pokemon_04_solrock_cosmic_beam:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_04_solrock_cosmic_beam",
+      "inputs": {
+        "own_bench_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "pokemon_04_solrock_cosmic_beam:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage": 0,
+        "moved_counters": 0
+      },
+      "formula_key": "pokemon_04_team_rockets_wobbuffet_rocket_mirror",
+      "inputs": {
+        "own_bench_damage_counter_counts": [
+          0,
+          1
+        ],
+        "own_bench_team_rocket_flags": [
+          false,
+          false
+        ]
+      },
+      "scenario_id": "pokemon_04_team_rockets_wobbuffet_rocket_mirror:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage": 10,
+        "moved_counters": 1
+      },
+      "formula_key": "pokemon_04_team_rockets_wobbuffet_rocket_mirror",
+      "inputs": {
+        "own_bench_damage_counter_counts": [
+          1,
+          5
+        ],
+        "own_bench_team_rocket_flags": [
+          true,
+          false
+        ]
+      },
+      "scenario_id": "pokemon_04_team_rockets_wobbuffet_rocket_mirror:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "damage": 30,
+        "moved_counters": 3
+      },
+      "formula_key": "pokemon_04_team_rockets_wobbuffet_rocket_mirror",
+      "inputs": {
+        "own_bench_damage_counter_counts": [
+          3,
+          5
+        ],
+        "own_bench_team_rocket_flags": [
+          true,
+          false
+        ]
+      },
+      "scenario_id": "pokemon_04_team_rockets_wobbuffet_rocket_mirror:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 50,
+      "formula_key": "pokemon_04_terrakion_retaliate",
+      "inputs": {
+        "opponent_previous_turn_attack_damage_ko_history": 0
+      },
+      "scenario_id": "pokemon_04_terrakion_retaliate:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 130,
+      "formula_key": "pokemon_04_terrakion_retaliate",
+      "inputs": {
+        "opponent_previous_turn_attack_damage_ko_history": 1
+      },
+      "scenario_id": "pokemon_04_terrakion_retaliate:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 130,
+      "formula_key": "pokemon_04_terrakion_retaliate",
+      "inputs": {
+        "opponent_previous_turn_attack_damage_ko_history": 6
+      },
+      "scenario_id": "pokemon_04_terrakion_retaliate:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_05_mega_gardevoir_mega_symphonia",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {}
+      },
+      "scenario_id": "pokemon_05_mega_gardevoir_mega_symphonia:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 50,
+      "formula_key": "pokemon_05_mega_gardevoir_mega_symphonia",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {
+          "darkness": 1,
+          "grass": 1,
+          "psychic": 1
+        }
+      },
+      "scenario_id": "pokemon_05_mega_gardevoir_mega_symphonia:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 150,
+      "formula_key": "pokemon_05_mega_gardevoir_mega_symphonia",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {
+          "darkness": 3,
+          "grass": 3,
+          "psychic": 3
+        }
+      },
+      "scenario_id": "pokemon_05_mega_gardevoir_mega_symphonia:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_05_ns_reshiram_powerful_rage",
+      "inputs": {
+        "source_current_hp": 100,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_05_ns_reshiram_powerful_rage:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_05_ns_reshiram_powerful_rage",
+      "inputs": {
+        "source_current_hp": 90,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_05_ns_reshiram_powerful_rage:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 180,
+      "formula_key": "pokemon_05_ns_reshiram_powerful_rage",
+      "inputs": {
+        "source_current_hp": 10,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_05_ns_reshiram_powerful_rage:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "attack_program": null,
+        "legal": false
+      },
+      "formula_key": "pokemon_05_ns_zoroark_night_joker",
+      "inputs": {
+        "own_bench_exact_card_ids_and_ns_flags": [],
+        "owner_attack_choice": 0,
+        "referenced_attack_programs": [],
+        "selected_bench_is_ns_pokemon": false
+      },
+      "scenario_id": "pokemon_05_ns_zoroark_night_joker:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "attack_program": {
+          "attack_id": "a",
+          "raw_damage": 50
+        },
+        "legal": true
+      },
+      "formula_key": "pokemon_05_ns_zoroark_night_joker",
+      "inputs": {
+        "own_bench_exact_card_ids_and_ns_flags": [
+          true
+        ],
+        "owner_attack_choice": 0,
+        "referenced_attack_programs": [
+          {
+            "attack_id": "a",
+            "raw_damage": 50
+          },
+          {
+            "attack_id": "b",
+            "raw_damage": 120
+          }
+        ],
+        "selected_bench_is_ns_pokemon": true
+      },
+      "scenario_id": "pokemon_05_ns_zoroark_night_joker:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "attack_program": {
+          "attack_id": "b",
+          "raw_damage": 120
+        },
+        "legal": true
+      },
+      "formula_key": "pokemon_05_ns_zoroark_night_joker",
+      "inputs": {
+        "own_bench_exact_card_ids_and_ns_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "owner_attack_choice": 1,
+        "referenced_attack_programs": [
+          {
+            "attack_id": "a",
+            "raw_damage": 50
+          },
+          {
+            "attack_id": "b",
+            "raw_damage": 120
+          }
+        ],
+        "selected_bench_is_ns_pokemon": true
+      },
+      "scenario_id": "pokemon_05_ns_zoroark_night_joker:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "attack_damage_modifier": 0,
+        "max_hp_modifier": 0
+      },
+      "formula_key": "pokemon_05_okidogi_adrena_power",
+      "inputs": {
+        "source_attached_energy_types": []
+      },
+      "scenario_id": "pokemon_05_okidogi_adrena_power:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "attack_damage_modifier": 100,
+        "max_hp_modifier": 100
+      },
+      "formula_key": "pokemon_05_okidogi_adrena_power",
+      "inputs": {
+        "source_attached_energy_types": [
+          "darkness"
+        ]
+      },
+      "scenario_id": "pokemon_05_okidogi_adrena_power:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "attack_damage_modifier": 100,
+        "max_hp_modifier": 100
+      },
+      "formula_key": "pokemon_05_okidogi_adrena_power",
+      "inputs": {
+        "source_attached_energy_types": [
+          "darkness",
+          "psychic"
+        ]
+      },
+      "scenario_id": "pokemon_05_okidogi_adrena_power:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_05_pecharunt_irritated_outburst",
+      "inputs": {
+        "opponent_taken_prize_count": 0
+      },
+      "scenario_id": "pokemon_05_pecharunt_irritated_outburst:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_05_pecharunt_irritated_outburst",
+      "inputs": {
+        "opponent_taken_prize_count": 1
+      },
+      "scenario_id": "pokemon_05_pecharunt_irritated_outburst:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 360,
+      "formula_key": "pokemon_05_pecharunt_irritated_outburst",
+      "inputs": {
+        "opponent_taken_prize_count": 6
+      },
+      "scenario_id": "pokemon_05_pecharunt_irritated_outburst:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage": 0,
+        "discarded": 0
+      },
+      "formula_key": "pokemon_05_raging_bolt_bellowing_thunder",
+      "inputs": {
+        "all_own_attached_card_ids_and_basic_energy_flags": [],
+        "chosen_discard_set": []
+      },
+      "scenario_id": "pokemon_05_raging_bolt_bellowing_thunder:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage": 70,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_05_raging_bolt_bellowing_thunder",
+      "inputs": {
+        "all_own_attached_card_ids_and_basic_energy_flags": [
+          true
+        ],
+        "chosen_discard_set": [
+          0
+        ]
+      },
+      "scenario_id": "pokemon_05_raging_bolt_bellowing_thunder:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "damage": 70,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_05_raging_bolt_bellowing_thunder",
+      "inputs": {
+        "all_own_attached_card_ids_and_basic_energy_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "chosen_discard_set": [
+          0,
+          1
+        ]
+      },
+      "scenario_id": "pokemon_05_raging_bolt_bellowing_thunder:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower",
+      "inputs": {
+        "both_active_attached_energy_unit_counts": []
+      },
+      "scenario_id": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower",
+      "inputs": {
+        "both_active_attached_energy_unit_counts": [
+          1
+        ]
+      },
+      "scenario_id": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 150,
+      "formula_key": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower",
+      "inputs": {
+        "both_active_attached_energy_unit_counts": [
+          1,
+          3
+        ]
+      },
+      "scenario_id": "pokemon_05_teal_mask_ogerpon_myriad_leaf_shower:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage": 0,
+        "discarded": 0
+      },
+      "formula_key": "pokemon_05_team_rocket_honchkrow_rocket_feathers",
+      "inputs": {
+        "chosen_discard_set": [],
+        "normalized_card_names": [],
+        "own_hand_exact_card_ids": [],
+        "supporter_flags": []
+      },
+      "scenario_id": "pokemon_05_team_rocket_honchkrow_rocket_feathers:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage": 60,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_05_team_rocket_honchkrow_rocket_feathers",
+      "inputs": {
+        "chosen_discard_set": [
+          0
+        ],
+        "normalized_card_names": [
+          "Team Rocket Admin"
+        ],
+        "own_hand_exact_card_ids": [
+          "active"
+        ],
+        "supporter_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_05_team_rocket_honchkrow_rocket_feathers:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "damage": 60,
+        "discarded": 1
+      },
+      "formula_key": "pokemon_05_team_rocket_honchkrow_rocket_feathers",
+      "inputs": {
+        "chosen_discard_set": [
+          0,
+          1
+        ],
+        "normalized_card_names": [
+          "Team Rocket Admin",
+          "Other"
+        ],
+        "own_hand_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "supporter_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_05_team_rocket_honchkrow_rocket_feathers:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_05_team_rocket_porygon2_r_command",
+      "inputs": {
+        "normalized_card_names": [],
+        "own_discard_exact_card_ids": [],
+        "supporter_flags": []
+      },
+      "scenario_id": "pokemon_05_team_rocket_porygon2_r_command:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_05_team_rocket_porygon2_r_command",
+      "inputs": {
+        "normalized_card_names": [
+          "Team Rocket Admin"
+        ],
+        "own_discard_exact_card_ids": [
+          "active"
+        ],
+        "supporter_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_05_team_rocket_porygon2_r_command:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 20,
+      "formula_key": "pokemon_05_team_rocket_porygon2_r_command",
+      "inputs": {
+        "normalized_card_names": [
+          "Team Rocket Admin",
+          "Other"
+        ],
+        "own_discard_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "supporter_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_05_team_rocket_porygon2_r_command:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "active_damage": 100,
+        "bench_damage": 0,
+        "energy_shuffled": 0
+      },
+      "formula_key": "pokemon_05_wellspring_ogerpon_torrential_pump",
+      "inputs": {
+        "opponent_bench_targets": [],
+        "owner_choice": 0,
+        "source_attached_energy_cards": []
+      },
+      "scenario_id": "pokemon_05_wellspring_ogerpon_torrential_pump:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "active_damage": 100,
+        "bench_damage": 0,
+        "energy_shuffled": 0
+      },
+      "formula_key": "pokemon_05_wellspring_ogerpon_torrential_pump",
+      "inputs": {
+        "opponent_bench_targets": [
+          "active"
+        ],
+        "owner_choice": 0,
+        "source_attached_energy_cards": [
+          "active"
+        ]
+      },
+      "scenario_id": "pokemon_05_wellspring_ogerpon_torrential_pump:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "active_damage": 100,
+        "bench_damage": 120,
+        "energy_shuffled": 3
+      },
+      "formula_key": "pokemon_05_wellspring_ogerpon_torrential_pump",
+      "inputs": {
+        "opponent_bench_targets": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "owner_choice": 1,
+        "source_attached_energy_cards": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "pokemon_05_wellspring_ogerpon_torrential_pump:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "damage_received": 0,
+        "prevented": false
+      },
+      "formula_key": "pokemon_06_fezandipiti_adrena_pheromone",
+      "inputs": {
+        "coin_result": "tails",
+        "pending_attack_damage": 0,
+        "source_attached_energy_types": []
+      },
+      "scenario_id": "pokemon_06_fezandipiti_adrena_pheromone:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "damage_received": 0,
+        "prevented": true
+      },
+      "formula_key": "pokemon_06_fezandipiti_adrena_pheromone",
+      "inputs": {
+        "coin_result": "heads",
+        "pending_attack_damage": 1,
+        "source_attached_energy_types": [
+          "darkness"
+        ]
+      },
+      "scenario_id": "pokemon_06_fezandipiti_adrena_pheromone:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "damage_received": 0,
+        "prevented": true
+      },
+      "formula_key": "pokemon_06_fezandipiti_adrena_pheromone",
+      "inputs": {
+        "coin_result": "heads",
+        "pending_attack_damage": 6,
+        "source_attached_energy_types": [
+          "darkness",
+          "psychic"
+        ]
+      },
+      "scenario_id": "pokemon_06_fezandipiti_adrena_pheromone:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_06_fezandipiti_energy_feather",
+      "inputs": {
+        "source_attached_energy_unit_count": 0
+      },
+      "scenario_id": "pokemon_06_fezandipiti_energy_feather:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_06_fezandipiti_energy_feather",
+      "inputs": {
+        "source_attached_energy_unit_count": 1
+      },
+      "scenario_id": "pokemon_06_fezandipiti_energy_feather:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 180,
+      "formula_key": "pokemon_06_fezandipiti_energy_feather",
+      "inputs": {
+        "source_attached_energy_unit_count": 6
+      },
+      "scenario_id": "pokemon_06_fezandipiti_energy_feather:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_06_hydrapple_syrup_storm",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {}
+      },
+      "scenario_id": "pokemon_06_hydrapple_syrup_storm:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 60,
+      "formula_key": "pokemon_06_hydrapple_syrup_storm",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {
+          "darkness": 1,
+          "grass": 1,
+          "psychic": 1
+        }
+      },
+      "scenario_id": "pokemon_06_hydrapple_syrup_storm:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_06_hydrapple_syrup_storm",
+      "inputs": {
+        "all_own_in_play_attached_energy_types_and_units": {
+          "darkness": 3,
+          "grass": 3,
+          "psychic": 3
+        }
+      },
+      "scenario_id": "pokemon_06_hydrapple_syrup_storm:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_06_mega_sharpedo_hungry_jaws",
+      "inputs": {
+        "source_current_hp": 100,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_06_mega_sharpedo_hungry_jaws:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 270,
+      "formula_key": "pokemon_06_mega_sharpedo_hungry_jaws",
+      "inputs": {
+        "source_current_hp": 90,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_06_mega_sharpedo_hungry_jaws:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 270,
+      "formula_key": "pokemon_06_mega_sharpedo_hungry_jaws",
+      "inputs": {
+        "source_current_hp": 10,
+        "source_effective_max_hp": 100
+      },
+      "scenario_id": "pokemon_06_mega_sharpedo_hungry_jaws:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "grass_energy_units": 0,
+        "stacks": false
+      },
+      "formula_key": "pokemon_06_meganium_wild_growth",
+      "inputs": {
+        "all_own_attached_exact_card_ids": [],
+        "basic_grass_energy_flags": [],
+        "wild_growth_active": false
+      },
+      "scenario_id": "pokemon_06_meganium_wild_growth:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "grass_energy_units": 2,
+        "stacks": false
+      },
+      "formula_key": "pokemon_06_meganium_wild_growth",
+      "inputs": {
+        "all_own_attached_exact_card_ids": [
+          "active"
+        ],
+        "basic_grass_energy_flags": [
+          true
+        ],
+        "wild_growth_active": true
+      },
+      "scenario_id": "pokemon_06_meganium_wild_growth:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": {
+        "grass_energy_units": 6,
+        "stacks": false
+      },
+      "formula_key": "pokemon_06_meganium_wild_growth",
+      "inputs": {
+        "all_own_attached_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "basic_grass_energy_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "wild_growth_active": true
+      },
+      "scenario_id": "pokemon_06_meganium_wild_growth:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_06_ns_darmanitan_back_draft",
+      "inputs": {
+        "basic_energy_flags": [],
+        "opponent_discard_exact_card_ids": []
+      },
+      "scenario_id": "pokemon_06_ns_darmanitan_back_draft:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_06_ns_darmanitan_back_draft",
+      "inputs": {
+        "basic_energy_flags": [
+          true
+        ],
+        "opponent_discard_exact_card_ids": [
+          "active"
+        ]
+      },
+      "scenario_id": "pokemon_06_ns_darmanitan_back_draft:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 90,
+      "formula_key": "pokemon_06_ns_darmanitan_back_draft",
+      "inputs": {
+        "basic_energy_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "opponent_discard_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "pokemon_06_ns_darmanitan_back_draft:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 10,
+      "formula_key": "pokemon_06_riolu_quick_attack",
+      "inputs": {
+        "coin_result": "tails"
+      },
+      "scenario_id": "pokemon_06_riolu_quick_attack:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_06_riolu_quick_attack",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_06_riolu_quick_attack:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 30,
+      "formula_key": "pokemon_06_riolu_quick_attack",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "pokemon_06_riolu_quick_attack:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "pokemon_06_seviper_excited_power",
+      "inputs": {
+        "all_own_in_play_exact_card_ids": [],
+        "darkness_type_flags": [],
+        "mega_evolution_ex_flags": []
+      },
+      "scenario_id": "pokemon_06_seviper_excited_power:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_06_seviper_excited_power",
+      "inputs": {
+        "all_own_in_play_exact_card_ids": [
+          "active"
+        ],
+        "darkness_type_flags": [
+          true
+        ],
+        "mega_evolution_ex_flags": [
+          true
+        ]
+      },
+      "scenario_id": "pokemon_06_seviper_excited_power:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": 120,
+      "formula_key": "pokemon_06_seviper_excited_power",
+      "inputs": {
+        "all_own_in_play_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "darkness_type_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "mega_evolution_ex_flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "scenario_id": "pokemon_06_seviper_excited_power:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "opponent_discard": 0,
+        "order": [
+          "opponent",
+          "owner"
+        ],
+        "owner_discard": 0
+      },
+      "formula_key": "trainer_01_hand_trimmer_discard_counts",
+      "inputs": {
+        "opponent_hand_count": 0,
+        "own_hand_count": 0
+      },
+      "scenario_id": "trainer_01_hand_trimmer_discard_counts:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "opponent_discard": 0,
+        "order": [
+          "opponent",
+          "owner"
+        ],
+        "owner_discard": 0
+      },
+      "formula_key": "trainer_01_hand_trimmer_discard_counts",
+      "inputs": {
+        "opponent_hand_count": 1,
+        "own_hand_count": 1
+      },
+      "scenario_id": "trainer_01_hand_trimmer_discard_counts:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "opponent_discard": 1,
+        "order": [
+          "opponent",
+          "owner"
+        ],
+        "owner_discard": 1
+      },
+      "formula_key": "trainer_01_hand_trimmer_discard_counts",
+      "inputs": {
+        "opponent_hand_count": 6,
+        "own_hand_count": 6
+      },
+      "scenario_id": "trainer_01_hand_trimmer_discard_counts:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 6,
+      "formula_key": "trainer_01_lillies_determination_draw",
+      "inputs": {
+        "own_prize_count": 0
+      },
+      "scenario_id": "trainer_01_lillies_determination_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 6,
+      "formula_key": "trainer_01_lillies_determination_draw",
+      "inputs": {
+        "own_prize_count": 1
+      },
+      "scenario_id": "trainer_01_lillies_determination_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 8,
+      "formula_key": "trainer_01_lillies_determination_draw",
+      "inputs": {
+        "own_prize_count": 6
+      },
+      "scenario_id": "trainer_01_lillies_determination_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_01_rare_candy_eligible_evolutions",
+      "inputs": {
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_hand_exact_card_ids": [
+          3
+        ],
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "pokemon_entered_play_this_turn": [
+          true
+        ],
+        "turn_number": 1
+      },
+      "scenario_id": "trainer_01_rare_candy_eligible_evolutions:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          3
+        ]
+      ],
+      "formula_key": "trainer_01_rare_candy_eligible_evolutions",
+      "inputs": {
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_hand_exact_card_ids": [
+          3
+        ],
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "pokemon_entered_play_this_turn": [
+          false
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_01_rare_candy_eligible_evolutions:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression",
+        "conflict"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          3
+        ]
+      ],
+      "formula_key": "trainer_01_rare_candy_eligible_evolutions",
+      "inputs": {
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_hand_exact_card_ids": [
+          3
+        ],
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "pokemon_entered_play_this_turn": [
+          false
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_01_rare_candy_eligible_evolutions:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "legal": false,
+        "opponent_draw": 0,
+        "owner_draw": 0
+      },
+      "formula_key": "trainer_01_unfair_stamp_activation_and_draw",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": false
+      },
+      "scenario_id": "trainer_01_unfair_stamp_activation_and_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "legal": true,
+        "opponent_draw": 2,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_01_unfair_stamp_activation_and_draw",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": true
+      },
+      "scenario_id": "trainer_01_unfair_stamp_activation_and_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "legal": true,
+        "opponent_draw": 2,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_01_unfair_stamp_activation_and_draw",
+      "inputs": {
+        "own_pokemon_ko_during_opponent_last_turn": true
+      },
+      "scenario_id": "trainer_01_unfair_stamp_activation_and_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "trainer_01_xerosic_discard_until_three",
+      "inputs": {
+        "opponent_hand_count": 0
+      },
+      "scenario_id": "trainer_01_xerosic_discard_until_three:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "trainer_01_xerosic_discard_until_three",
+      "inputs": {
+        "opponent_hand_count": 1
+      },
+      "scenario_id": "trainer_01_xerosic_discard_until_three:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 3,
+      "formula_key": "trainer_01_xerosic_discard_until_three",
+      "inputs": {
+        "opponent_hand_count": 6
+      },
+      "scenario_id": "trainer_01_xerosic_discard_until_three:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [
+        {
+          "attach": null,
+          "hand": null,
+          "target": null
+        }
+      ],
+      "formula_key": "trainer_02_crispin_energy_assignment",
+      "inputs": {
+        "basic_energy_cards_and_types_in_deck": [],
+        "own_pokemon_targets": [],
+        "owner_choices": []
+      },
+      "scenario_id": "trainer_02_crispin_energy_assignment:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        {
+          "attach": null,
+          "hand": null,
+          "target": null
+        },
+        {
+          "attach": null,
+          "hand": "d",
+          "target": null
+        },
+        {
+          "attach": "p",
+          "hand": "d",
+          "target": "active"
+        },
+        {
+          "attach": null,
+          "hand": "p",
+          "target": null
+        },
+        {
+          "attach": "d",
+          "hand": "p",
+          "target": "active"
+        }
+      ],
+      "formula_key": "trainer_02_crispin_energy_assignment",
+      "inputs": {
+        "basic_energy_cards_and_types_in_deck": [
+          {
+            "id": "p",
+            "type": "psychic"
+          },
+          {
+            "id": "d",
+            "type": "darkness"
+          }
+        ],
+        "own_pokemon_targets": [
+          "active"
+        ],
+        "owner_choices": []
+      },
+      "scenario_id": "trainer_02_crispin_energy_assignment:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": [
+        {
+          "attach": null,
+          "hand": null,
+          "target": null
+        },
+        {
+          "attach": null,
+          "hand": "d",
+          "target": null
+        },
+        {
+          "attach": "p",
+          "hand": "d",
+          "target": "active"
+        },
+        {
+          "attach": null,
+          "hand": "p",
+          "target": null
+        },
+        {
+          "attach": "d",
+          "hand": "p",
+          "target": "active"
+        }
+      ],
+      "formula_key": "trainer_02_crispin_energy_assignment",
+      "inputs": {
+        "basic_energy_cards_and_types_in_deck": [
+          {
+            "id": "p",
+            "type": "psychic"
+          },
+          {
+            "id": "d",
+            "type": "darkness"
+          }
+        ],
+        "own_pokemon_targets": [
+          "active"
+        ],
+        "owner_choices": []
+      },
+      "scenario_id": "trainer_02_crispin_energy_assignment:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "chosen_count": 0,
+        "success": false
+      },
+      "formula_key": "trainer_02_crushing_hammer",
+      "inputs": {
+        "coin_result": "tails",
+        "opponent_attached_energy_targets": []
+      },
+      "scenario_id": "trainer_02_crushing_hammer:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "chosen_count": 1,
+        "success": true
+      },
+      "formula_key": "trainer_02_crushing_hammer",
+      "inputs": {
+        "coin_result": "heads",
+        "opponent_attached_energy_targets": [
+          "active"
+        ]
+      },
+      "scenario_id": "trainer_02_crushing_hammer:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "chosen_count": 1,
+        "success": true
+      },
+      "formula_key": "trainer_02_crushing_hammer",
+      "inputs": {
+        "coin_result": "heads",
+        "opponent_attached_energy_targets": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "trainer_02_crushing_hammer:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "legal": false,
+        "opponent_draw": 0,
+        "owner_draw": 0
+      },
+      "formula_key": "trainer_02_team_rocket_archer_activation",
+      "inputs": {
+        "team_rocket_pokemon_ko_during_opponent_last_turn": false
+      },
+      "scenario_id": "trainer_02_team_rocket_archer_activation:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "legal": true,
+        "opponent_draw": 3,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_02_team_rocket_archer_activation",
+      "inputs": {
+        "team_rocket_pokemon_ko_during_opponent_last_turn": true
+      },
+      "scenario_id": "trainer_02_team_rocket_archer_activation:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "legal": true,
+        "opponent_draw": 3,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_02_team_rocket_archer_activation",
+      "inputs": {
+        "team_rocket_pokemon_ko_during_opponent_last_turn": true
+      },
+      "scenario_id": "trainer_02_team_rocket_archer_activation:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 5,
+      "formula_key": "trainer_02_team_rocket_ariana_draw",
+      "inputs": {
+        "all_own_in_play_exact_card_ids_or_team_rocket_flags": [],
+        "own_hand_count": 0
+      },
+      "scenario_id": "trainer_02_team_rocket_ariana_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 7,
+      "formula_key": "trainer_02_team_rocket_ariana_draw",
+      "inputs": {
+        "all_own_in_play_exact_card_ids_or_team_rocket_flags": [
+          true
+        ],
+        "own_hand_count": 1
+      },
+      "scenario_id": "trainer_02_team_rocket_ariana_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "trainer_02_team_rocket_ariana_draw",
+      "inputs": {
+        "all_own_in_play_exact_card_ids_or_team_rocket_flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "own_hand_count": 6
+      },
+      "scenario_id": "trainer_02_team_rocket_ariana_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "can_activate": false,
+        "draw": 0
+      },
+      "formula_key": "trainer_02_team_rocket_factory_activation",
+      "inputs": {
+        "normalized_card_names": [],
+        "supporters_played_from_hand_this_turn": false
+      },
+      "scenario_id": "trainer_02_team_rocket_factory_activation:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "can_activate": true,
+        "draw": 2
+      },
+      "formula_key": "trainer_02_team_rocket_factory_activation",
+      "inputs": {
+        "normalized_card_names": [
+          "Team Rocket Admin"
+        ],
+        "supporters_played_from_hand_this_turn": true
+      },
+      "scenario_id": "trainer_02_team_rocket_factory_activation:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "can_activate": true,
+        "draw": 2
+      },
+      "formula_key": "trainer_02_team_rocket_factory_activation",
+      "inputs": {
+        "normalized_card_names": [
+          "Team Rocket Admin",
+          "Other"
+        ],
+        "supporters_played_from_hand_this_turn": true
+      },
+      "scenario_id": "trainer_02_team_rocket_factory_activation:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "energy_to_hand": 0,
+        "healed": 0
+      },
+      "formula_key": "trainer_02_wallys_compassion",
+      "inputs": {
+        "eligible_own_mega_ex_damage": 0,
+        "selected_target_attached_energy_cards": []
+      },
+      "scenario_id": "trainer_02_wallys_compassion:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "energy_to_hand": 1,
+        "healed": 1
+      },
+      "formula_key": "trainer_02_wallys_compassion",
+      "inputs": {
+        "eligible_own_mega_ex_damage": 1,
+        "selected_target_attached_energy_cards": [
+          "active"
+        ]
+      },
+      "scenario_id": "trainer_02_wallys_compassion:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "energy_to_hand": 3,
+        "healed": 6
+      },
+      "formula_key": "trainer_02_wallys_compassion",
+      "inputs": {
+        "eligible_own_mega_ex_damage": 6,
+        "selected_target_attached_energy_cards": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "trainer_02_wallys_compassion:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_03_community_center_healing",
+      "inputs": {
+        "all_own_pokemon_damage": [],
+        "supporter_played_from_hand_this_turn": false
+      },
+      "scenario_id": "trainer_03_community_center_healing:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        1
+      ],
+      "formula_key": "trainer_03_community_center_healing",
+      "inputs": {
+        "all_own_pokemon_damage": [
+          1
+        ],
+        "supporter_played_from_hand_this_turn": true
+      },
+      "scenario_id": "trainer_03_community_center_healing:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": [
+        1,
+        3
+      ],
+      "formula_key": "trainer_03_community_center_healing",
+      "inputs": {
+        "all_own_pokemon_damage": [
+          1,
+          3
+        ],
+        "supporter_played_from_hand_this_turn": true
+      },
+      "scenario_id": "trainer_03_community_center_healing:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_03_forest_of_vitality_evolution_options",
+      "inputs": {
+        "both_in_play_exact_card_ids": [],
+        "entered_play_this_turn": false,
+        "hands_or_deck_evolution_candidates": [],
+        "turn_number": 1
+      },
+      "scenario_id": "trainer_03_forest_of_vitality_evolution_options:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ]
+      ],
+      "formula_key": "trainer_03_forest_of_vitality_evolution_options",
+      "inputs": {
+        "both_in_play_exact_card_ids": [
+          "active"
+        ],
+        "entered_play_this_turn": true,
+        "hands_or_deck_evolution_candidates": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          }
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_03_forest_of_vitality_evolution_options:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ]
+      ],
+      "formula_key": "trainer_03_forest_of_vitality_evolution_options",
+      "inputs": {
+        "both_in_play_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "entered_play_this_turn": true,
+        "hands_or_deck_evolution_candidates": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          }
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_03_forest_of_vitality_evolution_options:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_03_risky_ruins_trigger",
+      "inputs": {
+        "bench_entry_events": [],
+        "entered_pokemon_stage": "basic",
+        "entered_pokemon_type": false
+      },
+      "scenario_id": "trainer_03_risky_ruins_trigger:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_03_risky_ruins_trigger",
+      "inputs": {
+        "bench_entry_events": [
+          {
+            "during_controllers_turn": true,
+            "stage": "basic",
+            "type": "darkness"
+          }
+        ],
+        "entered_pokemon_stage": "stage1",
+        "entered_pokemon_type": true
+      },
+      "scenario_id": "trainer_03_risky_ruins_trigger:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": [
+        {
+          "counters": 2,
+          "event": 0
+        }
+      ],
+      "formula_key": "trainer_03_risky_ruins_trigger",
+      "inputs": {
+        "bench_entry_events": [
+          {
+            "during_controllers_turn": true,
+            "stage": "basic",
+            "type": "grass"
+          }
+        ],
+        "entered_pokemon_stage": "stage2",
+        "entered_pokemon_type": true
+      },
+      "scenario_id": "trainer_03_risky_ruins_trigger:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_03_salvatore_eligible_evolutions",
+      "inputs": {
+        "candidate_ability_flags": [],
+        "deck_exact_card_ids": [],
+        "evolves_from_relations": [],
+        "own_in_play_exact_card_ids": []
+      },
+      "scenario_id": "trainer_03_salvatore_eligible_evolutions:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ]
+      ],
+      "formula_key": "trainer_03_salvatore_eligible_evolutions",
+      "inputs": {
+        "candidate_ability_flags": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          }
+        ],
+        "deck_exact_card_ids": [
+          "active"
+        ],
+        "evolves_from_relations": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          }
+        ],
+        "own_in_play_exact_card_ids": [
+          "active"
+        ]
+      },
+      "scenario_id": "trainer_03_salvatore_eligible_evolutions:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ]
+      ],
+      "formula_key": "trainer_03_salvatore_eligible_evolutions",
+      "inputs": {
+        "candidate_ability_flags": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          },
+          {
+            "evolution": 4,
+            "has_ability": true,
+            "legal": true,
+            "target": 3,
+            "type": "water"
+          }
+        ],
+        "deck_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "evolves_from_relations": [
+          {
+            "evolution": 2,
+            "has_ability": false,
+            "legal": true,
+            "target": 1,
+            "type": "grass"
+          }
+        ],
+        "own_in_play_exact_card_ids": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "trainer_03_salvatore_eligible_evolutions:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "draw": 0,
+        "switched": false
+      },
+      "formula_key": "trainer_03_surfer_draw",
+      "inputs": {
+        "own_bench_targets": [],
+        "own_hand_count_after_play_and_switch": 0
+      },
+      "scenario_id": "trainer_03_surfer_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "draw": 4,
+        "switched": true
+      },
+      "formula_key": "trainer_03_surfer_draw",
+      "inputs": {
+        "own_bench_targets": [
+          "active"
+        ],
+        "own_hand_count_after_play_and_switch": 1
+      },
+      "scenario_id": "trainer_03_surfer_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "draw": 0,
+        "switched": true
+      },
+      "formula_key": "trainer_03_surfer_draw",
+      "inputs": {
+        "own_bench_targets": [
+          "active",
+          "bench1",
+          "bench2"
+        ],
+        "own_hand_count_after_play_and_switch": 6
+      },
+      "scenario_id": "trainer_03_surfer_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_04_grand_tree_evolution_chain",
+      "inputs": {
+        "deck_exact_card_ids": [
+          2,
+          3
+        ],
+        "entered_play_this_turn": [
+          false
+        ],
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "turn_number": 1
+      },
+      "scenario_id": "trainer_04_grand_tree_evolution_chain:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "formula_key": "trainer_04_grand_tree_evolution_chain",
+      "inputs": {
+        "deck_exact_card_ids": [
+          2,
+          3
+        ],
+        "entered_play_this_turn": [
+          false
+        ],
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_04_grand_tree_evolution_chain:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "formula_key": "trainer_04_grand_tree_evolution_chain",
+      "inputs": {
+        "deck_exact_card_ids": [
+          2,
+          3
+        ],
+        "entered_play_this_turn": [
+          false
+        ],
+        "evolution_relations": {
+          "2": 1,
+          "3": 2
+        },
+        "own_in_play_exact_card_ids": [
+          1
+        ],
+        "turn_number": 2
+      },
+      "scenario_id": "trainer_04_grand_tree_evolution_chain:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "opponent_draw": 5,
+        "owner_draw": 3
+      },
+      "formula_key": "trainer_04_harlequin_draw_distribution",
+      "inputs": {
+        "coin_result": "tails"
+      },
+      "scenario_id": "trainer_04_harlequin_draw_distribution:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "opponent_draw": 3,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_04_harlequin_draw_distribution",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "trainer_04_harlequin_draw_distribution:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": {
+        "opponent_draw": 3,
+        "owner_draw": 5
+      },
+      "formula_key": "trainer_04_harlequin_draw_distribution",
+      "inputs": {
+        "coin_result": "heads"
+      },
+      "scenario_id": "trainer_04_harlequin_draw_distribution:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 6,
+      "formula_key": "trainer_04_iriss_fighting_spirit_draw",
+      "inputs": {
+        "own_hand_count_after_play_and_cost": 0
+      },
+      "scenario_id": "trainer_04_iriss_fighting_spirit_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 5,
+      "formula_key": "trainer_04_iriss_fighting_spirit_draw",
+      "inputs": {
+        "own_hand_count_after_play_and_cost": 1
+      },
+      "scenario_id": "trainer_04_iriss_fighting_spirit_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "trainer_04_iriss_fighting_spirit_draw",
+      "inputs": {
+        "own_hand_count_after_play_and_cost": 6
+      },
+      "scenario_id": "trainer_04_iriss_fighting_spirit_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": 0,
+      "formula_key": "trainer_04_mortys_conviction_draw",
+      "inputs": {
+        "opponent_bench_occupied_count": 0
+      },
+      "scenario_id": "trainer_04_mortys_conviction_draw:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": 1,
+      "formula_key": "trainer_04_mortys_conviction_draw",
+      "inputs": {
+        "opponent_bench_occupied_count": 1
+      },
+      "scenario_id": "trainer_04_mortys_conviction_draw:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "stacking"
+      ],
+      "expected_raw_output": 6,
+      "formula_key": "trainer_04_mortys_conviction_draw",
+      "inputs": {
+        "opponent_bench_occupied_count": 6
+      },
+      "scenario_id": "trainer_04_mortys_conviction_draw:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "legal": false,
+        "maximum_attach_count": 0
+      },
+      "formula_key": "trainer_04_rosas_encouragement",
+      "inputs": {
+        "basic_energy_in_own_discard": false,
+        "opponent_prize_count": 0,
+        "own_prize_count": 0,
+        "own_stage_2_targets": []
+      },
+      "scenario_id": "trainer_04_rosas_encouragement:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "legal": false,
+        "maximum_attach_count": 0
+      },
+      "formula_key": "trainer_04_rosas_encouragement",
+      "inputs": {
+        "basic_energy_in_own_discard": true,
+        "opponent_prize_count": 1,
+        "own_prize_count": 1,
+        "own_stage_2_targets": [
+          "active"
+        ]
+      },
+      "scenario_id": "trainer_04_rosas_encouragement:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "suppression"
+      ],
+      "expected_raw_output": {
+        "legal": false,
+        "maximum_attach_count": 0
+      },
+      "formula_key": "trainer_04_rosas_encouragement",
+      "inputs": {
+        "basic_energy_in_own_discard": true,
+        "opponent_prize_count": 6,
+        "own_prize_count": 6,
+        "own_stage_2_targets": [
+          "active",
+          "bench1",
+          "bench2"
+        ]
+      },
+      "scenario_id": "trainer_04_rosas_encouragement:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "capacities": [
+          5,
+          5
+        ],
+        "discard_counts": [
+          3,
+          1
+        ],
+        "resolution_order": []
+      },
+      "formula_key": "trainer_05_area_zero_bench_capacity",
+      "inputs": {
+        "each_bench_occupied_count": [
+          8,
+          6
+        ],
+        "each_player_tera_presence": [
+          true,
+          false
+        ],
+        "stadium_in_play": false,
+        "stadium_leave_event": false,
+        "stadium_owner": 1
+      },
+      "scenario_id": "trainer_05_area_zero_bench_capacity:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "capacities": [
+          8,
+          5
+        ],
+        "discard_counts": [
+          0,
+          1
+        ],
+        "resolution_order": []
+      },
+      "formula_key": "trainer_05_area_zero_bench_capacity",
+      "inputs": {
+        "each_bench_occupied_count": [
+          8,
+          6
+        ],
+        "each_player_tera_presence": [
+          true,
+          false
+        ],
+        "stadium_in_play": true,
+        "stadium_leave_event": false,
+        "stadium_owner": 1
+      },
+      "scenario_id": "trainer_05_area_zero_bench_capacity:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "capacities": [
+          5,
+          5
+        ],
+        "discard_counts": [
+          3,
+          1
+        ],
+        "resolution_order": [
+          1,
+          0
+        ]
+      },
+      "formula_key": "trainer_05_area_zero_bench_capacity",
+      "inputs": {
+        "each_bench_occupied_count": [
+          8,
+          6
+        ],
+        "each_player_tera_presence": [
+          true,
+          true
+        ],
+        "stadium_in_play": true,
+        "stadium_leave_event": true,
+        "stadium_owner": 1
+      },
+      "scenario_id": "trainer_05_area_zero_bench_capacity:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": [],
+      "formula_key": "trainer_05_glass_trumpet_assignments",
+      "inputs": {
+        "basic_energy_cards_in_own_discard": [
+          "e1",
+          "e2"
+        ],
+        "own_benched_colorless_targets": [
+          "b1",
+          "b2"
+        ],
+        "own_tera_pokemon_in_play": false
+      },
+      "scenario_id": "trainer_05_glass_trumpet_assignments:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": [
+        [
+          [
+            "b1",
+            "e1"
+          ],
+          [
+            "b2",
+            "e2"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e2"
+          ],
+          [
+            "b2",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e2"
+          ]
+        ],
+        [
+          [
+            "b2",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b2",
+            "e2"
+          ]
+        ],
+        []
+      ],
+      "formula_key": "trainer_05_glass_trumpet_assignments",
+      "inputs": {
+        "basic_energy_cards_in_own_discard": [
+          "e1",
+          "e2"
+        ],
+        "own_benched_colorless_targets": [
+          "b1",
+          "b2"
+        ],
+        "own_tera_pokemon_in_play": true
+      },
+      "scenario_id": "trainer_05_glass_trumpet_assignments:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": [
+        [
+          [
+            "b1",
+            "e1"
+          ],
+          [
+            "b2",
+            "e2"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e2"
+          ],
+          [
+            "b2",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b1",
+            "e2"
+          ]
+        ],
+        [
+          [
+            "b2",
+            "e1"
+          ]
+        ],
+        [
+          [
+            "b2",
+            "e2"
+          ]
+        ],
+        []
+      ],
+      "formula_key": "trainer_05_glass_trumpet_assignments",
+      "inputs": {
+        "basic_energy_cards_in_own_discard": [
+          "e1",
+          "e2"
+        ],
+        "own_benched_colorless_targets": [
+          "b1",
+          "b2"
+        ],
+        "own_tera_pokemon_in_play": true
+      },
+      "scenario_id": "trainer_05_glass_trumpet_assignments:3",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "negative"
+      ],
+      "expected_raw_output": {
+        "assignments": [],
+        "poison_active": false
+      },
+      "formula_key": "trainer_05_janines_secret_art_assignments",
+      "inputs": {
+        "basic_darkness_energy_cards_in_deck": [
+          "e1",
+          "e2"
+        ],
+        "own_darkness_pokemon_targets": [
+          "active",
+          "bench1"
+        ],
+        "selected_targets": []
+      },
+      "scenario_id": "trainer_05_janines_secret_art_assignments:1",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "positive"
+      ],
+      "expected_raw_output": {
+        "assignments": [
+          [
+            "bench1",
+            "e1"
+          ]
+        ],
+        "poison_active": false
+      },
+      "formula_key": "trainer_05_janines_secret_art_assignments",
+      "inputs": {
+        "basic_darkness_energy_cards_in_deck": [
+          "e1",
+          "e2"
+        ],
+        "own_darkness_pokemon_targets": [
+          "active",
+          "bench1"
+        ],
+        "selected_targets": [
+          "bench1"
+        ]
+      },
+      "scenario_id": "trainer_05_janines_secret_art_assignments:2",
+      "status": "passed"
+    },
+    {
+      "coverage": [
+        "boundary",
+        "conflict"
+      ],
+      "expected_raw_output": {
+        "assignments": [
+          [
+            "active",
+            "e1"
+          ],
+          [
+            "bench1",
+            "e2"
+          ]
+        ],
+        "poison_active": true
+      },
+      "formula_key": "trainer_05_janines_secret_art_assignments",
+      "inputs": {
+        "basic_darkness_energy_cards_in_deck": [
+          "e1",
+          "e2"
+        ],
+        "own_darkness_pokemon_targets": [
+          "active",
+          "bench1"
+        ],
+        "selected_targets": [
+          "active",
+          "bench1"
+        ]
+      },
+      "scenario_id": "trainer_05_janines_secret_art_assignments:3",
+      "status": "passed"
+    }
+  ],
+  "schema_version": 1,
+  "status": "passed"
+}

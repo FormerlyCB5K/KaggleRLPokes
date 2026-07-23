@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/B09-FINAL-REPORT.md",
+      "sha256": "124d36f6eac02abd2bc3dc2ec34145a45ede83d0d12d170594dab40a0d940a69",
+      "size_bytes": 13637
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/canonical-audit-ledger.json",
+      "sha256": "b1cc3e1450737f409b79450ae2192568e0b4e2aa9838f6e12397c5b11ab53313",
+      "size_bytes": 1406692
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/closure-source-manifest.json",
+      "sha256": "aa8e35a62c03f9f79470d21fc71536ab443af5957814792ae1b41f454dc971bb",
+      "size_bytes": 6329
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/closure-validation.json",
+      "sha256": "5f59edc9f6855b54adc07857a11e17f1a30c52c0f9ded7c3ec7032efa59e1f55",
+      "size_bytes": 1525
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/part-c-handoff.json",
+      "sha256": "4bda7fbffbf2990025c10ed3ce298b29026bbb8f6254d8d7d8d19ac04a3b80e6",
+      "size_bytes": 1285884
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/semantic-diff.csv",
+      "sha256": "8eae888c517946e929949edd8ebeeae7e10ac3071fbb63c2f4962f430225a7f2",
+      "size_bytes": 76558
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/semantic-diff.json",
+      "sha256": "207fe0c42ae7970ec88e6412bc92103adb8dc3926bb600e33ccbb5e463534b9b",
+      "size_bytes": 175096
+    }
+  ],
+  "determinism_policy": "run twice from frozen inputs; every listed artifact hash must match",
+  "regeneration_command": "python Imitation-Learning/build_part_b_closure.py",
+  "schema_version": 1,
+  "status": "complete"
+}

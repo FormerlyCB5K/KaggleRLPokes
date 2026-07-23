@@ -1,0 +1,7085 @@
+{
+  "archives_read": 3,
+  "batch_id": "pokemon-02",
+  "checks": {
+    "all_targets_have_multiple_samples": false,
+    "full_dataset_scan_complete": true
+  },
+  "coverage": {
+    "sample_counts": {
+      "card:1071:attack:0": 0,
+      "card:117:attack:0": 3,
+      "card:121:attack:1": 3,
+      "card:131:attack:0": 0,
+      "card:133:attack:0": 0,
+      "card:379:attack:0": 3,
+      "card:381:attack:0": 3,
+      "card:381:attack:1": 3,
+      "card:400:attack:0": 3,
+      "card:401:attack:0": 3,
+      "card:431:attack:0": 3,
+      "card:434:attack:0": 0,
+      "card:666:attack:0": 3,
+      "card:689:attack:0": 3,
+      "card:861:attack:0": 3,
+      "card:861:attack:1": 1
+    },
+    "targets": 16,
+    "targets_with_sample": 12
+  },
+  "engine_identity": "recorded module_version 1.32.0 top-ladder episodes",
+  "formula_checks": [],
+  "members_read": 15018,
+  "samples": {
+    "card:1071:attack:0": [],
+    "card:117:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 148,
+          "cardId": 117,
+          "playerIndex": 0,
+          "serial": 13,
+          "type": 15
+        },
+        "episode_member": "85482107.json",
+        "post_resolution_current": {
+          "attacking_player": 0,
+          "board": [
+            {
+              "energy_card_ids": [
+                20,
+                11,
+                14
+              ],
+              "energy_types": [
+                6,
+                0,
+                0
+              ],
+              "hp": 210,
+              "id": 117,
+              "max_hp": 210,
+              "serial": 13
+            },
+            {
+              "energy_card_ids": [
+                11,
+                14,
+                18
+              ],
+              "energy_types": [
+                0,
+                0,
+                1
+              ],
+              "hp": 300,
+              "id": 756,
+              "max_hp": 300,
+              "serial": 12
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 150,
+              "id": 345,
+              "max_hp": 150,
+              "serial": 8
+            }
+          ],
+          "hand_count": 5,
+          "turn": 30
+        },
+        "relevant_logs": [
+          {
+            "attackId": 148,
+            "cardId": 117,
+            "playerIndex": 0,
+            "serial": 13,
+            "type": 15
+          },
+          {
+            "cardId": 140,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 99,
+            "type": 16,
+            "value": -140
+          }
+        ],
+        "step_index": 170
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 148,
+          "cardId": 434,
+          "playerIndex": 1,
+          "serial": 73,
+          "type": 15
+        },
+        "episode_member": "85484759.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 200,
+              "id": 401,
+              "max_hp": 230,
+              "serial": 72
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 130,
+              "id": 401,
+              "max_hp": 130,
+              "serial": 69
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 401,
+              "max_hp": 130,
+              "serial": 71
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 66
+            }
+          ],
+          "hand_count": 6,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 148,
+            "cardId": 434,
+            "playerIndex": 1,
+            "serial": 73,
+            "type": 15
+          },
+          {
+            "cardId": 117,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 29,
+            "type": 16,
+            "value": -170
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 31,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 117,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 29,
+            "type": 16,
+            "value": 80
+          },
+          {
+            "cardId": 434,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 73,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 15,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 115,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1175,
+            "fromArea": 9,
+            "playerIndex": 1,
+            "serial": 109,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 400,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 66,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 414,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 75,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 401,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 70,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 90,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 117,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 29,
+            "type": 16,
+            "value": 30
+          },
+          {
+            "cardId": 434,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 74,
+            "type": 16,
+            "value": -140
+          },
+          {
+            "cardId": 434,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 74,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 414,
+            "cardIdBench": 401,
+            "playerIndex": 1,
+            "serialActive": 91,
+            "serialBench": 72,
+            "type": 8
+          },
+          {
+            "cardIdActive": 117,
+            "cardIdBench": 112,
+            "playerIndex": 0,
+            "serialActive": 29,
+            "serialBench": 27,
+            "type": 8
+          }
+        ],
+        "step_index": 81
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 148,
+          "cardId": 117,
+          "playerIndex": 0,
+          "serial": 29,
+          "type": 15
+        },
+        "episode_member": "85484759.json",
+        "post_resolution_current": {
+          "attacking_player": 0,
+          "board": [
+            {
+              "energy_card_ids": [
+                1,
+                3,
+                16
+              ],
+              "energy_types": [
+                1,
+                3,
+                10
+              ],
+              "hp": 150,
+              "id": 117,
+              "max_hp": 210,
+              "serial": 29
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 150,
+              "id": 345,
+              "max_hp": 150,
+              "serial": 26
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 210,
+              "id": 117,
+              "max_hp": 210,
+              "serial": 4
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 34
+            }
+          ],
+          "hand_count": 4,
+          "turn": 17
+        },
+        "relevant_logs": [
+          {
+            "attackId": 148,
+            "cardId": 117,
+            "playerIndex": 0,
+            "serial": 29,
+            "type": 15
+          },
+          {
+            "cardId": 401,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 72,
+            "type": 16,
+            "value": -140
+          },
+          {
+            "cardId": 401,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 72,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 400,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 67,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 122,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 117,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1159,
+            "fromArea": 9,
+            "playerIndex": 1,
+            "serial": 89,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 16,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 36,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1210,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1210,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 41,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 344,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 17,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 51,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1198,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 9,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 3,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 50,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1216,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 98,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 1216,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 96,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 126
+      }
+    ],
+    "card:121:attack:1": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 154,
+          "cardId": 121,
+          "playerIndex": 1,
+          "serial": 83,
+          "type": 15
+        },
+        "episode_member": "85481076.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                5,
+                2
+              ],
+              "energy_types": [
+                5,
+                2
+              ],
+              "hp": 320,
+              "id": 121,
+              "max_hp": 320,
+              "serial": 83
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 30,
+              "id": 235,
+              "max_hp": 30,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 110,
+              "id": 112,
+              "max_hp": 110,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [
+                5
+              ],
+              "energy_types": [
+                5
+              ],
+              "hp": 320,
+              "id": 121,
+              "max_hp": 320,
+              "serial": 84
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 82
+            }
+          ],
+          "hand_count": 8,
+          "turn": 7
+        },
+        "relevant_logs": [
+          {
+            "attackId": 154,
+            "cardId": 121,
+            "playerIndex": 1,
+            "serial": 83,
+            "type": 15
+          },
+          {
+            "cardId": 66,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 11,
+            "type": 16,
+            "value": -200
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 21,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 66,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 11,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 305,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 26,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 11,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1266,
+            "fromArea": 7,
+            "playerIndex": 0,
+            "serial": 61,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 14,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 14,
+            "type": 7
+          },
+          {
+            "head": true,
+            "playerIndex": 1,
+            "type": 22
+          },
+          {
+            "cardId": 13,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 5,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 91,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1198,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 114,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 140,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 86,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 82
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 154,
+          "cardId": 121,
+          "playerIndex": 1,
+          "serial": 83,
+          "type": 15
+        },
+        "episode_member": "85481076.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 30,
+              "id": 235,
+              "max_hp": 30,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 110,
+              "id": 112,
+              "max_hp": 110,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [
+                5,
+                2
+              ],
+              "energy_types": [
+                5,
+                2
+              ],
+              "hp": 320,
+              "id": 121,
+              "max_hp": 320,
+              "serial": 84
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 82
+            }
+          ],
+          "hand_count": 3,
+          "turn": 9
+        },
+        "relevant_logs": [
+          {
+            "attackId": 154,
+            "cardId": 121,
+            "playerIndex": 1,
+            "serial": 83,
+            "type": 15
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 28,
+            "type": 16,
+            "value": -200
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 17,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 17,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 17,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 17,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 17,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 140,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 12,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 742,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 24,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 18,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 17,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 305,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 11,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 105,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 107,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 235,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 87,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 121,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 83,
+            "type": 16,
+            "value": -340
+          },
+          {
+            "cardId": 121,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 83,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 120,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 81,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 119,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 78,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 2,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 66,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 5,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 70,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 14,
+            "type": 7
+          },
+          {
+            "cardId": 1266,
+            "fromArea": 7,
+            "playerIndex": 0,
+            "serial": 60,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 14,
+            "type": 7
+          },
+          {
+            "cardId": 1198,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 113,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 106,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 743,
+            "cardIdBench": 140,
+            "playerIndex": 0,
+            "serialActive": 25,
+            "serialBench": 12,
+            "type": 8
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 54,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 53,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1081,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 33,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 19,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 19,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 26,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1079,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 30,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 55,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1231,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 59,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1182,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 47,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 52,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 27,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 5,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1079,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 31,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1266,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 62,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 11,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 742,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 22,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1081,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 32,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardIdActive": 235,
+            "cardIdBench": 121,
+            "playerIndex": 1,
+            "serialActive": 88,
+            "serialBench": 84,
+            "type": 8
+          }
+        ],
+        "step_index": 128
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 154,
+          "cardId": 121,
+          "playerIndex": 1,
+          "serial": 84,
+          "type": 15
+        },
+        "episode_member": "85481076.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                5,
+                2
+              ],
+              "energy_types": [
+                5,
+                2
+              ],
+              "hp": 320,
+              "id": 121,
+              "max_hp": 320,
+              "serial": 84
+            },
+            {
+              "energy_card_ids": [
+                7
+              ],
+              "energy_types": [
+                7
+              ],
+              "hp": 110,
+              "id": 112,
+              "max_hp": 110,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 30,
+              "id": 235,
+              "max_hp": 30,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 90,
+              "id": 120,
+              "max_hp": 90,
+              "serial": 82
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 210,
+              "id": 140,
+              "max_hp": 210,
+              "serial": 86
+            }
+          ],
+          "hand_count": 7,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 154,
+            "cardId": 121,
+            "playerIndex": 1,
+            "serial": 84,
+            "type": 15
+          },
+          {
+            "cardId": 140,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 12,
+            "type": 16,
+            "value": -200
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": true,
+            "serial": 25,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 140,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 12,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 743,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 4,
+            "type": 6
+          }
+        ],
+        "step_index": 170
+      }
+    ],
+    "card:131:attack:0": [],
+    "card:133:attack:0": [],
+    "card:379:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 529,
+          "cardId": 379,
+          "playerIndex": 1,
+          "serial": 81,
+          "type": 15
+        },
+        "episode_member": "85481079.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 140,
+              "id": 379,
+              "max_hp": 140,
+              "serial": 81
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 140,
+              "id": 379,
+              "max_hp": 140,
+              "serial": 80
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 75
+            }
+          ],
+          "hand_count": 5,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 529,
+            "cardId": 379,
+            "playerIndex": 1,
+            "serial": 81,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 27,
+            "type": 16,
+            "value": -40
+          },
+          {
+            "cardId": 1182,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 48,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 55,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 14,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 345,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 23,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 53,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 344,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 19,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 44,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 24,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 11,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 18,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 57,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 50,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 83,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 20,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 68,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 342,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 78,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 342,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 77,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 23
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 529,
+          "cardId": 379,
+          "playerIndex": 1,
+          "serial": 79,
+          "type": 15
+        },
+        "episode_member": "85481089.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 140,
+              "id": 379,
+              "max_hp": 140,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 81
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 82
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 80
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 74
+            }
+          ],
+          "hand_count": 5,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 529,
+            "cardId": 379,
+            "playerIndex": 1,
+            "serial": 79,
+            "type": 15
+          },
+          {
+            "cardId": 344,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 5,
+            "type": 16,
+            "value": -20
+          },
+          {
+            "cardIdActive": 379,
+            "cardIdBench": 379,
+            "playerIndex": 1,
+            "serialActive": 79,
+            "serialBench": 81,
+            "type": 8
+          }
+        ],
+        "step_index": 23
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 529,
+          "cardId": 379,
+          "playerIndex": 1,
+          "serial": 81,
+          "type": 15
+        },
+        "episode_member": "85481089.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 81
+            },
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 140,
+              "id": 379,
+              "max_hp": 140,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 82
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 77
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 80
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 76
+            }
+          ],
+          "hand_count": 5,
+          "turn": 5
+        },
+        "relevant_logs": [
+          {
+            "attackId": 529,
+            "cardId": 379,
+            "playerIndex": 1,
+            "serial": 81,
+            "type": 15
+          },
+          {
+            "cardId": 344,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 5,
+            "type": 16,
+            "value": -80
+          },
+          {
+            "cardId": 344,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 5,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 344,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 3,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 83,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 84,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 86,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 341,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 72,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 32
+      }
+    ],
+    "card:381:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 531,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 88,
+          "type": 15
+        },
+        "episode_member": "85481079.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 89
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 100,
+              "id": 380,
+              "max_hp": 100,
+              "serial": 83
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 78
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 77
+            }
+          ],
+          "hand_count": 3,
+          "turn": 7
+        },
+        "relevant_logs": [
+          {
+            "attackId": 531,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 88,
+            "type": 15
+          },
+          {
+            "cardId": 345,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 22,
+            "type": 16,
+            "value": 0
+          },
+          {
+            "cardId": 379,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 82,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 115,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 6,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 66,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 381,
+            "cardIdBench": 381,
+            "playerIndex": 1,
+            "serialActive": 88,
+            "serialBench": 89,
+            "type": 8
+          },
+          {
+            "cardId": 6,
+            "fromArea": 3,
+            "playerIndex": 1,
+            "serial": 66,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 69
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 531,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 89,
+          "type": 15
+        },
+        "episode_member": "85481079.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 89
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 330,
+              "id": 381,
+              "max_hp": 330,
+              "serial": 87
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 78
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 77
+            }
+          ],
+          "hand_count": 3,
+          "turn": 9
+        },
+        "relevant_logs": [
+          {
+            "attackId": 531,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 89,
+            "type": 15
+          },
+          {
+            "cardId": 345,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 22,
+            "type": 16,
+            "value": 0
+          },
+          {
+            "cardIdActive": 381,
+            "cardIdBench": 381,
+            "playerIndex": 1,
+            "serialActive": 89,
+            "serialBench": 88,
+            "type": 8
+          }
+        ],
+        "step_index": 83
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 531,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 88,
+          "type": 15
+        },
+        "episode_member": "85481079.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 89
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 88
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 330,
+              "id": 381,
+              "max_hp": 330,
+              "serial": 87
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 78
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 77
+            }
+          ],
+          "hand_count": 3,
+          "turn": 13
+        },
+        "relevant_logs": [
+          {
+            "attackId": 531,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 88,
+            "type": 15
+          },
+          {
+            "cardId": 345,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 22,
+            "type": 16,
+            "value": 0
+          },
+          {
+            "cardId": 1261,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 122,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1142,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 100,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 381,
+            "cardIdBench": 381,
+            "playerIndex": 1,
+            "serialActive": 89,
+            "serialBench": 88,
+            "type": 8
+          }
+        ],
+        "step_index": 93
+      }
+    ],
+    "card:381:attack:1": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 532,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 89,
+          "type": 15
+        },
+        "episode_member": "85482202.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 89
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 78
+            },
+            {
+              "energy_card_ids": [
+                6
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 270,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 87
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 76
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 77
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 387,
+              "max_hp": 70,
+              "serial": 91
+            }
+          ],
+          "hand_count": 3,
+          "turn": 10
+        },
+        "relevant_logs": [
+          {
+            "attackId": 532,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 89,
+            "type": 15
+          },
+          {
+            "cardId": 678,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 3,
+            "type": 16,
+            "value": -350
+          },
+          {
+            "cardId": 6,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 67,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 6,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 64,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 678,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 3,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 677,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 20,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 60,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 678,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 6,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 54,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 35,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 23,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 22,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1159,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 36,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1142,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 30,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 37,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 49,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 35,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 23,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 22,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1159,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 36,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1142,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 30,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 37,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 12,
+            "playerIndex": 0,
+            "serial": 49,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 115,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 85,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 96,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1152,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 106,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 93,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 387,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 90,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 117,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 132
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 532,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 71,
+          "type": 15
+        },
+        "episode_member": "85485827.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 400,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 71
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 30,
+              "id": 381,
+              "max_hp": 400,
+              "serial": 70
+            },
+            {
+              "energy_card_ids": [
+                20
+              ],
+              "energy_types": [
+                6
+              ],
+              "hp": 20,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 76
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 68
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 379,
+              "max_hp": 70,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 65
+            }
+          ],
+          "hand_count": 8,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 532,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 71,
+            "type": 15
+          },
+          {
+            "cardId": 1031,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 7,
+            "type": 16,
+            "value": -290
+          },
+          {
+            "cardId": 6,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 81,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 6,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 83,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1031,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1030,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 3,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 31,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 1030,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1122,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 381,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 70,
+            "type": 16,
+            "value": -130
+          },
+          {
+            "cardId": 133,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 132,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 12,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 131,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 6,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 84,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 381,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 72,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 387,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 91,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 86
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 532,
+          "cardId": 381,
+          "playerIndex": 1,
+          "serial": 71,
+          "type": 15
+        },
+        "episode_member": "85494467.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 67
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 130,
+              "id": 342,
+              "max_hp": 130,
+              "serial": 69
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 341,
+              "max_hp": 70,
+              "serial": 66
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 387,
+              "max_hp": 70,
+              "serial": 90
+            }
+          ],
+          "hand_count": 8,
+          "turn": 19
+        },
+        "relevant_logs": [
+          {
+            "attackId": 532,
+            "cardId": 381,
+            "playerIndex": 1,
+            "serial": 71,
+            "type": 15
+          },
+          {
+            "cardId": 381,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 12,
+            "type": 16,
+            "value": -320
+          },
+          {
+            "cardId": 20,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 89,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 6,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 82,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 381,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 12,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 18,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 379,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1173,
+            "fromArea": 9,
+            "playerIndex": 0,
+            "serial": 48,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 381,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 35,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 33,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 341,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 5,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 342,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 9,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 20,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 26,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardIdActive": 381,
+            "cardIdBench": 387,
+            "playerIndex": 0,
+            "serialActive": 10,
+            "serialBench": 31,
+            "type": 8
+          },
+          {
+            "cardId": 381,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 71,
+            "type": 16,
+            "value": -400
+          },
+          {
+            "cardId": 381,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 71,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 380,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 77,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 379,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 75,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1173,
+            "fromArea": 9,
+            "playerIndex": 1,
+            "serial": 109,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 164
+      }
+    ],
+    "card:400:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 559,
+          "cardId": 400,
+          "playerIndex": 1,
+          "serial": 66,
+          "type": 15
+        },
+        "episode_member": "85490938.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1
+              ],
+              "energy_types": [
+                1
+              ],
+              "hp": 40,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 66
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 67
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 68
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 64
+            }
+          ],
+          "hand_count": 5,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 559,
+            "cardId": 400,
+            "playerIndex": 1,
+            "serial": 66,
+            "type": 15
+          },
+          {
+            "cardId": 1030,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 18,
+            "type": 16,
+            "value": -30
+          },
+          {
+            "cardId": 400,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 66,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 1189,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 41,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1097,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 30,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 49,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 860,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 5,
+            "type": 6
+          }
+        ],
+        "step_index": 22
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 559,
+          "cardId": 400,
+          "playerIndex": 1,
+          "serial": 67,
+          "type": 15
+        },
+        "episode_member": "85496657.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1
+              ],
+              "energy_types": [
+                1
+              ],
+              "hp": 140,
+              "id": 400,
+              "max_hp": 150,
+              "serial": 67
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 68
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 64
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 65
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 66
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            }
+          ],
+          "hand_count": 4,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 559,
+            "cardId": 400,
+            "playerIndex": 1,
+            "serial": 67,
+            "type": 15
+          },
+          {
+            "cardId": 344,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": -30
+          },
+          {
+            "cardId": 400,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 67,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 345,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 21,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 53,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 51,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 52,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 45,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 43,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 53,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 60,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 18,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 343,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 16,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 49,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 401,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 69,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          }
+        ],
+        "step_index": 22
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 559,
+          "cardId": 400,
+          "playerIndex": 1,
+          "serial": 68,
+          "type": 15
+        },
+        "episode_member": "85499187.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1
+              ],
+              "energy_types": [
+                1
+              ],
+              "hp": 40,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 68
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 73
+            }
+          ],
+          "hand_count": 6,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 559,
+            "cardId": 400,
+            "playerIndex": 1,
+            "serial": 68,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 27,
+            "type": 16,
+            "value": -30
+          },
+          {
+            "cardId": 400,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 68,
+            "type": 16,
+            "value": -10
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 54,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 38,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 42,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 59,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 345,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 20,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 50,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 59,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 11,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 24,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1122,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 37,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 58,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 344,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 16,
+            "toArea": 5,
+            "type": 6
+          },
+          {
+            "cardId": 1257,
+            "fromArea": 7,
+            "playerIndex": 1,
+            "serial": 93,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1264,
+            "fromArea": 7,
+            "playerIndex": 0,
+            "serial": 61,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 401,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 70,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 21
+      }
+    ],
+    "card:401:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 560,
+          "cardId": 401,
+          "playerIndex": 0,
+          "serial": 12,
+          "type": 15
+        },
+        "episode_member": "85481084.json",
+        "post_resolution_current": {
+          "attacking_player": 0,
+          "board": [
+            {
+              "energy_card_ids": [
+                3,
+                1
+              ],
+              "energy_types": [
+                3,
+                1
+              ],
+              "hp": 190,
+              "id": 401,
+              "max_hp": 230,
+              "serial": 12
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 50
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 31
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 130,
+              "id": 401,
+              "max_hp": 130,
+              "serial": 11
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 130,
+              "id": 401,
+              "max_hp": 130,
+              "serial": 9
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 4
+            }
+          ],
+          "hand_count": 4,
+          "turn": 19
+        },
+        "relevant_logs": [
+          {
+            "attackId": 560,
+            "cardId": 401,
+            "playerIndex": 0,
+            "serial": 12,
+            "type": 15
+          },
+          {
+            "cardId": 345,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 84,
+            "type": 16,
+            "value": -180
+          },
+          {
+            "cardId": 345,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 84,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 344,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 78,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 160
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 560,
+          "cardId": 401,
+          "playerIndex": 1,
+          "serial": 70,
+          "type": 15
+        },
+        "episode_member": "85481085.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 75
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 110
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 63
+            }
+          ],
+          "hand_count": 4,
+          "turn": 15
+        },
+        "relevant_logs": [
+          {
+            "attackId": 560,
+            "cardId": 401,
+            "playerIndex": 1,
+            "serial": 70,
+            "type": 15
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 28,
+            "type": 16,
+            "value": -180
+          },
+          {
+            "cardId": 743,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 742,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 23,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 18,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 19,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 8,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 5,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 743,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 27,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 401,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 70,
+            "type": 16,
+            "value": -260
+          },
+          {
+            "cardId": 401,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 70,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 400,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 65,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 118,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 1,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 116,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardIdActive": 434,
+            "cardIdBench": 414,
+            "playerIndex": 1,
+            "serialActive": 74,
+            "serialBench": 91,
+            "type": 8
+          }
+        ],
+        "step_index": 103
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 560,
+          "cardId": 401,
+          "playerIndex": 1,
+          "serial": 71,
+          "type": 15
+        },
+        "episode_member": "85481637.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                1,
+                1,
+                3
+              ],
+              "energy_types": [
+                1,
+                1,
+                3
+              ],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 75
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 380,
+              "id": 431,
+              "max_hp": 380,
+              "serial": 63
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 65
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 64
+            }
+          ],
+          "hand_count": 6,
+          "turn": 27
+        },
+        "relevant_logs": [
+          {
+            "attackId": 560,
+            "cardId": 401,
+            "playerIndex": 1,
+            "serial": 71,
+            "type": 15
+          },
+          {
+            "cardId": 305,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 15,
+            "type": 16,
+            "value": -180
+          },
+          {
+            "cardId": 305,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 743,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 401,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 71,
+            "type": 16,
+            "value": -360
+          },
+          {
+            "cardId": 401,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 71,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 400,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 68,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 119,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 122,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 1,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 116,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          }
+        ],
+        "step_index": 176
+      }
+    ],
+    "card:431:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 608,
+          "cardId": 431,
+          "playerIndex": 1,
+          "serial": 64,
+          "type": 15
+        },
+        "episode_member": "85483202.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 75
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            },
+            {
+              "energy_card_ids": [
+                15,
+                15,
+                1
+              ],
+              "energy_types": [
+                11,
+                11,
+                11,
+                11,
+                1
+              ],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 67
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 200,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 64
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 280,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 63
+            }
+          ],
+          "hand_count": 7,
+          "turn": 25
+        },
+        "relevant_logs": [
+          {
+            "attackId": 608,
+            "cardId": 431,
+            "playerIndex": 1,
+            "serial": 64,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 26,
+            "type": 16,
+            "value": -160
+          },
+          {
+            "cardId": 345,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 22,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1134,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 84,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 15,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 113,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 90,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 431,
+            "cardIdBench": 434,
+            "playerIndex": 1,
+            "serialActive": 64,
+            "serialBench": 74,
+            "type": 8
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 18,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1182,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 47,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 27,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 38,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 44,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 51,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 42,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 38,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1264,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 61,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 60,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 41,
+            "toArea": 12,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardIdActive": 434,
+            "cardIdBench": 414,
+            "playerIndex": 1,
+            "serialActive": 74,
+            "serialBench": 75,
+            "type": 8
+          },
+          {
+            "cardId": 1220,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 102,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1216,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 96,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1216,
+            "fromArea": 2,
+            "playerIndex": 1,
+            "serial": 97,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 1218,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 80,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 1,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 118,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 28,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 29,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 27,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 43,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 60,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardIdActive": 414,
+            "cardIdBench": 434,
+            "playerIndex": 1,
+            "serialActive": 75,
+            "serialBench": 74,
+            "type": 8
+          },
+          {
+            "cardIdActive": 345,
+            "cardIdBench": 345,
+            "playerIndex": 0,
+            "serialActive": 22,
+            "serialBench": 23,
+            "type": 8
+          },
+          {
+            "cardId": 1217,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 76,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 1257,
+            "fromArea": 7,
+            "playerIndex": 1,
+            "serial": 94,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 137
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 608,
+          "cardId": 431,
+          "playerIndex": 1,
+          "serial": 63,
+          "type": 15
+        },
+        "episode_member": "85487001.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                15,
+                1
+              ],
+              "energy_types": [
+                11,
+                11,
+                1
+              ],
+              "hp": 240,
+              "id": 431,
+              "max_hp": 280,
+              "serial": 63
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 91
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 230,
+              "id": 401,
+              "max_hp": 230,
+              "serial": 72
+            },
+            {
+              "energy_card_ids": [
+                1,
+                1
+              ],
+              "energy_types": [
+                1,
+                1
+              ],
+              "hp": 130,
+              "id": 401,
+              "max_hp": 130,
+              "serial": 71
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 110
+            }
+          ],
+          "hand_count": 9,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 608,
+            "cardId": 431,
+            "playerIndex": 1,
+            "serial": 63,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 28,
+            "type": 16,
+            "value": -160
+          },
+          {
+            "cardId": 431,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 63,
+            "type": 16,
+            "value": -20
+          },
+          {
+            "cardId": 431,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 63,
+            "type": 16,
+            "value": -20
+          },
+          {
+            "cardId": 1257,
+            "fromArea": 7,
+            "playerIndex": 1,
+            "serial": 93,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 431,
+            "cardIdBench": 401,
+            "playerIndex": 1,
+            "serialActive": 63,
+            "serialBench": 72,
+            "type": 8
+          },
+          {
+            "cardIdActive": 345,
+            "cardIdBench": 756,
+            "playerIndex": 0,
+            "serialActive": 21,
+            "serialBench": 28,
+            "type": 8
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 120,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 118,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 401,
+            "cardIdBench": 401,
+            "playerIndex": 1,
+            "serialActive": 72,
+            "serialBench": 71,
+            "type": 8
+          }
+        ],
+        "step_index": 108
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 608,
+          "cardId": 431,
+          "playerIndex": 1,
+          "serial": 64,
+          "type": 15
+        },
+        "episode_member": "85490421.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 73
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 120,
+              "id": 414,
+              "max_hp": 120,
+              "serial": 75
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 60,
+              "id": 434,
+              "max_hp": 60,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 50,
+              "id": 400,
+              "max_hp": 50,
+              "serial": 67
+            }
+          ],
+          "hand_count": 7,
+          "turn": 5
+        },
+        "relevant_logs": [
+          {
+            "attackId": 608,
+            "cardId": 431,
+            "playerIndex": 1,
+            "serial": 64,
+            "type": 15
+          },
+          {
+            "cardId": 1031,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 23,
+            "type": 16,
+            "value": -160
+          },
+          {
+            "cardIdActive": 1031,
+            "cardIdBench": 861,
+            "playerIndex": 0,
+            "serialActive": 23,
+            "serialBench": 15,
+            "type": 8
+          },
+          {
+            "cardId": 431,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 64,
+            "type": 16,
+            "value": -350
+          },
+          {
+            "cardId": 431,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 64,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 90,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 15,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 115,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1159,
+            "fromArea": 9,
+            "playerIndex": 1,
+            "serial": 89,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardId": 1189,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 42,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1262,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 59,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 45,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 666,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 61,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1182,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1031,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 21,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 3,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 4,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1197,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 43,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 401,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 71,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 1262,
+            "fromArea": 7,
+            "playerIndex": 0,
+            "serial": 56,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardIdActive": 434,
+            "cardIdBench": 401,
+            "playerIndex": 1,
+            "serialActive": 73,
+            "serialBench": 71,
+            "type": 8
+          }
+        ],
+        "step_index": 39
+      }
+    ],
+    "card:434:attack:0": [],
+    "card:666:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 965,
+          "cardId": 666,
+          "playerIndex": 0,
+          "serial": 61,
+          "type": 15
+        },
+        "episode_member": "85485256.json",
+        "post_resolution_current": {
+          "attacking_player": 0,
+          "board": [
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 410,
+              "id": 861,
+              "max_hp": 410,
+              "serial": 15
+            },
+            {
+              "energy_card_ids": [
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3
+              ],
+              "hp": 330,
+              "id": 1031,
+              "max_hp": 330,
+              "serial": 23
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 160,
+              "id": 666,
+              "max_hp": 160,
+              "serial": 61
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 310,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 16
+            }
+          ],
+          "hand_count": 6,
+          "turn": 8
+        },
+        "relevant_logs": [
+          {
+            "attackId": 965,
+            "cardId": 666,
+            "playerIndex": 0,
+            "serial": 61,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 71,
+            "type": 16,
+            "value": -50
+          },
+          {
+            "cardId": 1262,
+            "fromArea": 7,
+            "playerIndex": 0,
+            "serial": 56,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 345,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 68,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 14,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 119,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 1229,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 55,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1224,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 44,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1031,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 21,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1224,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 52,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardIdActive": 666,
+            "cardIdBench": 861,
+            "playerIndex": 0,
+            "serialActive": 61,
+            "serialBench": 15,
+            "type": 8
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 71,
+            "type": 16,
+            "value": -300
+          },
+          {
+            "cardIdActive": 756,
+            "cardIdBench": 345,
+            "playerIndex": 1,
+            "serialActive": 71,
+            "serialBench": 67,
+            "type": 8
+          },
+          {
+            "cardId": 1030,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 20,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1224,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 44,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 1086,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 24,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 40
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 965,
+          "cardId": 666,
+          "playerIndex": 1,
+          "serial": 120,
+          "type": 15
+        },
+        "episode_member": "85485624.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 160,
+              "id": 666,
+              "max_hp": 160,
+              "serial": 120
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 72
+            },
+            {
+              "energy_card_ids": [
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3
+              ],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 73
+            }
+          ],
+          "hand_count": 6,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 965,
+            "cardId": 666,
+            "playerIndex": 1,
+            "serial": 120,
+            "type": 15
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 11,
+            "type": 16,
+            "value": -50
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardIdActive": 666,
+            "cardIdBench": 1031,
+            "playerIndex": 1,
+            "serialActive": 120,
+            "serialBench": 82,
+            "type": 8
+          }
+        ],
+        "step_index": 24
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 965,
+          "cardId": 666,
+          "playerIndex": 1,
+          "serial": 121,
+          "type": 15
+        },
+        "episode_member": "85491426.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 140,
+              "id": 666,
+              "max_hp": 160,
+              "serial": 121
+            },
+            {
+              "energy_card_ids": [
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3
+              ],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 74
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 80
+            }
+          ],
+          "hand_count": 7,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 965,
+            "cardId": 666,
+            "playerIndex": 1,
+            "serial": 121,
+            "type": 15
+          },
+          {
+            "cardId": 756,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 25,
+            "type": 16,
+            "value": -50
+          },
+          {
+            "cardId": 666,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 121,
+            "type": 16,
+            "value": -20
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1123,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 34,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1182,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 43,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 756,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 22,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 18,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1147,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 37,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1204,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 49,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 2,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 1225,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 107,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "cardIdActive": 666,
+            "cardIdBench": 861,
+            "playerIndex": 1,
+            "serialActive": 121,
+            "serialBench": 75,
+            "type": 8
+          }
+        ],
+        "step_index": 23
+      }
+    ],
+    "card:689:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 997,
+          "cardId": 689,
+          "playerIndex": 1,
+          "serial": 94,
+          "type": 15
+        },
+        "episode_member": "85483229.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                7
+              ],
+              "energy_types": [
+                7
+              ],
+              "hp": 110,
+              "id": 689,
+              "max_hp": 110,
+              "serial": 94
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 40,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 85
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 84
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 305,
+              "max_hp": 70,
+              "serial": 81
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 87
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 86
+            }
+          ],
+          "hand_count": 2,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 997,
+            "cardId": 689,
+            "playerIndex": 1,
+            "serial": 94,
+            "type": 15
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": -40
+          },
+          {
+            "cardId": 1227,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 39,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 648,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 5,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1080,
+            "fromArea": 2,
+            "playerIndex": 0,
+            "serial": 35,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1260,
+            "fromArea": 7,
+            "playerIndex": 1,
+            "serial": 122,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 646,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 10,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": 30
+          },
+          {
+            "cardId": 648,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 90,
+            "toArea": 2,
+            "type": 6
+          }
+        ],
+        "step_index": 28
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 997,
+          "cardId": 689,
+          "playerIndex": 1,
+          "serial": 94,
+          "type": 15
+        },
+        "episode_member": "85483229.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                7
+              ],
+              "energy_types": [
+                7
+              ],
+              "hp": 110,
+              "id": 689,
+              "max_hp": 110,
+              "serial": 94
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 20,
+              "id": 647,
+              "max_hp": 100,
+              "serial": 89
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 84
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 305,
+              "max_hp": 70,
+              "serial": 81
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 87
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 86
+            }
+          ],
+          "hand_count": 3,
+          "turn": 5
+        },
+        "relevant_logs": [
+          {
+            "attackId": 997,
+            "cardId": 689,
+            "playerIndex": 1,
+            "serial": 94,
+            "type": 15
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": -40
+          },
+          {
+            "cardId": 648,
+            "fromArea": 1,
+            "playerIndex": 0,
+            "serial": 5,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": 30
+          },
+          {
+            "cardId": 112,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": 20
+          },
+          {
+            "cardId": 647,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 88,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardIdActive": 689,
+            "cardIdBench": 648,
+            "playerIndex": 1,
+            "serialActive": 94,
+            "serialBench": 90,
+            "type": 8
+          }
+        ],
+        "step_index": 45
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 997,
+          "cardId": 689,
+          "playerIndex": 1,
+          "serial": 94,
+          "type": 15
+        },
+        "episode_member": "85485791.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                7
+              ],
+              "energy_types": [
+                7
+              ],
+              "hp": 110,
+              "id": 689,
+              "max_hp": 110,
+              "serial": 94
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 646,
+              "max_hp": 70,
+              "serial": 86
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 305,
+              "max_hp": 70,
+              "serial": 81
+            }
+          ],
+          "hand_count": 4,
+          "turn": 3
+        },
+        "relevant_logs": [
+          {
+            "attackId": 997,
+            "cardId": 689,
+            "playerIndex": 1,
+            "serial": 94,
+            "type": 15
+          },
+          {
+            "cardId": 344,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 19,
+            "type": 16,
+            "value": -20
+          },
+          {
+            "cardId": 66,
+            "fromArea": 5,
+            "playerIndex": 1,
+            "serial": 73,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 81,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardIdActive": 689,
+            "cardIdBench": 648,
+            "playerIndex": 1,
+            "serialActive": 94,
+            "serialBench": 92,
+            "type": 8
+          }
+        ],
+        "step_index": 18
+      }
+    ],
+    "card:861:attack:0": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 1240,
+          "cardId": 861,
+          "playerIndex": 0,
+          "serial": 16,
+          "type": 15
+        },
+        "episode_member": "85484604.json",
+        "post_resolution_current": {
+          "attacking_player": 0,
+          "board": [
+            {
+              "energy_card_ids": [
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3
+              ],
+              "hp": 330,
+              "id": 1031,
+              "max_hp": 330,
+              "serial": 22
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 310,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 16
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 310,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 17
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 14
+            }
+          ],
+          "hand_count": 8,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 1240,
+            "cardId": 861,
+            "playerIndex": 0,
+            "serial": 16,
+            "type": 15
+          },
+          {
+            "cardId": 849,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 66,
+            "type": 16,
+            "value": -250
+          },
+          {
+            "cardId": 849,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 66,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 848,
+            "fromArea": 10,
+            "playerIndex": 1,
+            "serial": 63,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 11,
+            "fromArea": 8,
+            "playerIndex": 1,
+            "serial": 118,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 65,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 72,
+            "toArea": 5,
+            "type": 6
+          },
+          {
+            "cardIdActive": 861,
+            "cardIdBench": 1031,
+            "playerIndex": 0,
+            "serialActive": 16,
+            "serialBench": 22,
+            "type": 8
+          },
+          {
+            "cardId": 3,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 69,
+            "type": 16,
+            "value": -120
+          },
+          {
+            "cardId": 305,
+            "playerIndex": 1,
+            "putDamageCounter": false,
+            "serial": 71,
+            "type": 16,
+            "value": -120
+          },
+          {
+            "cardId": 174,
+            "fromArea": 5,
+            "playerIndex": 1,
+            "serial": 76,
+            "toArea": 3,
+            "type": 6
+          }
+        ],
+        "step_index": 62
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 1240,
+          "cardId": 861,
+          "playerIndex": 1,
+          "serial": 77,
+          "type": 15
+        },
+        "episode_member": "85485080.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 310,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 77
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 79
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 78
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 72
+            }
+          ],
+          "hand_count": 5,
+          "turn": 4
+        },
+        "relevant_logs": [
+          {
+            "attackId": 1240,
+            "cardId": 861,
+            "playerIndex": 1,
+            "serial": 77,
+            "type": 15
+          },
+          {
+            "cardId": 741,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 6,
+            "type": 16,
+            "value": -150
+          },
+          {
+            "cardId": 741,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 305,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 18,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 14,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 13,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 54,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 742,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 1031,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 82,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardId": 3,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 63,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "fromArea": 1,
+            "playerIndex": 1,
+            "toArea": 12,
+            "type": 7
+          },
+          {
+            "cardId": 1229,
+            "fromArea": 12,
+            "playerIndex": 1,
+            "serial": 114,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          },
+          {
+            "fromArea": 12,
+            "playerIndex": 1,
+            "toArea": 1,
+            "type": 7
+          }
+        ],
+        "step_index": 32
+      },
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip",
+        "attack_log": {
+          "attackId": 1240,
+          "cardId": 861,
+          "playerIndex": 1,
+          "serial": 77,
+          "type": 15
+        },
+        "episode_member": "85485080.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 330,
+              "id": 1031,
+              "max_hp": 330,
+              "serial": 82
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 310,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 77
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 860,
+              "max_hp": 70,
+              "serial": 72
+            }
+          ],
+          "hand_count": 6,
+          "turn": 6
+        },
+        "relevant_logs": [
+          {
+            "attackId": 1240,
+            "cardId": 861,
+            "playerIndex": 1,
+            "serial": 77,
+            "type": 15
+          },
+          {
+            "cardId": 742,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 7,
+            "type": 16,
+            "value": -350
+          },
+          {
+            "cardId": 742,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 3,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 19,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 56,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 305,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 66,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 17,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 305,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 15,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 743,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 61,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 742,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 7,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 3,
+            "toArea": 1,
+            "type": 6
+          },
+          {
+            "cardId": 1030,
+            "playerIndex": 1,
+            "putDamageCounter": true,
+            "serial": 78,
+            "type": 16,
+            "value": -180
+          },
+          {
+            "cardId": 1030,
+            "fromArea": 4,
+            "playerIndex": 1,
+            "serial": 78,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 860,
+            "fromArea": 1,
+            "playerIndex": 1,
+            "serial": 74,
+            "toArea": 5,
+            "type": 6
+          }
+        ],
+        "step_index": 62
+      }
+    ],
+    "card:861:attack:1": [
+      {
+        "agent_index": 0,
+        "archive": "Imitation-Learning/Top-ladder-data/7-14/pokemon-tcg-ai-battle-episodes-2026-07-14.zip",
+        "attack_log": {
+          "attackId": 1241,
+          "cardId": 861,
+          "playerIndex": 1,
+          "serial": 75,
+          "type": 15
+        },
+        "episode_member": "85928825.json",
+        "post_resolution_current": {
+          "attacking_player": 1,
+          "board": [
+            {
+              "energy_card_ids": [
+                3,
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3,
+                3
+              ],
+              "hp": 150,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 75
+            },
+            {
+              "energy_card_ids": [
+                3
+              ],
+              "energy_types": [
+                3
+              ],
+              "hp": 20,
+              "id": 666,
+              "max_hp": 160,
+              "serial": 120
+            },
+            {
+              "energy_card_ids": [
+                3,
+                3
+              ],
+              "energy_types": [
+                3,
+                3
+              ],
+              "hp": 270,
+              "id": 861,
+              "max_hp": 310,
+              "serial": 76
+            },
+            {
+              "energy_card_ids": [],
+              "energy_types": [],
+              "hp": 70,
+              "id": 1030,
+              "max_hp": 70,
+              "serial": 78
+            }
+          ],
+          "hand_count": 6,
+          "turn": 11
+        },
+        "relevant_logs": [
+          {
+            "attackId": 1241,
+            "cardId": 861,
+            "playerIndex": 1,
+            "serial": 75,
+            "type": 15
+          },
+          {
+            "cardId": 743,
+            "playerIndex": 0,
+            "putDamageCounter": false,
+            "serial": 25,
+            "type": 16,
+            "value": -150
+          },
+          {
+            "cardId": 743,
+            "isRecover": false,
+            "playerIndex": 0,
+            "serial": 25,
+            "type": 19
+          },
+          {
+            "cardId": 743,
+            "fromArea": 4,
+            "playerIndex": 0,
+            "serial": 25,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 10,
+            "playerIndex": 0,
+            "serial": 20,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "cardId": 19,
+            "fromArea": 8,
+            "playerIndex": 0,
+            "serial": 6,
+            "toArea": 3,
+            "type": 6
+          },
+          {
+            "fromArea": 6,
+            "playerIndex": 1,
+            "toArea": 2,
+            "type": 7
+          },
+          {
+            "cardId": 305,
+            "fromArea": 5,
+            "playerIndex": 0,
+            "serial": 13,
+            "toArea": 4,
+            "type": 6
+          },
+          {
+            "cardId": 741,
+            "fromArea": 3,
+            "playerIndex": 0,
+            "serial": 20,
+            "toArea": 2,
+            "type": 6
+          },
+          {
+            "cardIdActive": 861,
+            "cardIdBench": 861,
+            "playerIndex": 1,
+            "serialActive": 75,
+            "serialBench": 76,
+            "type": 8
+          }
+        ],
+        "step_index": 91
+      }
+    ]
+  },
+  "schema_version": 1,
+  "target_effect_ids": [
+    "card:1071:attack:0",
+    "card:117:attack:0",
+    "card:121:attack:1",
+    "card:131:attack:0",
+    "card:133:attack:0",
+    "card:379:attack:0",
+    "card:381:attack:0",
+    "card:381:attack:1",
+    "card:400:attack:0",
+    "card:401:attack:0",
+    "card:431:attack:0",
+    "card:434:attack:0",
+    "card:666:attack:0",
+    "card:689:attack:0",
+    "card:861:attack:0",
+    "card:861:attack:1"
+  ]
+}

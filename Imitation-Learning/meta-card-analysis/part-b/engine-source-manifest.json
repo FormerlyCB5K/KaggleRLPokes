@@ -1,0 +1,292 @@
+{
+  "engine_identity": {
+    "archive": {
+      "crc_check": "passed",
+      "files": 45,
+      "members": 47,
+      "path": "Imitation-Learning/ptcg_engine.zip",
+      "sha256": "d1a824b2740e9447acb988cc54f9d5de70af77f2be4f54b891cfa2d74e2a3802",
+      "size_bytes": 292848
+    },
+    "competition_module_version": "1.32.0",
+    "dataset_module_versions": {
+      "Imitation-Learning/Top-ladder-data/7-12/pokemon-tcg-ai-battle-episodes-2026-07-12.zip": "1.32.0",
+      "Imitation-Learning/Top-ladder-data/7-13/pokemon-tcg-ai-battle-episodes-2026-07-13.zip": "1.32.0",
+      "Imitation-Learning/Top-ladder-data/7-14/pokemon-tcg-ai-battle-episodes-2026-07-14.zip": "1.32.0"
+    },
+    "user_confirmation": "ptcg_engine.zip is exactly the engine that ran the July 12-14 games"
+  },
+  "extraction": {
+    "content_mismatches": [],
+    "extra_extracted": [],
+    "file_count": 45,
+    "files": [
+      {
+        "path": "ActivateInfo.h",
+        "sha256": "a4c327b6c8fc6be3a80e67eae90f07e13ab799af65b3f6bb4456b387aeacedf8",
+        "size_bytes": 1714
+      },
+      {
+        "path": "AddLog.h",
+        "sha256": "70c4b980fd7b64fd53e4add3269de076546b8f3284304d6cca84b6b070aef869",
+        "size_bytes": 6906
+      },
+      {
+        "path": "AddOption.h",
+        "sha256": "dfe24ced984da07aaf50cab7835744064c19de87e24c14a943fb01584c15117f",
+        "size_bytes": 4268
+      },
+      {
+        "path": "All.h",
+        "sha256": "b176e6c5d1d3dde03e103f67b26117cab8e89b607bcfea26e01147be6e9dd41f",
+        "size_bytes": 748
+      },
+      {
+        "path": "Api.h",
+        "sha256": "786acae884631bdcbab0311471316bc75d62acb465b8011bf09dad05628bcafd",
+        "size_bytes": 8427
+      },
+      {
+        "path": "ApiData.h",
+        "sha256": "b21025cb1027556746f11fd73d6851ef231fa6492d82dd8074e80d70cbf93da9",
+        "size_bytes": 933
+      },
+      {
+        "path": "ApiJson.h",
+        "sha256": "fa405a0421ad09fbae6e3922bd73a0a07333b17790dea7e8fd90c1b97f326851",
+        "size_bytes": 13028
+      },
+      {
+        "path": "ApiType.h",
+        "sha256": "d270162140ce1e518a9f2ea6a4a73ed10e9585b8a212eb9a3eca0ba1c220d655",
+        "size_bytes": 3130
+      },
+      {
+        "path": "BattleData.h",
+        "sha256": "6aa12c3cdec1b3e3aca0b4c102952ab5713a4ba10c1a0a8df66be3b42db5db8f",
+        "size_bytes": 8844
+      },
+      {
+        "path": "Binary.h",
+        "sha256": "ab42f329818f19e4a03d76edf8066312fc0060bbc1b5524a17897a1636b12257",
+        "size_bytes": 4934
+      },
+      {
+        "path": "Card.h",
+        "sha256": "32a3b5fc5b1cb2eb7826b97faade4ec36ed5aa83082bab32e6ad8fbb394c844d",
+        "size_bytes": 11962
+      },
+      {
+        "path": "CardImpl.h",
+        "sha256": "286a51820d36f9b60b5b13c58bc2edff352eb4050581ddadf1960f13fd6f21a9",
+        "size_bytes": 878383
+      },
+      {
+        "path": "CardMove.h",
+        "sha256": "7252d27c63c539c30899e3c7136e34506e9b3be3f09e974cfc4b2f3139e26a0d",
+        "size_bytes": 16529
+      },
+      {
+        "path": "Core.h",
+        "sha256": "fdc29455564073b865cc8ac0e0429e66a1df4a245594b26f939d64bc1d0fd7a3",
+        "size_bytes": 1524
+      },
+      {
+        "path": "CreateCard.h",
+        "sha256": "54bf6a7fc374f740454116b5a291460192287b8d1ba8791cf223ecda925f78d0",
+        "size_bytes": 57440
+      },
+      {
+        "path": "EffectContinual.h",
+        "sha256": "5ac571b4ed6e5b324098cd9ca0377f53eba4788172ab8d9c891648d4c5b09c83",
+        "size_bytes": 16472
+      },
+      {
+        "path": "EffectInstant.h",
+        "sha256": "31da884f26f9d7820d37770dfaa9a54229cd15d1185b41e20d718437fed3f217",
+        "size_bytes": 65821
+      },
+      {
+        "path": "EffectProc.h",
+        "sha256": "ab5aa982826910d372b5983308f995675ff2c9b40823b444fbff6f1a26f0f975",
+        "size_bytes": 36883
+      },
+      {
+        "path": "Export.cpp",
+        "sha256": "1269f64671527d50b8560540473438e9781926fdbdb0c9383b344f0fb91bf82f",
+        "size_bytes": 5117
+      },
+      {
+        "path": "FixedList.h",
+        "sha256": "2e1de1418edf279040ba7dc9e8ec9fb1608880f6a66d742b5036b74f1f31836f",
+        "size_bytes": 4907
+      },
+      {
+        "path": "Framework.h",
+        "sha256": "f0ad603d615ba1769c622982e791d042a900d4dfa0b2d53f6ce48b84eced19a2",
+        "size_bytes": 903
+      },
+      {
+        "path": "Game.h",
+        "sha256": "1dd43b6a46f225ff2a238d92e8d718cf0d7414773bfe52388f5325bf02b0a097",
+        "size_bytes": 2857
+      },
+      {
+        "path": "GameFunction.h",
+        "sha256": "b88525cdd5a760d7c8871d99897453a2433fdd024f76a67ea8568806f4cfcf57",
+        "size_bytes": 1536
+      },
+      {
+        "path": "GameProc.h",
+        "sha256": "cf1537be5c439bed44fbf08b91a6b066f3878ee5ae8a88a828f110bce01b3260",
+        "size_bytes": 30790
+      },
+      {
+        "path": "GameUtil.h",
+        "sha256": "ae42efb5ec81b9292eeeb51742de9661af8a6cc0a7e0e0999ff0dea347d55aab",
+        "size_bytes": 6201
+      },
+      {
+        "path": "InitializeCard.h",
+        "sha256": "130b20dbedeb8de09e4cab1b3cba0b12fe1d0654788b134e29d2245dd0f36da8",
+        "size_bytes": 1211
+      },
+      {
+        "path": "JsonBuilder.h",
+        "sha256": "4a6c1604e4fce3669a7734c0c80a41227448af9ad7f9c5834757d7d1fb143fe7",
+        "size_bytes": 3500
+      },
+      {
+        "path": "LICENSES/LicenseRef-PTCG-ABC-Competition-Use-Only.txt",
+        "sha256": "0bc3060e440432fa9481071ee9531d0d34e7212b1b6ffe595e38b9c9cd9c081b",
+        "size_bytes": 1590
+      },
+      {
+        "path": "PlayerState.h",
+        "sha256": "269e7c4a2c1522245fc2ddc1e89cf83412d1b00f1deed4b673f3275906a412a1",
+        "size_bytes": 3713
+      },
+      {
+        "path": "PullTrigger.h",
+        "sha256": "620076e485690bdab1f82327bc862374803794b54c5cccce0339a5abc0f8db99",
+        "size_bytes": 5310
+      },
+      {
+        "path": "README.md",
+        "sha256": "7e49513e5704a95f13772d87e0e955eba20903cd7184367928e3a5f08540c91d",
+        "size_bytes": 2293
+      },
+      {
+        "path": "REUSE.toml",
+        "sha256": "9bcfaf05c5d0a6abfe923bcd918c8fd9524c297e44592085db70a67639f9ae5b",
+        "size_bytes": 464
+      },
+      {
+        "path": "SatisfyCondition.h",
+        "sha256": "5a26309ff23e616b6a27c66e5a9125d6062763cd5dbf0e903f589a3f85a59127",
+        "size_bytes": 9988
+      },
+      {
+        "path": "Search.h",
+        "sha256": "d73553ee85dd993f2c1d7e4606e3e38f988f5390b88080148f4ef98a926762f9",
+        "size_bytes": 6321
+      },
+      {
+        "path": "SelectProc.h",
+        "sha256": "cefae973a571d00a7c34a94f613e27c5048080c371ee62824dca390519099c46",
+        "size_bytes": 14926
+      },
+      {
+        "path": "SetProperty.h",
+        "sha256": "a563762c4a8f6c1f9c77048b89f770cd2e7a5d4801cd29256196dda9e40fcb81",
+        "size_bytes": 14367
+      },
+      {
+        "path": "SetupProc.h",
+        "sha256": "fa1e3290d45796fa802b50f3005c657202653173183ca0abb024656b0ed7e1a9",
+        "size_bytes": 8266
+      },
+      {
+        "path": "Skill.h",
+        "sha256": "53415b8143e0b23dbfe6b79997924effd90afa6104022334c6e8aeaa3c23991e",
+        "size_bytes": 8400
+      },
+      {
+        "path": "State.h",
+        "sha256": "a12bc5669b4b79c122899142f86616f8d9926684d9029392220c5c886de2a33c",
+        "size_bytes": 49492
+      },
+      {
+        "path": "TargetList.h",
+        "sha256": "c93bea62ea3de7b733e3cbbc8d75cde9a612c3dd956516597a8fe8858dc8eac7",
+        "size_bytes": 26064
+      },
+      {
+        "path": "ToJson.h",
+        "sha256": "84ee63939863493520ebe29e8ca717217ebf90191829ea80d1349942aa867602",
+        "size_bytes": 9993
+      },
+      {
+        "path": "Types.h",
+        "sha256": "c5a9ad65b1221fc9b6ed09e5f56c6bd7ec325117cc2247592164abe698bad0a8",
+        "size_bytes": 36076
+      },
+      {
+        "path": "game.sln",
+        "sha256": "05a0d8ad94f1aef75733d18dc354534aa974437e405825eef5bfa9cc2dfec3cc",
+        "size_bytes": 945
+      },
+      {
+        "path": "game.vcxproj",
+        "sha256": "afb079173a8305e0441b95cef7a304ddd799a88fabb656a05ed541764841e6eb",
+        "size_bytes": 6161
+      },
+      {
+        "path": "game.vcxproj.filters",
+        "sha256": "f32e46fa571c00c29051f90ba08f16f06812a24d40c889dd4ac0a6747eac22d7",
+        "size_bytes": 5100
+      }
+    ],
+    "missing_extracted": [],
+    "root": "Imitation-Learning/ptcg_engine/ptcgProgram 22",
+    "total_size_bytes": 1404437
+  },
+  "license_scope": {
+    "classification": "competition-use-only; not open-source",
+    "decision": "Approved for private use throughout this working project; do not share",
+    "license": "Imitation-Learning/ptcg_engine/ptcgProgram 22/LICENSES/LicenseRef-PTCG-ABC-Competition-Use-Only.txt",
+    "readme": "Imitation-Learning/ptcg_engine/ptcgProgram 22/README.md"
+  },
+  "schema_version": 1,
+  "universe_checks": {
+    "english_database_sha256": "a0ea63cf7adcb65d35436ce0eb390de6e2e35654a7c67c065a45f4abaa00f373",
+    "installed_binary_attacks": 1556,
+    "installed_binary_card_ids": 1267,
+    "meta_card_ids": 232,
+    "meta_ids_missing_from_binary": [],
+    "meta_ids_missing_from_source": [],
+    "part_a_catalog_sha256": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+    "source_active_card_ids": 1267,
+    "source_attack_calls": 1556,
+    "source_binary_card_id_sets_equal": true
+  },
+  "validation_strategy": {
+    "approved_route": "Exact source traces plus focused scenarios on cg_download simulator",
+    "human_review_records": [
+      "HR-B01-001",
+      "HR-B01-002",
+      "HR-B01-003"
+    ],
+    "installed_binary": {
+      "linux_path": "cg_download/libcg.so",
+      "linux_sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+      "windows_path": "cg_download/cg.dll",
+      "windows_sha256": "c7c87eb76513784b0089b02dcf9d57466a1b0b2217df4cfc9af8c74deda3969f"
+    },
+    "source_build_toolchain": {
+      "cl": "unavailable",
+      "msbuild": "unavailable",
+      "required": "Visual Studio 2022 C++20 / v143"
+    }
+  }
+}

@@ -20,6 +20,7 @@ sys.path.insert(0, _HERE)                    # Ceruledge-RL first
 
 import opponents as O
 from opponents import OPPONENTS, parse_pool_spec, resolve_opponent, validate_opponents
+from test_support import bounded_collect_episode
 
 
 def test_parser() -> None:
@@ -53,7 +54,7 @@ def test_validate_happy() -> None:
     active = validate_opponents(list(OPPONENTS))
     assert set(active) == set(OPPONENTS)
     assert all(40 <= len(o["deck"]) <= 60 for o in active.values())
-    print("3. startup validation happy path: OK (all 6 members)")
+    print(f"3. startup validation happy path: OK (all {len(active)} members)")
 
 
 def test_validate_failures() -> None:
@@ -112,7 +113,9 @@ def test_per_move_fallback() -> None:
     opp = {**base, "policy": flaky_agent}
     model = T.CeruledgePolicy()
     model.eval()
-    steps, reward = T.collect_episode(model, 0.0, 0, True, opp)
+    steps, reward = bounded_collect_episode(
+        T, model, 0.0, 0, True, opp, context="test_per_move_fallback vs clefable, side=0",
+    )
     assert calls["n"] >= 2, "flaky agent never consulted"
     assert reward in (-1.0, 0.0, 1.0), f"no terminal result (reward={reward})"
     print(f"5. per-move fallback: OK (2 forced errors absorbed, "

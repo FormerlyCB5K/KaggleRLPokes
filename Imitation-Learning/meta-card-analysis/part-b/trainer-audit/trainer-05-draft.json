@@ -1,0 +1,2381 @@
+{
+  "batch_id": "trainer-05",
+  "card_ids": [
+    1205,
+    1252,
+    1238,
+    1118,
+    1077,
+    1109,
+    1113,
+    1253,
+    1116,
+    1088,
+    1098,
+    1158,
+    1250,
+    1156,
+    1176,
+    1188,
+    1195,
+    1155,
+    1235
+  ],
+  "cards": [
+    {
+      "audit_status": "complete",
+      "card_id": 1205,
+      "card_name": "Cyrano",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the up-to-three Pokémon ex search, reveal, and shuffle",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1205:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "8e59a144ff5f1fb8533e4d64012bbb3fe80c757256a1c8c4d781dfa5bba64aa9",
+            "effect_tokens": [
+              "TargetType",
+              "Ex"
+            ],
+            "engine_name": "Cyrano",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectDeckToHandAndShuffle",
+              "targetPokemonCard",
+              "targetCondition"
+            ],
+            "source_line_end": 4017,
+            "source_line_start": 4013,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "hidden_information"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "reveal": true,
+                    "source": "own_deck"
+                  },
+                  "target": "chosen_pokemon_ex_cards",
+                  "value": "chosen_count_0_to_3"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Search your deck for up to 3 Pokémon {ex}, reveal them, and put them into your hand. Then, shuffle your deck.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4013",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1205:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 4017,
+        "line_start": 4011,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "effectDeckToHandAndShuffle",
+          "targetPokemonCard",
+          "targetCondition"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 21,
+        "games_with_card": 21,
+        "total_copies": 54
+      },
+      "subtype": "Supporter"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1252,
+      "card_name": "Gravity Mountain",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_in_play",
+            "event": "stadium_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the existing Stadium bake exactly preserves -30 effective maximum HP for every Stage 2 Pokémon on both sides",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "kind": "stadium",
+              "mods": [
+                {
+                  "condition": "holder_is_stage2",
+                  "scope": "all",
+                  "stat": "hp_delta",
+                  "value": -30
+                }
+              ]
+            },
+            "reason": "current encoder represents only reviewed stat bakes"
+          },
+          "effect_id": "card:1252:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "a99473b35ec27210fb14766a470aeeebdf056995f8156274135324c59383b8ae",
+            "effect_tokens": [
+              "MaxHpChange",
+              "Both",
+              "TargetType",
+              "Stage2"
+            ],
+            "engine_name": "Gravity Mountain",
+            "kind": "skill",
+            "method_calls": [
+              "stadiumSkill",
+              "textEn",
+              "effect",
+              "eVal",
+              "targetPokemon",
+              "targetCondition"
+            ],
+            "source_line_end": 4161,
+            "source_line_start": 4157,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "stadiumSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_stat",
+                  "parameters": {
+                    "mode": "add",
+                    "scope": "both_players",
+                    "stat": "max_hp"
+                  },
+                  "target": "all_stage_2_pokemon_in_play",
+                  "value": -30
+                }
+              }
+            ]
+          },
+          "text": "Each Stage 2 Pokémon in play (both yours and your opponent’s) gets -30 HP.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4157",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1252:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "engine_baked"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 4161,
+        "line_start": 4155,
+        "method_calls": [
+          "nameEn",
+          "stadiumSkill",
+          "textEn",
+          "effect",
+          "eVal",
+          "targetPokemon",
+          "targetCondition"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 21,
+        "games_with_card": 21,
+        "total_copies": 29
+      },
+      "subtype": "Stadium"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1238,
+      "card_name": "Tarragon",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the shared up-to-four cap and exact Fighting-Pokémon/Basic-Fighting-Energy discard union",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1238:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "50a47d2ab5b66623e6a546f66194273a0c5995c8607f77521572cc3b455fcbe8",
+            "effect_tokens": [
+              "Fighting",
+              "TargetType",
+              "PokemonOrBasicEnergy"
+            ],
+            "engine_name": "Tarragon",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectTrashToHand",
+              "targetEnergyType",
+              "targetCondition"
+            ],
+            "source_line_end": 12500,
+            "source_line_start": 12496,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "combination": "any",
+                    "destination": "own_hand",
+                    "source": "own_discard"
+                  },
+                  "target": "chosen_fighting_pokemon_or_basic_fighting_energy_cards",
+                  "value": "chosen_count_0_to_4_total"
+                }
+              }
+            ]
+          },
+          "text": "Put up to 4 in any combination of {F} Pokémon and Basic {F} Energy cards from your discard pile into your hand.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:12496",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1238:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 12500,
+        "line_start": 12494,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "effectTrashToHand",
+          "targetEnergyType",
+          "targetCondition"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 20,
+        "games_with_card": 20,
+        "total_copies": 40
+      },
+      "subtype": "Supporter"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1118,
+      "card_name": "Energy Retrieval",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits moving up to two Basic Energy cards from discard to hand",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1118:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "543e738341a47c2d6be23a77a017e7cc70eefb65dea9fd1c9d1061202e21521f",
+            "effect_tokens": [],
+            "engine_name": "Energy Retrieval",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectTrashToHand",
+              "targetBasicEnergy"
+            ],
+            "source_line_end": 3594,
+            "source_line_start": 3590,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "source": "own_discard"
+                  },
+                  "target": "chosen_basic_energy_cards",
+                  "value": "chosen_count_0_to_2"
+                }
+              }
+            ]
+          },
+          "text": "Put up to 2 Basic Energy cards from your discard pile into your hand.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3590",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1118:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3594,
+        "line_start": 3588,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "effectTrashToHand",
+          "targetBasicEnergy"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 18,
+        "games_with_card": 18,
+        "total_copies": 18
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1077,
+      "card_name": "Roto-Stick",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits top-four inspection, any-number Supporter selection/reveal, and rest-to-deck shuffle",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1077:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "af70cfdb5597a062e6592190d60b34c47fa7641b0199e7c53bc65e2e42a48828",
+            "effect_tokens": [
+              "LookDeck",
+              "TargetPlayer",
+              "Me",
+              "ToHand",
+              "ToDeckReverse"
+            ],
+            "engine_name": "Roto-Stick",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "existMyDeck",
+              "effect",
+              "eVal",
+              "effect",
+              "targetLooking",
+              "selectAny",
+              "targetSupporter",
+              "effect",
+              "targetLooking",
+              "effectShuffle"
+            ],
+            "source_line_end": 13619,
+            "source_line_start": 13611,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "hidden_information"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "inspect_cards",
+                  "parameters": {
+                    "visibility": "owner_only"
+                  },
+                  "target": "own_deck_top",
+                  "value": 4
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "reveal": true,
+                    "source": "inspected_cards"
+                  },
+                  "target": "any_number_of_supporters_among_inspected",
+                  "value": "chosen_count_0_to_all_eligible"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_deck",
+                    "source": "inspected_cards"
+                  },
+                  "target": "all_other_inspected_cards",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Look at the top 4 cards of your deck. You may reveal any number of Supporter cards you find there and put them into your hand. Shuffle the other cards back into your deck.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:13611",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1077:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 13619,
+        "line_start": 13609,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "existMyDeck",
+          "effect",
+          "eVal",
+          "effect",
+          "targetLooking",
+          "selectAny",
+          "targetSupporter",
+          "effect",
+          "targetLooking",
+          "effectShuffle"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 16,
+        "games_with_card": 16,
+        "total_copies": 49
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1109,
+      "card_name": "Miracle Headset",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits moving up to two Supporters from discard to hand",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1109:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "209bff9f5decc3352b0c8ad363d225af66654b16d669b85a6703292ecb1c1635",
+            "effect_tokens": [],
+            "engine_name": "Miracle Headset",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectTrashToHand",
+              "targetSupporter"
+            ],
+            "source_line_end": 3532,
+            "source_line_start": 3528,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_hand",
+                    "source": "own_discard"
+                  },
+                  "target": "chosen_supporter_cards",
+                  "value": "chosen_count_0_to_2"
+                }
+              }
+            ]
+          },
+          "text": "Put up to 2 Supporter cards from your discard pile into your hand.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3528",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1109:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3532,
+        "line_start": 3525,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "playSkill",
+          "textEn",
+          "effectTrashToHand",
+          "targetSupporter"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 16,
+        "games_with_card": 16,
+        "total_copies": 16
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1113,
+      "card_name": "N’s PP Up",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the Basic Energy discard source and Benched N's Pokémon target filters",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1113:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "dcb73c91f149475f19cd42a661ef1fa30d6c0cdbf0a165333cb6072097c3d96e",
+            "effect_tokens": [
+              "TargetType",
+              "N"
+            ],
+            "engine_name": "N’s PP Up",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectSelectAttachBasicEnergyTrash",
+              "effectAttachFromEach",
+              "targetBench",
+              "targetCondition"
+            ],
+            "source_line_end": 3561,
+            "source_line_start": 3556,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "one_chosen_own_benched_ns_pokemon_attachment",
+                    "source": "own_discard"
+                  },
+                  "target": "one_chosen_basic_energy_card",
+                  "value": 1
+                }
+              }
+            ]
+          },
+          "text": "Attach a Basic Energy card from your discard pile to 1 of your Benched N’s Pokémon.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3556",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1113:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3561,
+        "line_start": 3554,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "effectSelectAttachBasicEnergyTrash",
+          "effectAttachFromEach",
+          "targetBench",
+          "targetCondition"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 12,
+        "games_with_card": 12,
+        "total_copies": 48
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1253,
+      "card_name": "N’s Castle",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_in_play",
+            "event": "stadium_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the existing Stadium bake exactly sets Retreat Cost to zero for every N's Pokémon on both sides",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "kind": "stadium",
+              "mods": [
+                {
+                  "condition": "holder_is_ns",
+                  "scope": "all",
+                  "stat": "retreat_set",
+                  "value": 0
+                }
+              ]
+            },
+            "reason": "current encoder represents only reviewed stat bakes"
+          },
+          "effect_id": "card:1253:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "bb61785f41cf21c7bf6999aa6e04b88a41cab65b694e1ef514f43ed5326d12ec",
+            "effect_tokens": [
+              "NoRetreatCost",
+              "Both",
+              "TargetType",
+              "N"
+            ],
+            "engine_name": "N’s Castle",
+            "kind": "skill",
+            "method_calls": [
+              "stadiumSkill",
+              "textEn",
+              "effect",
+              "targetPokemon",
+              "targetCondition"
+            ],
+            "source_line_end": 4167,
+            "source_line_start": 4163,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "stadiumSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_stat",
+                  "parameters": {
+                    "mode": "set",
+                    "scope": "both_players",
+                    "stat": "retreat_cost"
+                  },
+                  "target": "all_ns_pokemon_in_play",
+                  "value": 0
+                }
+              }
+            ]
+          },
+          "text": "N’s Pokémon in play (both yours and your opponent’s) have no Retreat Cost.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4163",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1253:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "engine_baked"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 4167,
+        "line_start": 4161,
+        "method_calls": [
+          "nameEn",
+          "stadiumSkill",
+          "textEn",
+          "effect",
+          "targetPokemon",
+          "targetCondition"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 12,
+        "games_with_card": 12,
+        "total_copies": 27
+      },
+      "subtype": "Stadium"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1116,
+      "card_name": "Energy Switch",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Basic-Energy-only movement between two distinct own Pokémon",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1116:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "e6bfff870d362c6595abf09e92128cf90bdd1dbf7c2780b5f467d50b29365197",
+            "effect_tokens": [
+              "Me"
+            ],
+            "engine_name": "Energy Switch",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectBasicEnergySwitch"
+            ],
+            "source_line_end": 3582,
+            "source_line_start": 3578,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_attachment",
+                  "parameters": {
+                    "destination": "different_own_pokemon"
+                  },
+                  "target": "one_chosen_basic_energy_attached_to_own_pokemon",
+                  "value": 1
+                }
+              }
+            ]
+          },
+          "text": "Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3578",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1116:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3582,
+        "line_start": 3576,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "effectBasicEnergySwitch"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 10,
+        "games_with_card": 10,
+        "total_copies": 37
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1088,
+      "card_name": "Prime Catcher",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits opponent gust first, then success-gated own switch",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1088:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "35e62909ffd35b1850ad473a03f4edd9326cece0110cc49363739b1044099682",
+            "effect_tokens": [
+              "Me"
+            ],
+            "engine_name": "Prime Catcher",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "effectSwitchEnemyBench",
+              "separator",
+              "effectSwitch"
+            ],
+            "source_line_end": 3355,
+            "source_line_start": 3349,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "switch_active",
+                  "parameters": {
+                    "bind_success": "opponent_switched",
+                    "side": "opponent"
+                  },
+                  "target": "one_chosen_opponent_benched_pokemon",
+                  "value": 1
+                }
+              },
+              {
+                "condition": {
+                  "kind": "read",
+                  "path": "opponent_switched"
+                },
+                "else": null,
+                "kind": "conditional",
+                "then": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "switch_active",
+                        "parameters": {
+                          "side": "own"
+                        },
+                        "target": "one_chosen_own_benched_pokemon",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": "Switch in 1 of your opponent’s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3349",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1088:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3355,
+        "line_start": 3346,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "playSkill",
+          "textEn",
+          "effectSwitchEnemyBench",
+          "separator",
+          "effectSwitch"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 9,
+        "games_with_card": 9,
+        "total_copies": 9
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1098,
+      "card_name": "Glass Trumpet",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the own-Tera-in-play gate, up-to-two Colorless Bench targets, and one distinct Basic Energy discard attachment per target",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1098:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "2efe7bcc64884617bf5a68a42a81bf8b2c4d8343efbd651b90542224001d0198",
+            "effect_tokens": [
+              "TargetType",
+              "Terastal",
+              "Colorless"
+            ],
+            "engine_name": "Glass Trumpet",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "existPokemon",
+              "targetCondition",
+              "existMyTrash",
+              "targetBasicEnergy",
+              "effectSelectAttachFromBench",
+              "targetEnergyType",
+              "effectAttachToEach",
+              "targetTrash",
+              "targetBasicEnergy",
+              "singleSelect"
+            ],
+            "source_line_end": 3439,
+            "source_line_start": 3432,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [
+            "own_tera_pokemon_in_play",
+            "own_benched_colorless_targets",
+            "basic_energy_cards_in_own_discard"
+          ],
+          "formula_key": "trainer_05_glass_trumpet_assignments",
+          "formula_question": "all legal 0–2 target/energy one-to-one assignments",
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "select_targets",
+                  "parameters": {},
+                  "target": "chosen_own_benched_colorless_pokemon",
+                  "value": "chosen_count_0_to_2"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "selected_target_attachments",
+                    "distinct_cards": true,
+                    "source": "own_discard"
+                  },
+                  "target": "one_chosen_basic_energy_per_selected_target",
+                  "value": "one_per_target"
+                }
+              }
+            ]
+          },
+          "text": "You can use this card only if you have any Tera Pokémon in play.\n\nChoose up to 2 of your Benched {C} Pokémon and attach a Basic Energy card from your discard pile to each of them.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3432",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1098:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3439,
+        "line_start": 3430,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "existPokemon",
+          "targetCondition",
+          "existMyTrash",
+          "targetBasicEnergy",
+          "effectSelectAttachFromBench",
+          "targetEnergyType",
+          "effectAttachToEach",
+          "targetTrash",
+          "targetBasicEnergy",
+          "singleSelect"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 9,
+        "games_with_card": 9,
+        "total_copies": 18
+      },
+      "subtype": "Item"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1158,
+      "card_name": "Maximum Belt",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_attached",
+            "event": "tool_continuous"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the existing Tool bake exactly preserves +50 damage against opposing Active Pokémon ex",
+          "current_encoder": {
+            "included": true,
+            "raw": {
+              "kind": "tool",
+              "mods": [
+                {
+                  "condition": "defender_is_ex",
+                  "stat": "damage_dealt_delta",
+                  "value": 50
+                }
+              ]
+            },
+            "reason": "current encoder represents only reviewed stat bakes"
+          },
+          "effect_id": "card:1158:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "33ee99405bd8f55b47c0e15357d35d91d9e0e95777f69929046684265940f5bf",
+            "effect_tokens": [
+              "DamageChangeEx"
+            ],
+            "engine_name": "Maximum Belt",
+            "kind": "skill",
+            "method_calls": [
+              "toolSkill",
+              "textEn",
+              "effectToolContinual",
+              "eVal"
+            ],
+            "source_line_end": 3693,
+            "source_line_start": 3689,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "toolSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_damage_rule",
+                  "parameters": {
+                    "defender_filter": "pokemon_ex",
+                    "rule": "add_damage_to_opponent_active_before_weakness_resistance"
+                  },
+                  "target": "tool_holder_attacks",
+                  "value": 50
+                }
+              }
+            ]
+          },
+          "text": "Attacks used by the Pokémon this card is attached to do 50 more damage to your opponent’s Active Pokémon {ex} (before applying Weakness and Resistance).",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3689",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1158:trainer_effect:0 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "engine_baked"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3693,
+        "line_start": 3686,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "toolSkill",
+          "textEn",
+          "effectToolContinual",
+          "eVal"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 9,
+        "games_with_card": 9,
+        "total_copies": 9
+      },
+      "subtype": "Pokémon Tool"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1250,
+      "card_name": "Area Zero Underdepths",
+      "effects": [
+        {
+          "activation": {
+            "duration": "while_in_play_plus_leave_resolution",
+            "event": "stadium_continuous_and_leave_play"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits Tera-gated Bench capacity 8 and both forced discard-to-five transitions with exact stadium-owner-first departure order",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1250:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "eb6279012b7ac6658b68fca9a3d7d4f2334ec59e58bc9ace3899b817f2e81718",
+            "effect_tokens": [
+              "TargetType",
+              "Terastal",
+              "BenchCapacity",
+              "Me",
+              "Enemy"
+            ],
+            "engine_name": "Area Zero Underdepths",
+            "kind": "skill",
+            "method_calls": [
+              "stadiumSkill",
+              "textEn",
+              "existPokemon",
+              "targetCondition",
+              "failSkip",
+              "effect",
+              "eVal",
+              "existPokemon",
+              "targetCondition",
+              "effect",
+              "eVal"
+            ],
+            "source_line_end": 4149,
+            "source_line_start": 4142,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "stadiumSkill"
+          },
+          "formula_inputs": [
+            "stadium_in_play",
+            "each_player_tera_presence",
+            "each_bench_occupied_count",
+            "stadium_owner",
+            "stadium_leave_event"
+          ],
+          "formula_key": "trainer_05_area_zero_bench_capacity",
+          "formula_question": "capacity 8 iff Tera present; otherwise enforce 5, with stadium owner resolving first on leave",
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "observation_direct",
+            "public_history"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "modify_bench_capacity",
+                  "parameters": {
+                    "default_capacity": 5
+                  },
+                  "target": "each_player_with_tera_pokemon_in_play",
+                  "value": 8
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "enforce_bench_capacity",
+                  "parameters": {
+                    "chooser": "that_player"
+                  },
+                  "target": "player_losing_last_tera_pokemon",
+                  "value": 5
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "enforce_bench_capacity",
+                  "parameters": {
+                    "chooser": "respective_player",
+                    "resolution_order": "stadium_owner_then_opponent"
+                  },
+                  "target": "both_players_when_stadium_leaves_play",
+                  "value": 5
+                }
+              }
+            ]
+          },
+          "text": "Each player who has any Tera Pokémon in play can have up to 8 Pokémon on their Bench.\n\nIf a player no longer has any Tera Pokémon in play, that player discards Pokémon from their Bench until they have 5. When this card leaves play, both players discard Pokémon from their Bench until they have 5, and the player who played this card discards first.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:4142",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1250:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 4149,
+        "line_start": 4140,
+        "method_calls": [
+          "nameEn",
+          "stadiumSkill",
+          "textEn",
+          "existPokemon",
+          "targetCondition",
+          "failSkip",
+          "effect",
+          "eVal",
+          "existPokemon",
+          "targetCondition",
+          "effect",
+          "eVal"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 9,
+        "games_with_card": 9,
+        "total_copies": 36
+      },
+      "subtype": "Stadium"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1156,
+      "card_name": "Lucky Helmet",
+      "effects": [
+        {
+          "activation": {
+            "even_if_holder_knocked_out": true,
+            "event": "tool_holder_damaged_by_opponent_attack_while_active"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the Active-holder damaged-by-opponent-attack trigger, even-if-KO persistence, and draw two",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1156:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "60757c7aebef2e4df0c051466da5e7923ffe91c486c10802f37e1b726b27efe3",
+            "effect_tokens": [
+              "TriggerType",
+              "DamagedEnemyAttackActive"
+            ],
+            "engine_name": "Lucky Helmet",
+            "kind": "skill",
+            "method_calls": [
+              "toolSkill",
+              "textEn",
+              "triggerAttachedCard",
+              "effectDraw"
+            ],
+            "source_line_end": 3679,
+            "source_line_start": 3674,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "toolSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "public_history",
+            "hidden_information"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "tool_owners_hand",
+                    "mode": "draw",
+                    "source": "tool_owners_deck"
+                  },
+                  "target": "tool_owners_deck_top",
+                  "value": 2
+                }
+              }
+            ]
+          },
+          "text": "If the Pokémon this card is attached to is in the Active Spot and is damaged by an attack from your opponent’s Pokémon (even if this Pokémon is Knocked Out), draw 2 cards.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "recorded_engine_samples": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3674",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1156:trainer_effect:0 (3 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3679,
+        "line_start": 3672,
+        "method_calls": [
+          "nameEn",
+          "toolSkill",
+          "textEn",
+          "triggerAttachedCard",
+          "effectDraw"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 5,
+        "games_with_card": 5,
+        "total_copies": 5
+      },
+      "subtype": "Pokémon Tool"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1176,
+      "card_name": "Punk Helmet",
+      "effects": [
+        {
+          "activation": {
+            "even_if_holder_knocked_out": true,
+            "event": "tool_holder_damaged_by_opponent_attack_while_active",
+            "holder_filter": "darkness"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the Darkness-holder/Active/damaged-by-opponent-attack trigger, even-if-KO persistence, and exact four counters on the attacker",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1176:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "d9955f90ec1b130f874cfdd609acb10fe69bc4e9d16bfcad698174e78bbbdae4",
+            "effect_tokens": [
+              "TriggerType",
+              "DamagedEnemyAttackActive",
+              "Darkness",
+              "DamageCounter"
+            ],
+            "engine_name": "Punk Helmet",
+            "kind": "skill",
+            "method_calls": [
+              "toolSkill",
+              "textEn",
+              "triggerAttachedCard",
+              "targetEnergyType",
+              "effectTriggerObject",
+              "eVal"
+            ],
+            "source_line_end": 10139,
+            "source_line_start": 10134,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "toolSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [
+            "HR-B05-001"
+          ],
+          "kind": "trainer_effect",
+          "observability": [
+            "public_history"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "place_damage_counters",
+                  "parameters": {},
+                  "target": "attacking_pokemon",
+                  "value": 4
+                }
+              }
+            ]
+          },
+          "text": "If the {D} Pokémon this card is attached to is in the Active Spot and is damaged by an attack from your opponent’s Pokémon (even if this Pokémon is Knocked Out), place 4 damage counters on the Attacking Pokémon.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:10134",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1176:trainer_effect:0 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 10139,
+        "line_start": 10132,
+        "method_calls": [
+          "nameEn",
+          "toolSkill",
+          "textEn",
+          "triggerAttachedCard",
+          "targetEnergyType",
+          "effectTriggerObject",
+          "eVal"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 3,
+        "games_with_card": 3,
+        "total_copies": 6
+      },
+      "subtype": "Pokémon Tool"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1188,
+      "card_name": "Ciphermaniac’s Codebreaking",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits arbitrary two-card deck search, intervening shuffle, and owner-chosen top-deck order",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1188:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "eb02ade7c2a77c8806679e1fb632bcc9e3d5f69b38b88271843a56a7e2b7d624",
+            "effect_tokens": [
+              "ToLooking",
+              "Me",
+              "ToDeckReverse"
+            ],
+            "engine_name": "Ciphermaniac’s Codebreaking",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "existMyDeck",
+              "effect",
+              "targetDeck",
+              "multiSelect",
+              "setContext",
+              "effectShuffle",
+              "effect",
+              "targetLooking"
+            ],
+            "source_line_end": 3871,
+            "source_line_start": 3864,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "hidden_information"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "selection_buffer",
+                    "source": "own_deck",
+                    "visibility": "owner_only"
+                  },
+                  "target": "two_chosen_cards",
+                  "value": 2
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_deck_top",
+                    "ordering": "owner_chosen",
+                    "source": "selection_buffer"
+                  },
+                  "target": "selected_cards_in_owner_chosen_order",
+                  "value": 2
+                }
+              }
+            ]
+          },
+          "text": "Search your deck for 2 cards, shuffle your deck, then put those cards on top of it in any order.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3864",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1188:trainer_effect:0 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3871,
+        "line_start": 3861,
+        "method_calls": [
+          "nameEn",
+          "future",
+          "playSkill",
+          "textEn",
+          "existMyDeck",
+          "effect",
+          "targetDeck",
+          "multiSelect",
+          "setContext",
+          "effectShuffle",
+          "effect",
+          "targetLooking"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 3,
+        "games_with_card": 3,
+        "total_copies": 3
+      },
+      "subtype": "Supporter"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1195,
+      "card_name": "Janine’s Secret Art",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits up-to-two Darkness targets, per-target Basic Darkness deck attachment, shuffle, and Poison only when the Active actually receives Energy",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1195:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "b2ae78831c9a5194867e1a5a9cea32289aecacfac48ef242dec0d285631c51b1",
+            "effect_tokens": [
+              "Darkness",
+              "DARKNESS_ENERGY",
+              "ConditionType",
+              "AttachActive",
+              "Poison",
+              "Me"
+            ],
+            "engine_name": "Janine’s Secret Art",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "existMyDeck",
+              "effectSelectAttachFrom",
+              "targetEnergyType",
+              "effectAttachToEach",
+              "targetDeck",
+              "targetCardId",
+              "singleSelect",
+              "effectShuffle",
+              "condition",
+              "effect"
+            ],
+            "source_line_end": 3932,
+            "source_line_start": 3923,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [
+            "own_darkness_pokemon_targets",
+            "basic_darkness_energy_cards_in_deck",
+            "selected_targets"
+          ],
+          "formula_key": "trainer_05_janines_secret_art_assignments",
+          "formula_question": "one distinct Basic Darkness Energy per selected target; poison own Active iff it received one",
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "hidden_information",
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "select_targets",
+                  "parameters": {},
+                  "target": "chosen_own_darkness_pokemon",
+                  "value": "chosen_count_0_to_2"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "bind_active_attached": "active_received_energy",
+                    "destination": "selected_target_attachments",
+                    "distinct_cards": true,
+                    "source": "own_deck"
+                  },
+                  "target": "one_basic_darkness_energy_per_selected_target",
+                  "value": "one_per_target"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              },
+              {
+                "condition": {
+                  "kind": "read",
+                  "path": "active_received_energy"
+                },
+                "else": null,
+                "kind": "conditional",
+                "then": {
+                  "kind": "sequence",
+                  "nodes": [
+                    {
+                      "kind": "operation",
+                      "operation": {
+                        "kind": "apply_special_condition",
+                        "parameters": {},
+                        "target": "own_active",
+                        "value": "poisoned"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "text": "Choose up to 2 of your {D} Pokémon. For each of those Pokémon, search your deck for a Basic {D} Energy card and attach it to that Pokémon. Then, shuffle your deck. If you attached Energy to your Active Pokémon in this way, it is now Poisoned.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "no_recorded_execution_with_exact_source_fallback": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3923",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1195:trainer_effect:0 (0 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_dynamic"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3932,
+        "line_start": 3921,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "existMyDeck",
+          "effectSelectAttachFrom",
+          "targetEnergyType",
+          "effectAttachToEach",
+          "targetDeck",
+          "targetCardId",
+          "singleSelect",
+          "effectShuffle",
+          "condition",
+          "effect"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 3,
+        "games_with_card": 3,
+        "total_copies": 3
+      },
+      "subtype": "Supporter"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1155,
+      "card_name": "Survival Brace",
+      "effects": [
+        {
+          "activation": {
+            "event": "before_tool_holder_ko_from_opponent_attack_damage"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits the full-HP precondition, opponent-attack-damage KO replacement to 10 HP, and mandatory Tool discard",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1155:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "168518cb0eeac326e85595e781147a3ada3a1a6916dcccf4651aaa8f64730b44",
+            "effect_tokens": [
+              "TriggerType",
+              "PreKoFullEnemy",
+              "ResetHp",
+              "ToTrash"
+            ],
+            "engine_name": "Survival Brace",
+            "kind": "skill",
+            "method_calls": [
+              "toolSkill",
+              "textEn",
+              "triggerAttachedCard",
+              "effectTriggerSubject",
+              "eVal",
+              "separator",
+              "effectMe"
+            ],
+            "source_line_end": 3672,
+            "source_line_start": 3665,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "toolSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "public_history",
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "replace_knock_out",
+                  "parameters": {
+                    "remaining_hp": 10,
+                    "requirement": "full_hp_before_opponent_attack_damage_and_would_be_ko"
+                  },
+                  "target": "tool_holder",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "tool_owner_discard",
+                    "source": "tool_holder_attachment"
+                  },
+                  "target": "this_tool",
+                  "value": 1
+                }
+              }
+            ]
+          },
+          "text": "If the Pokémon this card is attached to has full HP and would be Knocked Out by damage from an attack from your opponent’s Pokémon, it is not Knocked Out, and its remaining HP becomes 10. Then, discard this card.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:3665",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1155:trainer_effect:0 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 3672,
+        "line_start": 3662,
+        "method_calls": [
+          "nameEn",
+          "aceSpec",
+          "toolSkill",
+          "textEn",
+          "triggerAttachedCard",
+          "effectTriggerSubject",
+          "eVal",
+          "separator",
+          "effectMe"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 1,
+        "games_with_card": 1,
+        "total_copies": 1
+      },
+      "subtype": "Pokémon Tool"
+    },
+    {
+      "audit_status": "complete",
+      "card_id": 1235,
+      "card_name": "Waitress",
+      "effects": [
+        {
+          "activation": {
+            "event": "play_from_hand"
+          },
+          "audit_status": "complete",
+          "change_from_current": "the current encoder omits top-six inspection, optional Basic Energy attachment to any own Pokémon, and rest-to-deck shuffle",
+          "current_encoder": {
+            "included": false,
+            "raw": null,
+            "reason": "not represented"
+          },
+          "effect_id": "card:1235:trainer_effect:0",
+          "engine": {
+            "chain_sha256": "b20b358805c45b71044105940fd48ae8bbbf1f184556fb6a2076493e78629e34",
+            "effect_tokens": [
+              "LookDeck",
+              "Me",
+              "SelectAttachTo",
+              "ToDeckReverse"
+            ],
+            "engine_name": "Waitress",
+            "kind": "skill",
+            "method_calls": [
+              "playSkill",
+              "textEn",
+              "existMyDeck",
+              "effect",
+              "eVal",
+              "effect",
+              "targetLooking",
+              "targetBasicEnergy",
+              "maxSelect",
+              "effectAttachFromEach",
+              "targetPokemon",
+              "effect",
+              "targetLooking",
+              "effectShuffle"
+            ],
+            "source_line_end": 12488,
+            "source_line_start": 12479,
+            "source_path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h",
+            "starter": "playSkill"
+          },
+          "formula_inputs": [],
+          "formula_key": null,
+          "formula_question": null,
+          "human_review_ids": [],
+          "kind": "trainer_effect",
+          "observability": [
+            "hidden_information",
+            "observation_direct"
+          ],
+          "program": {
+            "kind": "sequence",
+            "nodes": [
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "inspect_cards",
+                  "parameters": {
+                    "visibility": "owner_only"
+                  },
+                  "target": "own_deck_top",
+                  "value": 6
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "one_chosen_own_pokemon_attachment",
+                    "source": "inspected_cards"
+                  },
+                  "target": "chosen_basic_energy_among_inspected",
+                  "value": "chosen_count_0_to_1"
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "move_cards",
+                  "parameters": {
+                    "destination": "own_deck",
+                    "source": "inspected_cards"
+                  },
+                  "target": "all_other_inspected_cards",
+                  "value": null
+                }
+              },
+              {
+                "kind": "operation",
+                "operation": {
+                  "kind": "shuffle_cards",
+                  "parameters": {},
+                  "target": "own_deck",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "text": "Look at the top 6 cards of your deck and attach a Basic Energy card you find there to 1 of your Pokémon. Shuffle the other cards back into your deck.",
+          "validation": {
+            "checks": {
+              "exact_source_chain_present": true,
+              "exact_text_and_handler_present": true,
+              "human_reviews_resolved": true,
+              "program_present": true,
+              "recorded_engine_coverage_accounted": true,
+              "sparse_recorded_sample_with_exact_source_fallback": true,
+              "trainer_handler_shape": true
+            },
+            "refs": [
+              "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h:12479",
+              "trainer-05-recorded-engine-evidence.json#samples/card:1235:trainer_effect:0 (1 distinct recorded executions)"
+            ],
+            "status": "passed"
+          },
+          "verdict": "override_static"
+        }
+      ],
+      "engine_card_source": {
+        "line_end": 12488,
+        "line_start": 12477,
+        "method_calls": [
+          "nameEn",
+          "playSkill",
+          "textEn",
+          "existMyDeck",
+          "effect",
+          "eVal",
+          "effect",
+          "targetLooking",
+          "targetBasicEnergy",
+          "maxSelect",
+          "effectAttachFromEach",
+          "targetPokemon",
+          "effect",
+          "targetLooking",
+          "effectShuffle"
+        ],
+        "path": "Imitation-Learning/ptcg_engine/ptcgProgram 22/CardImpl.h"
+      },
+      "frequency": {
+        "decks_with_card": 1,
+        "games_with_card": 1,
+        "total_copies": 3
+      },
+      "subtype": "Supporter"
+    }
+  ],
+  "formula_queue": [
+    {
+      "effect_id": "card:1098:trainer_effect:0",
+      "formula_key": "trainer_05_glass_trumpet_assignments",
+      "owner": "B08",
+      "question": "all legal 0–2 target/energy one-to-one assignments",
+      "required_inputs": [
+        "own_tera_pokemon_in_play",
+        "own_benched_colorless_targets",
+        "basic_energy_cards_in_own_discard"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:1250:trainer_effect:0",
+      "formula_key": "trainer_05_area_zero_bench_capacity",
+      "owner": "B08",
+      "question": "capacity 8 iff Tera present; otherwise enforce 5, with stadium owner resolving first on leave",
+      "required_inputs": [
+        "stadium_in_play",
+        "each_player_tera_presence",
+        "each_bench_occupied_count",
+        "stadium_owner",
+        "stadium_leave_event"
+      ],
+      "status": "queued"
+    },
+    {
+      "effect_id": "card:1195:trainer_effect:0",
+      "formula_key": "trainer_05_janines_secret_art_assignments",
+      "owner": "B08",
+      "question": "one distinct Basic Darkness Energy per selected target; poison own Active iff it received one",
+      "required_inputs": [
+        "own_darkness_pokemon_targets",
+        "basic_darkness_energy_cards_in_deck",
+        "selected_targets"
+      ],
+      "status": "queued"
+    }
+  ],
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "cards": 19,
+    "effects": 19,
+    "formula_queue": 3,
+    "issues": 0,
+    "verdicts": {
+      "engine_baked": 3,
+      "override_dynamic": 3,
+      "override_static": 13
+    }
+  }
+}

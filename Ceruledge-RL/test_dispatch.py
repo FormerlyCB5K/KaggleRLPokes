@@ -32,10 +32,11 @@ import torch
 import train as T
 from features import FULL_DECK
 from opponents import resolve_opponent
+from test_support import bounded_collect_episode
 
 FULL_SET = set(FULL_DECK)
-SEED_ORDER = ["ceruledge_rules", "clefable", "alakazam", "lucario", "random", "self"]
-NON_CERULEDGE = {"clefable", "alakazam", "lucario"}
+SEED_ORDER = ["ceruledge_rules", "clefable", "alakazam", "archaludon", "garchomp", "lucario", "random", "self"]
+NON_CERULEDGE = {"clefable", "alakazam", "archaludon", "garchomp", "lucario"}
 
 
 def _harvest(obs_dict, opp_idx: int, revealed: set[int]) -> None:
@@ -59,7 +60,7 @@ def _harvest(obs_dict, opp_idx: int, revealed: set[int]) -> None:
                         revealed.add(c["id"])
 
 
-def run_spied_episode(model, opponent, our_side, go_first, opponent_model=None):
+def run_spied_episode(model, opponent, our_side, go_first, opponent_model=None, context=""):
     captured: dict = {}
     revealed: set[int] = set()
     opp_idx = 1 - our_side
@@ -78,8 +79,9 @@ def run_spied_episode(model, opponent, our_side, go_first, opponent_model=None):
 
     T.battle_start, T.battle_select = spy_start, spy_select
     try:
-        steps, reward = T.collect_episode(
-            model, 0.0, our_side, go_first, opponent, opponent_model)
+        steps, reward = bounded_collect_episode(
+            T, model, 0.0, our_side, go_first, opponent, opponent_model, context=context,
+        )
     finally:
         T.battle_start, T.battle_select = real_start, real_select
     return steps, reward, captured, revealed
@@ -100,7 +102,9 @@ def main() -> None:
         for ep in range(2):                      # once per side
             our_side = ep % 2
             steps, reward, cap, revealed = run_spied_episode(
-                model, opp, our_side, ep == 0, opponent_model)
+                model, opp, our_side, ep == 0, opponent_model,
+                context=f"{name} side={our_side}",
+            )
 
             d0, d1 = cap["decks"]
             ours, theirs = (d0, d1) if our_side == 0 else (d1, d0)

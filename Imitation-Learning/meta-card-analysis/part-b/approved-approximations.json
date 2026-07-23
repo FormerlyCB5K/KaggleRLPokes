@@ -1,0 +1,18 @@
+{
+  "approximations": [
+    {
+      "human_review_id": "HR-B05-002",
+      "omitted_tail": "four or more consecutive heads",
+      "requirements": [
+        "retain the exact underlying rule or theoretical-tail label",
+        "mark omitted probability mass explicitly when cheaply calculable",
+        "never fold omitted mass into an enumerated outcome silently"
+      ],
+      "rule": "enumerate zero through three consecutive heads only",
+      "scope": "top-meta coin-flip outcome profiles",
+      "status": "approved"
+    }
+  ],
+  "default_policy": "No other approximation is authorized without a new human-review decision.",
+  "schema_version": 1
+}

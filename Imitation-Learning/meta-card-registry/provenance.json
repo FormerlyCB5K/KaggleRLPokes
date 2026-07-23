@@ -1,0 +1,72 @@
+{
+  "registry_schema_version": "1.0.0",
+  "status": "frozen",
+  "frozen_inputs": [
+    {
+      "path": "Imitation-Learning/meta-card-analysis/all-datasets/top_ladder_card_catalog.json",
+      "sha256": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+      "size_bytes": 275514
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/canonical-audit-ledger.json",
+      "sha256": "b1cc3e1450737f409b79450ae2192568e0b4e2aa9838f6e12397c5b11ab53313",
+      "size_bytes": 1406692
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/part-c-handoff.json",
+      "sha256": "4bda7fbffbf2990025c10ed3ce298b29026bbb8f6254d8d7d8d19ac04a3b80e6",
+      "size_bytes": 1285884
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/dynamic-formulas.json",
+      "sha256": "c94c7f88eddee1535194819ce6207fd4963520f0b4b28b1ae8bb8566ba4452cc",
+      "size_bytes": 316341
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/closure-validation.json",
+      "sha256": "5f59edc9f6855b54adc07857a11e17f1a30c52c0f9ded7c3ec7032efa59e1f55",
+      "size_bytes": 1525
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/closure-artifact-manifest.json",
+      "sha256": "41910fb48cfc14f6b5d4086e4f8710684327668f4a8f57e6f7de140678349057",
+      "size_bytes": 1701
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/engine-source-manifest.json",
+      "sha256": "4589258bf173457643894bdc0a6e99ae0c3cfda8e0de1158fea55f12d03c7137",
+      "size_bytes": 9890
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/semantic-schema-draft.json",
+      "sha256": "3f3484b919760066a7da7043187127d693f7ed3bd0b9e04ae7575b91599f9a3a",
+      "size_bytes": 4168
+    },
+    {
+      "path": "Imitation-Learning/meta-card-analysis/part-b/human-review-ledger.json",
+      "sha256": "0e8296d819a99494b50825eba6827767635f60dd82ab691c82546c393fcabaef",
+      "size_bytes": 13867
+    }
+  ],
+  "engine": {
+    "module_version": "1.32.0",
+    "archive_path": "Imitation-Learning/ptcg_engine.zip",
+    "archive_sha256": "d1a824b2740e9447acb988cc54f9d5de70af77f2be4f54b891cfa2d74e2a3802",
+    "license_scope": {
+      "classification": "competition-use-only; not open-source",
+      "decision": "Approved for private use throughout this working project; do not share",
+      "license": "Imitation-Learning/ptcg_engine/ptcgProgram 22/LICENSES/LicenseRef-PTCG-ABC-Competition-Use-Only.txt",
+      "readme": "Imitation-Learning/ptcg_engine/ptcgProgram 22/README.md"
+    }
+  },
+  "human_review": {
+    "records": 9,
+    "unresolved": 0,
+    "only_approved_approximation": "HR-B05-002"
+  },
+  "generation": {
+    "command": "python Imitation-Learning/build_meta_card_registry.py",
+    "canonical_source": "Imitation-Learning/meta-card-analysis/part-b/part-c-handoff.json",
+    "all_derivatives_generated_together": true
+  }
+}

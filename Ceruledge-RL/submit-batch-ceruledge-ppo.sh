@@ -44,17 +44,19 @@ OUT_DIR="$WORKDIR/Ceruledge-RL/out/$MODEL_NAME"
 # ── Opponent ──────────────────────────────────────────────────────────────────
 # Single opponent — any registry name from Ceruledge-RL/opponents.py:
 #   "ceruledge_rules" ("rules" = legacy alias) | "clefable" | "alakazam"
-#   | "lucario" | "random" | "self"
+#   | "archaludon" | "garchomp" | "lucario" | "random" | "self"
 # OR a weighted per-episode pool — set OPPONENT_POOL (OPPONENT is then ignored):
 #   OPPONENT_POOL="clefable:2,lucario:1,self:1,random:0.5,ceruledge_rules:1"
 #
 # DEPLOY: every file-agent in the active set needs its folder copied next to
 # Ceruledge-RL/ under $WORKDIR, deck file at EXACT casing (Linux is
 # case-sensitive), in addition to cg_download/:
-#   Ceruledge-Agent/   main.py + deck.csv                («ceruledge_rules»)
-#   Clefable-Agent/    main.py + deck.csv                («clefable»)
-#   Alakazam-Agent/    main.py + Deck.csv  — capital D   («alakazam»)
-#   Lucario-Baseline/  mega_lucario_baseline.py          («lucario»)
+#   Ceruledge-Agent/    main.py + deck.csv                («ceruledge_rules»)
+#   Clefable-Agent/     main.py + deck.csv                («clefable»)
+#   Alakazam-Agent/     main.py + Deck.csv  — capital D   («alakazam»)
+#   sample-archaludon/  main.py + deck.csv  — lowercase   («archaludon»)
+#   garchomp-baseline/  main.py + deck.csv  — lowercase   («garchomp»)
+#   Lucario-Baseline/   mega_lucario_baseline.py          («lucario»)
 # train.py validates the whole active set before episode 0 and aborts naming
 # the missing path if a folder wasn't copied — never mid-run.
 OPPONENT="random"

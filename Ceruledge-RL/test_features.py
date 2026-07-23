@@ -124,7 +124,7 @@ def test_early_game():
     # opp active (Budew: Grass, weak to Fire, 30 HP, free 10-damage attack,
     # override item_lock)
     o = opp_p[0].tolist()
-    assert abs(o[0] - 30 / 340) < 1e-6 and o[1] == 1.0  # hp
+    assert abs(o[0] - 30 / 440) < 1e-6 and o[1] == 1.0  # hp
     assert o[2:5] == [1.0, 0.0, 0.0]                   # rule: plain
     assert o[5] == 0.0 and o[6] == 0.0                 # no tool, retreat 0
     assert o[7] == 1.0 and sum(o[7:17]) == 1.0         # type: Grass
@@ -252,7 +252,7 @@ def test_status_and_no_opp_active():
     # order: Asleep, Paralyzed, Burned, Poisoned, Confused
     assert a[14:19] == [1.0, 0.0, 1.0, 0.0, 0.0], a[14:19]
     # Ceruledge with 3 discard energy: damage 30+60=90
-    assert abs(a[12] - 90 / 270) < 1e-6
+    assert abs(a[12] - 90 / 440) < 1e-6
     # no opp active -> treated as 0 HP: hits_opponent 0, survivable 1 (max dmg 0)
     assert a[13] == 0.0 and a[11] == 1.0
     # ceruledge_KO stays 1.0; opp slots all zero
@@ -330,7 +330,7 @@ def test_reviewed_overrides_and_dynamic_damage():
     our = mk_player(active=mk_poke(Charcadet, 80, 80), player=0)
     opp = mk_player(active=mk_poke(116, 130, 130, player=1), player=1)
     _, opp_p, _, _ = extract_features(mk_obs(our, opp), 0, GameStateTracker())
-    assert abs(float(opp_p[0][0]) - 230 / 340) < 1e-6
+    assert abs(float(opp_p[0][0]) - 230 / 440) < 1e-6
     assert abs(float(opp_p[0][1]) - 130 / 230) < 1e-6
 
     # Palafin recoil is live: 40 damage taken = 4 counters = 40 recoil HP.
@@ -371,7 +371,7 @@ def test_effect_bakes():
     opp3 = mk_player(active=mk_poke(BUDEW, 30, 30, player=1), hand_count=4, player=1)
     _, opp_p3, _, _ = extract_features(mk_obs(our3, opp3, stadium_id=1251),
                                       0, GameStateTracker())
-    assert abs(float(opp_p3[0][HP_MAX]) - 60 / 340) < 1e-6, opp_p3[0][HP_MAX].item()
+    assert abs(float(opp_p3[0][HP_MAX]) - 60 / 440) < 1e-6, opp_p3[0][HP_MAX].item()
 
     # (3) retreat tool (Air Balloon 1174, -2): opp active with printed retreat reduced.
     reg = ft.cd.CardRegistry.load()

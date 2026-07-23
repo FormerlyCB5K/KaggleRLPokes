@@ -38,6 +38,13 @@ Dependencies: `09a → 09b → 09c`; `09d` depends on `09a`; `09e` depends on `0
 - Per-episode sampled opponent pool; our side always Ceruledge, opponents on native decks.
 - Hardcoded `OPPONENTS` registry in `train.py`. Seed members: `ceruledge_rules`,
   `clefable`, `alakazam`, `lucario`, `random`, `self`.
+
+  **Amendment (2026-07-22, independent audit finding):** the registry has since grown to 8
+  named members. `archaludon` was added and is documented by
+  [`10-archaludon-opponent.md`](10-archaludon-opponent.md). `garchomp` was also added
+  (`garchomp-baseline/`) but has no corresponding spec addendum — its provenance and
+  intended registry status are unresearched here; flagged as a candidate for a future,
+  separately-scoped audit rather than backfilled from this note.
 - CLI-driven pool with inline weights; `--opponent` retained and extended to accept any
   registry name (`rules` kept as alias for `ceruledge_rules`).
 - Fail-fast startup validation of the active pool; deploy copies all pooled folders.

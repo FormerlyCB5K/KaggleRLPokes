@@ -1,0 +1,58 @@
+{
+  "registry_schema_version": "1.0.0",
+  "status": "complete",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "13350cac5f1dacf90053ad0ec781b159eeda3c0ec745a8f53fad142dca7987a8",
+      "size_bytes": 9407
+    },
+    {
+      "path": "card_ids.json",
+      "sha256": "553a9017d2d196743d48b7b4d205fcbf2051761f2c56c27eed58c15f7b0f8b06",
+      "size_bytes": 8167
+    },
+    {
+      "path": "card_ids.py",
+      "sha256": "61588e66e2ac022901699cbb8beedb7b706599373742e156afa8cb8324fba4aa",
+      "size_bytes": 4916
+    },
+    {
+      "path": "formulas.json",
+      "sha256": "279f1253accaaac8df5cc51a170c316b90211251e640f195c4cb95c0ccfb38c6",
+      "size_bytes": 339918
+    },
+    {
+      "path": "overrides.json",
+      "sha256": "819316ba1fa431c0323a5dcc711e1aecaa8a51a78b8c6bb51c7d4eafb7f50656",
+      "size_bytes": 1327789
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "d517ff7d377e2a2260991c150489bd9fdd636aa632d80d24762d1f57c6015a7c",
+      "size_bytes": 2920
+    },
+    {
+      "path": "registry.json",
+      "sha256": "5bc1d58b30d0817b7c08e88c83ead2d1479bb7ab88e558aadf4d3769baa9b16f",
+      "size_bytes": 1344239
+    },
+    {
+      "path": "registry.py",
+      "sha256": "61dbf705bcddf9fed1b98603088329577ac7c9bf3f0c4534e4b09c9e030fafbf",
+      "size_bytes": 1277
+    },
+    {
+      "path": "schema.json",
+      "sha256": "43f54eadfc29026e2bdef424b6073f3eadf294b69a7484b5af65124b2ae64f65",
+      "size_bytes": 5877
+    },
+    {
+      "path": "validation.json",
+      "sha256": "98bb4f8717ff8356929743d138fab8430107f4115ce99e09540012a69968327a",
+      "size_bytes": 1405
+    }
+  ],
+  "regeneration_command": "python Imitation-Learning/build_meta_card_registry.py",
+  "determinism_policy": "run twice from frozen provenance inputs; every listed hash must match"
+}

@@ -24,7 +24,7 @@ from attack_overrides import get_override
 
 N_ATTACK_BLOCK = 18         # cost, damage, then ATTACK_TAG_FIELDS (16)
 N_ABILITY_BLOCK = 11        # ABILITY_TAG_FIELDS
-MAX_ATTACK_DAMAGE = 270.0   # spec 02: damage clipped at 270
+MAX_ATTACK_DAMAGE = 270.0   # damage clipped at 270: our max HP is 270, so overkill above
 
 # (field, divisor) in block order after cost/damage; divisor None = boolean 0/1
 _ATTACK_NORMS: list[tuple[str, float | None]] = [

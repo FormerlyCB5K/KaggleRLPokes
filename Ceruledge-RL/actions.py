@@ -219,6 +219,8 @@ def select_main_stage2(
         elif action1 == ACTION_PLAY_CERULEDGE and o.type == OptionType.EVOLVE:
             if o.inPlayArea == AreaType.BENCH and o.inPlayIndex is not None:
                 vec = words[1 + o.inPlayIndex]
+            elif o.inPlayArea == AreaType.ACTIVE:
+                vec = words[0]
             else:
                 vec = torch.zeros(D_MODEL)
         else:
@@ -307,7 +309,7 @@ def select_sub_action(
     match ctx:
         case SelectContext.TO_HAND | SelectContext.DISCARD | SelectContext.DISCARD_CARD_OR_ATTACHED_CARD:
             return _handle_card_selection(obs, our_idx, opts, pooled, model,
-                                          min_cnt, max_cnt, greedy)
+                                          min_cnt, max_cnt, greedy, effect)
 
         case SelectContext.DISCARD_ENERGY_CARD:
             # Discard energy attached to retreating Pokemon — pick min_cnt energies
@@ -335,10 +337,17 @@ def select_sub_action(
 
 
 def _handle_card_selection(obs, our_idx, opts, pooled, model,
-                            min_cnt, max_cnt, greedy):
+                            min_cnt, max_cnt, greedy, effect=None):
     """
     TO_HAND or DISCARD: score individual cards as pile candidates.
+
+    The pooled state is conditioned on the triggering effect card (obs.select.effect)
+    so the ranking depends on *why* the cards are being chosen — discarding for an Ultra
+    Ball cost should not use the same context-blind scorer as a Brilliant Blender cost.
     """
+    if effect is not None:
+        pooled = model.condition_on_effect(pooled, encode_card_as_zone(effect))
+
     cand_vecs: list[tuple[int, torch.Tensor]] = []
     for i, o in enumerate(opts):
         card = _get_card_from_area(obs, o, our_idx)

@@ -80,14 +80,14 @@ ENTROPY_COEF        = 0.01
 GAMMA               = 0.99
 GAE_LAMBDA          = 0.95
 MAX_GRAD_NORM       = 0.5
-LR                  = 3e-4
+LR                  = 1e-3
 N_UPDATES           = 10      # total update iterations (= 300 × 16 = 4800 episodes)
 PRIZE_REWARD        = 0.0      # per-prize shaping reward; 0.0 = disabled, 0.01 = light shaping
 DAMAGE_REWARD       = 0.01     # reward per 10 damage dealt; 0.0 = disabled (cluster default 0.01)
 LOG_EVERY           = 1       # print/plot every N updates
 SAVE_EVERY          = 50
-OUT_DIR             = "out/train-rules-2"
-DESCRIPTION         = "No description provided for this run."
+OUT_DIR             = "out/TEST_train-new-architecture"
+DESCRIPTION         = "running a training run on laptop while I sleep. lets see how it goes."
 # ── Exploration switches (both off = fully deterministic greedy policy) ────────
 USE_EPSILON_GREEDY      = False  # Stage 1: random legal action with prob epsilon
 USE_STOCHASTIC_SAMPLING = True  # Stage 1: sample from softmax instead of argmax
@@ -237,17 +237,10 @@ def _setup_active(obs) -> list[int]:
 
 
 def _setup_bench(obs) -> list[int]:
-    opts = obs.select.option
-    if not opts:
-        return []
-    ps = obs.current.players[obs.current.yourIndex]
-    h  = ps.hand or []
-    for pid in [Charcadet, Lunatone, Solrock, Drilbur]:
-        for i, o in enumerate(opts):
-            if o.type == OptionType.CARD and o.area == AreaType.HAND:
-                if o.index is not None and o.index < len(h) and h[o.index].id == pid:
-                    return [i]
-    if obs.select.minCount == 0:
+    # We never bench during setup on purpose: there is no upside to committing extra
+    # Pokemon before the turn develops, and benching is done later through normal MAIN
+    # play. Decline whenever the engine allows it; only satisfy a forced minimum.
+    if not obs.select.option or (obs.select.minCount or 0) == 0:
         return []
     return [0]
 
@@ -292,7 +285,8 @@ def collect_episode(
     Run one episode vs `opponent` (a resolve_opponent() dict: name/kind/policy/
     deck), recording a Step for every policy decision in MAIN context.
     Returns (steps, episode_reward).
-    Stage 2 log probs are folded into the Step's log_prob for the same decision.
+    Stage 2 selections are greedy and are not stored for PPO; Step.log_prob contains
+    only the Stage 1 action probability.
     """
     # Our deck on our side, the opponent's native deck on the other —
     # battle_start(deck_for_side0, deck_for_side1) maps positionally.

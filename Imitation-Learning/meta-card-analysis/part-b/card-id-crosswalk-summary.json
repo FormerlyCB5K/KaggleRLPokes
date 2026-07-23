@@ -1,0 +1,16 @@
+{
+  "cards": 232,
+  "class_counts": {
+    "energy": 18,
+    "pokemon": 115,
+    "trainer": 99
+  },
+  "definition_mismatches": 0,
+  "engine_archive_sha256": "d1a824b2740e9447acb988cc54f9d5de70af77f2be4f54b891cfa2d74e2a3802",
+  "formatting_normalizations": 46,
+  "issues": 0,
+  "mapped": 232,
+  "part_a_catalog_sha256": "f3019b5179a59e738000f3efd773d10855f1ee7a71a9087560e0f6dfa9258711",
+  "schema_version": 1,
+  "unresolved": 0
+}

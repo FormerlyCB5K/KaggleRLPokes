@@ -82,9 +82,9 @@ STADIUM_IDS: list[int] = [
     1259,  # Spikemuth Gym
 ]
 
-_OUR_HP_MAX  = 270.0
-_OPP_HP_MAX  = 340.0
-_ATTACK_CLIP = 270.0
+_OUR_HP_MAX  = 270.0    # our deck tops out near Ceruledge ex's ~280 HP
+_OPP_HP_MAX  = 440.0    # opponents can be high-HP Mega ex
+_ATTACK_CLIP = 440.0    # Ceruledge scales to 30 + 20×20 = 430 at max discard
 _ATTACK_RECOIL_INDEX = ot.attack_block_schema().index("recoil")
 
 
