@@ -141,6 +141,8 @@ _p.add_argument("--description",              type=str, default=DESCRIPTION,
                 help="free-text note recorded in run_config.json and wandb notes")
 _p.add_argument("--resume",                   action="store_true", default=False,
                 help="continue from OUT_DIR/checkpoint.pth if it exists")
+_p.add_argument("--workers",                  type=int, default=1,
+                help="parallel episode-collection worker processes (1 = sequential)")
 _args, _ = _p.parse_known_args()
 
 EPISODES_PER_UPDATE     = _args.episodes_per_update
@@ -176,6 +178,7 @@ if _args.opponent_pool is not None:
     except ValueError as e:
         _p.error(str(e))
 SELF_PLAY_UPDATE_EVERY  = _args.self_play_update_every
+WORKERS                 = _args.workers
 WANDB_PROJECT           = _args.wandb_project
 WANDB_RUN_NAME          = _args.wandb_run_name
 USE_WANDB               = _WANDB_AVAILABLE and not _args.no_wandb
@@ -683,6 +686,19 @@ def train():
         opponent_model = copy.deepcopy(model).cpu()
         opponent_model.eval()
 
+    # Parallel episode collection (spawn pool of CPU actors). Created after the
+    # model/optimizer so the learner's own CUDA context already exists before the
+    # actors hide CUDA. workers == 1 keeps the original single-process path.
+    collector = None
+    if WORKERS > 1:
+        from parallel_collect import ParallelCollector
+        collector = ParallelCollector(
+            WORKERS, _here, _parent,
+            dict(use_epsilon_greedy=USE_EPSILON_GREEDY,
+                 use_stochastic_sampling=USE_STOCHASTIC_SAMPLING,
+                 prize_reward=PRIZE_REWARD, damage_reward=DAMAGE_REWARD))
+        print(f"Parallel collection: {WORKERS} spawn workers", flush=True)
+
     if OPPONENT_POOL is not None:
         opp_desc = "pool " + ",".join(f"{n}:{w:g}" for n, w in OPPONENT_POOL.items())
     else:
@@ -739,17 +755,25 @@ def train():
             episode_opponents = random.choices(
                 pool_names, weights=pool_weights, k=EPISODES_PER_UPDATE)
             model.eval()
-            model.cpu()
-            results = [
-                (opp_name, *collect_episode(
-                    model, epsilon,
-                    ep % 2, (ep // 2) % 2 == 0,
-                    active[opp_name],
-                    opponent_model if active[opp_name]["kind"] == "self" else None,
-                ))
-                for ep, opp_name in enumerate(episode_opponents)
-            ]
-            model.to(DEVICE)
+            if collector is not None:
+                # Parallel: learner stays on DEVICE; the collector broadcasts a CPU
+                # snapshot to the actor pool and returns the same
+                # (opp_name, steps, reward) tuples as the sequential path.
+                results = collector.collect(
+                    model, episode_opponents, epsilon,
+                    self_model=opponent_model if has_self else None)
+            else:
+                model.cpu()
+                results = [
+                    (opp_name, *collect_episode(
+                        model, epsilon,
+                        ep % 2, (ep // 2) % 2 == 0,
+                        active[opp_name],
+                        opponent_model if active[opp_name]["kind"] == "self" else None,
+                    ))
+                    for ep, opp_name in enumerate(episode_opponents)
+                ]
+                model.to(DEVICE)
 
             all_steps: list[Step] = []
             wins = draws = losses = 0
@@ -831,6 +855,9 @@ def train():
             save_checkpoint(model, optimizer, update, epsilon,
                             reward_history, winrate_history, update_nums,
                             per_opp_history, wandb_run_id)
+
+    if collector is not None:
+        collector.close()
 
     # ── Final plots ────────────────────────────────────────────────────────────
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 10), sharex=True)

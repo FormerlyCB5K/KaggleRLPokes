@@ -192,13 +192,25 @@ class CardRegistry:
     for None/unknown ids so an absent Pokemon slot contributes zeros downstream."""
 
     _cache: dict = {}
+    _default: "CardRegistry | None" = None  # memoized no-arg registry (hot path)
 
     def __init__(self, stats: dict):
         self.stats = stats
 
     @classmethod
     def load(cls, csv_path: str | None = None) -> "CardRegistry":
-        key = os.path.realpath(csv_path or _default_csv())
+        # Hot path: the no-arg call runs ~20x per feature extraction. Cache the
+        # resolved default registry directly so we don't re-hit the filesystem
+        # (realpath + os.path.exists probes cost ~30% of rollout time on Windows)
+        # on every lookup.
+        if csv_path is None:
+            if cls._default is None:
+                cls._default = cls._load_path(_default_csv())
+            return cls._default
+        return cls._load_path(os.path.realpath(csv_path))
+
+    @classmethod
+    def _load_path(cls, key: str) -> "CardRegistry":
         reg = cls._cache.get(key)
         if reg is None:
             rows_by_id = load_card_rows(key)

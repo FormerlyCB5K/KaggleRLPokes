@@ -6,8 +6,9 @@
 #      sbatch /gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/Ceruledge-RL/submit-batch-ceruledge-ppo.sh
 #
 #  NPL notes:
-#    * We request 1 GPU (auto-allocates 10 CPU cores). Episodes are collected
-#      sequentially on CPU; the GPU is used only for the PPO gradient update.
+#    * We request 1 GPU (auto-allocates 10 CPU cores). Episodes are collected in
+#      parallel by a spawn pool of CPU actors (WORKERS below); the GPU (this
+#      process = the learner) is used only for the PPO gradient update.
 #    * Time limit is 6 h. train.py writes OUT_DIR/checkpoint.pth after
 #      every update; when the wall approaches, this script re-queues itself and
 #      the new job continues from that checkpoint via --resume (model, optimizer,
@@ -62,6 +63,15 @@ OUT_DIR="$WORKDIR/Ceruledge-RL/out/$MODEL_NAME"
 OPPONENT="random"
 OPPONENT_POOL=""
 SELF_PLAY_UPDATE_EVERY=20
+
+# ── Parallel episode collection ───────────────────────────────────────────────
+# A spawn pool of CPU actors collects episodes in parallel while this process
+# (the learner) does the PPO update on the GPU. Defaults to (allocated CPUs − 1),
+# leaving one core for the learner. Set WORKERS=1 for the original sequential path.
+# The engine parallelizes cleanly under spawn (verified); the actors pin BLAS/OMP
+# threads to 1 and hide CUDA automatically (see parallel_collect.py).
+WORKERS="${SLURM_CPUS_ON_NODE:-10}"
+WORKERS=$(( WORKERS > 1 ? WORKERS - 1 : 1 ))
 
 # ── PPO hyperparameters ───────────────────────────────────────────────────────
 EPISODES_PER_UPDATE=128
@@ -157,12 +167,14 @@ else
     echo "Opponent:    $OPPONENT"
 fi
 echo "Out dir:     $OUT_DIR"
+echo "Workers:     $WORKERS  (parallel CPU actors; learner on GPU)"
 
 # ---- run training ----
 # --resume is always passed: first run finds no checkpoint and starts fresh;
 # requeued runs continue from OUT_DIR/checkpoint.pth.
 python -u Ceruledge-RL/train.py \
     --resume \
+    --workers             "$WORKERS" \
     --episodes-per-update "$EPISODES_PER_UPDATE" \
     --ppo-epochs          "$PPO_EPOCHS" \
     --ppo-clip            "$PPO_CLIP" \
