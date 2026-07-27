@@ -27,6 +27,7 @@ content tag (see `trainer_energy_tag_catalog.py`'s own module docstring).
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from functools import lru_cache
 
 from . import card_data
 from ._registry import CARD_ID_TO_INDEX, UNK_CARD_INDEX
@@ -54,7 +55,10 @@ class TrainerEnergyStatic:
     tag_block: list[float] = field(default_factory=lambda: [0.0] * TAG_BLOCK_WIDTH)
 
 
+@lru_cache(maxsize=None)
 def build_trainer_energy_static(card_id: int | None) -> TrainerEnergyStatic:
+    """Pure function of `card_id` alone -- cached for the same reason as
+    `static_template.build_pokemon_static` (see its docstring)."""
     if card_id is None:
         return TrainerEnergyStatic(card_id=None, card_index=UNK_CARD_INDEX)
     card_index = CARD_ID_TO_INDEX.get(card_id, UNK_CARD_INDEX)

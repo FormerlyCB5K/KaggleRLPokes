@@ -13,6 +13,7 @@ card has fewer.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from functools import lru_cache
 
 from . import card_data
 from ._registry import CARD_ID_TO_INDEX, UNK_CARD_INDEX
@@ -96,9 +97,18 @@ HP_NORM = 340.0
 RETREAT_NORM = 4.0
 
 
+@lru_cache(maxsize=None)
 def build_pokemon_static(card_id: int | None) -> PokemonStatic:
     """Build the static half of a Pokemon word. `card_id=None` -> UNK (all-zero identity,
-    all-zero base fields -- an unknown card has no printed data to encode)."""
+    all-zero base fields -- an unknown card has no printed data to encode).
+
+    Pure function of `card_id` alone (frozen dataclass result, safe to share by
+    reference) -- cached because the same handful of meta cards recur across
+    essentially every word in every example, and rebuilding the ~230-float
+    tag_block/one-hot payload from scratch each time was the dominant cost of
+    both extraction time and memory when profiling IL dataset extraction at scale
+    (see Imitation-Learning/policy/data.py -- iter_all_examples materializes every
+    example up front)."""
     if card_id is None:
         return PokemonStatic(
             card_id=None,

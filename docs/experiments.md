@@ -461,3 +461,41 @@ directories; link or name them here.
   - `validation.json`: `98bb4f8717ff8356929743d138fab8430107f4115ce99e09540012a69968327a`
   - `README.md`: `13350cac5f1dacf90053ad0ec781b159eeda3c0ec745a8f53fad142dca7987a8`
   - `artifact-manifest.json`: `160715e691d27a6e54967917bbb4552beb491222eac9084573a6cec24d59eee9`
+
+### 2026-07-27 — Day-chunked IL cache/training smoke validation
+
+- Status: implementation smoke passed; this was a deliberately tiny functional run,
+  not a model-quality experiment or full-day capacity measurement.
+- Focused validation:
+  - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy/test_data.py -q`
+    — 17 passed.
+  - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy/
+    Imitation-Learning/observation/ -q` — 86 passed.
+- Cache build:
+  - `.venv/Scripts/python.exe Imitation-Learning/build_example_cache.py --source
+    sanitized --sanitized-dir Imitation-Learning/Top-ladder-data/sanitized
+    --max-episodes-per-zip 5 --max-steps 50 --cache-dir
+    work/il-cache-smoke-20260727 --workers 4`
+  - Results: `7-12` = 208 examples / 4.6 s, `7-13` = 214 / 6.9 s,
+    `7-14` = 222 / 6.6 s. An identical rerun reported all three days up to date
+    and skipped them.
+- Cached interleaving:
+  - `policy/train.py` used the three caches above with `--days-per-chunk 1`,
+    `--epochs 2`, and matching extraction parameters.
+  - Confirmed order:
+    `7-12 -> 7-13 -> 7-14 -> 7-12 -> 7-13 -> 7-14`; exactly one baseline line.
+    Random baseline validation accuracy on the first 42-example holdout was 0.190;
+    best per-chunk smoke validation accuracy was 0.455. These tiny, differing
+    per-chunk holdouts are only an execution check and must not be treated as a
+    generalization result.
+- Live fallback:
+  - One outer epoch completed without the repeated-extraction warning.
+  - Two outer epochs printed the warning once and visibly revisited all three days.
+- Staleness:
+  - Changing `7-12`'s smoke manifest from `max_steps=50` to `51` caused training
+    to fail with `RuntimeError: stale cache for sanitized/7-12: max_steps:
+    cached=51, requested=50`; the next cache-build command rebuilt only that stale
+    day and skipped the other two.
+- Remaining operational measurement: pilot one uncapped full day on the cluster,
+  recording cache size, peak RSS, build/load time, and training throughput before
+  scaling to every available day.

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import gc
 import json
 import os
 import random
@@ -25,30 +26,31 @@ from policy import scoring
 from policy.model import PolicyModel
 
 
-def _subdirs(path: str | None) -> list[str]:
-    if not path or not os.path.isdir(path):
-        return []
-    return sorted(
-        name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
-    )
-
-
 def build_run_config(
     *, run_name: str, description: str, raw_dir: str | None, sanitized_dir: str | None,
-    source: str, max_episodes_per_zip: int | None, max_steps: int, epochs: int,
-    lr: float, batch_size: int, val_frac: float, seed: int, out_path: str,
+    source: str, days_per_chunk: int, cache_dir: str | None, max_episodes_per_zip: int | None,
+    max_steps: int, epochs: int, lr: float, batch_size: int, val_frac: float, seed: int,
+    out_path: str, resolved_source_days: list[tuple[str, str]] | None = None,
 ) -> dict:
     """Everything needed to know what a run was, without re-reading the SLURM log:
     run identity, exact CLI switches, and which days of which dataset it trained on."""
+    resolved_source_days = resolved_source_days or []
     return {
         "run_name": run_name,
         "description": description,
         "started_at": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
         "source": source,
+        "days_per_chunk": days_per_chunk,
+        "cache_dir": cache_dir,
         "raw_dir": raw_dir,
-        "raw_days": _subdirs(raw_dir) if source in ("raw", "both") else [],
+        "raw_days": [day for label, day in resolved_source_days if label == "raw"],
         "sanitized_dir": sanitized_dir,
-        "sanitized_days": _subdirs(sanitized_dir) if source in ("sanitized", "both") else [],
+        "sanitized_days": [
+            day for label, day in resolved_source_days if label == "sanitized"
+        ],
+        "resolved_source_days": [
+            {"source": label, "day": day} for label, day in resolved_source_days
+        ],
         "max_episodes_per_zip": max_episodes_per_zip,
         "max_steps": max_steps,
         "epochs": epochs,
@@ -66,6 +68,8 @@ def print_run_config(config: dict) -> None:
     print(f"description:          {config['description']}")
     print(f"started_at:           {config['started_at']}")
     print(f"source:               {config['source']}")
+    print(f"days_per_chunk:       {config['days_per_chunk']}")
+    print(f"cache_dir:            {config['cache_dir'] or '(none -- live extraction)'}")
     if config["source"] in ("raw", "both"):
         print(f"raw_dir:              {config['raw_dir']}")
         print(f"raw_days:             {', '.join(config['raw_days']) or '(none found)'}")
@@ -136,19 +140,43 @@ def evaluate(model: PolicyModel, examples: list[data_mod.Example]) -> dict:
 
 def train(
     out_path: str, raw_dir: str | None = None, sanitized_dir: str | None = None,
-    source: str = "sanitized", max_episodes_per_zip: int | None = 20,
-    max_steps: int = 300, epochs: int = 3, lr: float = 1e-3, batch_size: int = 8,
-    val_frac: float = 0.2, seed: int = 0, run_name: str = "", description: str = "",
+    source: str = "sanitized", days_per_chunk: int = 1, cache_dir: str | None = None,
+    max_episodes_per_zip: int | None = 20, max_steps: int = 300, epochs: int = 3,
+    lr: float = 1e-3, batch_size: int = 8, val_frac: float = 0.2, seed: int = 0,
+    run_name: str = "", description: str = "",
 ):
+    """`epochs` is the number of full passes over *every* day-chunk (standard ML
+    meaning): each outer epoch visits every chunk once, in order, before any chunk
+    repeats -- not "finish all epochs on chunk 1, then move to chunk 2". If
+    `cache_dir` is given, each chunk is loaded from a pre-built cache
+    (`build_example_cache.py`) instead of re-extracted from `raw_dir`/
+    `sanitized_dir` on every revisit -- required to keep `epochs > 1` fast, since
+    interleaving means every chunk gets revisited once per outer epoch."""
     random.seed(seed)
     torch.manual_seed(seed)
 
+    if cache_dir is not None:
+        resolved_source_days = data_mod.resolve_cached_source_day_pairs(
+            cache_dir=cache_dir, source=source,
+            raw_dir=raw_dir, sanitized_dir=sanitized_dir,
+        )
+    else:
+        if source in ("raw", "both") and not raw_dir:
+            raise ValueError("raw_dir is required when source is 'raw' or 'both'")
+        if source in ("sanitized", "both") and not sanitized_dir:
+            raise ValueError(
+                "sanitized_dir is required when source is 'sanitized' or 'both'"
+            )
+        resolved_source_days = data_mod.list_source_day_pairs(
+            raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
+        )
+
     config = build_run_config(
         run_name=run_name, description=description, raw_dir=raw_dir,
-        sanitized_dir=sanitized_dir, source=source,
-        max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
+        sanitized_dir=sanitized_dir, source=source, days_per_chunk=days_per_chunk,
+        cache_dir=cache_dir, max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
         epochs=epochs, lr=lr, batch_size=batch_size, val_frac=val_frac,
-        seed=seed, out_path=out_path,
+        seed=seed, out_path=out_path, resolved_source_days=resolved_source_days,
     )
     print_run_config(config)
     out_dir = os.path.dirname(out_path)
@@ -158,48 +186,84 @@ def train(
     with open(config_path, "w") as handle:
         json.dump(config, handle, indent=2)
 
-    examples = list(data_mod.iter_all_examples(
-        raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
-        max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
-    ))
-    if not examples:
-        raise RuntimeError(
-            f"no examples extracted (source={source!r}, raw_dir={raw_dir!r}, "
-            f"sanitized_dir={sanitized_dir!r})"
+    if cache_dir is None and epochs > 1:
+        print(
+            "WARNING: no cache_dir given with epochs > 1 -- each chunk will be "
+            "re-extracted from source data once per outer epoch (~1 episode/sec, "
+            "multiplied by epochs). Run build_example_cache.py once and pass "
+            "cache_dir to avoid repeated extraction."
         )
-    train_ex, val_ex = _split_by_episode(examples, val_frac)
-    print(f"examples: {len(examples)} total, {len(train_ex)} train, {len(val_ex)} val "
-          f"({len({e.episode_name for e in examples})} episodes)")
 
     model = PolicyModel()
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
-    base = evaluate(model, val_ex) if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
-    print(f"[baseline] val_accuracy={base['accuracy']:.3f} (n={base['total']}) by_verb={base['by_verb']}")
-
+    base = None
     best_acc = -1.0
-    for epoch in range(epochs):
-        random.shuffle(train_ex)
-        running_loss = 0.0
-        optimizer.zero_grad()
-        for step, ex in enumerate(train_ex, start=1):
-            loss, _ = example_loss_and_correct(model, ex)
-            (loss / batch_size).backward()
-            running_loss += loss.item()
-            if step % batch_size == 0:
+    saw_any_examples = False
+
+    for outer_epoch in range(epochs):
+        if cache_dir is not None:
+            chunk_iter = data_mod.iter_cached_examples_by_day_chunk(
+                cache_dir=cache_dir, source=source, days_per_chunk=days_per_chunk,
+                max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
+                raw_dir=raw_dir, sanitized_dir=sanitized_dir,
+            )
+        else:
+            chunk_iter = data_mod.iter_examples_by_day_chunk(
+                raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
+                max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
+                days_per_chunk=days_per_chunk,
+            )
+
+        for chunk_label, examples in chunk_iter:
+            if not examples:
+                print(f"WARNING: chunk {chunk_label!r} yielded no examples, skipping "
+                      f"(outer_epoch={outer_epoch})")
+                continue
+            saw_any_examples = True
+
+            train_ex, val_ex = _split_by_episode(examples, val_frac)
+            print(f"[outer_epoch {outer_epoch} chunk {chunk_label}] examples: {len(examples)} "
+                  f"total, {len(train_ex)} train, {len(val_ex)} val "
+                  f"({len({e.episode_name for e in examples})} episodes)")
+
+            if base is None:
+                base = evaluate(model, val_ex) if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
+                print(f"[baseline] (outer_epoch {outer_epoch} chunk {chunk_label}) "
+                      f"val_accuracy={base['accuracy']:.3f} (n={base['total']}) by_verb={base['by_verb']}")
+
+            # One epoch's worth of training on this chunk.
+            random.shuffle(train_ex)
+            running_loss = 0.0
+            optimizer.zero_grad()
+            for step, ex in enumerate(train_ex, start=1):
+                loss, _ = example_loss_and_correct(model, ex)
+                (loss / batch_size).backward()
+                running_loss += loss.item()
+                if step % batch_size == 0:
+                    optimizer.step()
+                    optimizer.zero_grad()
+            if len(train_ex) % batch_size != 0:
                 optimizer.step()
                 optimizer.zero_grad()
-        if len(train_ex) % batch_size != 0:
-            optimizer.step()
-            optimizer.zero_grad()
 
-        avg_loss = running_loss / len(train_ex) if train_ex else 0.0
-        metrics = evaluate(model, val_ex) if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
-        print(f"[epoch {epoch}] train_loss={avg_loss:.4f} val_accuracy={metrics['accuracy']:.3f} "
-              f"(n={metrics['total']}) by_verb={metrics['by_verb']}")
-        if metrics["accuracy"] >= best_acc:
-            best_acc = metrics["accuracy"]
-            torch.save({"model_state_dict": model.state_dict(), "val_accuracy": best_acc}, out_path)
+            avg_loss = running_loss / len(train_ex) if train_ex else 0.0
+            metrics = evaluate(model, val_ex) if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
+            print(f"[outer_epoch {outer_epoch} chunk {chunk_label}] train_loss={avg_loss:.4f} "
+                  f"val_accuracy={metrics['accuracy']:.3f} (n={metrics['total']}) "
+                  f"by_verb={metrics['by_verb']}")
+            if metrics["accuracy"] >= best_acc:
+                best_acc = metrics["accuracy"]
+                torch.save({"model_state_dict": model.state_dict(), "val_accuracy": best_acc}, out_path)
+
+            del examples, train_ex, val_ex
+            gc.collect()
+
+    if not saw_any_examples:
+        raise RuntimeError(
+            f"no examples extracted from any chunk (source={source!r}, raw_dir={raw_dir!r}, "
+            f"sanitized_dir={sanitized_dir!r}, cache_dir={cache_dir!r})"
+        )
 
     print(f"saved best checkpoint (val_accuracy={best_acc:.3f}) to {out_path}")
     return {"baseline": base, "best_val_accuracy": best_acc}
@@ -219,10 +283,34 @@ if __name__ == "__main__":
         "--sanitized-dir", default=None,
         help="sanitized dataset root (<root>/<day>/*.json); used when --source is sanitized or both",
     )
+    parser.add_argument(
+        "--days-per-chunk", type=int, default=1,
+        help="group N consecutive day-directories into one chunk; extraction and "
+             "training happen one chunk at a time so peak memory is bounded to a "
+             "chunk's examples rather than the whole dataset (default: 1)",
+    )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="pre-built per-day Example cache root from build_example_cache.py; if "
+             "given, day-chunks are loaded from cache instead of re-extracted from "
+             "--raw-dir/--sanitized-dir on every outer epoch -- needed to keep "
+             "--epochs > 1 fast. If omitted, chunks are extracted live every outer "
+             "epoch (slow when epochs > 1)",
+    )
     parser.add_argument("--out", default=os.path.join(_HERE, "checkpoint.pt"))
-    parser.add_argument("--max-episodes-per-zip", type=int, default=20)
+    parser.add_argument(
+        "--max-episodes-per-zip", type=data_mod.parse_episode_limit, default=20,
+        help="positive per-day cap, or 'all' for an uncapped full-day run "
+             "(default: 20)",
+    )
     parser.add_argument("--max-steps", type=int, default=300)
-    parser.add_argument("--epochs", type=int, default=3)
+    parser.add_argument(
+        "--epochs", type=int, default=3,
+        help="outer training epochs -- one full interleaved pass over every "
+             "day-chunk per epoch (standard meaning): each chunk is visited once "
+             "per epoch before any chunk repeats, not fully trained through before "
+             "moving to the next",
+    )
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--val-frac", type=float, default=0.2)
@@ -232,7 +320,8 @@ if __name__ == "__main__":
 
     train(
         out_path=args.out, raw_dir=args.raw_dir, sanitized_dir=args.sanitized_dir,
-        source=args.source, max_episodes_per_zip=args.max_episodes_per_zip,
+        source=args.source, days_per_chunk=args.days_per_chunk, cache_dir=args.cache_dir,
+        max_episodes_per_zip=args.max_episodes_per_zip,
         max_steps=args.max_steps, epochs=args.epochs, lr=args.lr,
         batch_size=args.batch_size, val_frac=args.val_frac,
         run_name=args.run_name, description=args.description,

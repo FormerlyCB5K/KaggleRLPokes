@@ -23,6 +23,7 @@ Imitation-Learning/Top-ladder-data/
 
 # Smoke-test scratch output (checkpoints/plots regenerated on each run)
 work/audit-smoke-*/
+work/il-cache-smoke-*/
 
 # Python
 .venv/

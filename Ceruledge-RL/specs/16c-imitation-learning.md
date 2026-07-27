@@ -49,7 +49,13 @@ For each such (obs, action) pair:
      variable-count picks) than for single-select ones — an accepted v1 gap, not a bug.
 4. One tracker triple (`PrizeTracker`, our `GameStateTracker`, opponent `GameStateTracker`)
    per `(episode, our_idx)` pair, reused across that episode's steps — same lifecycle
-   `test_live_adapter_replay.py` already established.
+   `test_live_adapter_replay.py` already established. Advance the trackers on every
+   distinct chronological observation, including forced choices marked `usable=false`
+   that are excluded from supervision. Replay observations carry delta logs since the
+   preceding selection; filtering a forced choice before updating the trackers can
+   otherwise lose the only log for a prize take or another stateful event. Repeated
+   copies of the non-acting player's unchanged observation are deduplicated before
+   tracker updates.
 
 ### Labels excluded from v1
 
@@ -74,19 +80,34 @@ filename) is enough for v1; no cross-validation needed yet.
 
 ### Training loop
 
-- Standard supervised loop: batch several decision steps (padding candidate-count
-  dimensions, masking illegal/absent slots to `-inf` before softmax), Adam, checkpoint the
-  best validation accuracy.
+- Standard supervised loop with Adam and gradient accumulation; checkpoint the best
+  validation accuracy.
+- Training is day-chunked because retaining all extracted examples would require roughly
+  225 GB for 14 full days. `--days-per-chunk` controls how many consecutive day caches
+  are loaded at once; one day is the default.
+- Epochs have standard interleaved semantics: one outer epoch visits every day chunk once
+  before any chunk repeats. The model and optimizer persist across chunks.
+- `Imitation-Learning/build_example_cache.py` extracts each source/day pair once, in
+  parallel across episodes, and writes
+  `Top-ladder-data/example-cache/<source>/<day>.pkl` plus a manifest. Later epochs reload
+  those pickles instead of repeating live observation extraction.
+- Manifests lock the Example schema version, source label/day, extraction limits, source
+  metadata fingerprint, and example count. Source-backed training fails if any required
+  day is missing or stale; cache-only cluster operation validates the copied cache's own
+  manifest inventory.
+- Live extraction remains available when `--cache-dir` is omitted. It is correct but
+  intentionally single-process and repeats extraction on every outer epoch; the trainer
+  warns when that slow path is used for more than one epoch.
 - Evaluation metric: top-1 accuracy against the recorded action, both overall and split by
   verb, on held-out episodes. Success bar (per spec 16's overview): clearly better than a
   random/majority baseline — no specific target percentage is fixed for this v1.
 
 ## Data
 
-Input: `Imitation-Learning/Top-ladder-data/*/*.zip` (already present in this checkout:
-`7-12`, `7-13`, `7-14`). Output: a PyTorch checkpoint (model state dict) plus a small
-run log (loss/accuracy curves), location TBD at implementation time (likely alongside the
-model code under `Imitation-Learning/`).
+Input: raw `Imitation-Learning/Top-ladder-data/<day>/*.zip` archives or the preferred
+sanitized per-episode JSON dataset under `Top-ladder-data/sanitized/<day>/`. The reusable
+cache lives under `Top-ladder-data/example-cache/` by default. Output is a PyTorch
+checkpoint plus a sibling run-configuration JSON and scheduler logs.
 
 ## Interfaces / seams
 

@@ -17,6 +17,7 @@ from __future__ import annotations
 import os
 import sys
 from dataclasses import fields
+from functools import lru_cache
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _IL_ROOT = os.path.dirname(_HERE)
@@ -75,9 +76,27 @@ def _flatten_static_content(static) -> list[float]:
     return out
 
 
+@lru_cache(maxsize=None)
+def _pokemon_static_flat(card_id: int | None) -> list[float]:
+    """Cached by `card_id`, not by the static object: `PokemonStatic` is `frozen=True`
+    but has `list[float]` fields, so it's unhashable and can't be an `lru_cache` key
+    directly. `build_pokemon_static` is already memoized by `card_id`, so re-flattening
+    it here on every word occurrence -- rather than once per unique card -- was silently
+    reintroducing the exact per-occurrence cost that memoizing `build_pokemon_static`
+    was meant to eliminate (caught by re-profiling after moving packing to extraction
+    time: memory got *worse*, not better, until this was added too)."""
+    return _flatten_static_content(build_pokemon_static(card_id))
+
+
+@lru_cache(maxsize=None)
+def _trainer_energy_static_flat(card_id: int | None) -> list[float]:
+    """Cached by `card_id` -- see `_pokemon_static_flat`."""
+    return _flatten_static_content(build_trainer_energy_static(card_id))
+
+
 # Probe instances (zero/UNK) fix each vector's width once, from the real dataclass shapes.
-_POKEMON_PROBE = _flatten_static_content(build_pokemon_static(None))
-_TRAINER_ENERGY_PROBE = _flatten_static_content(build_trainer_energy_static(None))
+_POKEMON_PROBE = _pokemon_static_flat(None)
+_TRAINER_ENERGY_PROBE = _trainer_energy_static_flat(None)
 
 POKEMON_STATIC_WIDTH = len(_POKEMON_PROBE)
 TRAINER_ENERGY_STATIC_WIDTH = len(_TRAINER_ENERGY_PROBE)
@@ -190,11 +209,11 @@ def role_index(role: str | None) -> int:
 
 def _zone_card_content_from_static(static: PokemonStatic | TrainerEnergyStatic | None) -> list[float]:
     pokemon_part = (
-        _flatten_static_content(static) if isinstance(static, PokemonStatic)
+        _pokemon_static_flat(static.card_id) if isinstance(static, PokemonStatic)
         else [0.0] * POKEMON_STATIC_WIDTH
     )
     trainer_part = (
-        _flatten_static_content(static) if isinstance(static, TrainerEnergyStatic)
+        _trainer_energy_static_flat(static.card_id) if isinstance(static, TrainerEnergyStatic)
         else [0.0] * TRAINER_ENERGY_STATIC_WIDTH
     )
     return pokemon_part + trainer_part
@@ -217,7 +236,7 @@ def pack_card_content(card_id: int) -> list[float]:
 def _board_pokemon_content(word: Word) -> list[float]:
     static = word.static
     pokemon_part = (
-        _flatten_static_content(static) if isinstance(static, PokemonStatic)
+        _pokemon_static_flat(static.card_id) if isinstance(static, PokemonStatic)
         else [0.0] * POKEMON_STATIC_WIDTH
     )
     return pokemon_part + _board_live_vec(word.live)
@@ -226,7 +245,7 @@ def _board_pokemon_content(word: Word) -> list[float]:
 def _stadium_content(word: Word) -> list[float]:
     static = word.static
     if isinstance(static, TrainerEnergyStatic):
-        return _flatten_static_content(static)
+        return _trainer_energy_static_flat(static.card_id)
     return [0.0] * TRAINER_ENERGY_STATIC_WIDTH
 
 

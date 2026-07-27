@@ -15,7 +15,9 @@
 #SBATCH --output=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.out
 #SBATCH --error=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.err
 #SBATCH --nodes=1
-#SBATCH --time=04:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=64G
+#SBATCH --time=48:00:00
 
 set -euo pipefail
 
@@ -39,7 +41,10 @@ DESCRIPTION=""
 SOURCE="sanitized"
 RAW_DIR="$WORKDIR/Imitation-Learning/Top-ladder-data"
 SANITIZED_DIR="$WORKDIR/Imitation-Learning/Top-ladder-data/sanitized"
-MAX_EPISODES_PER_ZIP=20
+CACHE_DIR="$WORKDIR/Imitation-Learning/Top-ladder-data/example-cache"
+DAYS_PER_CHUNK=1
+# Must exactly match the cache-build job. "all" means uncapped/full day.
+MAX_EPISODES_PER_ZIP="all"
 MAX_STEPS=300
 EPOCHS=3
 LR=1e-3
@@ -53,18 +58,27 @@ cd "$WORKDIR"
 # ---- environment ----
 module purge > /dev/null 2>&1 || true
 source "$WORKDIR/../myenv/bin/activate"
+export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
+export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
 
 echo "Job $SLURM_JOB_ID  starting at $(date)"
 echo "Node: $(hostname)   CPUs: $(nproc)"
 echo "Out dir: $OUT_DIR"
 
 # ---- run training ----
+CACHE_ARGS=()
+if [ -n "$CACHE_DIR" ]; then
+    CACHE_ARGS=(--cache-dir "$CACHE_DIR")
+fi
+
 python -u Imitation-Learning/policy/train.py \
     --run-name             "$RUN_NAME" \
     --description          "$DESCRIPTION" \
     --source               "$SOURCE" \
     --raw-dir              "$RAW_DIR" \
     --sanitized-dir        "$SANITIZED_DIR" \
+    --days-per-chunk       "$DAYS_PER_CHUNK" \
+    "${CACHE_ARGS[@]}" \
     --out                  "$OUT_DIR/checkpoint.pt" \
     --max-episodes-per-zip "$MAX_EPISODES_PER_ZIP" \
     --max-steps            "$MAX_STEPS" \

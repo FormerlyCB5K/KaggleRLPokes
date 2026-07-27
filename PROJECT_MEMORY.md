@@ -1,6 +1,6 @@
 # Project Memory
 
-Last refreshed: 2026-07-26
+Last refreshed: 2026-07-27
 
 ## Purpose
 
@@ -43,6 +43,24 @@ validation and deployment of all required agent folders, and per-opponent metric
 Code exists at `opponents.py`, `test_dispatch.py`, and `test_pool.py`. The active-spec
 index is `Ceruledge-RL/specs/README.md`.
 
+## Imitation-learning data/training track — status as of 2026-07-27
+
+Spec 16's generalized policy pipeline lives under `Imitation-Learning/policy/`.
+Full-dataset extraction cannot materialize every decision in one Python list
+(profiling measured about 23.4 KB retained per `Example`, roughly 16 GB per full day
+and 225 GB for 14 days). Training is therefore day-chunked with standard interleaved
+epoch semantics: each outer epoch visits every day chunk once before any chunk repeats.
+
+`Imitation-Learning/build_example_cache.py` builds reusable per-source/per-day Example
+pickles in parallel. Strict sibling manifests lock schema version, source/day,
+extraction parameters, source metadata fingerprint, and example count. When source data
+is present, training requires a complete cache for every discovered source/day pair;
+cache-only cluster runs use the copied manifest inventory. `all` is the shared CLI
+spelling for an uncapped full-day cache/training run. Cache construction streams the
+pickle to disk to avoid a second multi-GB serialized copy in RAM. AiMOS/NPL entry points
+are `policy/submit-batch-build-cache.sh` followed by
+`policy/submit-batch-il-train.sh`; their episode limit and `max_steps` must match.
+
 ## Observation encoder track (specs 11/11a/11b/13/13a) — status as of 2026-07-21
 
 Built on top of the completed spec-12 registry above: a generalized (any-deck) Pokémon TCG
@@ -71,9 +89,10 @@ to all 10 types), `board_context.py` (new: bridges `RawPokemon`/`PokemonStatic` 
 `stat_bakes` queries), `live_state.py` (per-Pokemon live fields), `zones.py` (fixed-capacity
 padded zone arrays), `encoder.py` (top-level `build_observation(GameState) -> list[Word]`
 assembly — real `attack_damage`/`attacks_survivable`/`attack_hits_opponent`, not
-placeholders), `test_encoder.py` (24 tests, all passing). No pytest installed — run via
-`.venv/Scripts/python.exe -c "import observation.test_encoder as t; ..."` from
-`Imitation-Learning/`, calling each `test_*` function directly.
+placeholders), and focused tests under `observation/`. Pytest is available in `.venv`;
+run the current combined suite from the repository root with
+`.venv/Scripts/python.exe -m pytest Imitation-Learning/policy/
+Imitation-Learning/observation/ -q`.
 
 **Full write-ups**: `Imitation-Learning/observation/POKEMON_TAG_TRANSCRIPTION_REPORT.md` and
 `TRAINER_ENERGY_TAG_TRANSCRIPTION_REPORT.md` — bugs found+fixed, gaps logged, qualifier
@@ -206,6 +225,12 @@ Full details and accepted limitations are in `Ceruledge-RL/MODEL-ARCHITECTURE.md
   only `id(obs)` (whose reuse could silently skip a later observation). The generalized
   adapter's deck remainder now uses the submitted deck held by `PrizeTracker`, not the
   fixed Ceruledge list.
+- A 2026-07-27 imitation-extraction regression fixed tracker cadence over sanitized
+  replays: trackers now advance on every distinct observation, including forced
+  `usable=false` choices excluded from supervision, and deduplicate repeated copies of
+  the non-acting player's observation. Previously a forced choice could carry the only
+  `PRIZE -> HAND` delta log, leaving the next trainable state at an invalid inferred
+  6-vs-engine-5 prize count.
 - `observation_known_errors` #1 (deck/Prize identity gap) fixed 2026-07-26: the deck
   zone (`Imitation-Learning/observation/zones.py`'s `build_zone_array`) now uses the same
   UNK "known count, hidden identity" mechanism the prize zone already had, generalized
@@ -247,6 +272,13 @@ all 24 standalone observation-encoder tests. Opponent-registry self-tests, a 20-
 Archaludon smoke run, and a mixed three-opponent pool/resume smoke run passed; the full
 live `test_pool.py` and `test_dispatch.py` scripts were not completed because individual
 greedy collection episodes can run for minutes and have no built-in move/time cap.
+
+On 2026-07-27 the combined generalized policy/observation suite passed 86 tests. A
+three-day cache smoke (5 episodes/day, 50 steps) built 208/214/222 examples,
+idempotently skipped all three on rerun, and completed a two-epoch cached training pass
+in the required interleaved day order. Live one-/two-epoch fallbacks and stale-manifest
+rejection also passed; see `docs/experiments.md`. An uncapped full-day cluster capacity
+pilot remains operational follow-up, not a completed measurement.
 
 ## Next handoff
 
