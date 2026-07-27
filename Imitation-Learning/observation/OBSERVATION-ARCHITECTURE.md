@@ -4,7 +4,8 @@ This document describes the observation encoder only — not the policy/value ne
 consumes it. It corresponds to the implementation in `Imitation-Learning/observation/`
 (`encoder.py`, `zones.py`, `static_template.py`, `trainer_energy_static.py`, `live_state.py`,
 `board_context.py`, `pokemon_tag_catalog.py`, `trainer_energy_tag_catalog.py`, `types.py`),
-which implements the locked design in `Ceruledge-RL/specs/11-pokemon-word-observation-encoding.md`,
+which implements the locked design in
+`Ceruledge-RL/specs/completed/11-pokemon-word-observation-encoding.md`,
 `11a`, `11b`, `13-card-zone-observation-space.md`, `13a-observation-space-design.md`, and the
 `14-effect-baking-audit.md` corrections layered on top.
 
@@ -90,21 +91,42 @@ sensitivity in would just add noise for the model to learn around.
 
 | Zone / slot | Word kind | Count | Card contents |
 |---|---|---|---|
-| Our deck | `zone_card` | 47 | known cards, PAD beyond occupancy |
+| Our deck | `zone_card` | 47 | known cards once resolved (see §1.6a); UNK (known count, hidden identity) before then |
 | Our prizes | `zone_card` | 6 | known + UNK (our own hidden prizes) + PAD |
 | Our hand | `zone_card` | 20 | known cards, PAD beyond occupancy |
 | Our discard | `zone_card` | 40 | known cards (fully revealed zone), PAD beyond occupancy |
 | Opponent discard | `zone_card` | 40 | known cards (fully revealed zone), PAD beyond occupancy |
 | Board | `board_pokemon` | 18 | 1 active + 8 bench, both sides; PAD for empty positions |
 | Stadium | `stadium` | 1 | the in-play Stadium card, or PAD if none |
-| Global | `global` | 1 | scalar game-wide state (currently: `turn_number`) |
+| Global | `global` | 1 | scalar game-wide state (12 fields — see §2.8) |
 | Pool | `pool` | 1 | reserved, currently empty (no static/live content) |
 
-Our own deck and hand are never hidden from the observation (we always know our own list);
-the opponent's hand and deck are simply not represented as zones at all — nothing in the
+Our own hand is never hidden from the observation. Our own deck **is** — see §1.6a. The
+opponent's hand and deck are simply not represented as zones at all — nothing in the
 observation encodes "I don't know what's in the opponent's hand" beyond its absence. Overflow
 (more cards in a zone than its capacity) is tracked via `overflow_count` rather than silently
 dropped, though it isn't currently exposed to the model as its own word/feature.
+
+### 1.6a Known gap (FIXED 2026-07-26): our own deck is not actually always known
+
+Unlike our hand, our own deck's individual card identities are **not** known from the start
+of the game — they're entangled with our face-down Prize cards, which are dealt from the
+same 60-card list before either zone is distinguishable. Identity can only be split between
+"in deck" vs. "in Prizes" once something legitimately reveals it — in practice, the first
+time an effect searches our entire deck (at which point elimination against the known
+60-card list resolves both zones at once, atomically: never partially).
+
+Before that resolution, the live adapter (`live_adapter.py`) correctly declines to guess —
+it passes an empty `our_deck` list, derived honestly from in-game information
+(`obs.select.deck`), never from hidden engine state. Previously this became **47 PAD words**,
+i.e. "zero cards here," understating deck size rather than representing "some unknown number
+of cards are here." Spec 13a's deck zone now uses the same UNK-style "known count, unknown
+identity" mechanism the Prize zone already had: `build_zone_array`'s `hidden_count` parameter
+(`zones.py`) was generalized beyond prizes, and `GameState.our_deck_hidden_count`
+(`encoder.py`) carries `PlayerState.deckCount` as UNK slots via `live_adapter.py`'s
+`_deck_hidden_count`, exactly mirroring `our_prizes_hidden_count`. The model is never shown
+false card identities, and it no longer loses visibility into deck size pre-resolution
+either.
 
 ---
 
@@ -300,7 +322,7 @@ right now.
 
 | Zone | Capacity | Hidden slots | What's visible |
 |---|---|---|---|
-| Our deck | 47 | none | Full known contents (we always know our own deck) |
+| Our deck | 47 | Yes — entangled with Prizes until resolved (see §1.6a); the unresolved portion is UNK, same as prizes | Full known contents once the deck/Prize split has been resolved by a full-deck search; `PlayerState.deckCount` as UNK slots before that |
 | Our prizes | 6 | Yes — unrevealed own prizes are UNK | Known revealed prizes as real cards, rest as UNK |
 | Our hand | 20 | none | Full known contents |
 | Our discard | 40 | none | Fully public zone |
@@ -322,5 +344,22 @@ applied) plus the full live block (§2.4).
 | Word | Kind | Static | Live | What it measures |
 |---|---|---|---|---|
 | Stadium | `stadium` | Full Trainer/Energy template (§2.5) for the in-play Stadium card | none | Which Stadium is active and its encoded effect. PAD if no Stadium is in play |
-| Global | `global` | none | `turn_number` (1 scalar) | Game-wide state not attached to any specific card. Currently only turn number; the two known stadium-driven suppression effects (`Jamming Tower` disabling Tools, `Team Rocket's Watchtower` disabling Colorless Abilities) are computed as board-context inputs rather than encoded as their own global fields |
+| Global | `global` | none | 12 scalars — see table below | Game-wide state not attached to any specific card. The two known stadium-driven suppression effects (`Jamming Tower` disabling Tools, `Team Rocket's Watchtower` disabling Colorless Abilities) are computed as board-context inputs rather than encoded as their own global fields |
 | Pool | `pool` | none | none | Reserved capacity, currently unused — carries no information yet |
+
+**Global word fields (12 total):**
+
+| Field | Width | What it measures | Normalization / source |
+|---|---|---|---|
+| `turn_number` | 1 | Current turn number | `/50`, clipped to 1.0 |
+| `supporter_played` | 1 | Whether we've used our once-per-turn Supporter play already | Boolean, direct from the engine's `State.supporterPlayed` |
+| `our_prize_count` | 1 | Our own Prize cards remaining to take | `len(our_prizes_known) + our_prizes_hidden_count`, `/PRIZE_CAPACITY(6)`, clipped |
+| `opponent_prize_count` | 1 | Opponent's Prize cards remaining to take | `/PRIZE_CAPACITY(6)`, clipped |
+| `our_deck_count` | 1 | Cards remaining in our deck | Direct engine `PlayerState.deckCount`. Redundant with `len(our_deck) + our_deck_hidden_count` now that the deck zone's own word count also stays accurate pre-resolution (§1.6a), but kept as its own field to mirror `opponent_deck_count`. `/DECK_CAPACITY(47)`, clipped |
+| `opponent_deck_count` | 1 | Cards remaining in the opponent's deck | Same source/normalization, opponent's `PlayerState.deckCount` — the only signal about opponent deck size that exists anywhere in the observation, since the opponent's deck isn't represented as a zone at all |
+| `our_discard_count` | 1 | Cards in our discard pile | `len(our_discard)`, `/DISCARD_CAPACITY(40)`, clipped |
+| `opponent_discard_count` | 1 | Cards in the opponent's discard pile | `len(opponent_discard)`, `/DISCARD_CAPACITY(40)`, clipped |
+| `opponent_hand_count` | 1 | Cards in the opponent's hand | Direct engine `PlayerState.handCount`, `/HAND_CAPACITY(20)`, clipped — the only signal about opponent hand size anywhere in the observation, since the opponent's hand isn't represented as a zone at all |
+| `item_locked` | 1 | Whether we're currently locked out of playing Item cards | Boolean. Ported from `Ceruledge-RL/features.py` exactly: an attack-log watch for Budew's/Frillish's item-lock attacks, OR'd with a direct check for Tyranitar as the opponent's Active. Bakes 3 hardcoded card IDs into this otherwise deck-agnostic field — a known, accepted coverage gap (any other item-lock card is silently missed), not a new one; Ceruledge has the same limitation today |
+| `energy_attached_this_turn` | 1 | Whether the once-per-turn Energy attachment has been used | Boolean, direct from the engine's `State.energyAttached` |
+| `turn_order` | 1 | Who went first | `0.5` if undetermined, `0.0` if we went first, `1.0` if the opponent went first (mirrors `features.py`'s own formula exactly) |

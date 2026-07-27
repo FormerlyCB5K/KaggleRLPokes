@@ -41,8 +41,17 @@ def _real_decisions(n_episodes=3, max_steps=150):
     out = []
     for name in names:
         data = json.loads(z.read(name))
-        steps = data["steps"][:max_steps]
-        trackers = {i: (PrizeTracker(), GameStateTracker(), GameStateTracker()) for i in (0, 1)}
+        all_steps = data["steps"]
+        decks = data_mod.submitted_decks_from_steps(all_steps)
+        steps = all_steps[:max_steps]
+        trackers = {
+            i: (
+                PrizeTracker(decks[i]),
+                GameStateTracker(decks[i]),
+                GameStateTracker(decks[1 - i]),
+            )
+            for i in (0, 1)
+        }
         for our_idx, action, obs_json in data_mod.iter_paired_decisions(steps):
             obs = to_dataclass(obs_json, Observation)
             if obs.current is None:
@@ -91,14 +100,14 @@ def test_stop_token_appends_one_extra_score():
     with torch.no_grad():
         word_embeddings, pooled = model.encode(words)
         candidates = [
-            asp.Candidate(option_index=0, literal=1.0),
-            asp.Candidate(option_index=1, literal=0.0),
+            asp.Candidate(option_index=0, option_type=OptionType.YES, literal=1.0),
+            asp.Candidate(option_index=1, option_type=OptionType.NO, literal=0.0),
         ]
         scores_plain = scoring.score_candidates(
-            model, words, word_embeddings, pooled, OptionType.YES, candidates,
+            model, words, word_embeddings, pooled, candidates,
         )
         scores_stop = scoring.score_candidates(
-            model, words, word_embeddings, pooled, OptionType.YES, candidates, include_stop=True,
+            model, words, word_embeddings, pooled, candidates, include_stop=True,
         )
     assert scores_plain.shape == (2,)
     assert scores_stop.shape == (3,)
@@ -132,7 +141,7 @@ def test_stage1_and_stage2_on_real_data():
             if chosen_type not in action_map:
                 continue  # off-by-one/deck-phase edge cases already noted in spec 16c
             candidates = asp.classify_candidates(obs, our_idx, action_map[chosen_type])
-            scores = scoring.score_candidates(model, words, word_embeddings, pooled, chosen_type, candidates)
+            scores = scoring.score_candidates(model, words, word_embeddings, pooled, candidates)
             assert scores.shape == (len(candidates),)
             assert not torch.isnan(scores).any()
             main_checked += 1
@@ -140,9 +149,8 @@ def test_stage1_and_stage2_on_real_data():
             all_indices = list(range(len(obs.select.option)))
             if action[0] >= len(all_indices):
                 continue
-            option_type = obs.select.option[action[0]].type
             candidates = asp.classify_candidates(obs, our_idx, all_indices)
-            scores = scoring.score_candidates(model, words, word_embeddings, pooled, option_type, candidates)
+            scores = scoring.score_candidates(model, words, word_embeddings, pooled, candidates)
             assert scores.shape == (len(candidates),)
             assert not torch.isnan(scores).any()
             sub_checked += 1

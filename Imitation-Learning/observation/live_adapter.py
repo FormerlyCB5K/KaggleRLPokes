@@ -6,17 +6,25 @@ See `Ceruledge-RL/specs/15-live-engine-adapter.md` for the full design, includin
 mapping table this implements and how its open items were resolved:
 
 - Tool multiplicity: `poke.tools[0]` -- the ruleset limits a Pokemon to one Tool.
-- `our_deck` before prize resolution: deliberately `[]` (all PAD). Individual card
-  identity can't be split between deck and prizes at all until the first full-deck
-  search resolves the whole 60-card list at once, and spec 13a's deck zone (unlike its
-  prize zone) has no UNK/hidden-count slot to represent "cards exist here, identity
-  unknown" -- so there is no way to represent this state other than PAD or a guess, and
-  guessing individual card identity would be worse than PAD.
+- `our_deck` before prize resolution: deliberately `[]` (identity truly can't be split
+  between deck and prizes until the first full-deck search resolves the whole 60-card
+  list at once, and guessing individual card identity would be worse than PAD). Deck
+  *size* is no longer lost in this window, though (observation_known_errors #1, fixed
+  2026-07-26): `_deck_hidden_count` reports `PlayerState.deckCount` as UNK slots, the
+  same hidden-count mechanism the prize zone already used, generalized to the deck zone
+  in `zones.py`/`encoder.py`.
 - Opponent `new_in_play`: evolution-serial tracking is inherently per-side (`EVOLVE` logs
   carry the evolving player's index), so this adapter runs a second `GameStateTracker`
   from the opponent's own perspective (`.update(obs, 1 - our_idx)`) purely to reuse its
   already-tested `evolved_serials` bookkeeping -- not for any of its Ceruledge-specific
   fields.
+- `item_locked` (global-word catch-up, `observation_known_errors` #3): the one exception
+  to the above -- `our_tracker.item_lock_tracked` (Budew/Frillish attack-log watch) OR'd
+  with a direct Tyranitar-active check, ported from `features.py` exactly, on the user's
+  explicit confirmation to take full Ceruledge parity here over building a new
+  tag-catalog-driven generic detector. Bakes 3 hardcoded card IDs into this otherwise
+  deck-agnostic adapter -- an accepted, documented limitation, not new scope creep: same
+  coverage gap (any other item-lock card is silently missed) Ceruledge already has today.
 
 This module needs `Ceruledge-RL`'s `features.GameStateTracker`/`prize_check.PrizeTracker`
 (reused rather than duplicated) and `cg_download.api`'s wire types, none of which are
@@ -35,8 +43,9 @@ _CERULEDGE_RL = os.path.join(_REPO_ROOT, "Ceruledge-RL")
 sys.path.insert(0, _REPO_ROOT)     # repo root: cg_download
 sys.path.insert(0, _CERULEDGE_RL)  # Ceruledge-RL first: its own bare imports resolve there
 
+from attack_overrides import TYRANITAR  # noqa: E402
 from cg_download.api import Observation, PlayerState, Pokemon  # noqa: E402
-from features import FULL_DECK, GameStateTracker  # noqa: E402
+from features import GameStateTracker  # noqa: E402
 from prize_check import PrizeTracker  # noqa: E402
 
 from .encoder import BoardPokemonState, BoardRole, GameState
@@ -116,19 +125,32 @@ def _prizes(prize_tracker: PrizeTracker) -> tuple[list[int], int]:
     return known, 0
 
 
+def _deck_hidden_count(ps: PlayerState, prize_tracker: PrizeTracker) -> int:
+    """Cards known (from `PlayerState.deckCount`) to be in the deck before the deck/Prize
+    identity split resolves -- becomes a run of UNK slots (observation_known_errors #1)
+    instead of understating deck size as PAD. 0 once resolved, since `_deck_remainder`
+    then reports every card by identity instead."""
+    return 0 if prize_tracker.prizes_known else ps.deckCount
+
+
 def _deck_remainder(ps: PlayerState, prize_tracker: PrizeTracker) -> list[int]:
     """Deck-by-elimination -- same math `features.py` already performs inline for its
     own deck zone. Returns `[]` before the prize tracker resolves (see module docstring):
     that's a real information gap, not a shortcut -- individual card identity can't be
     attributed to "deck" vs. "prize" before the first full-deck search regardless of
-    representation."""
+    representation. `_deck_hidden_count` covers deck *size* for this same pre-resolution
+    state via UNK slots."""
     if not prize_tracker.prizes_known:
         return []
     hand_counts = Counter(c.id for c in (ps.hand or ()))
     discard_counts = Counter(c.id for c in (ps.discard or ()))
     in_play_counts = Counter(_in_play_ids(ps))
     deck_counts = (
-        Counter(FULL_DECK) - hand_counts - discard_counts - in_play_counts - prize_tracker.prize_counts
+        Counter(prize_tracker.full_deck)
+        - hand_counts
+        - discard_counts
+        - in_play_counts
+        - prize_tracker.prize_counts
     )
     return [cid for cid, count in deck_counts.items() for _ in range(max(0, count))]
 
@@ -167,8 +189,13 @@ def build_game_state(
         opp_ps, "opponent_active", "opponent_bench", opponent_tracker
     )
 
+    opp_active = opp_ps.active[0] if (opp_ps.active and opp_ps.active[0] is not None) else None
+    item_locked = our_tracker.item_lock_tracked or (opp_active is not None and opp_active.id == TYRANITAR)
+    turn_order = 0.5 if state.firstPlayer < 0 else float(state.firstPlayer != our_idx)
+
     return GameState(
         our_deck=_deck_remainder(ps, prize_tracker),
+        our_deck_hidden_count=_deck_hidden_count(ps, prize_tracker),
         our_hand=[c.id for c in (ps.hand or ())],
         our_discard=[c.id for c in (ps.discard or ())],
         our_prizes_known=prizes_known,
@@ -178,4 +205,11 @@ def build_game_state(
         stadium_card_id=state.stadium[0].id if state.stadium else None,
         turn_number=state.turn,
         supporter_played=state.supporterPlayed,
+        opponent_prize_count=len(opp_ps.prize or ()),
+        our_deck_count=ps.deckCount,
+        opponent_deck_count=opp_ps.deckCount,
+        opponent_hand_count=opp_ps.handCount,
+        item_locked=item_locked,
+        energy_attached_this_turn=state.energyAttached,
+        turn_order=turn_order,
     )

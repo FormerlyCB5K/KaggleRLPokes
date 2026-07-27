@@ -10,12 +10,10 @@ strongest available correctness signal short of a live game, and stresses real m
 (arbitrary decks, arbitrary card ids, mid-evolution states, empty boards) that hand-built
 fixtures don't cover.
 
-Important scope note: this replay data is **not** Ceruledge-piloted (its card ids don't
-match `features.DECK_CARDS` at all -- confirmed by inspection). That means
-`PrizeTracker`/deck-by-elimination can never resolve against it (by design -- see
-`live_adapter._deck_remainder`'s docstring), so this test does not attempt an old-vs-new
-feature cross-check; it validates board/zone construction and end-to-end encoder
-execution across real data instead.
+Important scope note: this replay data is **not** Ceruledge-piloted. Each tracker must
+therefore receive that player's authoritative submitted 60-card list from the replay's
+initial deck-submission action. This test exercises the generalized prize/deck path in
+addition to board/zone construction and end-to-end encoder execution.
 
 Skips entirely if the data directory isn't present (e.g. a checkout without the large
 replay archives).
@@ -28,8 +26,10 @@ import sys
 import zipfile
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_REPO_ROOT = os.path.dirname(os.path.dirname(_HERE))
+_IL_ROOT = os.path.dirname(_HERE)
+_REPO_ROOT = os.path.dirname(_IL_ROOT)
 sys.path.insert(0, _REPO_ROOT)
+sys.path.insert(0, _IL_ROOT)
 
 import pytest
 
@@ -47,17 +47,23 @@ MAX_STEPS_PER_EPISODE = 200  # covers every step of a typical full episode
 def _sample_episode_jsons():
     from cg_download.utils import to_dataclass  # noqa: E402
     from cg_download.api import Observation  # noqa: E402
+    from policy.data import submitted_decks_from_steps  # noqa: E402
 
     z = zipfile.ZipFile(_ZIP_PATH)
     names = sorted(z.namelist())[:EPISODES_TO_SAMPLE]
     episodes = []
     for name in names:
         data = json.loads(z.read(name))
-        steps = data["steps"][:MAX_STEPS_PER_EPISODE]
-        episodes.append([
-            [to_dataclass(entry.get("observation", {}), Observation) for entry in step]
-            for step in steps
-        ])
+        all_steps = data["steps"]
+        decks = submitted_decks_from_steps(all_steps)
+        steps = all_steps[:MAX_STEPS_PER_EPISODE]
+        episodes.append((
+            decks,
+            [
+                [to_dataclass(entry.get("observation", {}), Observation) for entry in step]
+                for step in steps
+            ],
+        ))
     return episodes
 
 
@@ -72,12 +78,17 @@ def test_adapter_and_encoder_run_end_to_end_on_real_episodes():
     assert episodes, "expected at least one sampled episode"
 
     checked_states = 0
-    for episode in episodes:
+    resolved_perspectives = 0
+    for decks, episode in episodes:
         # One tracker triple per (episode, perspective) pair, reused across steps --
         # mirrors `train.py`'s one-tracker-per-episode lifecycle so evolved-serial and
         # prize bookkeeping accumulate correctly across the game.
         trackers = {
-            our_idx: (PrizeTracker(), GameStateTracker(), GameStateTracker())
+            our_idx: (
+                PrizeTracker(decks[our_idx]),
+                GameStateTracker(decks[our_idx]),
+                GameStateTracker(decks[1 - our_idx]),
+            )
             for our_idx in (0, 1)
         }
         for step in episode:
@@ -123,4 +134,10 @@ def test_adapter_and_encoder_run_end_to_end_on_real_episodes():
                 assert len(words) == TOTAL_WORDS == 174
                 checked_states += 1
 
+        for prize_tracker, _our_tracker, _opponent_tracker in trackers.values():
+            if prize_tracker.prizes_known:
+                assert sum(prize_tracker.prize_counts.values()) <= 6
+                resolved_perspectives += 1
+
     assert checked_states > 0, "no real (obs.current is not None) states were found to check"
+    assert resolved_perspectives > 0, "sampled replays never exercised a full-deck reveal"

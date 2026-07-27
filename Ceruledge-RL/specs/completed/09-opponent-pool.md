@@ -5,7 +5,7 @@
 Replace the single-opponent switch (`--opponent random|rules|self`) with a **per-episode
 sampled pool of opponents**, each playing its own native deck, so the Ceruledge policy
 trains against diverse decks, decision flows, and skill levels. This is the training-side
-realization of the pool sketched in [`04-training-plan.md`](04-training-plan.md).
+realization of the pool sketched in [`04-training-plan.md`](../04-training-plan.md).
 
 Our side is **always the Ceruledge deck** (`FULL_DECK`); only the opponent slot varies.
 

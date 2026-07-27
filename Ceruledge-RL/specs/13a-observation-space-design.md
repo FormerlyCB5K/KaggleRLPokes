@@ -275,7 +275,7 @@ than raw concatenation — an open detail for 13b, not decided here.
 - Spec 11's Pokémon static-template/live-state field contents (already decided there,
   now extended per "Why compact fields" above).
 - Effect baking (retreat cost, weakness, attack cost, flat damage deltas) — see
-  [`14-effect-baking-audit.md`](14-effect-baking-audit.md), complete.
+  [`14-effect-baking-audit.md`](completed/14-effect-baking-audit.md), complete.
 - Any code, parser, or model implementation — that's 13b, gated on this document being
   signed off.
 - Action-space design (legal-action masking, how attachments get targeted by play

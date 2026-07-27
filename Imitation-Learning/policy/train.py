@@ -6,6 +6,8 @@ Independent of `Ceruledge-RL/train.py` -- no shared code, no shared checkpoint f
 from __future__ import annotations
 
 import argparse
+import datetime
+import json
 import os
 import random
 import sys
@@ -23,6 +25,64 @@ from policy import scoring
 from policy.model import PolicyModel
 
 
+def _subdirs(path: str | None) -> list[str]:
+    if not path or not os.path.isdir(path):
+        return []
+    return sorted(
+        name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
+    )
+
+
+def build_run_config(
+    *, run_name: str, description: str, raw_dir: str | None, sanitized_dir: str | None,
+    source: str, max_episodes_per_zip: int | None, max_steps: int, epochs: int,
+    lr: float, batch_size: int, val_frac: float, seed: int, out_path: str,
+) -> dict:
+    """Everything needed to know what a run was, without re-reading the SLURM log:
+    run identity, exact CLI switches, and which days of which dataset it trained on."""
+    return {
+        "run_name": run_name,
+        "description": description,
+        "started_at": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
+        "source": source,
+        "raw_dir": raw_dir,
+        "raw_days": _subdirs(raw_dir) if source in ("raw", "both") else [],
+        "sanitized_dir": sanitized_dir,
+        "sanitized_days": _subdirs(sanitized_dir) if source in ("sanitized", "both") else [],
+        "max_episodes_per_zip": max_episodes_per_zip,
+        "max_steps": max_steps,
+        "epochs": epochs,
+        "lr": lr,
+        "batch_size": batch_size,
+        "val_frac": val_frac,
+        "seed": seed,
+        "out_path": out_path,
+    }
+
+
+def print_run_config(config: dict) -> None:
+    print("=" * 70)
+    print(f"run_name:             {config['run_name']}")
+    print(f"description:          {config['description']}")
+    print(f"started_at:           {config['started_at']}")
+    print(f"source:               {config['source']}")
+    if config["source"] in ("raw", "both"):
+        print(f"raw_dir:              {config['raw_dir']}")
+        print(f"raw_days:             {', '.join(config['raw_days']) or '(none found)'}")
+    if config["source"] in ("sanitized", "both"):
+        print(f"sanitized_dir:        {config['sanitized_dir']}")
+        print(f"sanitized_days:       {', '.join(config['sanitized_days']) or '(none found)'}")
+    print(f"max_episodes_per_zip: {config['max_episodes_per_zip']}")
+    print(f"max_steps:            {config['max_steps']}")
+    print(f"epochs:               {config['epochs']}")
+    print(f"lr:                   {config['lr']}")
+    print(f"batch_size:           {config['batch_size']}")
+    print(f"val_frac:             {config['val_frac']}")
+    print(f"seed:                 {config['seed']}")
+    print(f"out_path:             {config['out_path']}")
+    print("=" * 70)
+
+
 def _split_by_episode(examples: list[data_mod.Example], val_frac: float):
     episode_names = sorted({e.episode_name for e in examples})
     n_val = max(1, int(len(episode_names) * val_frac)) if episode_names else 0
@@ -36,7 +96,7 @@ def example_loss_and_correct(model: PolicyModel, ex: data_mod.Example):
     word_embeddings, pooled = model.encode(ex.words)
 
     stage2_scores = scoring.score_candidates(
-        model, ex.words, word_embeddings, pooled, ex.option_type, ex.candidates,
+        model, ex.words, word_embeddings, pooled, ex.candidates,
         effect_card_id=ex.effect_card_id,
     )
     label = torch.tensor(ex.label_index, dtype=torch.long)
@@ -75,16 +135,38 @@ def evaluate(model: PolicyModel, examples: list[data_mod.Example]) -> dict:
 
 
 def train(
-    data_dir: str, out_path: str, max_episodes_per_zip: int | None = 20,
+    out_path: str, raw_dir: str | None = None, sanitized_dir: str | None = None,
+    source: str = "sanitized", max_episodes_per_zip: int | None = 20,
     max_steps: int = 300, epochs: int = 3, lr: float = 1e-3, batch_size: int = 8,
-    val_frac: float = 0.2, seed: int = 0,
+    val_frac: float = 0.2, seed: int = 0, run_name: str = "", description: str = "",
 ):
     random.seed(seed)
     torch.manual_seed(seed)
 
-    examples = list(data_mod.iter_all_examples(data_dir, max_episodes_per_zip, max_steps))
+    config = build_run_config(
+        run_name=run_name, description=description, raw_dir=raw_dir,
+        sanitized_dir=sanitized_dir, source=source,
+        max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
+        epochs=epochs, lr=lr, batch_size=batch_size, val_frac=val_frac,
+        seed=seed, out_path=out_path,
+    )
+    print_run_config(config)
+    out_dir = os.path.dirname(out_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+    config_path = os.path.splitext(out_path)[0] + ".config.json"
+    with open(config_path, "w") as handle:
+        json.dump(config, handle, indent=2)
+
+    examples = list(data_mod.iter_all_examples(
+        raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
+        max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
+    ))
     if not examples:
-        raise RuntimeError(f"no examples extracted from {data_dir}")
+        raise RuntimeError(
+            f"no examples extracted (source={source!r}, raw_dir={raw_dir!r}, "
+            f"sanitized_dir={sanitized_dir!r})"
+        )
     train_ex, val_ex = _split_by_episode(examples, val_frac)
     print(f"examples: {len(examples)} total, {len(train_ex)} train, {len(val_ex)} val "
           f"({len({e.episode_name for e in examples})} episodes)")
@@ -125,7 +207,18 @@ def train(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", default=os.path.join(_IL_ROOT, "Top-ladder-data"))
+    parser.add_argument(
+        "--source", choices=("raw", "sanitized", "both"), default="sanitized",
+        help="which dataset(s) to train on -- see policy/data.py:iter_all_examples",
+    )
+    parser.add_argument(
+        "--raw-dir", default=os.path.join(_IL_ROOT, "Top-ladder-data"),
+        help="raw archive root (Top-ladder-data/<day>/*.zip); used when --source is raw or both",
+    )
+    parser.add_argument(
+        "--sanitized-dir", default=None,
+        help="sanitized dataset root (<root>/<day>/*.json); used when --source is sanitized or both",
+    )
     parser.add_argument("--out", default=os.path.join(_HERE, "checkpoint.pt"))
     parser.add_argument("--max-episodes-per-zip", type=int, default=20)
     parser.add_argument("--max-steps", type=int, default=300)
@@ -133,10 +226,14 @@ if __name__ == "__main__":
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--val-frac", type=float, default=0.2)
+    parser.add_argument("--run-name", default="", help="identifies this run in logs/config JSON")
+    parser.add_argument("--description", default="", help="free-text notes on this run's purpose")
     args = parser.parse_args()
 
     train(
-        data_dir=args.data_dir, out_path=args.out,
-        max_episodes_per_zip=args.max_episodes_per_zip, max_steps=args.max_steps,
-        epochs=args.epochs, lr=args.lr, batch_size=args.batch_size, val_frac=args.val_frac,
+        out_path=args.out, raw_dir=args.raw_dir, sanitized_dir=args.sanitized_dir,
+        source=args.source, max_episodes_per_zip=args.max_episodes_per_zip,
+        max_steps=args.max_steps, epochs=args.epochs, lr=args.lr,
+        batch_size=args.batch_size, val_frac=args.val_frac,
+        run_name=args.run_name, description=args.description,
     )

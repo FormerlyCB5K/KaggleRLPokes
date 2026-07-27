@@ -2,8 +2,9 @@
 
 A zone (deck/hand/discard/prizes) is a fixed-size array of `ZoneSlot`s. Occupancy varies;
 capacity never does. Slots beyond current occupancy are `PAD`. Own unrevealed prizes are
-`UNK`. Known cards are sorted by card-ID (deterministic tiebreak on ties) rather than any
-gameplay-derived order -- see spec 13a's "Canonical ordering" section for why.
+`UNK`, and so is our own deck before its identity has split from prizes (observation_known_
+errors #1). Known cards are sorted by card-ID (deterministic tiebreak on ties) rather than
+any gameplay-derived order -- see spec 13a's "Canonical ordering" section for why.
 """
 from __future__ import annotations
 
@@ -68,8 +69,9 @@ def build_zone_array(
 
     `known_card_ids` -- card IDs currently in this zone with known identity, in any order
     (this function sorts them canonically). `hidden_count` -- additional cards known to be
-    present but with hidden identity (own unrevealed prizes only, per spec 13a); each
-    becomes a `UNK` slot. Total occupancy beyond `capacity` becomes `overflow_count` rather
+    present but with hidden identity (own unrevealed prizes, and the deck zone before its
+    identity split from prizes resolves -- observation_known_errors #1); each becomes a
+    `UNK` slot. Total occupancy beyond `capacity` becomes `overflow_count` rather
     than being silently dropped (spec 13a's no-silent-loss overflow handling) -- known cards
     take priority over UNK slots when trimming, since a UNK's own identity is irrelevant to
     which slot got cut.

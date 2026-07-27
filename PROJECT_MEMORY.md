@@ -1,6 +1,6 @@
 # Project Memory
 
-Last refreshed: 2026-07-22
+Last refreshed: 2026-07-26
 
 ## Purpose
 
@@ -34,21 +34,14 @@ calculations and 237 scenarios. The package also includes stratified ID vocabula
 Python loaders, a 201-card/237-effect override view, schema, provenance, validation, and
 deterministic hashes. The final tensor and encoder remain a separate future spec.
 
-The most developed active track is `Ceruledge-RL/`. Its current phase is the multi-agent
-opponent pool described by `Ceruledge-RL/specs/09-opponent-pool.md` and split into specs
-`09a` through `09e`. The active-spec index is `Ceruledge-RL/specs/README.md`.
-
-The opponent-pool phase covers:
-
-- collision-safe opponent registration/loading and deck resolution;
-- side-aware episode dispatch and deck selection;
-- weighted per-episode opponent sampling and CLI configuration;
-- startup validation and deployment of all required agent folders; and
-- per-opponent metrics and plots.
-
-Some related code and tests already exist (`opponents.py`, `test_dispatch.py`, and
-`test_pool.py`), so confirm implementation status against each active spec before
-assuming a subsection is unfinished or complete.
+The most developed active track is `Ceruledge-RL/`. Its multi-agent opponent pool,
+described by `Ceruledge-RL/specs/completed/09-opponent-pool.md` and split into specs
+`09a` through `09e`, is complete and archived (moved to `completed/` 2026-07-26) — it
+covered collision-safe opponent registration/loading and deck resolution, side-aware
+episode dispatch, weighted per-episode opponent sampling and CLI configuration, startup
+validation and deployment of all required agent folders, and per-opponent metrics/plots.
+Code exists at `opponents.py`, `test_dispatch.py`, and `test_pool.py`. The active-spec
+index is `Ceruledge-RL/specs/README.md`.
 
 ## Observation encoder track (specs 11/11a/11b/13/13a) — status as of 2026-07-21
 
@@ -201,6 +194,38 @@ Full details and accepted limitations are in `Ceruledge-RL/MODEL-ARCHITECTURE.md
   representation changes later.
 - Text from some older files may display mojibake depending on console encoding. Do not
   mechanically rewrite those files merely to normalize display encoding.
+- `Ceruledge-RL/prize_check.py::PrizeTracker` was generalized on 2026-07-23 and now
+  requires the authoritative submitted 60-card deck. Replay consumers extract each
+  player's deck from the initial submission action; live consumers pass their
+  `battle_start` deck. Full-deck reveals, owned shared-zone cards, and prize-take logs
+  are validated strictly against engine deck/Prize counts. Any mismatch raises
+  `PrizeTrackerInvariantError`; it never silently latches or advances corrupt state.
+- A 2026-07-26 ladder-replay regression fixed two strict-tracker integration edges:
+  opponent-owned shared Stadium effects are not counted as the searching player's
+  cards, and `GameStateTracker` retains the last observation object instead of storing
+  only `id(obs)` (whose reuse could silently skip a later observation). The generalized
+  adapter's deck remainder now uses the submitted deck held by `PrizeTracker`, not the
+  fixed Ceruledge list.
+- `observation_known_errors` #1 (deck/Prize identity gap) fixed 2026-07-26: the deck
+  zone (`Imitation-Learning/observation/zones.py`'s `build_zone_array`) now uses the same
+  UNK "known count, hidden identity" mechanism the prize zone already had, generalized
+  rather than prize-only. `encoder.py`'s `GameState.our_deck_hidden_count` and
+  `live_adapter.py`'s `_deck_hidden_count` surface `PlayerState.deckCount` as UNK slots
+  before the deck/Prize split resolves, replacing the previous all-PAD (understated
+  deck size) representation. Card *order* within the deck (known error #2) and
+  legal-action observability (known error #4) remain open/deferred by explicit user
+  choice; see `Imitation-Learning/observation/TODO.md`.
+- Specs 11/11a/11b archived 2026-07-26 to `Ceruledge-RL/specs/completed/` — the planning/
+  design artifact is done (per the user's own call: 16/16c is the implementation track,
+  11 was only ever ideation, so 16c remaining unfinished doesn't block archiving 11). Its
+  two open design questions are resolved: `attacks_survivable` counts all printed attacks
+  regardless of current Energy affordability (`board_context.py`'s `raw_attack_damage_for`
+  already had no affordability gate, so no code changed, only sign-off), and
+  `special_energy_id` is multi-hot for multiple simultaneously attached Special Energy
+  cards (`live_state.py` already did this too). Both locked in by new tests
+  `test_attacks_survivable_counts_unaffordable_attacks` /
+  `test_special_energy_id_is_multihot_for_multiple_attached` in
+  `Imitation-Learning/observation/test_encoder.py`.
 
 ## Current validation state
 

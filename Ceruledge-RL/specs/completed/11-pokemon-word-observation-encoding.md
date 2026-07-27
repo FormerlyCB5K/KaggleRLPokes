@@ -1,9 +1,14 @@
 # 11 — Pokémon Word Observation Encoding — Overview
 
-Status: **design complete and transcribed into tested standalone code under
-`Imitation-Learning/observation/` (2026-07-21). Both tag vocabularies are complete. The
-live-engine adapter and training integration remain open, as does one design question:
-whether `attacks_survivable` should consider only currently affordable attacks.**
+Status: **COMPLETE, archived 2026-07-26.** Design complete and transcribed into tested
+standalone code under `Imitation-Learning/observation/` (2026-07-21). Both tag
+vocabularies are complete. The live-engine adapter is complete (spec 15, also archived).
+This spec's own two remaining open design questions are resolved (2026-07-26): see "Open
+questions" below. Training integration (consuming this encoding in a model/training loop)
+is out of this spec's scope by design (see "Explicitly out of scope") and continues under
+spec 16/16c — its being unfinished does not block archiving 11, since 11's own
+deliverable (the planning/design artifact, not the training pipeline) is done and can be
+revisited if needed.
 
 ## What this is
 
@@ -174,7 +179,7 @@ without the override ever being applied.
 | `tool_template` | Spec 13a | |
 | `new_in_play` | Flag | Now symmetric — the old encoding only tracked this on our side. |
 | Special conditions | 5-dim **multi-hot** (can co-occur): Asleep, Paralyzed, Burned, Poisoned, Confused; Active only | Unchanged from the old design — conditions can legally stack (e.g. Asleep + Poisoned). |
-| `attacks_survivable` | Hits-ratio feature | **Locked 2026-07-16.** Reference attacker = the single highest damage value across **every** Pokémon on the opposing board (active and all bench slots, not just the current active), each Pokémon's own contribution taken as the max across its own attacks (mirrors the old `opp_active_max_damage` per-Pokémon max, now maxed again across the whole opposing roster). Symmetric both sides. This is a general fragility/worst-case-threat signal, independent of whether that attacker is currently active or could legally reach this slot this turn — resolves the earlier bench-targeting question without needing to gate on `SNIPE` reach. Not yet addressed: whether the max should only consider attacks the opposing Pokémon can *currently afford* (given its attached Energy vs. the new `energy_cost` field) or all printed attacks regardless of current affordability — minor, worth confirming before implementation but not blocking. |
+| `attacks_survivable` | Hits-ratio feature | **Locked 2026-07-16.** Reference attacker = the single highest damage value across **every** Pokémon on the opposing board (active and all bench slots, not just the current active), each Pokémon's own contribution taken as the max across its own attacks (mirrors the old `opp_active_max_damage` per-Pokémon max, now maxed again across the whole opposing roster). Symmetric both sides. This is a general fragility/worst-case-threat signal, independent of whether that attacker is currently active or could legally reach this slot this turn — resolves the earlier bench-targeting question without needing to gate on `SNIPE` reach. **Resolved 2026-07-26:** the max considers **all printed attacks regardless of current Energy affordability**, not just currently-affordable ones — a worst-case threat signal should account for the opponent attaching more Energy next turn, not just their board state this instant. `board_context.py`'s `raw_attack_damage_for` already implements this (it computes both attack slots' damage from the printed tag block with no affordability gate), so no implementation change was needed, only this sign-off. Locked in by `test_encoder.py`'s `test_attacks_survivable_counts_unaffordable_attacks`. |
 | `attack_damage` | Effective, live, per-attack | Derived from spec 11a's `DAMAGE` tag + dynamic formulas + effective-stat baking ([`14-effect-baking-audit.md`](14-effect-baking-audit.md)), symmetric both sides — the old design only computed this on our side, with hardcoded per-species base values. |
 | `attack_hits_opponent` | Hits-ratio feature | Symmetric now, both sides — the old design only computed this on our side. |
 
@@ -238,7 +243,7 @@ no live state to slice from.
   the systematic review plan to derive the widened Pokémon attack/ability tag vocabulary.
 - [`11b-trainer-energy-tag-vocabulary.md`](11b-trainer-energy-tag-vocabulary.md) — the
   analogous review plan for Trainer and Energy cards.
-- [`13-card-zone-observation-space.md`](13-card-zone-observation-space.md) — card-zone
+- [`13-card-zone-observation-space.md`](../13-card-zone-observation-space.md) — card-zone
   words, global state, and how zones move to persistent per-card words. Design phase.
 
 ## Key decisions
@@ -273,11 +278,15 @@ See the numbered session summary above; restated as a flat list for reference:
   Stadium/Ability/Special-Energy pool. **Now resolved**, including the Special Energy
   identity question below.
 - Whether multiple *different* Special Energy IDs simultaneously attached to one Pokémon
-  all need to show up in `special_energy_id` (multi-hot) rather than a single slot — minor,
-  presumed yes, not yet explicitly confirmed (see spec 14).
+  all need to show up in `special_energy_id` (multi-hot) rather than a single slot.
+  **Resolved 2026-07-26: yes, multi-hot.** `live_state.py`'s `special_energy_id` already
+  implements this (lights one dim per distinct attached Special Energy card, not just the
+  first found) and its own docstring already documented the intent — no implementation
+  change was needed, only this sign-off.
 - Whether `attacks_survivable`'s opposing-board max should filter to only attacks the
   opposing Pokémon can currently afford (vs. `energy_cost`) or consider all printed attacks
-  regardless of current affordability — minor, not blocking.
+  regardless of current affordability. **Resolved 2026-07-26: all printed attacks,
+  regardless of affordability** — see the Base field schema table above.
 - Whether spec 13 actually adopts per-card zone words at all, and if so how much of the
   static template it uses. Explicitly deferred to spec 13 — **now resolved**: spec 13a
   adopted fixed-capacity padded zone arrays using this spec's static template.

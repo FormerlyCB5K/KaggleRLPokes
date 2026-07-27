@@ -9,7 +9,7 @@ Run from the repository root, for example:
 
     python Imitation-Learning/analyze_top_ladder_cards.py \
         --archive Imitation-Learning/Top-ladder-data/7-12/*.zip \
-        --output-dir Imitation-Learning/meta-card-analysis/7-12-pilot
+        --output-dir Imitation-Learning/meta-card-analysis/single-dataset-scratch
 
     python Imitation-Learning/analyze_top_ladder_cards.py \
         --all \

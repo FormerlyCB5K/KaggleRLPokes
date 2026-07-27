@@ -31,9 +31,13 @@ from observation.trainer_energy_static import (  # noqa: E402
 from observation.zones import build_any_static  # noqa: E402
 from observation.types import (  # noqa: E402
     BOARD_ROLES,
+    DECK_CAPACITY,
+    DISCARD_CAPACITY,
     ENERGY_BUCKETS,
+    HAND_CAPACITY,
     MAX_BENCH,
     N_ATTACK_ROWS,
+    PRIZE_CAPACITY,
     SPECIAL_CONDITIONS,
     SPECIAL_ENERGY_IDS,
     ZONE_ROLES,
@@ -125,9 +129,37 @@ STADIUM_WIDTH = TRAINER_ENERGY_STATIC_WIDTH
 
 
 def _global_content(word: Word) -> list[float]:
-    turn = 0.0 if word.live is None else float(word.live.get("turn_number", 0))
-    supporter_played = 0.0 if word.live is None else float(bool(word.live.get("supporter_played", False)))
-    return [min(turn / TURN_NUMBER_NORM, 1.0), supporter_played]
+    """12 scalars -- turn_number/supporter_played plus the global-word catch-up fields
+    (`observation_known_errors` #3): both sides' prize/deck/discard counts, opponent hand
+    count, item_locked, energy_attached_this_turn, turn_order. Counts are normalized
+    against this project's own locked zone-capacity constants (`observation.types`),
+    not Ceruledge's `features.py` magic numbers (`/15`, `/46`), so there's one source of
+    truth for "how big can this zone get." `our_deck_count`/`opponent_deck_count` come
+    straight from the engine's own `PlayerState.deckCount` (via `live_adapter.py`) rather
+    than being derived from the deck zone's own word count, mirroring
+    `opponent_deck_count` (whose zone isn't represented at all)."""
+    live = word.live or {}
+
+    def _raw(key: str) -> float:
+        return float(live.get(key, 0))
+
+    def _count(key: str, capacity: float) -> float:
+        return min(_raw(key) / capacity, 1.0)
+
+    return [
+        min(_raw("turn_number") / TURN_NUMBER_NORM, 1.0),
+        _raw("supporter_played"),
+        _count("our_prize_count", PRIZE_CAPACITY),
+        _count("opponent_prize_count", PRIZE_CAPACITY),
+        _count("our_deck_count", DECK_CAPACITY),
+        _count("opponent_deck_count", DECK_CAPACITY),
+        _count("our_discard_count", DISCARD_CAPACITY),
+        _count("opponent_discard_count", DISCARD_CAPACITY),
+        _count("opponent_hand_count", HAND_CAPACITY),
+        _raw("item_locked"),
+        _raw("energy_attached_this_turn"),
+        _raw("turn_order"),
+    ]
 
 
 GLOBAL_WIDTH = len(_global_content(Word(kind="global", role=None, static=None, live=None, attention_masked=False)))

@@ -64,8 +64,13 @@ class Candidate:
     `occurrence` disambiguates duplicate copies of the same `card_id` within one zone
     (e.g. two Fire Energy in hand): it's how many same-`card_id` items precede this one
     in the zone's raw (pre-sort) order, which -- since `build_zone_array`'s sort is
-    stable -- is exactly the same index among the sorted zone words too."""
+    stable -- is exactly the same index among the sorted zone words too.
+    `option_type` is this candidate's own `OptionType` (from `obs.select.option[
+    option_index].type`) -- scoring dispatches on this per-candidate, never on a single
+    type shared across a whole batch, since a batch can be genuinely heterogeneous (e.g.
+    a YES_NO decision's option list contains both a YES and a NO option together)."""
     option_index: int
+    option_type: OptionType
     card_id: int | None = None
     zone_role: str | None = None
     occurrence: int = 0
@@ -208,14 +213,14 @@ def _find_in_own_zones(obs: Observation, our_idx: int, card_id: int | None) -> t
 def _classify_one(obs: Observation, our_idx: int, i: int, o: Option) -> Candidate:
     t = o.type
     if t == OptionType.NUMBER:
-        return Candidate(option_index=i, literal=float(o.number) if o.number is not None else 0.0)
+        return Candidate(option_index=i, option_type=t, literal=float(o.number) if o.number is not None else 0.0)
     if t in (OptionType.YES, OptionType.NO):
-        return Candidate(option_index=i, literal=1.0 if t == OptionType.YES else 0.0)
+        return Candidate(option_index=i, option_type=t, literal=1.0 if t == OptionType.YES else 0.0)
     if t == OptionType.SPECIAL_CONDITION:
         val = float(o.specialConditionType) if o.specialConditionType is not None else 0.0
-        return Candidate(option_index=i, literal=val)
+        return Candidate(option_index=i, option_type=t, literal=val)
     if t == OptionType.ATTACK:
-        return Candidate(option_index=i)  # attack_slot assigned in classify_candidates
+        return Candidate(option_index=i, option_type=t)  # attack_slot assigned in classify_candidates
     if t == OptionType.PLAY:
         # PLAY's wire format carries only `index` -- no `area`/`playerIndex` (confirmed
         # against real engine data and cg_download.api's own OptionType docstring:
@@ -226,7 +231,9 @@ def _classify_one(obs: Observation, our_idx: int, i: int, o: Option) -> Candidat
         hand = obs.current.players[our_idx].hand or ()
         card_id = hand[o.index].id if o.index is not None and o.index < len(hand) else None
         occurrence = _occurrence_before(hand, o.index, card_id)
-        return Candidate(option_index=i, card_id=card_id, zone_role="our_hand", occurrence=occurrence)
+        return Candidate(
+            option_index=i, option_type=t, card_id=card_id, zone_role="our_hand", occurrence=occurrence,
+        )
     if t in (OptionType.TOOL_CARD, OptionType.ENERGY_CARD, OptionType.ENERGY):
         poke = _resolve_pokemon_object(obs, our_idx, o.area, o.index, o.playerIndex)
         card_id = None
@@ -240,17 +247,19 @@ def _classify_one(obs: Observation, our_idx: int, i: int, o: Option) -> Candidat
             # ENERGY (positional, per-unit -- no single card identity): no card_id, but
             # the owning Pokemon (board_ref) is still real signal, not nothing.
         board_ref = _resolve_board_ref(obs, our_idx, o.area, o.index, o.playerIndex)
-        return Candidate(option_index=i, card_id=card_id, board_ref=board_ref)
+        return Candidate(option_index=i, option_type=t, card_id=card_id, board_ref=board_ref)
     if t == OptionType.SKILL:
         zone_role, occurrence = _find_in_own_zones(obs, our_idx, o.cardId)
-        return Candidate(option_index=i, card_id=o.cardId, zone_role=zone_role, occurrence=occurrence)
+        return Candidate(
+            option_index=i, option_type=t, card_id=o.cardId, zone_role=zone_role, occurrence=occurrence,
+        )
     if t in (OptionType.DISCARD, OptionType.RETREAT, OptionType.ABILITY, OptionType.CARD):
         card_id, occurrence = _resolve_card_id(obs, our_idx, o.area, o.index, o.playerIndex)
         board_ref = _resolve_board_ref(obs, our_idx, o.area, o.index, o.playerIndex)
         side = our_idx if o.playerIndex is None else o.playerIndex
         zone_role = _zone_role_for(o.area, side == our_idx)
         return Candidate(
-            option_index=i, card_id=card_id, zone_role=zone_role, occurrence=occurrence,
+            option_index=i, option_type=t, card_id=card_id, zone_role=zone_role, occurrence=occurrence,
             board_ref=board_ref,
         )
     if t in (OptionType.ATTACH, OptionType.EVOLVE):
@@ -260,10 +269,10 @@ def _classify_one(obs: Observation, our_idx: int, i: int, o: Option) -> Candidat
         # target your own Pokemon.
         target_ref = _resolve_board_ref(obs, our_idx, o.inPlayArea, o.inPlayIndex, our_idx)
         return Candidate(
-            option_index=i, card_id=card_id, zone_role=zone_role, occurrence=occurrence,
-            target=Candidate(option_index=i, board_ref=target_ref),
+            option_index=i, option_type=t, card_id=card_id, zone_role=zone_role, occurrence=occurrence,
+            target=Candidate(option_index=i, option_type=t, board_ref=target_ref),
         )
-    return Candidate(option_index=i)  # END and anything unrecognized: no data needed
+    return Candidate(option_index=i, option_type=t)  # END and anything unrecognized: no data needed
 
 
 # card_id -> observed attackId values, ascending -- see _attack_slot's docstring.
@@ -308,5 +317,5 @@ def classify_candidates(
         for pos in attack_positions:
             i = option_indices[pos]
             slot = _attack_slot(acting_card_id, opts[i].attackId, sibling_ids)
-            out[pos] = Candidate(option_index=i, attack_slot=slot)
+            out[pos] = Candidate(option_index=i, option_type=OptionType.ATTACK, attack_slot=slot)
     return out

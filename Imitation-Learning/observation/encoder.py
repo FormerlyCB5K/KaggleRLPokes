@@ -73,6 +73,9 @@ class BoardPokemonState:
 @dataclass(frozen=True)
 class GameState:
     our_deck: list[int]
+    our_deck_hidden_count: int  # cards known to be in the deck but with hidden identity --
+    # nonzero before the deck/Prize identity split resolves (observation_known_errors #1),
+    # same UNK mechanism `our_prizes_hidden_count` already uses; 0 once resolved
     our_hand: list[int]
     our_discard: list[int]
     our_prizes_known: list[int]
@@ -83,6 +86,23 @@ class GameState:
     turn_number: int = 0
     supporter_played: bool = False  # this turn -- sourced from the engine's own
     # State.supporterPlayed (live_adapter.py), not re-derived from card identity
+
+    # Global-word catch-up (observation_known_errors #3): the rest of Ceruledge's
+    # deck-agnostic global fields (features.py's global_vec), never ported when this
+    # package was first built. our_prize_count/our_discard_count/opponent_discard_count
+    # are deliberately NOT fields here -- encoder.py derives them from our_prizes_known/
+    # our_prizes_hidden_count/our_discard/opponent_discard above, so there's no second
+    # count that could drift out of sync with the zone arrays.
+    opponent_prize_count: int = 0
+    our_deck_count: int = 0  # direct engine PlayerState.deckCount, redundant with
+    # len(our_deck) + our_deck_hidden_count now that both are populated correctly, but
+    # kept as its own field (mirrors opponent_deck_count) rather than re-deriving it
+    opponent_deck_count: int = 0
+    opponent_hand_count: int = 0
+    item_locked: bool = False
+    energy_attached_this_turn: bool = False
+    turn_order: float = 0.5  # mirrors features.py's formula exactly: 0.5 = undetermined,
+    # 0.0 = we went first, 1.0 = opponent went first
 
 
 @dataclass(frozen=True)
@@ -180,7 +200,7 @@ def _board_word(
 def build_observation(state: GameState) -> list[Word]:
     words: list[Word] = []
 
-    deck = build_zone_array(state.our_deck, DECK_CAPACITY)
+    deck = build_zone_array(state.our_deck, DECK_CAPACITY, state.our_deck_hidden_count)
     words += _zone_words(deck, "zone_card", "our_deck")
 
     prizes = build_zone_array(state.our_prizes_known, PRIZE_CAPACITY, state.our_prizes_hidden_count)
@@ -234,7 +254,20 @@ def build_observation(state: GameState) -> list[Word]:
 
     words.append(Word(
         kind="global", role=None, static=None,
-        live={"turn_number": state.turn_number, "supporter_played": state.supporter_played},
+        live={
+            "turn_number": state.turn_number,
+            "supporter_played": state.supporter_played,
+            "our_prize_count": len(state.our_prizes_known) + state.our_prizes_hidden_count,
+            "opponent_prize_count": state.opponent_prize_count,
+            "our_deck_count": state.our_deck_count,
+            "opponent_deck_count": state.opponent_deck_count,
+            "our_discard_count": len(state.our_discard),
+            "opponent_discard_count": len(state.opponent_discard),
+            "opponent_hand_count": state.opponent_hand_count,
+            "item_locked": state.item_locked,
+            "energy_attached_this_turn": state.energy_attached_this_turn,
+            "turn_order": state.turn_order,
+        },
         attention_masked=False,
     ))
     assert GLOBAL_CAPACITY == 1

@@ -41,8 +41,15 @@ def _resolve_card_vec(model, words: list[Word], word_embeddings: torch.Tensor,
 
 def score_one(
     model, words: list[Word], word_embeddings: torch.Tensor, pooled: torch.Tensor,
-    option_type: OptionType, candidate: action_space.Candidate,
+    candidate: action_space.Candidate,
 ) -> torch.Tensor:
+    """Dispatches on `candidate.option_type` -- this candidate's OWN type, never a type
+    shared across the whole batch. A candidate list can be genuinely heterogeneous (e.g.
+    a YES_NO decision's option list contains both a YES and a NO option together), so
+    scoring must look at each candidate's real type, not one "representative" type
+    assumed uniform for the batch."""
+    option_type = candidate.option_type
+
     if option_type in _LITERAL_TYPES:
         vec = model.literal_embedding(candidate, option_type)
         return model.candidate_score(pooled, vec)
@@ -71,7 +78,7 @@ def score_one(
 
 def score_candidates(
     model, words: list[Word], word_embeddings: torch.Tensor, pooled: torch.Tensor,
-    option_type: OptionType, candidates: list[action_space.Candidate],
+    candidates: list[action_space.Candidate],
     effect_card_id: int | None = None, include_stop: bool = False,
 ) -> torch.Tensor:
     """`effect_card_id` (from `obs.select.effect.id` when present) conditions `pooled` on
@@ -88,7 +95,7 @@ def score_candidates(
         return torch.zeros(0)
     if effect_card_id is not None:
         pooled = model.condition_on_effect(pooled, model.encode_card_by_id(effect_card_id))
-    scores = [score_one(model, words, word_embeddings, pooled, option_type, c) for c in candidates]
+    scores = [score_one(model, words, word_embeddings, pooled, c) for c in candidates]
     if include_stop:
         scores.append(model.stop_score(pooled))
     return torch.stack(scores) if scores else torch.zeros(0)

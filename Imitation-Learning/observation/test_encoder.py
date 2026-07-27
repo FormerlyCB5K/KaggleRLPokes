@@ -21,6 +21,7 @@ from .zones import build_zone_array
 def _sample_state() -> GameState:
     return GameState(
         our_deck=[1, 2, 3, 4, 5],
+        our_deck_hidden_count=0,
         our_hand=[743, 190, 1174],
         our_discard=[121],
         our_prizes_known=[906],
@@ -42,6 +43,14 @@ def _sample_state() -> GameState:
         ],
         stadium_card_id=1266,
         turn_number=4,
+        supporter_played=True,
+        opponent_prize_count=4,
+        our_deck_count=42,
+        opponent_deck_count=38,
+        opponent_hand_count=6,
+        item_locked=True,
+        energy_attached_this_turn=True,
+        turn_order=1.0,
     )
 
 
@@ -67,6 +76,24 @@ def test_unk_is_not_attention_masked():
     assert all(not w.attention_masked for w in unk), "UNK must not be masked"
 
 
+def test_deck_hidden_count_produces_unk_slots_not_pad():
+    """observation_known_errors #1 fix: pre-resolution deck size must show up as UNK,
+    not collapse to PAD, mirroring how the prize zone already handles hidden identity."""
+    state = GameState(**{**_sample_state().__dict__, "our_deck": [], "our_deck_hidden_count": 20})
+    words = build_observation(state)
+    deck_words = [w for w in words if w.role == "our_deck"]
+    assert len(deck_words) == 20
+    assert all(w.static.card_id is None for w in deck_words)
+    assert all(not w.attention_masked for w in deck_words), "UNK deck slots must not be masked"
+
+
+def test_deck_fully_resolved_has_no_unk_slots():
+    words = build_observation(_sample_state())  # our_deck_hidden_count=0, 5 known cards
+    deck_words = [w for w in words if w.role == "our_deck"]
+    assert len(deck_words) == 5
+    assert all(w.static.card_id is not None for w in deck_words)
+
+
 def test_board_word_hp_curr_matches_raw():
     words = build_observation(_sample_state())
     our_active = next(w for w in words if w.role == "our_active")
@@ -85,6 +112,29 @@ def test_stadium_word_is_pad_when_absent():
     words = build_observation(state)
     stadium_words = [w for w in words if w.kind == "stadium"]
     assert stadium_words == []  # became a plain pad word, not tagged "stadium"
+
+
+def test_global_word_carries_all_catchup_fields():
+    """Global-word catch-up (observation_known_errors #3): all 12 fields must round-trip
+    from GameState into the global word's live dict, including the counts derived inline
+    (our_prize_count, our_discard_count, opponent_discard_count) rather than stored as
+    their own GameState field."""
+    words = build_observation(_sample_state())
+    global_word = next(w for w in words if w.kind == "global")
+    assert global_word.live == {
+        "turn_number": 4,
+        "supporter_played": True,
+        "our_prize_count": 6,  # 1 known (906) + 5 hidden
+        "opponent_prize_count": 4,
+        "our_deck_count": 42,
+        "opponent_deck_count": 38,
+        "our_discard_count": 1,  # len(our_discard=[121])
+        "opponent_discard_count": 1,  # len(opponent_discard=[1266])
+        "opponent_hand_count": 6,
+        "item_locked": True,
+        "energy_attached_this_turn": True,
+        "turn_order": 1.0,
+    }
 
 
 def test_zone_overflow_is_flagged_not_dropped():
@@ -250,7 +300,7 @@ def test_attacks_survivable_differs_per_board_slot():
     our_rule_box = BoardPokemonState("our_bench", RawPokemon(card_id=140, hp=200, max_hp=200))
 
     state = GameState(
-        our_deck=[], our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
         opponent_discard=[], board=[our_plain, our_rule_box, opp_active],
     )
     words = build_observation(state)
@@ -262,11 +312,64 @@ def test_attacks_survivable_differs_per_board_slot():
     assert plain_word.live["attacks_survivable"] != rule_box_word.live["attacks_survivable"]
 
 
+def test_attacks_survivable_counts_unaffordable_attacks():
+    """observation_known_errors / spec 11 open item, resolved 2026-07-26: attacks_survivable
+    must count every printed attack regardless of whether the opposing Pokemon currently has
+    enough attached Energy to use it -- a worst-case-threat signal shouldn't discount an
+    attack just because the opponent hasn't attached enough Energy yet. Makuhita (card 673)
+    has two plain DAMAGE-only attacks (no other tags), isolating the affordability question
+    from any dynamic-damage confound; its second attack deals more damage than its first."""
+    defender_static = build_pokemon_static(104)
+    attacker_static = build_pokemon_static(673)
+    defender_bp = raw_pokemon_to_board_pokemon(RawPokemon(card_id=104, hp=200, max_hp=200, is_active=True))
+    attacker_bp = raw_pokemon_to_board_pokemon(RawPokemon(card_id=673, hp=80, max_hp=80, is_active=True))
+    ctx = GameBoardContext(our_side=(defender_bp,), opponent_side=(attacker_bp,))
+    dmg0, dmg1 = raw_attack_damage_for(attacker_static, attacker_bp, False, defender_static, defender_bp, ctx)
+    assert dmg1 > dmg0 > 0  # Makuhita's second attack is the real, higher-damage threat
+
+    def survivable(energy_cards: tuple[int, ...]) -> float:
+        state = GameState(
+            our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[],
+            our_prizes_known=[], our_prizes_hidden_count=0,
+            opponent_discard=[],
+            board=[
+                BoardPokemonState("our_active", RawPokemon(card_id=104, hp=200, max_hp=200, is_active=True)),
+                BoardPokemonState("opponent_active", RawPokemon(
+                    card_id=673, hp=80, max_hp=80, is_active=True, energy_cards=energy_cards,
+                )),
+            ],
+        )
+        return next(w for w in build_observation(state) if w.role == "our_active").live["attacks_survivable"]
+
+    assert survivable(()) == hits_ratio(200, dmg1)  # zero Energy attached -- still counted
+    assert survivable(()) == survivable((6, 6, 6))  # fully "affordable" -- identical result
+
+
+def test_special_energy_id_is_multihot_for_multiple_attached():
+    """observation_known_errors / spec 11 open item, resolved 2026-07-26: multiple distinct
+    Special Energy cards attached to one Pokemon must each light their own dim in
+    special_energy_id, not just the first one found."""
+    state = GameState(
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[],
+        our_prizes_known=[], our_prizes_hidden_count=0,
+        opponent_discard=[],
+        board=[
+            BoardPokemonState("our_active", RawPokemon(
+                card_id=104, hp=200, max_hp=200, is_active=True,
+                energy_cards=(11, 12),  # Mist Energy + Legacy Energy -- two distinct Special Energy IDs
+            )),
+        ],
+    )
+    vec = next(w for w in build_observation(state) if w.role == "our_active").live["special_energy_id"]
+    assert vec.count(1.0) == 2
+    assert sum(vec) == 2.0
+
+
 def test_attack_hits_opponent_matches_hits_ratio():
     """Cinderace (Fire, 50 dmg, no Weakness/Resistance vs Froslass) attacking Froslass
     (90 HP) -- `attack_hits_opponent` must equal `hits_ratio(90, 50)` computed directly."""
     state = GameState(
-        our_deck=[], our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
         opponent_discard=[],
         board=[
             BoardPokemonState("our_active", RawPokemon(card_id=666, hp=160, max_hp=160, is_active=True)),
@@ -283,7 +386,7 @@ def test_sole_redirect_snipe_gives_zero_attack_damage_in_live_state():
     also_set_damage`) must carry through into the live `attack_damage` field too, not just
     the static tag block -- confirms the DAMAGE/SNIPE fix and this wiring compose."""
     state = GameState(
-        our_deck=[], our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
         opponent_discard=[],
         board=[
             BoardPokemonState("our_active", RawPokemon(card_id=140, hp=210, max_hp=210, is_active=True)),
@@ -301,7 +404,7 @@ def test_weakness_override_wired_into_board_word():
     requirement). Dragapult ex prints no Weakness at all -- the board word's own
     `weakness_onehot` must reflect the live override, not stay all-zero."""
     state = GameState(
-        our_deck=[], our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=0,
         opponent_discard=[],
         board=[
             BoardPokemonState("our_active", RawPokemon(card_id=272, hp=190, max_hp=190, is_active=True)),

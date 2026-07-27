@@ -21,7 +21,7 @@ sys.path.insert(0, _IL_ROOT)
 
 from cg_download.api import AreaType, Observation, OptionType  # noqa: E402
 from observation import card_data  # noqa: E402
-from observation.encoder import GameState, build_observation  # noqa: E402
+from observation.encoder import GameState, Word, build_observation  # noqa: E402
 
 from . import action_space as asp  # noqa: E402
 from . import scoring  # noqa: E402
@@ -60,11 +60,13 @@ def setup_active_heuristic(obs: Observation, our_idx: int) -> list[int]:
 
 
 def setup_bench_heuristic(obs: Observation) -> list[int]:
-    """Decline whenever legal, satisfy only a forced minimum -- already deck-agnostic in
-    Track A (no card names involved), reused verbatim."""
-    if not obs.select.option or (obs.select.minCount or 0) == 0:
-        return []
-    return [0]
+    """Never voluntarily place a Pokemon on the bench during setup -- always decline.
+    Benching during setup gives away a placement decision for zero informational benefit:
+    the same Pokemon can be benched later during our own MAIN phase with strictly more
+    information. If a forced minimum ever genuinely fires here, the empty return triggers
+    the `battle_select` IndexError -> `random_legal_selection` retry in
+    `rl_train.collect_episode`, which satisfies it safely."""
+    return []
 
 
 def random_legal_selection(obs: Observation) -> list[int]:
@@ -86,6 +88,7 @@ class ActResult:
     value: float | None = None
     verb_index: int | None = None
     mask: torch.Tensor | None = None
+    words: list[Word] | None = None  # the observation words act_main already built (16c reuse)
 
 
 def act_main(
@@ -118,44 +121,63 @@ def act_main(
     chosen_type = asp.VERBS[verb_idx]
     option_indices = action_map[chosen_type]
 
+    effect_card_id = obs.select.effect.id if obs.select.effect is not None else None
     candidates = asp.classify_candidates(obs, our_idx, option_indices)
-    scores = scoring.score_candidates(model, words, word_embeddings, pooled, chosen_type, candidates)
+    scores = scoring.score_candidates(
+        model, words, word_embeddings, pooled, candidates, effect_card_id=effect_card_id,
+    )
     best_local = int(scores.argmax().item())  # Stage 2 always greedy, per the confirmed scope
     selected = [option_indices[best_local]]
 
     return ActResult(
         selected=selected, log_prob=log_prob, value=value, verb_index=verb_idx, mask=mask,
+        words=words,
     )
 
 
 def act_sub_selection(
     model: PolicyModel, obs: Observation, our_idx: int, game_state: GameState,
 ) -> list[int]:
-    """Every non-MAIN/IS_FIRST/SETUP_* context. No STOP-token mechanism exists on this
-    model (unlike Track A's `include_stop` scorer) -- always picks exactly
-    `min(maxCount, len(options))` candidates sequentially, re-scoring the shrinking pool
-    each pick. Always legal (`minCount <= maxCount <= len(option)` per the engine's own
-    contract); accepted v1 simplification, see `Ceruledge-RL/specs/16-...` follow-on
-    notes."""
+    """Every non-MAIN/IS_FIRST/SETUP_* context. Picks candidates greedily, re-scoring the
+    shrinking pool each pick. For variable-count selections (`minCount < maxCount`) the
+    STOP token is scored alongside the candidates (`include_stop=True`, model.stop_score):
+    once STOP beats every remaining candidate -- and the forced minimum is already
+    satisfied -- picking stops before `maxCount`. Never picks fewer than `minCount`; when
+    `minCount == maxCount` the STOP token is off and behavior is exactly `min(maxCount,
+    len(options))` picks as before."""
     opts = obs.select.option
     if not opts:
         return []
     words = build_observation(game_state)
     word_embeddings, pooled = model.encode(words)
+    effect_card_id = obs.select.effect.id if obs.select.effect is not None else None
 
     min_cnt = obs.select.minCount or 0
     max_cnt = obs.select.maxCount if obs.select.maxCount is not None else len(opts)
     n_pick = max(0, min(max_cnt, len(opts)))
-    option_type = opts[0].type  # representative type -- mirrors policy/data.py's own assumption
+    include_stop = min_cnt < max_cnt
 
+    # Classification depends only on each option itself, never on which others remain (the
+    # sole cross-option coupling -- ATTACK sibling-ordering -- doesn't arise in
+    # sub-selections). Resolve every candidate once; only scoring is re-run per pick.
+    # all_candidates[i].option_index == i, so index by option index directly.
+    all_candidates = asp.classify_candidates(obs, our_idx, list(range(len(opts))))
     remaining = list(range(len(opts)))
     chosen: list[int] = []
     for _ in range(n_pick):
         if not remaining:
             break
-        candidates = asp.classify_candidates(obs, our_idx, remaining)
-        scores = scoring.score_candidates(model, words, word_embeddings, pooled, option_type, candidates)
-        pick = remaining[int(scores.argmax().item())]
+        candidates = [all_candidates[i] for i in remaining]
+        scores = scoring.score_candidates(
+            model, words, word_embeddings, pooled, candidates,
+            effect_card_id=effect_card_id, include_stop=include_stop,
+        )
+        # With include_stop, index len(candidates) is the STOP score. Stop only once the
+        # minimum is already met -- otherwise keep taking the best real candidate.
+        if include_stop and int(scores.argmax().item()) == len(candidates) and len(chosen) >= min_cnt:
+            break
+        best_local = int(scores[: len(candidates)].argmax().item())
+        pick = remaining[best_local]
         chosen.append(pick)
         remaining.remove(pick)
     while len(chosen) < min_cnt and remaining:

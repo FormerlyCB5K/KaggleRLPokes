@@ -11,6 +11,6 @@ Duraludon Raging Hammer as the alternate line. Includes matchup-specific
 overrides (Crustle, Hop, Lucario, Alakazam, Starmie).
 
 Used as a training-pool opponent for Ceruledge-RL — see
-`Ceruledge-RL/specs/10-archaludon-opponent.md`. Logic is unmodified from the
+`Ceruledge-RL/specs/completed/10-archaludon-opponent.md`. Logic is unmodified from the
 source; the only change is a fallback import (`cg.api` → `cg_download.api`) so
 the module loads in this repo as well as on Kaggle.

@@ -20,6 +20,7 @@ sys.path.insert(0, _REPO_ROOT)
 sys.path.insert(0, _CERULEDGE_RL)
 
 import pytest
+from attack_overrides import BUDEW, TYRANITAR
 from cg_download.api import Card, Log, LogType, Observation, PlayerState, Pokemon, State
 from features import FULL_DECK, GameStateTracker
 from prize_check import PrizeTracker
@@ -60,14 +61,19 @@ def mk_player(active=None, bench=(), hand=(), discard=(), deck_count=40, prize_c
     )
 
 
-def mk_obs(our_ps, opp_ps, turn=1, first_player=0, logs=(), stadium_id=None) -> Observation:
+def mk_obs(our_ps, opp_ps, turn=1, first_player=0, logs=(), stadium_id=None,
+           energy_attached=False) -> Observation:
     state = State(
         turn=turn, turnActionCount=0, yourIndex=0, firstPlayer=first_player,
-        supporterPlayed=False, stadiumPlayed=False, energyAttached=False, retreated=False,
+        supporterPlayed=False, stadiumPlayed=False, energyAttached=energy_attached, retreated=False,
         result=-1, stadium=[mk_card(stadium_id)] if stadium_id is not None else [],
         looking=None, players=[our_ps, opp_ps],
     )
     return Observation(select=None, logs=list(logs), current=state, search_begin_input=None)
+
+
+def mk_attack_log(card_id: int, player: int) -> Log:
+    return Log(type=LogType.ATTACK, playerIndex=player, cardId=card_id)
 
 
 def mk_evolve_log(serial: int, player: int) -> Log:
@@ -75,7 +81,7 @@ def mk_evolve_log(serial: int, player: int) -> Log:
 
 
 def _trackers():
-    return PrizeTracker(), GameStateTracker(), GameStateTracker()
+    return PrizeTracker(FULL_DECK), GameStateTracker(FULL_DECK), GameStateTracker(FULL_DECK)
 
 
 # ── Board construction ──────────────────────────────────────────────────────────────
@@ -222,6 +228,8 @@ def test_deck_and_prizes_unresolved_before_first_search():
 
     state = build_game_state(obs, 0, *_trackers())
     assert state.our_deck == []
+    assert state.our_deck_hidden_count == 40  # observation_known_errors #1: deck size
+    # (mk_player's default deckCount) surfaces as UNK slots, not lost like PAD would
     assert state.our_prizes_known == []
     assert state.our_prizes_hidden_count == 6
 
@@ -253,6 +261,100 @@ def test_deck_by_elimination_once_prizes_resolved():
 
     expected_deck = Counter(FULL_DECK) - accounted - Counter(FULL_DECK[3:9])
     assert Counter(state.our_deck) == expected_deck
+    assert state.our_deck_hidden_count == 0  # resolved -> full identity, no UNK slots
+
+
+def test_deck_by_elimination_uses_trackers_submitted_deck():
+    from features import GameStateTracker
+
+    submitted_deck = [743] + list(range(2001, 2060))
+    active = mk_poke(submitted_deck[0], 100, 140, player=0)
+    our = mk_player(
+        active=active,
+        hand=[submitted_deck[1]],
+        discard=[submitted_deck[2]],
+        player=0,
+    )
+    opp = mk_player(active=mk_poke(121, 200, 320, player=1), player=1)
+    obs = mk_obs(our, opp)
+
+    prize_tracker = PrizeTracker(submitted_deck)
+    prize_tracker.prizes_known = True
+    prize_tracker.prize_counts = Counter(submitted_deck[3:9])
+    prize_tracker.known_serials = {
+        active.serial,
+        *(c.serial for c in our.hand),
+        *(c.serial for c in our.discard),
+    }
+
+    state = build_game_state(
+        obs,
+        0,
+        prize_tracker,
+        GameStateTracker(submitted_deck),
+        GameStateTracker(FULL_DECK),
+    )
+
+    accounted = Counter(submitted_deck[:3])
+    expected_deck = Counter(submitted_deck) - accounted - Counter(submitted_deck[3:9])
+    assert Counter(state.our_deck) == expected_deck
+
+
+# ── Global-word catch-up fields (observation_known_errors #3) ───────────────────────
+
+def test_global_catchup_counts_and_energy_attached():
+    our = mk_player(active=mk_poke(743, 100, 140, player=0), deck_count=31, prize_count=5,
+                     player=0)
+    opp = mk_player(active=mk_poke(121, 200, 320, player=1), deck_count=27, prize_count=3,
+                     hand_count=4, player=1)
+    obs = mk_obs(our, opp, energy_attached=True)
+
+    state = build_game_state(obs, 0, *_trackers())
+    assert state.our_deck_count == 31
+    assert state.opponent_deck_count == 27
+    assert state.opponent_prize_count == 3
+    assert state.opponent_hand_count == 4
+    assert state.energy_attached_this_turn is True
+
+
+def test_turn_order_reflects_first_player():
+    our = mk_player(active=mk_poke(743, 100, 140, player=0), player=0)
+    opp = mk_player(active=mk_poke(121, 200, 320, player=1), player=1)
+
+    we_first = build_game_state(mk_obs(our, opp, first_player=0), 0, *_trackers())
+    opp_first = build_game_state(mk_obs(our, opp, first_player=1), 0, *_trackers())
+    undetermined = build_game_state(mk_obs(our, opp, first_player=-1), 0, *_trackers())
+
+    assert we_first.turn_order == 0.0
+    assert opp_first.turn_order == 1.0
+    assert undetermined.turn_order == 0.5
+
+
+def test_item_locked_via_opponent_attack_log():
+    our = mk_player(active=mk_poke(743, 100, 140, player=0), player=0)
+    opp = mk_player(active=mk_poke(121, 200, 320, player=1), player=1)
+    obs = mk_obs(our, opp, logs=[mk_attack_log(BUDEW, player=1)])
+
+    state = build_game_state(obs, 0, *_trackers())
+    assert state.item_locked is True
+
+
+def test_item_locked_via_tyranitar_active():
+    our = mk_player(active=mk_poke(743, 100, 140, player=0), player=0)
+    opp = mk_player(active=mk_poke(TYRANITAR, 200, 320, player=1), player=1)
+    obs = mk_obs(our, opp)
+
+    state = build_game_state(obs, 0, *_trackers())
+    assert state.item_locked is True
+
+
+def test_item_locked_false_by_default():
+    our = mk_player(active=mk_poke(743, 100, 140, player=0), player=0)
+    opp = mk_player(active=mk_poke(121, 200, 320, player=1), player=1)
+    obs = mk_obs(our, opp)
+
+    state = build_game_state(obs, 0, *_trackers())
+    assert state.item_locked is False
 
 
 # ── Guardrails ────────────────────────────────────────────────────────────────────

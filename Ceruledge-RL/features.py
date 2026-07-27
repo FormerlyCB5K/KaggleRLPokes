@@ -108,20 +108,24 @@ class GameStateTracker:
     (extract_features does it for you, guarded against double-processing).
     """
 
-    def __init__(self):
+    def __init__(self, full_deck: list[int] | tuple[int, ...] | None = None):
         # lazy import: prize_check imports DECK_CARDS/FULL_DECK back from us
         from prize_check import PrizeTracker
         self._prize_cls = PrizeTracker
+        self._full_deck = tuple(FULL_DECK if full_deck is None else full_deck)
         self.reset()
 
     def reset(self):
         self._last_turn:        int = -1
-        self._last_obs_id:      int | None = None
+        # Retain the object itself rather than only id(obs). If the previous
+        # observation is freed, CPython may reuse its numeric id for the next
+        # replay observation and silently suppress a real update.
+        self._last_obs:         Observation | None = None
         self.lunar_used:        bool = False
         self.supporter_used:    bool = False
         self.item_lock_tracked: bool = False        # Budew/Frillish attack observed
         self.evolved_serials:   set[int] = set()    # our serials evolved this turn
-        self.prizes = self._prize_cls()
+        self.prizes = self._prize_cls(self._full_deck)
 
     # -- per-turn marks (called from actions.py) --
     def new_turn(self, turn: int):
@@ -144,8 +148,8 @@ class GameStateTracker:
         self.new_turn(obs.current.turn)
 
         # obs.logs are "events since the last selection" — process each obs once.
-        if id(obs) != self._last_obs_id:
-            self._last_obs_id = id(obs)
+        if obs is not self._last_obs:
+            self._last_obs = obs
             for log in (obs.logs or []):
                 if (log.type == LogType.ATTACK and log.playerIndex != our_idx
                         and log.cardId in ITEM_LOCK_ATTACKERS):

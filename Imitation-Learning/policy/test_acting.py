@@ -88,10 +88,12 @@ def test_setup_bench_heuristic_declines_when_optional():
     assert acting.setup_bench_heuristic(obs) == []
 
 
-def test_setup_bench_heuristic_satisfies_forced_minimum():
+def test_setup_bench_heuristic_always_declines_even_with_forced_minimum():
+    # Never voluntarily bench during setup, even when the engine asks for a minimum of 1 --
+    # the empty return defers to the safe IndexError -> random_legal_selection retry path.
     opts = [Option(type=OptionType.CARD, area=AreaType.HAND, index=0)]
     obs = _obs(opts, context=SelectContext.SETUP_BENCH_POKEMON, min_count=1)
-    assert acting.setup_bench_heuristic(obs) == [0]
+    assert acting.setup_bench_heuristic(obs) == []
 
 
 def test_random_legal_selection_respects_min_max_no_duplicates():
@@ -109,6 +111,45 @@ def test_random_legal_selection_empty_options():
     assert acting.random_legal_selection(obs) == []
 
 
+def _empty_game_state():
+    from observation.encoder import GameState
+    return GameState(
+        our_deck=[], our_deck_hidden_count=0, our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=6,
+        opponent_discard=[], board=[], stadium_card_id=None, turn_number=1,
+    )
+
+
+def test_act_sub_selection_early_stops_when_stop_wins():
+    # "Pick up to 3" (minCount=1, maxCount=3) over 4 hand cards. When STOP dominates every
+    # candidate, picking must stop at the forced minimum (1), not run to maxCount (3).
+    from policy.model import PolicyModel
+
+    Charcadet = 796
+    hand = [Card(id=Charcadet, serial=i, playerIndex=_P_OWNER) for i in range(4)]
+    ps = _player_state(hand=hand)
+    state = _state([ps, _player_state()])
+    opts = [Option(type=OptionType.CARD, area=AreaType.HAND, index=i) for i in range(4)]
+    obs = _obs(opts, context=SelectContext.TO_HAND, state=state, min_count=1, max_count=3)
+    game_state = _empty_game_state()
+
+    model = PolicyModel()
+    model.eval()
+
+    # STOP dominates -> stop as soon as minCount (1) is satisfied.
+    model.stop_score = lambda pooled: torch.tensor(1e9)
+    with torch.no_grad():
+        result = acting.act_sub_selection(model, obs, our_idx=0, game_state=game_state)
+    assert len(result) == 1  # early-stopped at the minimum, not maxCount=3
+
+    # STOP never wins -> fall through to maxCount (3) picks, proving the short result above
+    # was caused by the STOP token, not by anything else.
+    model.stop_score = lambda pooled: torch.tensor(-1e9)
+    with torch.no_grad():
+        result_full = acting.act_sub_selection(model, obs, our_idx=0, game_state=game_state)
+    assert len(result_full) == 3
+    assert len(set(result_full)) == 3  # distinct option indices, no duplicates
+
+
 def test_act_main_masks_illegal_verbs():
     # Only END is legal here -- mask should be -inf everywhere except END's slot.
     opts = [Option(type=OptionType.END)]
@@ -117,14 +158,10 @@ def test_act_main_masks_illegal_verbs():
     obs = _obs(opts, context=SelectContext.MAIN, state=state_obj)
 
     from policy.model import PolicyModel
-    from observation.encoder import GameState
 
     model = PolicyModel()
     model.eval()
-    game_state = GameState(
-        our_deck=[], our_hand=[], our_discard=[], our_prizes_known=[], our_prizes_hidden_count=6,
-        opponent_discard=[], board=[], stadium_card_id=None, turn_number=1,
-    )
+    game_state = _empty_game_state()
     with torch.no_grad():
         result = acting.act_main(model, obs, our_idx=0, game_state=game_state, sample=False)
 
