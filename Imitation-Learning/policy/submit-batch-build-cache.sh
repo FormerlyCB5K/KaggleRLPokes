@@ -53,10 +53,10 @@ echo "Sanitized dir: $SANITIZED_DIR"
 echo "Cache dir: $CACHE_DIR"
 echo "Episode limit: $MAX_EPISODES_PER_ZIP   max steps: $MAX_STEPS"
 
-EXTRA_ARGS=()
-if [ -n "$DAYS" ]; then
-    EXTRA_ARGS+=(--days "$DAYS")
-fi
+# Keep this array nonempty for older cluster Bash versions where expanding a
+# declared-but-empty array under `set -u` raises "unbound variable". An empty
+# --days value retains the builder's normal "use every discovered day" behavior.
+EXTRA_ARGS=(--days "$DAYS")
 if [ "$FORCE" -eq 1 ]; then
     EXTRA_ARGS+=(--force)
 fi

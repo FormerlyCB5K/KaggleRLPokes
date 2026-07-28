@@ -88,10 +88,7 @@ requeue() {
 trap requeue USR1
 
 # ---- run training ----
-CACHE_ARGS=()
-if [ -n "$CACHE_DIR" ]; then
-    CACHE_ARGS=(--cache-dir "$CACHE_DIR")
-fi
+CACHE_ARGS=(--cache-dir "$CACHE_DIR")
 
 python -u Imitation-Learning/policy/train.py \
     --resume \

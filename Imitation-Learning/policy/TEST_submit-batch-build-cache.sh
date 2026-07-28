@@ -52,7 +52,7 @@ echo "Sanitized dir: $SANITIZED_DIR"
 echo "Cache dir: $CACHE_DIR"
 echo "Episode limit: $MAX_EPISODES_PER_ZIP   max steps: $MAX_STEPS"
 
-EXTRA_ARGS=()
+EXTRA_ARGS=(--days "$DAYS")
 if [ "$FORCE" -eq 1 ]; then
     EXTRA_ARGS+=(--force)
 fi
@@ -62,7 +62,6 @@ python -u Imitation-Learning/build_example_cache.py \
     --raw-dir              "$RAW_DIR" \
     --sanitized-dir        "$SANITIZED_DIR" \
     --cache-dir            "$CACHE_DIR" \
-    --days                 "$DAYS" \
     --max-episodes-per-zip "$MAX_EPISODES_PER_ZIP" \
     --max-steps            "$MAX_STEPS" \
     --workers              "$WORKERS" \
