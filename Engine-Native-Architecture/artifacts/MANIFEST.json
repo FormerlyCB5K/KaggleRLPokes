@@ -1,0 +1,81 @@
+{
+ "files": {
+  "tables/frozen_tables.pt": {
+   "bytes": 3135645,
+   "sha256_16": "82db46ee9b11ee41"
+  },
+  "tables/frozen_tables.npz": {
+   "bytes": 42858,
+   "sha256_16": "29c58423c18f2a0d"
+  },
+  "tables/card_index.json": {
+   "bytes": 312527,
+   "sha256_16": "0a3d1202070131de"
+  },
+  "tables/Types.h": {
+   "bytes": 36076,
+   "sha256_16": "c5a9ad65b1221fc9"
+  },
+  "tables/EN_Card_Data.csv": {
+   "bytes": 359151,
+   "sha256_16": "a0ea63cf7adcb65d"
+  },
+  "samples/000013c1c71d47589e853c0e97241189.json.gz": {
+   "bytes": 9045,
+   "sha256_16": "48540eb4dbe0bf4b"
+  },
+  "samples/00001765885c43bdbaa4f605da143fa9.json.gz": {
+   "bytes": 38335,
+   "sha256_16": "c5acf1814551bbb5"
+  },
+  "samples/0000e2fd45544d18aedb72cbd55bfa0d.json.gz": {
+   "bytes": 58723,
+   "sha256_16": "d4645045adcc0206"
+  },
+  "checkpoint/step_98304000.pt": {
+   "bytes": 9513279,
+   "sha256_16": "5f700ed2d5525b8f"
+  }
+ },
+ "note": "sha256 truncated to 16 hex chars",
+ "table_shapes": {
+  "ATK": [
+   1300,
+   2,
+   130
+  ],
+  "ABL": [
+   1300,
+   130
+  ],
+  "PLAY": [
+   1300,
+   130
+  ],
+  "STAT": [
+   1300,
+   79
+  ],
+  "PRIZE": [
+   1300,
+   1
+  ],
+  "ATTACK_SLOT": [
+   1600
+  ]
+ },
+ "table_dtypes": {
+  "ATK": "torch.float32",
+  "ABL": "torch.float32",
+  "PLAY": "torch.float32",
+  "STAT": "torch.float32",
+  "PRIZE": "torch.float32",
+  "ATTACK_SLOT": "torch.int64"
+ },
+ "cards_with_more_than_two_attacks": {},
+ "checkpoint_params": 2370259,
+ "golden": {
+  "flat_sha256_16": "e1dd01b8c94941ea",
+  "value": -0.143884
+ }
+}

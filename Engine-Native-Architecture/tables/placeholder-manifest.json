@@ -1,0 +1,14 @@
+{
+  "schema": "engine-native-frozen-tables-v1",
+  "status": "provisional",
+  "semantic_validity": false,
+  "replacement_requires_architecture_change": false,
+  "tables": {
+    "STAT": {"shape": [1300, 79], "dtype": "float32", "fill": 0},
+    "ATK": {"shape": [1300, 2, 130], "dtype": "float32", "fill": 0},
+    "ABL": {"shape": [1300, 130], "dtype": "float32", "fill": 0},
+    "PLAY": {"shape": [1300, 130], "dtype": "float32", "fill": 0},
+    "PRIZE": {"shape": [1300, 1], "dtype": "float32", "fill": 0},
+    "ATTACK_SLOT": {"shape": [1600], "dtype": "int64", "fill": 0}
+  }
+}

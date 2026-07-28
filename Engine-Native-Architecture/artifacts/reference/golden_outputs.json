@@ -1,0 +1,21 @@
+{
+ "replay": "000013c1c71d47589e853c0e97241189.json.gz",
+ "frame_index": 1,
+ "seat": 1,
+ "n_options": 3,
+ "flat_sha256_16": "e1dd01b8c94941ea",
+ "flat_sum": 54678.636719,
+ "flat_nonzero": 195,
+ "logits_live": [
+  -2.20166,
+  -2.10795,
+  2.27641
+ ],
+ "incl_live": [
+  2.3297,
+  2.22986,
+  2.62699
+ ],
+ "value": -0.143884,
+ "argmax_option": 2
+}

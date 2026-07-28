@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "engine-native-policy"
+version = "0.1.0"
+description = "Engine-native Pokémon TCG policy architecture"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "torch>=2.1"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

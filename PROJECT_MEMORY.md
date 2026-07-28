@@ -1,6 +1,6 @@
 # Project Memory
 
-Last refreshed: 2026-07-27
+Last refreshed: 2026-07-28
 
 ## Purpose
 
@@ -9,6 +9,55 @@ rules-based agents, evolutionary tuning, supervised value-network work, submissi
 builders, and a reinforcement-learning policy centered on the Ceruledge deck.
 
 ## Current focus
+
+### Engine-native 2,239-field architecture - new track (2026-07-28)
+
+The isolated track under `Engine-Native-Architecture/` now uses
+`specs/01-implementation-decisions-and-deferrals.md` as its active review contract.
+`specs/00-architecture-contract.md` is a superseded first-PDF baseline and must not guide
+implementation.
+
+The friend's reported implementation wins over `architecture-overview-v3.pdf`, with all
+differences logged. Locked behavior includes the exact interleaved `float32[2239]` record,
+40 dynamically ordered entity slots with 27 live numerics, 60-slot aggregate own-deck
+summary, 18 match fields, 64 legal-option slots, frozen 79/130-field mechanics, no learned
+card/attack identity tables, width-224 four-layer transformer, board-only FiLM, direct
+engine-option scoring, attacker-linked ATTACK options, include head, shaped-return value
+head, and the 2,370,259-parameter model with oracle modules retained in served checkpoints.
+
+The production encoder remains a pure engine-native path and may use the submitted acting
+deck, but no parallel `GameStateTracker`, `PrizeTracker`, hidden-card reconstruction, or
+old observation adapter. Local enums are mapped symbolically because raw area values differ
+from the friend's environment.
+
+The reference-compatible Python milestone is implemented under
+`Engine-Native-Architecture/src/engine_native_policy/`; the phased status is
+`specs/02-implementation-plan.md`. It includes exact flat packing/typed decoding,
+installed real frozen mechanics, direct `cg_download.api.Observation` featurization, dynamic
+entity pointers, aggregate deck state, the exact 2,370,259-parameter network, retained
+zero-initialized oracle modules with fog-only operation, action decoding, and a stateless
+serving wrapper. The supplied artifacts are retained under
+`Engine-Native-Architecture/artifacts/` with full hashes. Integer replay areas and
+option-number normalization now match the reference; the permanent replay test reproduces
+the supplied flat hash, logits, include logits, and value exactly.
+
+The engine-native sanitized-replay data-to-train contract is
+`Engine-Native-Architecture/specs/03-imitation-data-to-train-handoff.md`. Its v1 path
+uses the existing six-day cluster TEST corpus, direct observation plus submitted-deck
+featurization, the canonical `float32[2239]` record, tensor-only approximately
+8,192-row PyTorch shards, an exact seeded 90/10 game split, normal
+`Dataset`/`DataLoader` preparation, categorical NLL for single selections, and joint
+Bernoulli NLL for multi-selections. It explicitly forbids trackers and the existing
+174-word examples/candidates. This pipeline is implemented under
+`src/engine_native_policy/il/`, with local scripts and isolated cluster jobs. Focused
+validation passes 43 tests, a 32-example tensor cache built with two workers, and both
+single-worker and multi-worker real-model forward/backward smokes passed. The generated
+TEST cache lives at
+`Imitation-Learning/Top-ladder-data/engine-native-cache-test-six-days/`. The uncapped
+six-day cluster cache and CUDA smoke remain pending; the full behavior-cloning trainer
+is intentionally deferred until those measurements are recorded.
+
+### Existing tracks
 
 An imitation-learning data/encoding track is now active under
 `Imitation-Learning/`. Completed Spec 12
@@ -43,7 +92,17 @@ validation and deployment of all required agent folders, and per-opponent metric
 Code exists at `opponents.py`, `test_dispatch.py`, and `test_pool.py`. The active-spec
 index is `Ceruledge-RL/specs/README.md`.
 
-## Imitation-learning data/training track — status as of 2026-07-27
+## Legacy 174-word imitation-learning track — status as of 2026-07-27
+
+For preserved legacy details, read
+`docs/IMITATION_LEARNING_CLUSTER_HANDOFF.md`. Its opening section now gives the current
+engine-native cache/smoke commands; the later sections record the old six-day TEST
+corpus, exact absolute-path submission/monitoring commands, output
+artifacts, known failures, and remaining cluster verification. Last known state:
+`def8cb1` is pushed; an earlier cache job failed on an empty Bash array and is fixed in
+that commit; the later submission used relative paths from `~`, returned no job IDs,
+and submitted no jobs. Verify rather than assume no later job exists. The untracked
+`KaggleRLPokes-825d528.bundle` is unrelated and must be preserved.
 
 Spec 16's generalized policy pipeline lives under `Imitation-Learning/policy/`.
 Full-dataset extraction cannot materialize every decision in one Python list
@@ -151,27 +210,18 @@ efficacy data, full test logs.
   confirms bugs in shared code can hide until the second consumer exercises them; re-run
   *both* vocabularies' full recall/false-positive checks after touching any shared tag.
 
-**Next steps, in priority order** (none started):
-1. **The live engine adapter** — nothing in this package is wired to the actual competition
-   engine yet. `encoder.GameState`/`live_state.RawPokemon` are hand-constructed everywhere
-   (including in every test); a real adapter needs to build these from the engine's own
-   `ToJson.h` `Current`/`PokemonJson` output (the shape `Ceruledge-RL/features.py`'s
-   `extract_features(obs, ...)` already consumes for the old deck-specific encoder — a
-   useful reference for the real `obs` object's shape). `board_context.py`'s
-   `tools_suppressed`/`abilities_suppressed_types` detection (currently just two hardcoded
-   stadium-ID checks) will also need real engine wiring once ability suppression can vary
-   more richly.
+**Next steps, in priority order:**
+1. **Run and measure the six-day cluster IL test** described in
+   `docs/IMITATION_LEARNING_CLUSTER_HANDOFF.md`. The live engine adapter is already
+   implemented under completed spec 15 and is consumed by cache extraction; the missing
+   evidence is an uncapped cluster cache/training run, not adapter implementation.
 2. **Write spec 13b retroactively** now that there's substantial implementation experience,
    per the user's own stated plan (13b was explicitly deferred, never written).
-3. **Spec 11's own still-open question**: whether `attacks_survivable`'s opposing-board max
-   damage should filter to only attacks the opposing Pokémon can *currently afford* (given
-   attached Energy vs. the printed `energy_cost`) or count all printed attacks regardless of
-   affordability (currently: the simpler "all attacks count" default, unrevisited).
-4. **The recurring "hand-to-bottom-of-deck" gap** — found during a full-corpus recurrence
+3. **The recurring "hand-to-bottom-of-deck" gap** — found during a full-corpus recurrence
    check, appears on 3 real cards (Meddling Memo, Energy Swatter, Lucian), distinct from
    every existing tag (`HAND_RESET` shuffles into the deck, `DISCARD_TO_DECK` is
    discard-pile-only). Flagged to the user, not yet decided whether it earns a new tag.
-5. Wiring either tag vocabulary into the existing "zone MLP" consumer, or spec 13's future
+4. Wiring either tag vocabulary into the existing "zone MLP" consumer, or spec 13's future
    per-card zone-word redesign — both explicitly out of scope for every pass so far.
 
 ## Ceruledge RL architecture snapshot
@@ -348,15 +398,13 @@ imitation-learning integration—not an extension of Spec 12.
 Human-review records remain mandatory for every ambiguity or category change. Do not
 design the final observation tensor in Spec 12.
 
-**That "next task" is now well underway** — see "Observation encoder track (specs
-11/11a/11b/13/13a)" above for the full current state (as of 2026-07-21): both tag
-vocabularies (specs 11a, 11b) are designed *and* transcribed into working, tested code
-under `Imitation-Learning/observation/`, spec 13a's zone/word-budget design is locked, and
-`encoder.py` produces a real `build_observation(GameState) -> list[Word]` including live
-`attack_damage`/`attacks_survivable`/`attack_hits_opponent`. The single biggest remaining
-piece before this can run against real games is the live engine adapter (item 1 in that
-section's "Next steps") — nothing yet converts the actual engine's `obs` object into the
-`GameState`/`RawPokemon` shape this package assumes.
+**That "next task" is now implemented.** Both tag vocabularies are transcribed into
+tested code under `Imitation-Learning/observation/`, spec 13a's 174-word design is
+locked, and `encoder.py` produces the full observation. Completed spec 15 added
+`observation/live_adapter.py`, which converts real engine observations into the encoder's
+`GameState`; cache extraction already uses this path. Specs 16/16c then added generalized
+action labels, the policy model, cached extraction, and supervised training. The
+remaining immediate work is operational cluster validation, not live-adapter wiring.
 
 For opponent-pool work, continue to verify specs `09a`-`09e` against current code/tests
 before changing their completion state.

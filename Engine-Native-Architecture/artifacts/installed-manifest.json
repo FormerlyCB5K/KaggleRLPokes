@@ -1,0 +1,19 @@
+{
+  "schema": "engine-native-reference-artifacts-v1",
+  "source": "sprint-2026-07-28-handoff",
+  "files": [
+    {"path": "card_index.json", "size": 312527, "sha256": "0a3d1202070131de9a3a8af0fd6f5d7a6ec18c4be09ae49d22b2c912a63d7a17"},
+    {"path": "EN_Card_Data.csv", "size": 359151, "sha256": "a0ea63cf7adcb65d35436ce0eb390de6e2e35654a7c67c065a45f4abaa00f373"},
+    {"path": "frozen_tables.npz", "size": 42858, "sha256": "29c58423c18f2a0da9ec5a198859bda5040f19b11540ede1e225b2390a890297"},
+    {"path": "frozen_tables.pt", "size": 3135645, "sha256": "82db46ee9b11ee410a1eb3bc55d83007b1e1e5495f00056cbaf228886d421da0"},
+    {"path": "reference/featurize_a_replay.py", "size": 6841, "sha256": "a8593a527bb65d8f1c04f08532cf190b2d6e5ffe62b10764c2605fbc2c59d3f9"},
+    {"path": "reference/golden_outputs.json", "size": 342, "sha256": "5e279de3c4c83505f28e00875f6ef9520bf3ca04ee6cf87326781d2a7ed7660f"},
+    {"path": "reference/schemas.json", "size": 7411, "sha256": "17bb4d78dc555075ff3dd1b5121b9eb701714559b98a900d25f742766ab6c927"},
+    {"path": "reference/step_98304000.pt", "size": 9513279, "sha256": "5f700ed2d5525b8fd3a7a21a65d2fdb8d84c394b12d2f5e2550432df1c3315a5"},
+    {"path": "reference/verify_standalone.py", "size": 5997, "sha256": "663bfeaa632f256251fe24ee4a6860defb8aca39acd641d99949d3c54ded7e55"},
+    {"path": "samples/000013c1c71d47589e853c0e97241189.json.gz", "size": 9045, "sha256": "48540eb4dbe0bf4b619889ca15dc65886fbcfc7729911ba5be7e3e1edd621e38"},
+    {"path": "samples/00001765885c43bdbaa4f605da143fa9.json.gz", "size": 38335, "sha256": "c5acf1814551bbb5b1ed45d2694a9cedaafab707c491884dc31a5e286419cd88"},
+    {"path": "samples/0000e2fd45544d18aedb72cbd55bfa0d.json.gz", "size": 58723, "sha256": "d4645045adcc0206c1619e253ef00074d88644b4862148c58fcbebd111b30612"},
+    {"path": "Types.h", "size": 36076, "sha256": "c5a9ad65b1221fc9b6ed09e5f56c6bd7ec325117cc2247592164abe698bad0a8"}
+  ]
+}

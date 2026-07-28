@@ -560,3 +560,34 @@ directories; link or name them here.
   - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy
     Imitation-Learning/observation -q` — 93 passed (final suite after adding the
     checkpoint round-trip regression).
+
+### 2026-07-28 — Engine-native tensor-cache and train-input smoke
+
+- Status: local implementation validation passed. The input was a generated eight-game
+  fixture, so neither throughput nor losses are model-quality or cluster-performance
+  measurements.
+- Cache command:
+  - `.venv/Scripts/python.exe Engine-Native-Architecture/scripts/build_il_dataset.py
+    --sanitized-root tmp/engine-native-il-smoke-source
+    --output-root tmp/engine-native-il-smoke-cache-final --days 7-12
+    --validation-fraction 0.25 --target-shard-rows 8 --workers 2`
+- Cache result:
+  - 8 games, 32 examples, 16 single / 16 multi, and 4 tensor-only shards;
+  - 6.626 seconds and 4.83 examples/s, dominated by Windows worker startup at this
+    fixture size;
+  - manifest, split, episode table, tensor semantics, and all shard hashes verified.
+- Train-input command:
+  - `.venv/Scripts/python.exe Engine-Native-Architecture/scripts/smoke_il_batch.py
+    --dataset-root tmp/engine-native-il-smoke-cache-final
+    --tables Engine-Native-Architecture/artifacts/frozen_tables.pt
+    --checkpoint Engine-Native-Architecture/artifacts/reference/step_98304000.pt
+    --device cpu --batch-size 8 --num-workers 2 --seed 20260728`
+- Train-input result:
+  - reference-initialized 2,370,259-parameter model completed one optimizer step;
+  - train loss 7.38734, validation loss 6.03639, and 84 finite gradient tensors;
+  - the validation batch contained 4 single and 4 multi decisions;
+  - these values only confirm the finite execution path.
+- Regression suite:
+  - `.venv/Scripts/python.exe -m pytest Engine-Native-Architecture/tests -q` —
+    43 passed.
+- Remaining acceptance: uncapped six-day cache build and CUDA smoke on NPL.

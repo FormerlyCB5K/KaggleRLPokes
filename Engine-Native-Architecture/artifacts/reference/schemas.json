@@ -1,0 +1,473 @@
+{
+ "obs": {
+  "FLAT_DIM": 2239,
+  "MAX_TOKENS": 40,
+  "MAX_DECK": 60,
+  "MAX_OPT": 64,
+  "MAX_ORA": 66,
+  "ORACLE_DIM": 198,
+  "FNUM": 27,
+  "FGLOB": 18,
+  "FOPT": 4,
+  "N_ZONE": 4,
+  "N_CARDS": 1300,
+  "N_ATTACKS": 1600,
+  "N_OPT_TYPES": 17,
+  "N_ROLES": 10,
+  "N_ENERGY": 12,
+  "HP_CAP": 300.0,
+  "CNT_CAP": 10.0,
+  "OPT_ENT_NONE": -1,
+  "fields": [
+   {
+    "name": "tok_card_id",
+    "size": 40,
+    "start": 0,
+    "end": 40
+   },
+   {
+    "name": "tok_role",
+    "size": 40,
+    "start": 40,
+    "end": 80
+   },
+   {
+    "name": "tok_num",
+    "size": 1080,
+    "start": 80,
+    "end": 1160
+   },
+   {
+    "name": "tok_mask",
+    "size": 40,
+    "start": 1160,
+    "end": 1200
+   },
+   {
+    "name": "deck_ids",
+    "size": 60,
+    "start": 1200,
+    "end": 1260
+   },
+   {
+    "name": "glob",
+    "size": 18,
+    "start": 1260,
+    "end": 1278
+   },
+   {
+    "name": "opt_type",
+    "size": 64,
+    "start": 1278,
+    "end": 1342
+   },
+   {
+    "name": "opt_card",
+    "size": 64,
+    "start": 1342,
+    "end": 1406
+   },
+   {
+    "name": "opt_tgt",
+    "size": 64,
+    "start": 1406,
+    "end": 1470
+   },
+   {
+    "name": "opt_attack",
+    "size": 64,
+    "start": 1470,
+    "end": 1534
+   },
+   {
+    "name": "opt_ent",
+    "size": 64,
+    "start": 1534,
+    "end": 1598
+   },
+   {
+    "name": "opt_num",
+    "size": 256,
+    "start": 1598,
+    "end": 1854
+   },
+   {
+    "name": "opt_mask",
+    "size": 64,
+    "start": 1854,
+    "end": 1918
+   },
+   {
+    "name": "n_options",
+    "size": 1,
+    "start": 1918,
+    "end": 1919
+   },
+   {
+    "name": "deck_zone",
+    "size": 240,
+    "start": 1919,
+    "end": 2159
+   },
+   {
+    "name": "tok_tool_id",
+    "size": 40,
+    "start": 2159,
+    "end": 2199
+   },
+   {
+    "name": "tok_senergy_id",
+    "size": 40,
+    "start": 2199,
+    "end": 2239
+   }
+  ]
+ },
+ "roles": {
+  "PAD": 0,
+  "MY_ACTIVE": 1,
+  "MY_BENCH": 2,
+  "OPP_ACTIVE": 3,
+  "OPP_BENCH": 4,
+  "MY_HAND": 5,
+  "DECK": 6,
+  "GLOBAL": 7,
+  "CLS": 8,
+  "STADIUM": 9
+ },
+ "option_types": {
+  "NUMBER": 0,
+  "YES": 1,
+  "NO": 2,
+  "CARD": 3,
+  "TOOL_CARD": 4,
+  "ENERGY_CARD": 5,
+  "ENERGY": 6,
+  "PLAY": 7,
+  "ATTACH": 8,
+  "EVOLVE": 9,
+  "ABILITY": 10,
+  "DISCARD": 11,
+  "RETREAT": 12,
+  "ATTACK": 13,
+  "END": 14,
+  "SKILL": 15,
+  "SPECIAL_CONDITION": 16
+ },
+ "area_types": {
+  "DECK": 1,
+  "HAND": 2,
+  "DISCARD": 3,
+  "ACTIVE": 4,
+  "BENCH": 5,
+  "PRIZE": 6,
+  "LOOKING": 7
+ },
+ "effect_descriptor": {
+  "EFF_DIM": 130,
+  "layout": [
+   {
+    "field": "is_ability",
+    "start": 0,
+    "end": 1,
+    "width": 1
+   },
+   {
+    "field": "present",
+    "start": 1,
+    "end": 2,
+    "width": 1
+   },
+   {
+    "field": "damage",
+    "start": 2,
+    "end": 3,
+    "width": 1
+   },
+   {
+    "field": "target_count",
+    "start": 3,
+    "end": 4,
+    "width": 1
+   },
+   {
+    "field": "scope",
+    "start": 4,
+    "end": 8,
+    "width": 4
+   },
+   {
+    "field": "cost_by_type",
+    "start": 8,
+    "end": 20,
+    "width": 12
+   },
+   {
+    "field": "effect_tags",
+    "start": 20,
+    "end": 76,
+    "width": 56
+   },
+   {
+    "field": "gated",
+    "start": 76,
+    "end": 77,
+    "width": 1
+   },
+   {
+    "field": "cond_type",
+    "start": 77,
+    "end": 101,
+    "width": 24
+   },
+   {
+    "field": "cond_subject",
+    "start": 101,
+    "end": 120,
+    "width": 19
+   },
+   {
+    "field": "comparator",
+    "start": 120,
+    "end": 126,
+    "width": 6
+   },
+   {
+    "field": "name_target",
+    "start": 126,
+    "end": 127,
+    "width": 1
+   },
+   {
+    "field": "branch",
+    "start": 127,
+    "end": 128,
+    "width": 1
+   },
+   {
+    "field": "fetch_count",
+    "start": 128,
+    "end": 129,
+    "width": 1
+   },
+   {
+    "field": "play_cost",
+    "start": 129,
+    "end": 130,
+    "width": 1
+   }
+  ]
+ },
+ "vocabularies": {
+  "effect_tags": [
+   "src_ability",
+   "src_attack_effect",
+   "draw",
+   "draw_mag",
+   "search_deck_to_hand",
+   "search_deck_to_field",
+   "recover_from_trash",
+   "deck_peek_reorder",
+   "energy_accel",
+   "attach_from_trash",
+   "energy_switch",
+   "discard_opp_energy",
+   "disrupt_opp_hand",
+   "mill_opp",
+   "mill_self",
+   "gust",
+   "switch_self",
+   "heal",
+   "heal_mag",
+   "put_counters",
+   "put_counters_mag",
+   "self_damage",
+   "bench_snipe",
+   "multi_target",
+   "dmg_scale_energy",
+   "dmg_scale_coin",
+   "dmg_scale_prize",
+   "dmg_scale_other",
+   "dmg_modify_dealt",
+   "dmg_modify_dealt_mag",
+   "dmg_modify_taken",
+   "dmg_modify_taken_mag",
+   "block_damage_all",
+   "block_damage_ex",
+   "block_damage_basic",
+   "block_damage_ability",
+   "block_damage_threshold",
+   "block_threshold_mag",
+   "block_effects",
+   "status_inflict",
+   "status_recover_immune",
+   "lock_attack",
+   "lock_retreat",
+   "lock_hand_use",
+   "lock_ability",
+   "self_drawback",
+   "prize_extra",
+   "prize_deny",
+   "ko_prize_modifier",
+   "instant_ko_or_win",
+   "coin_flip",
+   "retreat_cost_mod",
+   "attack_cost_mod",
+   "evolve_support",
+   "attack_from_bench",
+   "misc_permanent"
+  ],
+  "K_EFF": 56,
+  "condition_types": [
+   "Always",
+   "AnyTargetAfterEffect",
+   "CountTarget",
+   "CountTarget2",
+   "CountTargetMeOrEnemy",
+   "CompareCountTargetMeEnemy",
+   "CountEnergy",
+   "CountEnergyType",
+   "CompareCountEnergyMeEnemy",
+   "AttackEnergyExtra",
+   "NotFullBench",
+   "MyTurn",
+   "Turn",
+   "KoPreEnemyTurn",
+   "KoPreEnemyTurnTeamRocket",
+   "KoAttackDamagePreEnemyTurn",
+   "KoAttackDamageEthanPreEnemyTurn",
+   "KoAttackDamageHopPreEnemyTurn",
+   "NoSameNameSkillThisTurn",
+   "SameAttackPreMyTurn",
+   "CoinHeadCount",
+   "AttachActive",
+   "MysteryGarden",
+   "LoveBall"
+  ],
+  "condition_subjects": [
+   "IsAttachedEnergyType",
+   "Supporter",
+   "DamageCounter",
+   "Poison",
+   "Ex",
+   "Name",
+   "CardId",
+   "BasicEnergy",
+   "EnergyCard",
+   "Tool",
+   "Stadium",
+   "Ability",
+   "Evolve",
+   "Bench",
+   "Active",
+   "Rocket",
+   "Tera",
+   "Ancient",
+   "subj_other"
+  ],
+  "comparators": [
+   "Equal",
+   "GreaterEqual",
+   "LessEqual",
+   "NotEqual",
+   "Greater",
+   "Less"
+  ],
+  "scope": [
+   "self",
+   "single",
+   "all_bench",
+   "any"
+  ],
+  "card_types": [
+   "POKEMON",
+   "ITEM",
+   "TOOL",
+   "SUPPORTER",
+   "STADIUM",
+   "BASIC_ENERGY",
+   "SPECIAL_ENERGY"
+  ],
+  "energy_types": [
+   "COLORLESS",
+   "GRASS",
+   "FIRE",
+   "WATER",
+   "LIGHTNING",
+   "PSYCHIC",
+   "FIGHTING",
+   "DARKNESS",
+   "METAL",
+   "DRAGON",
+   "RAINBOW",
+   "TEAM_ROCKET"
+  ]
+ },
+ "statline": {
+  "CF": 79,
+  "HP_CAP": 300.0,
+  "DMG_CAP": 300.0,
+  "RETREAT_CAP": 5.0,
+  "N_ATTACK_SLOTS": 2,
+  "blocks": [
+   {
+    "field": "cardType_onehot",
+    "width": 7
+   },
+   {
+    "field": "flags",
+    "width": 7,
+    "names": [
+     "basic",
+     "stage1",
+     "stage2",
+     "ex",
+     "megaEx",
+     "tera",
+     "aceSpec"
+    ]
+   },
+   {
+    "field": "hp_div300",
+    "width": 1
+   },
+   {
+    "field": "energyType_onehot",
+    "width": 12
+   },
+   {
+    "field": "weakness_onehot",
+    "width": 12
+   },
+   {
+    "field": "resistance_onehot",
+    "width": 12
+   },
+   {
+    "field": "retreat_div5",
+    "width": 1
+   },
+   {
+    "field": "attack0_dmg_div300_plus_12typed_cost_counts",
+    "width": 13
+   },
+   {
+    "field": "attack1_dmg_div300_plus_12typed_cost_counts",
+    "width": 13
+   },
+   {
+    "field": "has_second_attack",
+    "width": 1
+   }
+  ]
+ },
+ "caps": {
+  "DRAW_CAP": 10.0,
+  "HP_CAP_eff": 300.0,
+  "COUNTER_HP": 10.0,
+  "MOD_CAP": 100.0,
+  "DMG_CAP_eff": 300.0,
+  "TCOUNT_CAP": 6.0,
+  "PRIZE_CAP": 3.0
+ }
+}

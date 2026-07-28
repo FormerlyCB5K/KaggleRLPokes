@@ -1,0 +1,12 @@
+# Preserve every hash-pinned handoff artifact byte-for-byte across platforms.
+EN_Card_Data.csv -text -diff
+Types.h -text -diff
+card_index.json -text -diff
+frozen_tables.npz -text -diff
+frozen_tables.pt -text -diff
+reference/featurize_a_replay.py -text -diff
+reference/golden_outputs.json -text -diff
+reference/schemas.json -text -diff
+reference/step_98304000.pt -text -diff
+reference/verify_standalone.py -text -diff
+samples/*.json.gz -text -diff

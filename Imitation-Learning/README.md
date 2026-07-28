@@ -1,7 +1,13 @@
 # Imitation-Learning Workspace
 
-The active development track is the deck-agnostic observation/action model and
-imitation-learning pipeline under `observation/` and `policy/`. The completed
+The current successor is the isolated engine-native architecture under
+`../Engine-Native-Architecture/`. It reads the sanitized corpus here but does not reuse
+the 174-word observation/action model, trackers, examples, or pickle caches under
+`observation/` and `policy/`. Its six-day tensor cache is written to
+`Top-ladder-data/engine-native-cache-test-six-days/`.
+
+The earlier deck-agnostic observation/action model and imitation-learning pipeline under
+`observation/` and `policy/` remains a preserved baseline. The completed
 top-ladder exact-card-ID semantic registry remains the source for card identity and
 effect semantics; start with [`meta-card-registry/README.md`](meta-card-registry/README.md)
 when working on registry content.
@@ -55,7 +61,14 @@ python Imitation-Learning/test_meta_card_registry.py
 Generated files under `meta-card-registry/` should not be edited manually. Change the
 builder or approved source inputs, regenerate, and verify the artifact manifest instead.
 
-## Full imitation-learning run
+## Legacy 174-word imitation-learning run
+
+For historical 174-word AiMOS/NPL instructions, including submission, dependency,
+monitoring, recovery, and artifact commands, use
+[`../docs/IMITATION_LEARNING_CLUSTER_HANDOFF.md`](../docs/IMITATION_LEARNING_CLUSTER_HANDOFF.md).
+The top of that handoff now contains the current engine-native cache/smoke commands; its
+later sections preserve the old pipeline for provenance. The commands below are the
+legacy local/production form.
 
 Build the reusable cache before launching multi-epoch training. The episode limit and
 `max_steps` must match between the two commands:
