@@ -75,14 +75,23 @@ For each such (obs, action) pair:
 ### Data split
 
 Split by **episode**, not by step — steps within one game are highly correlated, so a
-per-step random split would leak. A simple holdout fraction (e.g. last N% of episodes by
-filename) is enough for v1; no cross-validation needed yet.
+per-step random split would leak. The implementation gathers every global game key
+(`source`, `day`, `episode filename`), shuffles the complete game inventory with a fixed
+seed, and holds out an exact fraction (10% by default). Every position from a validation
+game is excluded from training.
+
+The exact validation-game list, seed, cache-inventory fingerprint, per-day integrity
+counts, and split hash are persisted beside the checkpoint. A changed seed, fraction, or
+cache inventory fails rather than silently changing validation. Fixed validation
+examples are materialized once into per-day shards and reused across epochs/resubmitted
+jobs. There is no rare-position oversampling or special diagnostic holdout.
 
 ### Training loop
 
 - Standard supervised loop with Adam and true vectorized mini-batches; checkpoint the
-  best validation accuracy. One mini-batch shares a single transformer forward/backward
-  call while retaining per-example variable candidate lists for Stage 2 scoring.
+  best fixed-validation accuracy. One mini-batch shares a single transformer
+  forward/backward call while retaining per-example variable candidate lists for Stage
+  2 scoring. The cluster default batch size is 256.
 - `--device auto` selects CUDA when available; cluster scripts require CUDA explicitly
   and request one GPU. CUDA training uses float16 autocast plus gradient scaling by
   default, enables TF32 for eligible float32 matrix multiplications, and can disable
@@ -91,10 +100,14 @@ filename) is enough for v1; no cross-validation needed yet.
   per-example accuracy transfers from GPU to CPU; evaluation transfers one correctness
   tensor per batch.
 - Training is day-chunked because retaining all extracted examples would require roughly
-  225 GB for 14 full days. `--days-per-chunk` controls how many consecutive day caches
-  are loaded at once; one day is the default.
-- Epochs have standard interleaved semantics: one outer epoch visits every day chunk once
-  before any chunk repeats. The model and optimizer persist across chunks.
+  225 GB for 14 full days. One cached source/day is one **mini-epoch**: load once, remove
+  globally held-out games, shuffle all remaining positions, train, save resumable state,
+  and release memory. Day order is reshuffled every outer epoch. This keeps cache I/O to
+  one load per training day/pass instead of rereading every day to construct globally
+  mixed batches.
+- One outer epoch visits every source/day mini-epoch exactly once and then evaluates the
+  same complete fixed validation set. The model and optimizer persist across
+  mini-epochs.
 - `Imitation-Learning/build_example_cache.py` extracts each source/day pair once, in
   parallel across episodes, and writes
   `Top-ladder-data/example-cache/<source>/<day>.pkl` plus a manifest. Later epochs reload
@@ -103,9 +116,15 @@ filename) is enough for v1; no cross-validation needed yet.
   metadata fingerprint, and example count. Source-backed training fails if any required
   day is missing or stale; cache-only cluster operation validates the copied cache's own
   manifest inventory.
-- Live extraction remains available when `--cache-dir` is omitted. It is correct but
-  intentionally single-process and repeats extraction on every outer epoch; the trainer
-  warns when that slow path is used for more than one epoch.
+- Cache-backed input is required so the global split, validation shards, and resume
+  position can be made persistent without re-extracting games.
+- A latest-state checkpoint is written atomically after every mini-epoch and includes
+  model, optimizer, mixed-precision scaler, RNG state, next day/epoch, fixed split
+  identity, baseline, best accuracy, and early-stopping state. `--resume` continues from
+  it. The AiMOS/NPL scripts request a pre-walltime signal, terminate any partial current
+  mini-epoch, and submit a continuation; at worst only the interrupted day is repeated.
+- Early stopping checks the fixed validation set after each complete outer epoch.
+  Defaults are patience 5 and minimum accuracy improvement 0.001; patience 0 disables it.
 - Evaluation metric: top-1 accuracy against the recorded action, both overall and split by
   verb, on held-out episodes. Success bar (per spec 16's overview): clearly better than a
   random/majority baseline — no specific target percentage is fixed for this v1.

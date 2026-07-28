@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import random
 import sys
 
 import torch
@@ -18,7 +19,14 @@ from observation.types import TOTAL_WORDS
 from policy import action_space as asp
 from policy import data as data_mod
 from policy.model import PolicyModel
-from policy.train import batch_loss_and_correct, evaluate, resolve_device
+from policy.train import (
+    _checkpoint_payload,
+    _restore_resume_state,
+    _save_torch_atomic,
+    batch_loss_and_correct,
+    evaluate,
+    resolve_device,
+)
 
 
 def _words(turn_number: int) -> list[Word]:
@@ -100,3 +108,52 @@ def test_evaluate_batches_and_restores_training_mode():
 
 def test_resolve_device_cpu_is_explicitly_supported():
     assert resolve_device("cpu") == torch.device("cpu")
+
+
+def test_resume_checkpoint_restores_model_optimizer_progress_and_rng(tmp_path):
+    random.seed(31)
+    torch.manual_seed(31)
+    model = PolicyModel()
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    scaler = torch.amp.GradScaler("cuda", enabled=False)
+    signature = {"split_hash": "fixed"}
+    original_parameter = next(model.parameters()).detach().clone()
+
+    payload = _checkpoint_payload(
+        model=model,
+        optimizer=optimizer,
+        scaler=scaler,
+        signature=signature,
+        outer_epoch=2,
+        next_mini_epoch_index=3,
+        completed_mini_epochs=15,
+        baseline={"accuracy": 0.1},
+        best_acc=0.4,
+        epochs_without_improvement=1,
+        finished=False,
+    )
+    expected_python_random = random.random()
+    expected_torch_random = torch.rand(1)
+    path = tmp_path / "resume.pt"
+    _save_torch_atomic(str(path), payload)
+
+    with torch.no_grad():
+        next(model.parameters()).zero_()
+    random.seed(99)
+    torch.manual_seed(99)
+
+    restored = _restore_resume_state(
+        path=str(path),
+        model=model,
+        optimizer=optimizer,
+        scaler=scaler,
+        signature=signature,
+        device=torch.device("cpu"),
+    )
+
+    assert restored["outer_epoch"] == 2
+    assert restored["next_mini_epoch_index"] == 3
+    assert restored["completed_mini_epochs"] == 15
+    assert torch.equal(next(model.parameters()), original_parameter)
+    assert random.random() == expected_python_random
+    assert torch.equal(torch.rand(1), expected_torch_random)

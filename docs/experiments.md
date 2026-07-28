@@ -526,3 +526,37 @@ directories; link or name them here.
 - Regression suite:
   - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy
     Imitation-Learning/observation -q` — 90 passed in 38.11 seconds.
+
+### 2026-07-27 — Fixed game split and mini-epoch resume smoke
+
+- Status: implementation smoke passed; the tiny holdout is only an integrity/resume
+  check, not a model-quality result.
+- Input: existing three-day cache `work/il-cache-smoke-20260727`, built with 5 episodes
+  per day and `max_steps=50`.
+- Configuration: CUDA mixed precision, batch size 64, 10% validation, seed 0, patience
+  5, and matching cache parameters.
+- Persistent split:
+  - 15 globally shuffled games: 13 training / 2 validation
+  - 644 positions: 560 training / 84 validation
+  - split hash:
+    `c51cdea08e2037ba76cb5d642d53d2cbef6b1815b3da6c65c237569e79a31111`
+  - validation games had zero training overlap and the same 84 validation positions
+    were used for the baseline and both full-epoch checks.
+- First process:
+  - completed 3 source/day mini-epochs and wrote latest state after each;
+  - baseline fixed-validation accuracy 0.190 and first-pass accuracy 0.381;
+  - advanced the resume cursor to outer epoch 1 / mini-epoch 0.
+- Second process:
+  - restored model, optimizer, AMP scaler, RNG, metric, split, and progress state;
+  - continued at mini-epoch 4 rather than restarting;
+  - used reshuffled day order `7-13, 7-12, 7-14`;
+  - completed outer epoch 2 with the same 84-position validation set.
+- Batch-size capacity/throughput check on real examples, NVIDIA T600:
+  - batch 128: 108.9 examples/s, 262.2 MiB peak
+  - batch 256: 112.4 examples/s, 501.2 MiB peak
+  - batch 512: 74.0 examples/s, 988.1 MiB peak
+  - cluster default selected as 256; 512 was slower on the measured small GPU.
+- Regression suite:
+  - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy
+    Imitation-Learning/observation -q` — 93 passed (final suite after adding the
+    checkpoint round-trip regression).

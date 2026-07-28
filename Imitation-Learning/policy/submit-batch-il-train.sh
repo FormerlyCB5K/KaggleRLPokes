@@ -17,6 +17,8 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=06:00:00
+#SBATCH --signal=B:USR1@300
+#SBATCH --open-mode=append
 
 set -euo pipefail
 
@@ -25,6 +27,8 @@ set -euo pipefail
 # ============================================================================
 WORKDIR="/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes"
 OUT_DIR="$WORKDIR/Imitation-Learning/policy/out/il-run"
+SCRIPT="$WORKDIR/Imitation-Learning/policy/submit-batch-il-train.sh"
+MAX_RESUBMITS=30
 
 # Identifies this run in the printed config banner and the saved
 # <out>.config.json -- fill in DESCRIPTION per submission with what this run
@@ -47,9 +51,11 @@ MAX_EPISODES_PER_ZIP="all"
 MAX_STEPS=300
 EPOCHS=3
 LR=1e-3
-BATCH_SIZE=128
-VAL_FRAC=0.2
+BATCH_SIZE=256
+VAL_FRAC=0.1
 DEVICE="cuda"
+EARLY_STOPPING_PATIENCE=5
+EARLY_STOPPING_MIN_DELTA=0.001
 # ============================================================================
 
 mkdir -p "$WORKDIR/logs" "$OUT_DIR"
@@ -66,6 +72,21 @@ echo "Node: $(hostname)   CPUs: $(nproc)"
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -n 1)"
 echo "Out dir: $OUT_DIR"
 
+# ---- resume cleanly across the partition's six-hour walltime ----
+: "${RESUBMIT_COUNT:=0}"
+requeue() {
+    if [ "$RESUBMIT_COUNT" -lt "$MAX_RESUBMITS" ]; then
+        echo "[$(date)] Time limit approaching; submitting continuation "
+        echo "          ($((RESUBMIT_COUNT + 1))/$MAX_RESUBMITS)"
+        sbatch --export=ALL,RESUBMIT_COUNT=$((RESUBMIT_COUNT + 1)) "$SCRIPT"
+    else
+        echo "[$(date)] MAX_RESUBMITS=$MAX_RESUBMITS reached; not continuing."
+    fi
+    [ -n "${PYPID:-}" ] && kill "$PYPID" 2>/dev/null || true
+    exit 0
+}
+trap requeue USR1
+
 # ---- run training ----
 CACHE_ARGS=()
 if [ -n "$CACHE_DIR" ]; then
@@ -73,6 +94,7 @@ if [ -n "$CACHE_DIR" ]; then
 fi
 
 python -u Imitation-Learning/policy/train.py \
+    --resume \
     --run-name             "$RUN_NAME" \
     --description          "$DESCRIPTION" \
     --source               "$SOURCE" \
@@ -87,6 +109,11 @@ python -u Imitation-Learning/policy/train.py \
     --lr                   "$LR" \
     --batch-size           "$BATCH_SIZE" \
     --device               "$DEVICE" \
-    --val-frac             "$VAL_FRAC"
+    --val-frac             "$VAL_FRAC" \
+    --early-stopping-patience "$EARLY_STOPPING_PATIENCE" \
+    --early-stopping-min-delta "$EARLY_STOPPING_MIN_DELTA" &
 
-echo "[$(date)] Training completed."
+PYPID=$!
+wait "$PYPID"
+
+echo "[$(date)] Training completed cleanly. No continuation needed."

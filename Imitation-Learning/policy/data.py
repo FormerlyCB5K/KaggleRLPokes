@@ -661,6 +661,87 @@ def resolve_cached_source_day_pairs(
     return sorted(required_pairs, key=lambda pair: (pair[1], pair[0]))
 
 
+def load_cached_source_day(
+    cache_dir: str,
+    source_label: str,
+    day: str,
+    *,
+    max_episodes_per_zip: int | None,
+    max_steps: int,
+    raw_dir: str | None = None,
+    sanitized_dir: str | None = None,
+) -> tuple[list[Example], dict]:
+    """Load and strictly validate one cached source/day entry.
+
+    This is the common primitive for day-chunk iteration and the IL trainer's
+    resumable mini-epochs. Returning the manifest lets callers bind generated
+    split/checkpoint artifacts to the exact cache inventory they came from.
+    """
+    if source_label not in ("raw", "sanitized"):
+        raise ValueError(f"unknown source label: {source_label!r}")
+    examples_path, manifest_path = cache_file_paths(cache_dir, source_label, day)
+    if not os.path.isfile(examples_path) or not os.path.isfile(manifest_path):
+        raise RuntimeError(
+            f"incomplete cache for {source_label}/{day}; run build_example_cache.py first"
+        )
+
+    with open(manifest_path) as handle:
+        manifest = json.load(handle)
+    root = raw_dir if source_label == "raw" else sanitized_dir
+    source_fingerprint = _resolve_source_fingerprint(source_label, root, day)
+    ok, reason = manifest_matches(
+        manifest,
+        max_episodes_per_zip=max_episodes_per_zip,
+        max_steps=max_steps,
+        source_fingerprint=source_fingerprint,
+        source_label=source_label,
+        day=day,
+    )
+    if not ok:
+        raise RuntimeError(
+            f"stale cache for {source_label}/{day}: {reason}; "
+            "rerun build_example_cache.py"
+        )
+
+    with open(examples_path, "rb") as handle:
+        examples = pickle.load(handle)
+    if not isinstance(examples, list):
+        raise RuntimeError(
+            f"invalid cache payload for {source_label}/{day}: expected list, "
+            f"got {type(examples).__name__}"
+        )
+    expected_count = manifest.get("n_examples")
+    if expected_count != len(examples):
+        raise RuntimeError(
+            f"invalid cache payload for {source_label}/{day}: "
+            f"manifest n_examples={expected_count!r}, loaded={len(examples)}"
+        )
+    return examples, manifest
+
+
+def iter_cached_source_days(
+    cache_dir: str,
+    source: str = "sanitized",
+    max_episodes_per_zip: int | None = None,
+    max_steps: int = 300,
+    raw_dir: str | None = None,
+    sanitized_dir: str | None = None,
+):
+    """Yield ``(source_label, day, examples, manifest)`` one cache file at a time."""
+    pairs = resolve_cached_source_day_pairs(
+        cache_dir, source, raw_dir=raw_dir, sanitized_dir=sanitized_dir,
+    )
+    for label, day in pairs:
+        examples, manifest = load_cached_source_day(
+            cache_dir, label, day,
+            max_episodes_per_zip=max_episodes_per_zip,
+            max_steps=max_steps,
+            raw_dir=raw_dir,
+            sanitized_dir=sanitized_dir,
+        )
+        yield label, day, examples, manifest
+
+
 def iter_cached_examples_by_day_chunk(
     cache_dir: str,
     source: str = "sanitized",
@@ -707,35 +788,13 @@ def iter_cached_examples_by_day_chunk(
             for label in source_labels:
                 if (label, day) not in required_pairs:
                     continue
-                examples_path, manifest_path = cache_file_paths(cache_dir, label, day)
-                with open(manifest_path) as handle:
-                    manifest = json.load(handle)
-
-                source_fingerprint = _resolve_source_fingerprint(label, root_by_label[label], day)
-                ok, reason = manifest_matches(
-                    manifest, max_episodes_per_zip=max_episodes_per_zip,
-                    max_steps=max_steps, source_fingerprint=source_fingerprint,
-                    source_label=label, day=day,
+                day_examples, _manifest = load_cached_source_day(
+                    cache_dir, label, day,
+                    max_episodes_per_zip=max_episodes_per_zip,
+                    max_steps=max_steps,
+                    raw_dir=root_by_label["raw"],
+                    sanitized_dir=root_by_label["sanitized"],
                 )
-                if not ok:
-                    raise RuntimeError(
-                        f"stale cache for {label}/{day}: {reason}; rerun build_example_cache.py"
-                    )
-
-                with open(examples_path, "rb") as handle:
-                    day_examples = pickle.load(handle)
-                if not isinstance(day_examples, list):
-                    raise RuntimeError(
-                        f"invalid cache payload for {label}/{day}: expected list, "
-                        f"got {type(day_examples).__name__}"
-                    )
-                expected_count = manifest.get("n_examples")
-                if expected_count != len(day_examples):
-                    raise RuntimeError(
-                        f"invalid cache payload for {label}/{day}: "
-                        f"manifest n_examples={expected_count!r}, "
-                        f"loaded={len(day_examples)}"
-                    )
                 chunk_examples.extend(day_examples)
 
         yield chunk_label, chunk_examples

@@ -18,6 +18,8 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --time=06:00:00
+#SBATCH --signal=B:USR1@300
+#SBATCH --open-mode=append
 
 set -euo pipefail
 
@@ -26,6 +28,8 @@ set -euo pipefail
 # ============================================================================
 WORKDIR="/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes"
 OUT_DIR="$WORKDIR/Imitation-Learning/policy/out/il-test-six-days"
+SCRIPT="$WORKDIR/Imitation-Learning/policy/TEST_submit-batch-il-train.sh"
+MAX_RESUBMITS=30
 CACHE_DIR="$WORKDIR/Imitation-Learning/Top-ladder-data/example-cache-test-six-days"
 SOURCE="sanitized"
 DAYS_PER_CHUNK=1
@@ -34,9 +38,11 @@ MAX_EPISODES_PER_ZIP="all"
 MAX_STEPS=300
 EPOCHS=3
 LR=1e-3
-BATCH_SIZE=128
-VAL_FRAC=0.2
+BATCH_SIZE=256
+VAL_FRAC=0.1
 DEVICE="cuda"
+EARLY_STOPPING_PATIENCE=5
+EARLY_STOPPING_MIN_DELTA=0.001
 RUN_NAME="${SLURM_JOB_NAME:-ILTrainTest}-${SLURM_JOB_ID:-manual}"
 DESCRIPTION="Incomplete six-day corpus (7-12,7-13,7-14,7-23,7-24,7-25); good for full pipeline testing"
 # ============================================================================
@@ -55,7 +61,22 @@ echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -n 1)"
 echo "Cache dir: $CACHE_DIR"
 echo "Out dir: $OUT_DIR"
 
+: "${RESUBMIT_COUNT:=0}"
+requeue() {
+    if [ "$RESUBMIT_COUNT" -lt "$MAX_RESUBMITS" ]; then
+        echo "[$(date)] Time limit approaching; submitting TEST continuation "
+        echo "          ($((RESUBMIT_COUNT + 1))/$MAX_RESUBMITS)"
+        sbatch --export=ALL,RESUBMIT_COUNT=$((RESUBMIT_COUNT + 1)) "$SCRIPT"
+    else
+        echo "[$(date)] MAX_RESUBMITS=$MAX_RESUBMITS reached; not continuing."
+    fi
+    [ -n "${PYPID:-}" ] && kill "$PYPID" 2>/dev/null || true
+    exit 0
+}
+trap requeue USR1
+
 python -u Imitation-Learning/policy/train.py \
+    --resume \
     --run-name             "$RUN_NAME" \
     --description          "$DESCRIPTION" \
     --source               "$SOURCE" \
@@ -68,6 +89,11 @@ python -u Imitation-Learning/policy/train.py \
     --lr                   "$LR" \
     --batch-size           "$BATCH_SIZE" \
     --device               "$DEVICE" \
-    --val-frac             "$VAL_FRAC"
+    --val-frac             "$VAL_FRAC" \
+    --early-stopping-patience "$EARLY_STOPPING_PATIENCE" \
+    --early-stopping-min-delta "$EARLY_STOPPING_MIN_DELTA" &
 
-echo "[$(date)] TEST six-day training completed."
+PYPID=$!
+wait "$PYPID"
+
+echo "[$(date)] TEST six-day training completed cleanly. No continuation needed."

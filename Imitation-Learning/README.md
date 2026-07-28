@@ -70,10 +70,19 @@ python Imitation-Learning/policy/train.py --source sanitized `
   --sanitized-dir Imitation-Learning/Top-ladder-data/sanitized `
   --cache-dir Imitation-Learning/Top-ladder-data/example-cache `
   --days-per-chunk 1 --max-episodes-per-zip all --max-steps 300 `
-  --epochs 3 --out Imitation-Learning/policy/out/il-run/checkpoint.pt
+  --epochs 3 --batch-size 256 --val-frac 0.1 --resume `
+  --early-stopping-patience 5 `
+  --out Imitation-Learning/policy/out/il-run/checkpoint.pt
 ```
 
 On AiMOS/NPL, submit `policy/submit-batch-build-cache.sh` once, then
 `policy/submit-batch-il-train.sh`. Edit the `WORKDIR` and resource directives if the
 cluster allocation differs. Full-day caches can be several gigabytes each; keep them
 outside cloud-synced storage and pilot one full day before scaling.
+
+Training shuffles every cached game globally once to create a persistent 90/10
+episode-level train/validation split. The exact split and reusable per-day validation
+shards live beside the output checkpoint. One shuffled cached day is one resumable
+mini-epoch; day order changes each full pass. The cluster scripts save latest state after
+every mini-epoch and automatically submit a continuation before the six-hour walltime.
+The best model remains `checkpoint.pt`; restart state is `checkpoint.resume.pt`.

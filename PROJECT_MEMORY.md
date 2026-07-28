@@ -65,9 +65,18 @@ As of 2026-07-27, IL training uses real vectorized mini-batches rather than the 
 one-example transformer calls with gradient accumulation. `PolicyModel.encode_batch`
 groups content projection by word kind and runs `(batch, 174, 128)` through one
 transformer call; scoring tensors follow the model device. Training/evaluation support
-CUDA, float16 autocast with gradient scaling, and TF32. Both full and six-day TEST SLURM
-training scripts request one GPU and use batch size 128; all four IL cache/training
-scripts now request the partition-valid six-hour walltime. Cache building remains
+CUDA, float16 autocast with gradient scaling, and TF32.
+
+The current training contract uses one global seeded shuffle of all cached game keys for
+an exact fixed 90/10 episode split. The saved split JSON binds the validation games to
+the cache inventory and records zero-overlap/per-day counts plus a hash; reusable
+per-day validation shards avoid re-filtering the full caches. One shuffled cached day is
+a resumable mini-epoch, with day order reshuffled each full epoch. Latest state
+(model/optimizer/scaler/RNG/next day/best metric/early-stop counters) is atomically saved
+after each mini-epoch; fixed validation runs once per full pass, with patience-5 early
+stopping by default. Both full and six-day TEST SLURM training scripts request one GPU,
+use batch size 256, and self-submit a resumed job before the six-hour walltime. All four
+IL cache/training scripts use the partition-valid walltime. Cache building remains
 CPU-parallel.
 
 ## Observation encoder track (specs 11/11a/11b/13/13a) — status as of 2026-07-21
@@ -282,12 +291,15 @@ Archaludon smoke run, and a mixed three-opponent pool/resume smoke run passed; t
 live `test_pool.py` and `test_dispatch.py` scripts were not completed because individual
 greedy collection episodes can run for minutes and have no built-in move/time cap.
 
-On 2026-07-27 the combined generalized policy/observation suite passed 90 tests. A
+On 2026-07-27 the combined generalized policy/observation suite passed 93 tests. A
 three-day cache smoke (5 episodes/day, 50 steps) built 208/214/222 examples,
 idempotently skipped all three on rerun, and completed a two-epoch cached training pass
 in the required interleaved day order. Live one-/two-epoch fallbacks and stale-manifest
 rejection also passed. A later three-day GPU smoke completed extraction, vectorized
-mixed-precision training/evaluation, and checkpoint saving; see `docs/experiments.md`.
+mixed-precision training/evaluation, and checkpoint saving. A cache-backed fixed-split
+smoke then completed one epoch and resumed in a separate process for the next epoch,
+preserving its validation set and advancing from mini-epoch 3 to 4; see
+`docs/experiments.md`.
 An uncapped full-day cluster capacity pilot remains operational follow-up, not a
 completed measurement.
 

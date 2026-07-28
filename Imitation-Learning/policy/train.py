@@ -13,6 +13,8 @@ import json
 import os
 import random
 import sys
+import time
+import uuid
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _IL_ROOT = os.path.dirname(_HERE)
@@ -24,7 +26,10 @@ import torch.nn.functional as F
 from policy import action_space as asp
 from policy import data as data_mod
 from policy import scoring
+from policy import training_split
 from policy.model import PolicyModel
+
+RESUME_CHECKPOINT_VERSION = 1
 
 
 def build_run_config(
@@ -32,7 +37,9 @@ def build_run_config(
     source: str, days_per_chunk: int, cache_dir: str | None, max_episodes_per_zip: int | None,
     max_steps: int, epochs: int, lr: float, batch_size: int, val_frac: float, seed: int,
     out_path: str, device: str = "auto", resolved_device: str = "cpu",
-    mixed_precision: bool = True,
+    mixed_precision: bool = True, split_path: str | None = None,
+    resume_path: str | None = None, resume: bool = False,
+    early_stopping_patience: int = 5, early_stopping_min_delta: float = 0.001,
     resolved_source_days: list[tuple[str, str]] | None = None,
 ) -> dict:
     """Everything needed to know what a run was, without re-reading the SLURM log:
@@ -64,6 +71,11 @@ def build_run_config(
         "device": device,
         "resolved_device": resolved_device,
         "mixed_precision": mixed_precision,
+        "split_path": split_path,
+        "resume_path": resume_path,
+        "resume": resume,
+        "early_stopping_patience": early_stopping_patience,
+        "early_stopping_min_delta": early_stopping_min_delta,
         "out_path": out_path,
     }
 
@@ -91,17 +103,13 @@ def print_run_config(config: dict) -> None:
     print(f"seed:                 {config['seed']}")
     print(f"device:               {config['device']} -> {config['resolved_device']}")
     print(f"mixed_precision:      {config['mixed_precision']}")
+    print(f"split_path:           {config['split_path']}")
+    print(f"resume_path:          {config['resume_path']}")
+    print(f"resume:               {config['resume']}")
+    print(f"early_stop_patience:  {config['early_stopping_patience']}")
+    print(f"early_stop_min_delta: {config['early_stopping_min_delta']}")
     print(f"out_path:             {config['out_path']}")
     print("=" * 70)
-
-
-def _split_by_episode(examples: list[data_mod.Example], val_frac: float):
-    episode_names = sorted({e.episode_name for e in examples})
-    n_val = max(1, int(len(episode_names) * val_frac)) if episode_names else 0
-    val_names = set(episode_names[-n_val:]) if n_val else set()
-    train_ex = [e for e in examples if e.episode_name not in val_names]
-    val_ex = [e for e in examples if e.episode_name in val_names]
-    return train_ex, val_ex
 
 
 def resolve_device(requested: str) -> torch.device:
@@ -193,25 +201,188 @@ def evaluate(
     return {
         "accuracy": correct / total if total else 0.0,
         "total": total,
+        "correct": correct,
         "by_verb": {k: v[0] / v[1] for k, v in by_verb.items()},
+        "by_verb_counts": {
+            k: {"correct": v[0], "total": v[1]} for k, v in by_verb.items()
+        },
     }
+
+
+def evaluate_fixed_validation(
+    model: PolicyModel,
+    *,
+    split_path: str,
+    split: dict,
+    batch_size: int,
+    mixed_precision: bool,
+) -> dict:
+    """Evaluate the same persisted game-level holdout, one small day shard at a time."""
+    total = 0
+    correct = 0
+    by_verb: dict[str, list[int]] = {}
+    for entry in split["source_days"]:
+        examples = training_split.load_validation_shard(
+            split_path, split, entry["source"], entry["day"],
+        )
+        metrics = evaluate(
+            model, examples, batch_size=batch_size,
+            mixed_precision=mixed_precision,
+        )
+        total += metrics["total"]
+        correct += metrics["correct"]
+        for key, counts in metrics["by_verb_counts"].items():
+            bucket = by_verb.setdefault(key, [0, 0])
+            bucket[0] += counts["correct"]
+            bucket[1] += counts["total"]
+        del examples
+        gc.collect()
+    if total != split["validation_positions"]:
+        raise RuntimeError(
+            "fixed validation position count changed: "
+            f"split={split['validation_positions']}, evaluated={total}"
+        )
+    return {
+        "accuracy": correct / total if total else 0.0,
+        "total": total,
+        "correct": correct,
+        "by_verb": {key: value[0] / value[1] for key, value in by_verb.items()},
+        "by_verb_counts": {
+            key: {"correct": value[0], "total": value[1]}
+            for key, value in by_verb.items()
+        },
+    }
+
+
+def _save_torch_atomic(path: str, value) -> None:
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    temp_path = f"{path}.{uuid.uuid4().hex}.tmp"
+    torch.save(value, temp_path)
+    os.replace(temp_path, path)
+
+
+def _training_signature(config: dict, split: dict) -> dict:
+    """Resume-critical settings; target epoch count and job identity may change."""
+    return {
+        "source": config["source"],
+        "resolved_source_days": config["resolved_source_days"],
+        "cache_inventory_hash": split["cache_inventory_hash"],
+        "split_hash": split["split_hash"],
+        "max_episodes_per_zip": config["max_episodes_per_zip"],
+        "max_steps": config["max_steps"],
+        "lr": config["lr"],
+        "batch_size": config["batch_size"],
+        "val_frac": config["val_frac"],
+        "seed": config["seed"],
+        "mixed_precision": config["mixed_precision"],
+        "early_stopping_patience": config["early_stopping_patience"],
+        "early_stopping_min_delta": config["early_stopping_min_delta"],
+    }
+
+
+def _checkpoint_payload(
+    *,
+    model: PolicyModel,
+    optimizer: torch.optim.Optimizer,
+    scaler,
+    signature: dict,
+    outer_epoch: int,
+    next_mini_epoch_index: int,
+    completed_mini_epochs: int,
+    baseline: dict,
+    best_acc: float,
+    epochs_without_improvement: int,
+    finished: bool,
+) -> dict:
+    payload = {
+        "checkpoint_version": RESUME_CHECKPOINT_VERSION,
+        "training_signature": signature,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scaler_state_dict": scaler.state_dict(),
+        "outer_epoch": outer_epoch,
+        "next_mini_epoch_index": next_mini_epoch_index,
+        "completed_mini_epochs": completed_mini_epochs,
+        "baseline": baseline,
+        "best_val_accuracy": best_acc,
+        "epochs_without_improvement": epochs_without_improvement,
+        "finished": finished,
+        "python_random_state": random.getstate(),
+        "torch_random_state": torch.get_rng_state(),
+    }
+    if torch.cuda.is_available():
+        payload["cuda_random_states"] = torch.cuda.get_rng_state_all()
+    return payload
+
+
+def _restore_resume_state(
+    *,
+    path: str,
+    model: PolicyModel,
+    optimizer: torch.optim.Optimizer,
+    scaler,
+    signature: dict,
+    device: torch.device,
+) -> dict:
+    state = torch.load(path, map_location=device, weights_only=False)
+    if state.get("checkpoint_version") != RESUME_CHECKPOINT_VERSION:
+        raise RuntimeError(
+            f"resume checkpoint version mismatch at {path!r}: "
+            f"saved={state.get('checkpoint_version')!r}, "
+            f"current={RESUME_CHECKPOINT_VERSION}"
+        )
+    if state.get("training_signature") != signature:
+        raise RuntimeError(
+            "resume checkpoint training configuration does not match this run; "
+            "use the original settings or a new output directory"
+        )
+    model.load_state_dict(state["model_state_dict"])
+    optimizer.load_state_dict(state["optimizer_state_dict"])
+    scaler.load_state_dict(state["scaler_state_dict"])
+    random.setstate(state["python_random_state"])
+    torch.set_rng_state(state["torch_random_state"].cpu())
+    if device.type == "cuda" and "cuda_random_states" in state:
+        torch.cuda.set_rng_state_all(
+            [rng_state.cpu() for rng_state in state["cuda_random_states"]]
+        )
+    return state
 
 
 def train(
     out_path: str, raw_dir: str | None = None, sanitized_dir: str | None = None,
     source: str = "sanitized", days_per_chunk: int = 1, cache_dir: str | None = None,
     max_episodes_per_zip: int | None = 20, max_steps: int = 300, epochs: int = 3,
-    lr: float = 1e-3, batch_size: int = 128, val_frac: float = 0.2, seed: int = 0,
+    lr: float = 1e-3, batch_size: int = 256, val_frac: float = 0.1, seed: int = 0,
     run_name: str = "", description: str = "", device: str = "auto",
-    mixed_precision: bool = True,
+    mixed_precision: bool = True, split_path: str | None = None,
+    resume_path: str | None = None, resume: bool = False,
+    rebuild_split: bool = False, early_stopping_patience: int = 5,
+    early_stopping_min_delta: float = 0.001,
 ):
-    """`epochs` is the number of full passes over *every* day-chunk (standard ML
-    meaning): each outer epoch visits every chunk once, in order, before any chunk
-    repeats -- not "finish all epochs on chunk 1, then move to chunk 2". If
-    `cache_dir` is given, each chunk is loaded from a pre-built cache
-    (`build_example_cache.py`) instead of re-extracted from `raw_dir`/
-    `sanitized_dir` on every revisit -- required to keep `epochs > 1` fast, since
-    interleaving means every chunk gets revisited once per outer epoch."""
+    """Train using one shuffled cached day per resumable mini-epoch.
+
+    A full outer epoch visits every cached source/day exactly once in a newly
+    shuffled order. Train/validation membership is one fixed random split over
+    global game IDs, so positions from a held-out game can never leak into training.
+    """
+    if cache_dir is None:
+        raise ValueError(
+            "cache-backed training is required for the fixed global game split; "
+            "run build_example_cache.py and pass --cache-dir"
+        )
+    if days_per_chunk != 1:
+        raise ValueError(
+            "days_per_chunk must be 1: one cached day is the resumable mini-epoch"
+        )
+    if epochs < 1:
+        raise ValueError(f"epochs must be >= 1, got {epochs}")
+    if batch_size < 1:
+        raise ValueError(f"batch_size must be >= 1, got {batch_size}")
+    if early_stopping_patience < 0:
+        raise ValueError("early_stopping_patience must be >= 0")
+    if early_stopping_min_delta < 0:
+        raise ValueError("early_stopping_min_delta must be >= 0")
+
     random.seed(seed)
     torch.manual_seed(seed)
     resolved_device = resolve_device(device)
@@ -222,21 +393,13 @@ def train(
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
 
-    if cache_dir is not None:
-        resolved_source_days = data_mod.resolve_cached_source_day_pairs(
-            cache_dir=cache_dir, source=source,
-            raw_dir=raw_dir, sanitized_dir=sanitized_dir,
-        )
-    else:
-        if source in ("raw", "both") and not raw_dir:
-            raise ValueError("raw_dir is required when source is 'raw' or 'both'")
-        if source in ("sanitized", "both") and not sanitized_dir:
-            raise ValueError(
-                "sanitized_dir is required when source is 'sanitized' or 'both'"
-            )
-        resolved_source_days = data_mod.list_source_day_pairs(
-            raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
-        )
+    resolved_source_days = data_mod.resolve_cached_source_day_pairs(
+        cache_dir=cache_dir, source=source,
+        raw_dir=raw_dir, sanitized_dir=sanitized_dir,
+    )
+    out_stem = os.path.splitext(out_path)[0]
+    split_path = split_path or out_stem + ".game-split.json"
+    resume_path = resume_path or out_stem + ".resume.pt"
 
     config = build_run_config(
         run_name=run_name, description=description, raw_dir=raw_dir,
@@ -245,6 +408,9 @@ def train(
         epochs=epochs, lr=lr, batch_size=batch_size, val_frac=val_frac,
         seed=seed, out_path=out_path, device=device,
         resolved_device=str(resolved_device), mixed_precision=amp_enabled,
+        split_path=split_path, resume_path=resume_path, resume=resume,
+        early_stopping_patience=early_stopping_patience,
+        early_stopping_min_delta=early_stopping_min_delta,
         resolved_source_days=resolved_source_days,
     )
     print_run_config(config)
@@ -255,12 +421,33 @@ def train(
     with open(config_path, "w") as handle:
         json.dump(config, handle, indent=2)
 
-    if cache_dir is None and epochs > 1:
+    split = training_split.prepare_or_load_game_split(
+        split_path=split_path,
+        cache_dir=cache_dir,
+        source=source,
+        val_frac=val_frac,
+        seed=seed,
+        max_episodes_per_zip=max_episodes_per_zip,
+        max_steps=max_steps,
+        raw_dir=raw_dir,
+        sanitized_dir=sanitized_dir,
+        rebuild=rebuild_split,
+    )
+    validation_games = training_split.validation_key_set(split)
+    print(
+        f"fixed game split: {split['training_games']} train / "
+        f"{split['validation_game_count']} validation games; "
+        f"{split['training_positions']} train / "
+        f"{split['validation_positions']} validation positions; "
+        f"hash={split['split_hash']}"
+    )
+    for entry in split["source_days"]:
         print(
-            "WARNING: no cache_dir given with epochs > 1 -- each chunk will be "
-            "re-extracted from source data once per outer epoch (~1 episode/sec, "
-            "multiplied by epochs). Run build_example_cache.py once and pass "
-            "cache_dir to avoid repeated extraction."
+            f"  {entry['source']}/{entry['day']}: "
+            f"games={entry['training_games']} train+"
+            f"{entry['validation_games']} val, "
+            f"positions={entry['training_positions']} train+"
+            f"{entry['validation_positions']} val"
         )
 
     model = PolicyModel().to(resolved_device)
@@ -269,49 +456,92 @@ def train(
         "cuda", enabled=amp_enabled,
     )
 
+    signature = _training_signature(config, split)
     base = None
     best_acc = -1.0
-    saw_any_examples = False
+    epochs_without_improvement = 0
+    outer_epoch = 0
+    next_mini_epoch_index = 0
+    completed_mini_epochs = 0
 
-    for outer_epoch in range(epochs):
-        if cache_dir is not None:
-            chunk_iter = data_mod.iter_cached_examples_by_day_chunk(
-                cache_dir=cache_dir, source=source, days_per_chunk=days_per_chunk,
-                max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
-                raw_dir=raw_dir, sanitized_dir=sanitized_dir,
+    if resume and os.path.isfile(resume_path):
+        state = _restore_resume_state(
+            path=resume_path,
+            model=model,
+            optimizer=optimizer,
+            scaler=scaler,
+            signature=signature,
+            device=resolved_device,
+        )
+        base = state["baseline"]
+        best_acc = state["best_val_accuracy"]
+        epochs_without_improvement = state["epochs_without_improvement"]
+        outer_epoch = state["outer_epoch"]
+        next_mini_epoch_index = state["next_mini_epoch_index"]
+        completed_mini_epochs = state["completed_mini_epochs"]
+        if state.get("finished"):
+            print(
+                f"resume checkpoint is already finished at outer_epoch={outer_epoch}; "
+                f"best_val_accuracy={best_acc:.3f}"
             )
-        else:
-            chunk_iter = data_mod.iter_examples_by_day_chunk(
-                raw_dir=raw_dir, sanitized_dir=sanitized_dir, source=source,
-                max_episodes_per_zip=max_episodes_per_zip, max_steps=max_steps,
-                days_per_chunk=days_per_chunk,
+            return {"baseline": base, "best_val_accuracy": best_acc}
+        print(
+            f"resumed {resume_path}: outer_epoch={outer_epoch}, "
+            f"next_mini_epoch_index={next_mini_epoch_index}, "
+            f"completed_mini_epochs={completed_mini_epochs}, "
+            f"best_val_accuracy={best_acc:.3f}"
+        )
+    elif resume:
+        print(f"no resume checkpoint at {resume_path}; starting fresh")
+
+    if base is None:
+        baseline_started = time.perf_counter()
+        base = evaluate_fixed_validation(
+            model,
+            split_path=split_path,
+            split=split,
+            batch_size=batch_size,
+            mixed_precision=amp_enabled,
+        )
+        print(
+            f"[baseline] fixed_val_accuracy={base['accuracy']:.3f} "
+            f"(n={base['total']}) elapsed={time.perf_counter() - baseline_started:.1f}s "
+            f"by_verb={base['by_verb']}"
+        )
+
+    finished = False
+    while outer_epoch < epochs and not finished:
+        mini_epoch_order = list(resolved_source_days)
+        random.Random(f"{seed}:outer_epoch:{outer_epoch}").shuffle(mini_epoch_order)
+
+        for mini_index in range(next_mini_epoch_index, len(mini_epoch_order)):
+            label, day = mini_epoch_order[mini_index]
+            mini_started = time.perf_counter()
+            examples, _manifest = data_mod.load_cached_source_day(
+                cache_dir, label, day,
+                max_episodes_per_zip=max_episodes_per_zip,
+                max_steps=max_steps,
+                raw_dir=raw_dir,
+                sanitized_dir=sanitized_dir,
             )
-
-        for chunk_label, examples in chunk_iter:
-            if not examples:
-                print(f"WARNING: chunk {chunk_label!r} yielded no examples, skipping "
-                      f"(outer_epoch={outer_epoch})")
-                continue
-            saw_any_examples = True
-
-            train_ex, val_ex = _split_by_episode(examples, val_frac)
-            print(f"[outer_epoch {outer_epoch} chunk {chunk_label}] examples: {len(examples)} "
-                  f"total, {len(train_ex)} train, {len(val_ex)} val "
-                  f"({len({e.episode_name for e in examples})} episodes)")
-
-            if base is None:
-                base = (
-                    evaluate(
-                        model, val_ex, batch_size=batch_size,
-                        mixed_precision=amp_enabled,
-                    )
-                    if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
+            train_ex = [
+                example for example in examples
+                if training_split.game_key(label, day, example.episode_name)
+                not in validation_games
+            ]
+            expected_entry = next(
+                entry for entry in split["source_days"]
+                if entry["source"] == label and entry["day"] == day
+            )
+            if len(train_ex) != expected_entry["training_positions"]:
+                raise RuntimeError(
+                    f"training position count changed for {label}/{day}: "
+                    f"split={expected_entry['training_positions']}, loaded={len(train_ex)}"
                 )
-                print(f"[baseline] (outer_epoch {outer_epoch} chunk {chunk_label}) "
-                      f"val_accuracy={base['accuracy']:.3f} (n={base['total']}) by_verb={base['by_verb']}")
+            random.Random(
+                f"{seed}:outer_epoch:{outer_epoch}:{label}:{day}"
+            ).shuffle(train_ex)
 
-            # One epoch's worth of true mini-batch training on this chunk.
-            random.shuffle(train_ex)
             running_loss = 0.0
             for start in range(0, len(train_ex), batch_size):
                 batch = train_ex[start:start + batch_size]
@@ -326,30 +556,91 @@ def train(
                 running_loss += loss.detach().float().item() * len(batch)
 
             avg_loss = running_loss / len(train_ex) if train_ex else 0.0
-            metrics = (
-                evaluate(
-                    model, val_ex, batch_size=batch_size,
-                    mixed_precision=amp_enabled,
-                )
-                if val_ex else {"accuracy": 0.0, "total": 0, "by_verb": {}}
+            completed_mini_epochs += 1
+            elapsed = time.perf_counter() - mini_started
+            print(
+                f"[outer_epoch {outer_epoch} mini_epoch {mini_index + 1}/"
+                f"{len(mini_epoch_order)} {label}/{day}] "
+                f"train_examples={len(train_ex)} train_loss={avg_loss:.4f} "
+                f"elapsed={elapsed:.1f}s throughput="
+                f"{len(train_ex) / elapsed if elapsed else 0.0:.1f} examples/s"
             )
-            print(f"[outer_epoch {outer_epoch} chunk {chunk_label}] train_loss={avg_loss:.4f} "
-                  f"val_accuracy={metrics['accuracy']:.3f} (n={metrics['total']}) "
-                  f"by_verb={metrics['by_verb']}")
-            if metrics["accuracy"] > best_acc:
-                best_acc = metrics["accuracy"]
-                torch.save({"model_state_dict": model.state_dict(), "val_accuracy": best_acc}, out_path)
-
-            del examples, train_ex, val_ex
+            del examples, train_ex
             gc.collect()
 
-    if not saw_any_examples:
-        raise RuntimeError(
-            f"no examples extracted from any chunk (source={source!r}, raw_dir={raw_dir!r}, "
-            f"sanitized_dir={sanitized_dir!r}, cache_dir={cache_dir!r})"
-        )
+            is_last_mini_epoch = mini_index + 1 == len(mini_epoch_order)
+            if is_last_mini_epoch:
+                validation_started = time.perf_counter()
+                metrics = evaluate_fixed_validation(
+                    model,
+                    split_path=split_path,
+                    split=split,
+                    batch_size=batch_size,
+                    mixed_precision=amp_enabled,
+                )
+                improved = metrics["accuracy"] > (
+                    best_acc + early_stopping_min_delta
+                )
+                if improved:
+                    best_acc = metrics["accuracy"]
+                    epochs_without_improvement = 0
+                    _save_torch_atomic(out_path, {
+                        "model_state_dict": model.state_dict(),
+                        "val_accuracy": best_acc,
+                        "outer_epoch": outer_epoch,
+                        "completed_mini_epochs": completed_mini_epochs,
+                        "split_hash": split["split_hash"],
+                    })
+                else:
+                    epochs_without_improvement += 1
+                print(
+                    f"[outer_epoch {outer_epoch} fixed_validation] "
+                    f"accuracy={metrics['accuracy']:.3f} (n={metrics['total']}) "
+                    f"elapsed={time.perf_counter() - validation_started:.1f}s "
+                    f"best={best_acc:.3f} no_improvement="
+                    f"{epochs_without_improvement}/{early_stopping_patience or 'disabled'} "
+                    f"by_verb={metrics['by_verb']}"
+                )
+                finished = (
+                    early_stopping_patience > 0
+                    and epochs_without_improvement >= early_stopping_patience
+                )
+                outer_epoch += 1
+                next_mini_epoch_index = 0
+            else:
+                next_mini_epoch_index = mini_index + 1
 
-    print(f"saved best checkpoint (val_accuracy={best_acc:.3f}) to {out_path}")
+            state = _checkpoint_payload(
+                model=model,
+                optimizer=optimizer,
+                scaler=scaler,
+                signature=signature,
+                outer_epoch=outer_epoch,
+                next_mini_epoch_index=next_mini_epoch_index,
+                completed_mini_epochs=completed_mini_epochs,
+                baseline=base,
+                best_acc=best_acc,
+                epochs_without_improvement=epochs_without_improvement,
+                finished=finished,
+            )
+            _save_torch_atomic(resume_path, state)
+            print(
+                f"saved resume checkpoint after mini_epoch={completed_mini_epochs} "
+                f"to {resume_path}"
+            )
+            if finished:
+                print(
+                    f"early stopping after {epochs_without_improvement} "
+                    "full validation checks without sufficient improvement"
+                )
+                break
+
+        next_mini_epoch_index = 0
+
+    print(
+        f"training finished at outer_epoch={outer_epoch}; "
+        f"best fixed validation accuracy={best_acc:.3f}; best checkpoint={out_path}"
+    )
     return {"baseline": base, "best_val_accuracy": best_acc}
 
 
@@ -369,17 +660,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--days-per-chunk", type=int, default=1,
-        help="group N consecutive day-directories into one chunk; extraction and "
-             "training happen one chunk at a time so peak memory is bounded to a "
-             "chunk's examples rather than the whole dataset (default: 1)",
+        help="compatibility option; must remain 1 because one cached day is one "
+             "resumable mini-epoch",
     )
     parser.add_argument(
         "--cache-dir", default=None,
-        help="pre-built per-day Example cache root from build_example_cache.py; if "
-             "given, day-chunks are loaded from cache instead of re-extracted from "
-             "--raw-dir/--sanitized-dir on every outer epoch -- needed to keep "
-             "--epochs > 1 fast. If omitted, chunks are extracted live every outer "
-             "epoch (slow when epochs > 1)",
+        help="required pre-built per-day Example cache root from "
+             "build_example_cache.py",
     )
     parser.add_argument("--out", default=os.path.join(_HERE, "checkpoint.pt"))
     parser.add_argument(
@@ -390,15 +677,13 @@ if __name__ == "__main__":
     parser.add_argument("--max-steps", type=int, default=300)
     parser.add_argument(
         "--epochs", type=int, default=3,
-        help="outer training epochs -- one full interleaved pass over every "
-             "day-chunk per epoch (standard meaning): each chunk is visited once "
-             "per epoch before any chunk repeats, not fully trained through before "
-             "moving to the next",
+        help="maximum full-corpus passes; each pass visits every shuffled day "
+             "mini-epoch once and then evaluates the fixed validation set",
     )
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument(
-        "--batch-size", type=int, default=128,
-        help="real vectorized mini-batch size (default: 128)",
+        "--batch-size", type=int, default=256,
+        help="real vectorized mini-batch size (default: 256)",
     )
     parser.add_argument(
         "--device", choices=("auto", "cpu", "cuda"), default="auto",
@@ -408,7 +693,37 @@ if __name__ == "__main__":
         "--no-mixed-precision", action="store_false", dest="mixed_precision",
         help="disable CUDA float16 autocast/gradient scaling",
     )
-    parser.add_argument("--val-frac", type=float, default=0.2)
+    parser.add_argument(
+        "--val-frac", type=float, default=0.1,
+        help="fraction of globally shuffled games held out in the fixed split "
+             "(default: 0.1)",
+    )
+    parser.add_argument(
+        "--split-path", default=None,
+        help="persistent game-split JSON; defaults beside --out",
+    )
+    parser.add_argument(
+        "--rebuild-split", action="store_true",
+        help="replace the saved split and validation shards using the requested seed",
+    )
+    parser.add_argument(
+        "--resume", action="store_true",
+        help="resume model/optimizer/progress from the latest mini-epoch checkpoint",
+    )
+    parser.add_argument(
+        "--resume-path", default=None,
+        help="latest-state checkpoint; defaults beside --out",
+    )
+    parser.add_argument(
+        "--early-stopping-patience", type=int, default=5,
+        help="stop after this many full validation checks without improvement; "
+             "0 disables early stopping (default: 5)",
+    )
+    parser.add_argument(
+        "--early-stopping-min-delta", type=float, default=0.001,
+        help="minimum fixed-validation accuracy increase counted as improvement "
+             "(default: 0.001)",
+    )
     parser.add_argument("--run-name", default="", help="identifies this run in logs/config JSON")
     parser.add_argument("--description", default="", help="free-text notes on this run's purpose")
     args = parser.parse_args()
@@ -421,4 +736,8 @@ if __name__ == "__main__":
         batch_size=args.batch_size, val_frac=args.val_frac,
         run_name=args.run_name, description=args.description,
         device=args.device, mixed_precision=args.mixed_precision,
+        split_path=args.split_path, resume_path=args.resume_path,
+        resume=args.resume, rebuild_split=args.rebuild_split,
+        early_stopping_patience=args.early_stopping_patience,
+        early_stopping_min_delta=args.early_stopping_min_delta,
     )
