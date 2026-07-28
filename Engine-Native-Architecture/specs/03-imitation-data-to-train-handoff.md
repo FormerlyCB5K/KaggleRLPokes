@@ -1,6 +1,8 @@
 # 03 - Engine-Native Imitation Data-to-Train Handoff
 
-Status: implemented locally; uncapped six-day cluster acceptance pending, 2026-07-28.
+Status: implemented; user-reported uncapped six-day cache and CUDA acceptance passed,
+2026-07-28. Full optimization is specified separately in
+[`04-behavior-cloning-trainer.md`](04-behavior-cloning-trainer.md).
 
 This handoff defines the shortest correct path from the already-sanitized TEST ladder
 replays to supervised batches for the engine-native policy. It covers extraction,

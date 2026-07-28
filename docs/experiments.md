@@ -591,3 +591,48 @@ directories; link or name them here.
   - `.venv/Scripts/python.exe -m pytest Engine-Native-Architecture/tests -q` —
     43 passed.
 - Remaining acceptance: uncapped six-day cache build and CUDA smoke on NPL.
+
+### 2026-07-28 — Engine-native six-day cluster acceptance
+
+- Status: user reported the complete dependency chain finished successfully.
+- NPL jobs:
+  - `2156105` — rebuilt sanitized `7-14` from its authoritative raw archive and
+    generated the missing report;
+  - `2156106` — built and verified the uncapped six-day engine-native tensor cache;
+  - `2156107` — completed the finite CUDA train/validation smoke.
+- The six requested days were `7-12`, `7-13`, `7-14`, `7-23`, `7-24`, and `7-25`.
+- Exact cache totals, cache throughput, GPU model, smoke losses, and elapsed times were
+  not supplied. They remain unknown and must be recovered from the job logs rather than
+  inferred.
+
+### 2026-07-28 — Full engine-native behavior-cloning trainer validation
+
+- Status: local implementation and resume validation passed; the full six-day cluster
+  optimization has not yet run.
+- Focused/full regression:
+  - `.venv/Scripts/python.exe -m pytest
+    Engine-Native-Architecture/tests/test_il_dataset.py
+    Engine-Native-Architecture/tests/test_il_losses.py
+    Engine-Native-Architecture/tests/test_il_trainer.py -q` — 10 passed.
+  - `.venv/Scripts/python.exe -m pytest Engine-Native-Architecture/tests -q` —
+    47 passed in 15.01 seconds.
+- Resume equivalence:
+  - a deterministic tiny-policy run stopped after one optimizer step, resumed from the
+    exact next shard-aware batch, and produced tensor-identical final parameters to an
+    uninterrupted two-epoch run;
+  - resuming an already-finished run was a no-op.
+- Real-network trainer smoke:
+  - input: the existing 32-example generated cache at
+    `tmp/engine-native-il-smoke-cache-final`;
+  - model: the real 2,370,259-parameter engine-native network, random initialization,
+    CPU FP32, batch 4;
+  - first process evaluated the eight-example fixed validation split, completed one
+    optimizer step, and atomically stopped at epoch 0 / next batch 1;
+  - the resumed process completed the remaining five batches and full validation;
+  - baseline validation NLL was 2.430379 and post-epoch validation NLL was 1.031023;
+    these tiny repeated-fixture values validate execution only and are not
+    model-quality evidence.
+- The checked-in cluster baseline is three maximum epochs, batch 256, Adam at `1e-3`,
+  automatic BF16/FP16, gradient clip 1.0, patience-two early stopping by full
+  validation NLL, and safe six-hour continuation through
+  `Engine-Native-Architecture/cluster/TEST_train_il.sbatch`.

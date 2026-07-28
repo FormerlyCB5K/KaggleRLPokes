@@ -4,7 +4,10 @@ The current successor is the isolated engine-native architecture under
 `../Engine-Native-Architecture/`. It reads the sanitized corpus here but does not reuse
 the 174-word observation/action model, trackers, examples, or pickle caches under
 `observation/` and `policy/`. Its six-day tensor cache is written to
-`Top-ladder-data/engine-native-cache-test-six-days/`.
+`Top-ladder-data/engine-native-cache-test-six-days/`. Full behavior-cloning checkpoints
+and metrics are written to the ignored
+`engine-native-training/test-six-days/seed-20260728/` directory by
+`../Engine-Native-Architecture/scripts/train_il.py`.
 
 The earlier deck-agnostic observation/action model and imitation-learning pipeline under
 `observation/` and `policy/` remains a preserved baseline. The completed

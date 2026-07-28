@@ -8,7 +8,6 @@ from typing import Any
 import torch
 import torch.nn.functional as F
 
-from ..actions import select_options
 from ..model import PolicyOutput
 
 
@@ -142,35 +141,78 @@ def batch_metrics(
             }
         result["single_by_option_type"] = by_type
 
-    multi_indices = torch.nonzero(is_multi, as_tuple=False).flatten().tolist()
-    for row in multi_indices:
-        n_options = int(batch["n_options"][row])
-        minimum = int(batch["min_count"][row])
-        maximum = int(batch["max_count"][row])
-        predicted = set(
-            select_options(
-                output.logits[row],
-                output.incl[row],
-                n_options,
-                minimum,
-                maximum,
-            )
+    if bool(is_multi.any()):
+        live = option_mask[is_multi]
+        include_logits = output.incl[is_multi]
+        targets = batch["multi_target"].to(
+            device=include_logits.device, dtype=torch.bool
+        )[is_multi] & live
+        minimum = batch["min_count"].to(
+            device=include_logits.device, dtype=torch.int64
+        )[is_multi]
+        maximum = batch["max_count"].to(
+            device=include_logits.device, dtype=torch.int64
+        )[is_multi]
+
+        # This is the batched equivalent of actions.select_options:
+        # threshold include probabilities at 0.5, prune highest-probability
+        # selections to maxCount, or add highest-probability live options to
+        # minCount. Stable sorting preserves the serving tie-break by index.
+        probabilities = torch.sigmoid(include_logits)
+        chosen = (include_logits >= 0) & live
+        chosen_count = chosen.sum(dim=1)
+        rank_slots = torch.arange(
+            include_logits.shape[1], device=include_logits.device
+        ).expand_as(include_logits)
+
+        chosen_order = torch.argsort(
+            probabilities.masked_fill(~chosen, -float("inf")),
+            dim=1,
+            descending=True,
+            stable=True,
         )
-        expected = set(
-            torch.nonzero(
-                batch["multi_target"][row, :n_options], as_tuple=False
-            )
-            .flatten()
-            .tolist()
+        chosen_rank = torch.empty_like(chosen_order)
+        chosen_rank.scatter_(1, chosen_order, rank_slots)
+        pruned = chosen & (chosen_rank < maximum.unsqueeze(1))
+
+        remaining = live & ~chosen
+        remaining_order = torch.argsort(
+            probabilities.masked_fill(~remaining, -float("inf")),
+            dim=1,
+            descending=True,
+            stable=True,
         )
-        result["multi_exact_correct"] += int(predicted == expected)
-        result["multi_selected_count_correct"] += int(
-            len(predicted) == len(expected)
+        remaining_rank = torch.empty_like(remaining_order)
+        remaining_rank.scatter_(1, remaining_order, rank_slots)
+        needed = (minimum - chosen_count).clamp(min=0)
+        expanded = chosen | (remaining & (remaining_rank < needed.unsqueeze(1)))
+
+        predicted = torch.where(
+            (chosen_count > maximum).unsqueeze(1),
+            pruned,
+            torch.where(
+                (chosen_count < minimum).unsqueeze(1), expanded, chosen
+            ),
         )
-        result["multi_cardinality_valid"] += int(
-            minimum <= len(predicted) <= maximum
+        predicted &= live
+        predicted_count = predicted.sum(dim=1)
+        expected_count = targets.sum(dim=1)
+        exact = (predicted == targets).all(dim=1)
+        true_positive = (predicted & targets).sum()
+        false_positive = (predicted & ~targets & live).sum()
+        false_negative = (~predicted & targets).sum()
+
+        result["multi_exact_correct"] = int(exact.sum().item())
+        result["multi_selected_count_correct"] = int(
+            (predicted_count == expected_count).sum().item()
         )
-        result["multi_true_positive"] += len(predicted & expected)
-        result["multi_false_positive"] += len(predicted - expected)
-        result["multi_false_negative"] += len(expected - predicted)
+        result["multi_cardinality_valid"] = int(
+            (
+                (predicted_count >= minimum)
+                & (predicted_count <= maximum)
+            ).sum().item()
+        )
+        result["multi_true_positive"] = int(true_positive.item())
+        result["multi_false_positive"] = int(false_positive.item())
+        result["multi_false_negative"] = int(false_negative.item())
     return result

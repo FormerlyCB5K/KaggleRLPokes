@@ -50,12 +50,24 @@ featurization, the canonical `float32[2239]` record, tensor-only approximately
 Bernoulli NLL for multi-selections. It explicitly forbids trackers and the existing
 174-word examples/candidates. This pipeline is implemented under
 `src/engine_native_policy/il/`, with local scripts and isolated cluster jobs. Focused
-validation passes 43 tests, a 32-example tensor cache built with two workers, and both
+validation passes 47 tests, a 32-example tensor cache built with two workers, and both
 single-worker and multi-worker real-model forward/backward smokes passed. The generated
 TEST cache lives at
-`Imitation-Learning/Top-ladder-data/engine-native-cache-test-six-days/`. The uncapped
-six-day cluster cache and CUDA smoke remain pending; the full behavior-cloning trainer
-is intentionally deferred until those measurements are recorded.
+`Imitation-Learning/Top-ladder-data/engine-native-cache-test-six-days/`. The user reported
+that NPL jobs 2156105/2156106/2156107 successfully rebuilt the questionable 7-14
+sanitized day, built the uncapped six-day cache, and completed the CUDA smoke; exact
+cluster totals and timings have not yet been supplied.
+
+The full engine-native behavior-cloning trainer is now implemented under
+`src/engine_native_policy/il/trainer.py`, with
+`Engine-Native-Architecture/scripts/train_il.py` and the resumable
+`cluster/TEST_train_il.sbatch`. Spec
+`Engine-Native-Architecture/specs/04-behavior-cloning-trainer.md` locks the first run:
+random initialization, three maximum epochs, batch 256, Adam at 1e-3, automatic
+BF16/FP16, gradient clipping, full fixed validation, patience-two stopping by validation
+NLL, atomic best/latest checkpoints, and exact mid-epoch continuation. Local interrupted
+and uninterrupted runs match exactly, and the real 2,370,259-parameter model completed
+an interrupted/resumed fixture epoch. Full six-day cluster optimization is pending.
 
 ### Existing tracks
 

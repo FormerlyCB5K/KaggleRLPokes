@@ -2,11 +2,13 @@
 
 Last updated: 2026-07-28
 
-## Current engine-native TEST milestone
+## Current engine-native pipeline
 
 The engine-native implementation supersedes the 174-word cache/training path for current
-work. Its contract is
-`Engine-Native-Architecture/specs/03-imitation-data-to-train-handoff.md`.
+work. Its data and optimizer contracts are:
+
+- `Engine-Native-Architecture/specs/03-imitation-data-to-train-handoff.md`
+- `Engine-Native-Architecture/specs/04-behavior-cloning-trainer.md`
 
 It builds tensor-only shards at:
 
@@ -14,8 +16,17 @@ It builds tensor-only shards at:
 Imitation-Learning/Top-ladder-data/engine-native-cache-test-six-days/
 ```
 
-The first milestone deliberately stops after cache verification and one finite
-forward/backward optimizer step. It does not launch a long behavior-cloning trainer.
+The user reported that the repaired `7-14` sanitization, uncapped six-day cache build,
+and finite CUDA forward/backward acceptance chain completed successfully:
+
+```text
+2156105 Sanitize714
+2156106 ENILCacheTest
+2156107 ENILSmokeTest
+```
+
+Exact cache totals, GPU model, throughput, and smoke losses were not supplied and must
+not be invented. Retrieve the logs if those measurements are needed.
 
 From the repository root on NPL:
 
@@ -44,6 +55,46 @@ all six sanitized day directories and reports. Before submission, verify the clu
 filesystem has approximately 100 GB free for the cache. Acceptance requires a complete
 manifest, verified shard hashes, nonzero single/multi examples in both splits, and a
 finite CUDA smoke step.
+
+### Full six-day behavior cloning
+
+The full trainer is implemented at
+`Engine-Native-Architecture/scripts/train_il.py`. Its checked-in first-run settings are
+random initialization, three maximum epochs, batch 256, Adam at `1e-3`, automatic
+BF16/FP16, gradient clipping at 1.0, full baseline/epoch validation, and patience-two
+early stopping by validation NLL.
+
+After pulling the trainer commit on NPL, submit:
+
+```bash
+REPO="/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes"
+TRAIN_JOB=$(sbatch --parsable \
+  "$REPO/Engine-Native-Architecture/cluster/TEST_train_il.sbatch")
+TRAIN_JOB=${TRAIN_JOB%%;*}
+echo "Training job: $TRAIN_JOB"
+```
+
+Outputs are isolated under:
+
+```text
+Imitation-Learning/engine-native-training/test-six-days/seed-20260728/
+```
+
+The Python trainer stops safely after 330 minutes inside the six-hour allocation and
+returns exit code 75. The SLURM wrapper then self-submits a continuation, which restores
+the exact next shard-aware batch from `checkpoint.latest.pt`. A zero exit means the run
+finished; any other nonzero exit is treated as a failure and does not resubmit.
+
+Monitor the initial job with:
+
+```bash
+squeue -j "$TRAIN_JOB"
+tail -n 100 "$REPO/logs/ENILTrainTest-${TRAIN_JOB}.out"
+tail -n 100 "$REPO/logs/ENILTrainTest-${TRAIN_JOB}.err"
+```
+
+Continuations receive new job IDs, printed in the preceding job's output. Do not run a
+second independent training job against the same output directory.
 
 ## Preserved legacy 174-word handoff
 

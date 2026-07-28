@@ -3,7 +3,8 @@ from __future__ import annotations
 import pytest
 import torch
 
-from engine_native_policy.il.losses import supervised_nll
+from engine_native_policy.actions import select_options
+from engine_native_policy.il.losses import batch_metrics, supervised_nll
 from engine_native_policy.model import PolicyOutput
 
 
@@ -88,3 +89,40 @@ def test_padded_single_target_is_rejected() -> None:
             batch,
             torch.tensor([[True, True, False]]),
         )
+
+
+def test_batched_multi_metrics_match_serving_projection() -> None:
+    include_logits = torch.tensor(
+        [
+            [0.1, 0.2, -0.1, -0.2],
+            [-10.0, -10.0, -10.0, -10.0],
+            [0.4, 0.3, 0.2, -0.1],
+        ]
+    )
+    expected_sets = [
+        select_options(torch.zeros(4), include_logits[row], 4, minimum, maximum)
+        for row, (minimum, maximum) in enumerate(((1, 2), (2, 3), (1, 2)))
+    ]
+    targets = torch.zeros((3, 4), dtype=torch.bool)
+    for row, selected in enumerate(expected_sets):
+        targets[row, selected] = True
+    batch = {
+        "is_multi": torch.ones(3, dtype=torch.bool),
+        "single_target": torch.full((3,), -100),
+        "multi_target": targets,
+        "n_options": torch.full((3,), 4, dtype=torch.uint8),
+        "min_count": torch.tensor([1, 2, 1], dtype=torch.uint8),
+        "max_count": torch.tensor([2, 3, 2], dtype=torch.uint8),
+    }
+    output = _output(torch.zeros((3, 4)), include_logits)
+    metrics = batch_metrics(
+        output,
+        batch,
+        {
+            "opt_mask": torch.ones((3, 4), dtype=torch.bool),
+            "opt_type": torch.zeros((3, 4), dtype=torch.int64),
+        },
+    )
+    assert metrics["multi_exact_correct"] == 3
+    assert metrics["multi_selected_count_correct"] == 3
+    assert metrics["multi_cardinality_valid"] == 3

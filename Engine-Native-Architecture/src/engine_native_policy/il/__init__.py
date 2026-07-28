@@ -8,6 +8,7 @@ from .replay import (
     iter_episode_decisions,
 )
 from .targets import DecisionTarget, TargetContractError, build_target
+from .trainer import TrainingConfig, run_training
 
 __all__ = [
     "DECLARED_SKIP_REASONS",
@@ -15,7 +16,9 @@ __all__ = [
     "ReplayContractError",
     "ReplayDecision",
     "TargetContractError",
+    "TrainingConfig",
     "build_target",
     "extract_submitted_decks",
     "iter_episode_decisions",
+    "run_training",
 ]

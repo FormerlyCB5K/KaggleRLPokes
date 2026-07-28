@@ -10,10 +10,13 @@ Specifications in this folder govern only `Engine-Native-Architecture/`.
 - [`02-implementation-plan.md`](02-implementation-plan.md) - phased implementation plan
   and verified completion status for the provisional Python milestone.
 - [`03-imitation-data-to-train-handoff.md`](03-imitation-data-to-train-handoff.md) -
-  locally implemented contract for converting the sanitized six-day TEST corpus into
+  implemented contract for converting the sanitized six-day TEST corpus into
   supervised tensor shards, standard PyTorch batches, and behavior-cloning losses
-  without trackers or the previous observation/action pipeline. Uncapped cluster
-  acceptance remains pending.
+  without trackers or the previous observation/action pipeline. The user reported the
+  uncapped cache and CUDA acceptance jobs completed successfully.
+- [`04-behavior-cloning-trainer.md`](04-behavior-cloning-trainer.md) - implemented
+  full-validation, atomic-checkpoint, exact-resume behavior-cloning trainer and
+  six-day SLURM continuation contract. Full cluster optimization remains pending.
 
 ## Superseded
 

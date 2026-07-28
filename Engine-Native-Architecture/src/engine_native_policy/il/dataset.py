@@ -151,9 +151,22 @@ class ShardBatchSampler(Sampler[list[int]]):
         self.seed = seed
         self.drop_last = drop_last
         self.epoch = 0
+        self.start_batch = 0
 
     def set_epoch(self, epoch: int) -> None:
         self.epoch = int(epoch)
+        self.start_batch = 0
+
+    def set_start_batch(self, start_batch: int) -> None:
+        """Resume an epoch without asking the DataLoader to read skipped batches."""
+
+        start_batch = int(start_batch)
+        if start_batch < 0 or start_batch > self.total_batches:
+            raise ValueError(
+                f"start_batch must be in [0, {self.total_batches}], "
+                f"got {start_batch}"
+            )
+        self.start_batch = start_batch
 
     def __iter__(self) -> Iterator[list[int]]:
         generator = torch.Generator()
@@ -163,6 +176,7 @@ class ShardBatchSampler(Sampler[list[int]]):
             shard_order = torch.randperm(
                 len(shard_order), generator=generator
             ).tolist()
+        batch_index = 0
         for shard_index in shard_order:
             start, end = self.dataset.shard_ranges[shard_index]
             count = end - start
@@ -174,9 +188,12 @@ class ShardBatchSampler(Sampler[list[int]]):
                 batch = rows[offset : offset + self.batch_size]
                 if len(batch) < self.batch_size and self.drop_last:
                     continue
-                yield [start + row for row in batch]
+                if batch_index >= self.start_batch:
+                    yield [start + row for row in batch]
+                batch_index += 1
 
-    def __len__(self) -> int:
+    @property
+    def total_batches(self) -> int:
         total = 0
         for start, end in self.dataset.shard_ranges:
             count = end - start
@@ -185,6 +202,9 @@ class ShardBatchSampler(Sampler[list[int]]):
             else:
                 total += (count + self.batch_size - 1) // self.batch_size
         return total
+
+    def __len__(self) -> int:
+        return self.total_batches - self.start_batch
 
 
 def _seed_worker(worker_id: int) -> None:

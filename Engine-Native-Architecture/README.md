@@ -40,17 +40,21 @@ The reference-compatible Python and imitation-data milestone is implemented:
 - exact golden replay/checkpoint parity;
 - direct sanitized-replay extraction with complete multi-selection labels;
 - deterministic game splitting and immutable tensor-only PyTorch shards;
-- mmap-backed shard-aware loading, supervised losses, and validation metrics; and
-- a finite real-model train-input smoke command.
+- mmap-backed shard-aware loading, supervised losses, and validation metrics;
+- a finite real-model train-input smoke command;
+- a full mixed-precision behavior-cloning trainer with complete validation, atomic
+  best/latest checkpoints, and exact mid-epoch resume; and
+- an automatically continued six-day SLURM training entry point.
 
-The six-day uncapped cluster cache and CUDA smoke remain operational acceptance work.
-The full behavior-cloning trainer deliberately remains outside this milestone until
-cache construction and loading throughput are measured on the cluster.
+The user reported that the six-day uncapped cluster cache and CUDA smoke completed
+successfully. The full six-day optimization run remains pending.
 
 See [`specs/02-implementation-plan.md`](specs/02-implementation-plan.md) for completed and
 deferred architecture phases and
 [`specs/03-imitation-data-to-train-handoff.md`](specs/03-imitation-data-to-train-handoff.md)
-for the implemented data contract.
+for the implemented data contract, and
+[`specs/04-behavior-cloning-trainer.md`](specs/04-behavior-cloning-trainer.md)
+for full optimizer and checkpoint semantics.
 
 ## Engine-first rule
 
@@ -74,10 +78,10 @@ hidden-information boundary, and validation test.
 
 - `specs/` - architecture contracts, decisions, and implementation phases.
 - `src/engine_native_policy/` - the new implementation package.
-- `src/engine_native_policy/il/` - replay, target, cache, loader, and loss pipeline.
+- `src/engine_native_policy/il/` - replay, target, cache, loader, loss, and trainer.
 - `artifacts/` - retained real tables, schemas, checkpoint, and golden fixtures.
-- `scripts/` - local cache construction and train-input smoke entry points.
-- `cluster/` - isolated six-day TEST SLURM jobs.
+- `scripts/` - local cache construction, smoke, and full-training entry points.
+- `cluster/` - isolated six-day cache, smoke, and full-training SLURM jobs.
 - `tables/` - historical placeholder-table manifest.
 - `tests/` - focused tests and engine/replay integration checks.
 

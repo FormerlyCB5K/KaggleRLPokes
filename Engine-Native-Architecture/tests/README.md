@@ -13,7 +13,8 @@ The suite will be organized around:
 - reference replay/checkpoint parity;
 - sanitized replay pairing and complete multi-selection targets;
 - deterministic tensor caches, hashes, and split integrity;
-- mmap loading, shard-aware batching, and supervised losses; and
+- mmap loading, resumable shard-aware batching, and supervised losses;
+- interrupted/full behavior-cloning equivalence and checkpoint lifecycle; and
 - CPU inference benchmarks.
 
 Existing architecture tests remain in their current folders and are not moved or modified.
