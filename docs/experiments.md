@@ -499,3 +499,30 @@ directories; link or name them here.
 - Remaining operational measurement: pilot one uncapped full day on the cluster,
   recording cache size, peak RSS, build/load time, and training throughput before
   scaling to every available day.
+
+### 2026-07-27 — Vectorized CUDA IL training smoke
+
+- Status: implementation smoke passed; this validates the new execution path, not model
+  quality or full-corpus throughput.
+- Command:
+  - `$out=Join-Path $env:TEMP 'il-gpu-batch-smoke-checkpoint.pt';
+    .venv/Scripts/python.exe -u Imitation-Learning/policy/train.py --source sanitized
+    --sanitized-dir Imitation-Learning/Top-ladder-data/sanitized
+    --max-episodes-per-zip 2 --max-steps 50 --epochs 1 --batch-size 32 --device cuda
+    --out $out --run-name local-gpu-batch-smoke --description
+    'Validate vectorized GPU IL training path'`
+- Environment: PyTorch `2.12.1+cu126`; NVIDIA T600 Laptop GPU with 4,096 MiB.
+- Results:
+  - `7-12`: 83 examples (42 train / 41 validation)
+  - `7-13`: 88 examples (44 / 44)
+  - `7-14`: 88 examples (43 / 45)
+  - all three chunks completed with CUDA float16 autocast and wrote the best checkpoint;
+    total process walltime was 33.1 seconds including live extraction.
+  - best tiny-smoke validation accuracy was 0.356. This is not a model-quality result.
+- Batch-128 capacity check: one synthetic 128-example forward/backward/Adam step with
+  the full 174-word transformer took 0.981 seconds and peaked at 238.1 MiB allocated
+  CUDA memory on the same 4 GiB GPU. This only establishes that the new cluster default
+  of 128 is comfortably memory-safe for the model; it is not a corpus throughput claim.
+- Regression suite:
+  - `.venv/Scripts/python.exe -m pytest Imitation-Learning/policy
+    Imitation-Learning/observation -q` — 90 passed in 38.11 seconds.

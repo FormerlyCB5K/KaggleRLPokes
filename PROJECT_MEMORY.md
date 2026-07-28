@@ -61,6 +61,15 @@ pickle to disk to avoid a second multi-GB serialized copy in RAM. AiMOS/NPL entr
 are `policy/submit-batch-build-cache.sh` followed by
 `policy/submit-batch-il-train.sh`; their episode limit and `max_steps` must match.
 
+As of 2026-07-27, IL training uses real vectorized mini-batches rather than the old
+one-example transformer calls with gradient accumulation. `PolicyModel.encode_batch`
+groups content projection by word kind and runs `(batch, 174, 128)` through one
+transformer call; scoring tensors follow the model device. Training/evaluation support
+CUDA, float16 autocast with gradient scaling, and TF32. Both full and six-day TEST SLURM
+training scripts request one GPU and use batch size 128; all four IL cache/training
+scripts now request the partition-valid six-hour walltime. Cache building remains
+CPU-parallel.
+
 ## Observation encoder track (specs 11/11a/11b/13/13a) — status as of 2026-07-21
 
 Built on top of the completed spec-12 registry above: a generalized (any-deck) Pokémon TCG
@@ -273,12 +282,14 @@ Archaludon smoke run, and a mixed three-opponent pool/resume smoke run passed; t
 live `test_pool.py` and `test_dispatch.py` scripts were not completed because individual
 greedy collection episodes can run for minutes and have no built-in move/time cap.
 
-On 2026-07-27 the combined generalized policy/observation suite passed 86 tests. A
+On 2026-07-27 the combined generalized policy/observation suite passed 90 tests. A
 three-day cache smoke (5 episodes/day, 50 steps) built 208/214/222 examples,
 idempotently skipped all three on rerun, and completed a two-epoch cached training pass
 in the required interleaved day order. Live one-/two-epoch fallbacks and stale-manifest
-rejection also passed; see `docs/experiments.md`. An uncapped full-day cluster capacity
-pilot remains operational follow-up, not a completed measurement.
+rejection also passed. A later three-day GPU smoke completed extraction, vectorized
+mixed-precision training/evaluation, and checkpoint saving; see `docs/experiments.md`.
+An uncapped full-day cluster capacity pilot remains operational follow-up, not a
+completed measurement.
 
 ## Next handoff
 

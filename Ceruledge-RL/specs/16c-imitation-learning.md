@@ -80,8 +80,16 @@ filename) is enough for v1; no cross-validation needed yet.
 
 ### Training loop
 
-- Standard supervised loop with Adam and gradient accumulation; checkpoint the best
-  validation accuracy.
+- Standard supervised loop with Adam and true vectorized mini-batches; checkpoint the
+  best validation accuracy. One mini-batch shares a single transformer forward/backward
+  call while retaining per-example variable candidate lists for Stage 2 scoring.
+- `--device auto` selects CUDA when available; cluster scripts require CUDA explicitly
+  and request one GPU. CUDA training uses float16 autocast plus gradient scaling by
+  default, enables TF32 for eligible float32 matrix multiplications, and can disable
+  mixed precision with `--no-mixed-precision`.
+- Evaluation uses the same vectorized batches under inference mode. Training skips
+  per-example accuracy transfers from GPU to CPU; evaluation transfers one correctness
+  tensor per batch.
 - Training is day-chunked because retaining all extracted examples would require roughly
   225 GB for 14 full days. `--days-per-chunk` controls how many consecutive day caches
   are loaded at once; one day is the default.

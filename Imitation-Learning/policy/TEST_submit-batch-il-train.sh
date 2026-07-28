@@ -15,9 +15,9 @@
 #SBATCH --output=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.out
 #SBATCH --error=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.err
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
 #SBATCH --mem=64G
-#SBATCH --time=48:00:00
+#SBATCH --time=06:00:00
 
 set -euo pipefail
 
@@ -34,8 +34,9 @@ MAX_EPISODES_PER_ZIP="all"
 MAX_STEPS=300
 EPOCHS=3
 LR=1e-3
-BATCH_SIZE=8
+BATCH_SIZE=128
 VAL_FRAC=0.2
+DEVICE="cuda"
 RUN_NAME="${SLURM_JOB_NAME:-ILTrainTest}-${SLURM_JOB_ID:-manual}"
 DESCRIPTION="Incomplete six-day corpus (7-12,7-13,7-14,7-23,7-24,7-25); good for full pipeline testing"
 # ============================================================================
@@ -45,11 +46,12 @@ cd "$WORKDIR"
 
 module purge > /dev/null 2>&1 || true
 source "$WORKDIR/../myenv/bin/activate"
-export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
-export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
+export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-10}"
+export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-10}"
 
 echo "TEST six-day training job ${SLURM_JOB_ID:-manual} starting at $(date)"
 echo "Node: $(hostname)   CPUs: $(nproc)"
+echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -n 1)"
 echo "Cache dir: $CACHE_DIR"
 echo "Out dir: $OUT_DIR"
 
@@ -65,6 +67,7 @@ python -u Imitation-Learning/policy/train.py \
     --epochs               "$EPOCHS" \
     --lr                   "$LR" \
     --batch-size           "$BATCH_SIZE" \
+    --device               "$DEVICE" \
     --val-frac             "$VAL_FRAC"
 
 echo "[$(date)] TEST six-day training completed."

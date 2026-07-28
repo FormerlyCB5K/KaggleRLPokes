@@ -36,7 +36,7 @@ def _resolve_card_vec(model, words: list[Word], word_embeddings: torch.Tensor,
     # Unresolved (card lives somewhere GameState doesn't model, e.g. opponent hand/deck,
     # or resolution failed) -- zero embedding, per this spec's explicitly deprioritized
     # precision for the long tail of rare AreaTypes.
-    return torch.zeros(model.d_model)
+    return torch.zeros(model.d_model, device=model.pool_embed.device)
 
 
 def score_one(
@@ -59,7 +59,7 @@ def score_one(
         target_ref = candidate.target.board_ref if candidate.target is not None else None
         target_vec = (
             model.board_embedding(word_embeddings, target_ref) if target_ref is not None
-            else torch.zeros(model.d_model)
+            else torch.zeros(model.d_model, device=pooled.device)
         )
         return model.compound_score(card_vec, target_vec)
 
@@ -92,10 +92,10 @@ def score_candidates(
     sequential picking can stop once STOP's score wins. Model/scoring-layer capability
     only -- driving live sequential-pick inference with it is separate (RL-scope) work."""
     if not candidates and not include_stop:
-        return torch.zeros(0)
+        return torch.zeros(0, device=pooled.device)
     if effect_card_id is not None:
         pooled = model.condition_on_effect(pooled, model.encode_card_by_id(effect_card_id))
     scores = [score_one(model, words, word_embeddings, pooled, c) for c in candidates]
     if include_stop:
         scores.append(model.stop_score(pooled))
-    return torch.stack(scores) if scores else torch.zeros(0)
+    return torch.stack(scores) if scores else torch.zeros(0, device=pooled.device)

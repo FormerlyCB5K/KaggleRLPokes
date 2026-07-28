@@ -63,35 +63,93 @@ class PolicyModel(nn.Module):
         self.value_head = nn.Linear(d_model, 1)
 
     def _word_embedding(self, kind: str, role: str | None, content: list[float]) -> torch.Tensor:
+        device = self.pool_embed.device
         if kind == "pool":
             v = self.pool_embed
         elif kind == "pad":
             v = self.pad_embed
         else:
-            t = torch.tensor(content, dtype=torch.float32)
+            t = torch.tensor(content, dtype=torch.float32, device=device)
             v = self.kind_embed[kind](t)
-        role_idx = torch.tensor(packing.role_index(role), dtype=torch.long)
+        role_idx = torch.tensor(packing.role_index(role), dtype=torch.long, device=device)
         return v + self.role_embed(role_idx)
 
-    def encode(self, words: list[Word]) -> tuple[torch.Tensor, torch.Tensor]:
-        """One observation -> (word_embeddings (T, D), pooled (D,)). Batch size 1 --
-        placeholder-precision v1 does not batch multiple observations through one
-        transformer call (see 16c for how the training loop handles this)."""
-        packed = packing.pack_words(words)
-        embeds = torch.stack([
-            self._word_embedding(kind, role, content) for kind, role, content, _ in packed
-        ])  # (T, D)
-        mask = torch.tensor([masked for _, _, _, masked in packed], dtype=torch.bool)  # (T,)
+    def encode_batch(
+        self, words_batch: list[list[Word]],
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """Encode multiple fixed-length observations in one transformer call.
 
-        x = embeds.unsqueeze(0)  # (1, T, D)
-        out = self.transformer(x, src_key_padding_mask=mask.unsqueeze(0))
-        out = out.squeeze(0)  # (T, D)
+        Content projection is grouped by word kind, so each kind-specific Linear layer
+        also receives one dense tensor instead of being invoked once per word.
+        """
+        if not words_batch:
+            raise ValueError("words_batch must contain at least one observation")
 
-        scores = out @ self.pool_query  # (T,)
+        packed_batch = [packing.pack_words(words) for words in words_batch]
+        sequence_length = len(packed_batch[0])
+        if any(len(packed) != sequence_length for packed in packed_batch):
+            raise ValueError("all observations in a batch must have the same word count")
+
+        device = self.pool_embed.device
+        batch_size = len(packed_batch)
+        flat_words = [item for packed in packed_batch for item in packed]
+
+        role_indices = torch.tensor(
+            [packing.role_index(role) for _, role, _, _ in flat_words],
+            dtype=torch.long,
+            device=device,
+        )
+        embeds = self.role_embed(role_indices)
+
+        for kind, layer in self.kind_embed.items():
+            positions = [
+                i for i, (word_kind, _, _, _) in enumerate(flat_words)
+                if word_kind == kind
+            ]
+            if not positions:
+                continue
+            content = torch.tensor(
+                [flat_words[i][2] for i in positions],
+                dtype=torch.float32,
+                device=device,
+            )
+            projected = layer(content)
+            position_tensor = torch.tensor(positions, dtype=torch.long, device=device)
+            kind_embeds = torch.zeros_like(embeds).index_copy(
+                0, position_tensor, projected.to(embeds.dtype),
+            )
+            embeds = embeds + kind_embeds
+
+        pool_mask = torch.tensor(
+            [kind == "pool" for kind, _, _, _ in flat_words],
+            dtype=embeds.dtype,
+            device=device,
+        ).unsqueeze(-1)
+        pad_mask = torch.tensor(
+            [kind == "pad" for kind, _, _, _ in flat_words],
+            dtype=embeds.dtype,
+            device=device,
+        ).unsqueeze(-1)
+        embeds = embeds + pool_mask * self.pool_embed + pad_mask * self.pad_embed
+        embeds = embeds.view(batch_size, sequence_length, self.d_model)
+
+        mask = torch.tensor(
+            [masked for _, _, _, masked in flat_words],
+            dtype=torch.bool,
+            device=device,
+        ).view(batch_size, sequence_length)
+
+        out = self.transformer(embeds, src_key_padding_mask=mask)
+        scores = out @ self.pool_query
         scores = scores.masked_fill(mask, float("-inf"))
-        weights = torch.softmax(scores, dim=0)
-        pooled = weights @ out  # (D,)
+        weights = torch.softmax(scores, dim=1)
+        pooled = torch.bmm(weights.unsqueeze(1), out).squeeze(1)
         return out, pooled
+
+    def encode(self, words: list[Word]) -> tuple[torch.Tensor, torch.Tensor]:
+        """One-observation compatibility wrapper used by acting and RL code."""
+        word_embeddings, pooled = self.encode_batch([words])
+        return word_embeddings[0], pooled[0]
 
     def stage1_logits(self, pooled: torch.Tensor) -> torch.Tensor:
         return self.stage1_head(pooled)
@@ -115,15 +173,20 @@ class PolicyModel(nn.Module):
 
     def literal_embedding(self, candidate: action_space.Candidate, option_type) -> torch.Tensor:
         from cg_download.api import OptionType
+        device = self.pool_embed.device
         if option_type == OptionType.NUMBER:
-            v = torch.tensor([candidate.literal or 0.0], dtype=torch.float32)
+            v = torch.tensor(
+                [candidate.literal or 0.0], dtype=torch.float32, device=device,
+            )
             return self.number_embed(v)
         if option_type in (OptionType.YES, OptionType.NO):
             idx = 0 if option_type == OptionType.YES else 1
-            return self.yesno_embed(torch.tensor(idx, dtype=torch.long))
+            return self.yesno_embed(torch.tensor(idx, dtype=torch.long, device=device))
         if option_type == OptionType.SPECIAL_CONDITION:
             idx = int(candidate.literal or 0)
-            return self.special_condition_embed(torch.tensor(idx, dtype=torch.long))
+            return self.special_condition_embed(
+                torch.tensor(idx, dtype=torch.long, device=device)
+            )
         raise ValueError(f"not a literal option type: {option_type}")
 
     def encode_card_by_id(self, card_id: int) -> torch.Tensor:
@@ -132,7 +195,9 @@ class PolicyModel(nn.Module):
         card (`obs.select.effect`), which may not correspond to any single word in the
         current observation."""
         content = packing.pack_card_content(card_id)
-        t = torch.tensor(content, dtype=torch.float32)
+        t = torch.tensor(
+            content, dtype=torch.float32, device=self.pool_embed.device,
+        )
         return self.kind_embed["zone_card"](t)
 
     def condition_on_effect(self, pooled: torch.Tensor, effect_vec: torch.Tensor | None) -> torch.Tensor:

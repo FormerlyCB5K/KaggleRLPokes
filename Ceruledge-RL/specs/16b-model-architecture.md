@@ -56,6 +56,10 @@ N_LAYERS = 2
 - Attention-weighted pooling: a learned query vector, `softmax(words @ query)` weights,
   weighted sum -> `(D_MODEL,)` pooled vector. Same mechanism already used in this project's
   prior architecture work and in Track A's `CeruledgePolicy`.
+- The implementation exposes both `encode(words)` for acting/RL compatibility and
+  `encode_batch(list_of_words)` for IL. The batched path groups all same-kind words into
+  one content-projection call per kind and sends the full `(batch, 174, D_MODEL)` tensor
+  through one transformer call. All temporary tensors follow the model's device.
 
 ## Heads
 

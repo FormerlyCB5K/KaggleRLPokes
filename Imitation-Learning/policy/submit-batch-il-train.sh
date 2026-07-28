@@ -5,19 +5,18 @@
 #  Submit from the NPL front end:   ssh nplfen01   then:
 #      sbatch /gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/Imitation-Learning/policy/submit-batch-il-train.sh
 #
-#  Just runs Imitation-Learning/policy/train.py (behavior cloning against
-#  recorded Top-ladder-data episodes) -- no self-play, no resume, no wandb.
-#  CPU-only: nothing in policy/model.py moves tensors to a device, so a GPU
-#  allocation wouldn't be used.
+#  Runs GPU-vectorized behavior cloning against recorded Top-ladder-data
+#  episodes. The transformer processes a real mini-batch per forward pass;
+#  variable candidate lists are scored from the resulting GPU embeddings.
 # ============================================================================
 
 #SBATCH --job-name=ILTrain
 #SBATCH --output=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.out
 #SBATCH --error=/gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes/logs/%x-%j.err
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
 #SBATCH --mem=64G
-#SBATCH --time=48:00:00
+#SBATCH --time=06:00:00
 
 set -euo pipefail
 
@@ -48,8 +47,9 @@ MAX_EPISODES_PER_ZIP="all"
 MAX_STEPS=300
 EPOCHS=3
 LR=1e-3
-BATCH_SIZE=8
+BATCH_SIZE=128
 VAL_FRAC=0.2
+DEVICE="cuda"
 # ============================================================================
 
 mkdir -p "$WORKDIR/logs" "$OUT_DIR"
@@ -58,11 +58,12 @@ cd "$WORKDIR"
 # ---- environment ----
 module purge > /dev/null 2>&1 || true
 source "$WORKDIR/../myenv/bin/activate"
-export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
-export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
+export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-10}"
+export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-10}"
 
 echo "Job $SLURM_JOB_ID  starting at $(date)"
 echo "Node: $(hostname)   CPUs: $(nproc)"
+echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -n 1)"
 echo "Out dir: $OUT_DIR"
 
 # ---- run training ----
@@ -85,6 +86,7 @@ python -u Imitation-Learning/policy/train.py \
     --epochs               "$EPOCHS" \
     --lr                   "$LR" \
     --batch-size           "$BATCH_SIZE" \
+    --device               "$DEVICE" \
     --val-frac             "$VAL_FRAC"
 
 echo "[$(date)] Training completed."
