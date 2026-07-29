@@ -11,6 +11,7 @@ import socket
 import subprocess
 import time
 import uuid
+import zipfile
 from collections import Counter, defaultdict, deque
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
@@ -23,6 +24,7 @@ import torch
 
 from cg_download.api import Observation
 from cg_download.utils import to_dataclass
+from top_ladder_sanitization import mask_episode, sanitize_member
 
 from ..featurize import featurize
 from ..flat import FIELD_OFFSETS, FLAT_DIM, encode
@@ -76,10 +78,16 @@ class SourceEpisode:
     filename: str
     path: str
     size: int
+    member: str | None = None
+    fingerprint: str | None = None
 
     @property
     def key(self) -> str:
         return f"{self.day}/{self.filename}"
+
+    @property
+    def source_mode(self) -> str:
+        return "raw_zip" if self.member is not None else "sanitized"
 
 
 @dataclass
@@ -229,7 +237,258 @@ def inventory_source(
     return episodes, reports, full_count
 
 
+_worker_raw_archives: dict[str, zipfile.ZipFile] = {}
+
+
+def _raw_archive(path: str) -> zipfile.ZipFile:
+    archive = _worker_raw_archives.get(path)
+    if archive is None:
+        archive = zipfile.ZipFile(path)
+        _worker_raw_archives[path] = archive
+    return archive
+
+
+def _init_raw_archive_worker(path: str) -> None:
+    _worker_raw_archives[path] = zipfile.ZipFile(path)
+
+
+def _inspect_raw_member(job: tuple[str, str]) -> dict[str, Any]:
+    archive_path, member = job
+    episode_id = Path(member).stem
+    try:
+        raw = _raw_archive(archive_path).read(member)
+    except (KeyError, OSError, RuntimeError, zipfile.BadZipFile):
+        return {
+            "member": member,
+            "episode_id": episode_id,
+            "exclusion": {"reason": "malformed_json"},
+        }
+    episode, exclusion = sanitize_member(raw)
+    if episode is None:
+        return {
+            "member": member,
+            "episode_id": episode_id,
+            "exclusion": exclusion,
+        }
+    steps_total, steps_usable, steps_masked = mask_episode(episode)
+    return {
+        "member": member,
+        "episode_id": episode_id,
+        "steps_total": steps_total,
+        "steps_usable": steps_usable,
+        "steps_masked": steps_masked,
+    }
+
+
+def _inspect_raw_members(
+    archive: Path, members: list[str], workers: int
+) -> list[dict[str, Any]]:
+    jobs = [(str(archive), member) for member in members]
+    if workers == 1:
+        try:
+            with zipfile.ZipFile(archive) as bundle:
+                results = []
+                for _archive_path, member in jobs:
+                    try:
+                        raw = bundle.read(member)
+                    except (KeyError, OSError, RuntimeError, zipfile.BadZipFile):
+                        results.append(
+                            {
+                                "member": member,
+                                "episode_id": Path(member).stem,
+                                "exclusion": {"reason": "malformed_json"},
+                            }
+                        )
+                        continue
+                    episode, exclusion = sanitize_member(raw)
+                    if episode is None:
+                        results.append(
+                            {
+                                "member": member,
+                                "episode_id": Path(member).stem,
+                                "exclusion": exclusion,
+                            }
+                        )
+                        continue
+                    steps_total, steps_usable, steps_masked = mask_episode(
+                        episode
+                    )
+                    results.append(
+                        {
+                            "member": member,
+                            "episode_id": Path(member).stem,
+                            "steps_total": steps_total,
+                            "steps_usable": steps_usable,
+                            "steps_masked": steps_masked,
+                        }
+                    )
+                return results
+        except (OSError, zipfile.BadZipFile) as exc:
+            raise CacheContractError(f"cannot read raw archive {archive}: {exc}") from exc
+
+    with ProcessPoolExecutor(
+        max_workers=workers,
+        initializer=_init_raw_archive_worker,
+        initargs=(str(archive),),
+    ) as executor:
+        return list(executor.map(_inspect_raw_member, jobs, chunksize=8))
+
+
+def inventory_raw_source(
+    raw_root: str | Path,
+    days: tuple[str, ...] | list[str],
+    *,
+    workers: int,
+    max_episodes: int | None = None,
+) -> tuple[
+    list[SourceEpisode],
+    dict[str, Any],
+    int,
+    dict[str, dict[str, Any]],
+    dict[str, dict[str, Any]],
+]:
+    """Inventory and sanitize raw ZIP members without writing loose JSON."""
+
+    root = Path(raw_root).resolve()
+    episodes: list[SourceEpisode] = []
+    reports: dict[str, Any] = {}
+    report_payloads: dict[str, dict[str, Any]] = {}
+    archives: dict[str, dict[str, Any]] = {}
+
+    for day in days:
+        day_dir = root / day
+        if not day_dir.is_dir():
+            raise CacheContractError(f"missing raw day directory: {day_dir}")
+        matches = sorted(path for path in day_dir.glob("*.zip") if path.is_file())
+        if len(matches) != 1:
+            raise CacheContractError(
+                f"{day}: expected exactly one raw ZIP archive, found {len(matches)}"
+            )
+        archive = matches[0]
+        archive_hash = sha256_file(archive)
+        try:
+            with zipfile.ZipFile(archive) as bundle:
+                infos = sorted(
+                    (
+                        info
+                        for info in bundle.infolist()
+                        if not info.is_dir()
+                        and info.filename.lower().endswith(".json")
+                    ),
+                    key=lambda info: info.filename,
+                )
+        except (OSError, zipfile.BadZipFile) as exc:
+            raise CacheContractError(f"cannot read raw archive {archive}: {exc}") from exc
+        if not infos:
+            raise CacheContractError(f"{day}: raw archive contains no episode JSON")
+
+        filenames = [Path(info.filename).name for info in infos]
+        if len(filenames) != len(set(filenames)):
+            raise CacheContractError(
+                f"{day}: raw archive has duplicate episode basenames"
+            )
+
+        results = _inspect_raw_members(
+            archive, [info.filename for info in infos], workers
+        )
+        info_by_member = {info.filename: info for info in infos}
+        excluded: list[dict[str, Any]] = []
+        accepted = 0
+        steps_total = 0
+        steps_usable = 0
+        steps_masked = 0
+        for result in results:
+            member = result["member"]
+            exclusion = result.get("exclusion")
+            if exclusion is not None:
+                excluded.append(
+                    {
+                        "episode_id": result["episode_id"],
+                        "day": day,
+                        **exclusion,
+                    }
+                )
+                continue
+            info = info_by_member[member]
+            accepted += 1
+            steps_total += int(result["steps_total"])
+            steps_usable += int(result["steps_usable"])
+            steps_masked += int(result["steps_masked"])
+            episodes.append(
+                SourceEpisode(
+                    day=day,
+                    filename=Path(member).name,
+                    path=str(archive),
+                    size=info.file_size,
+                    member=member,
+                    fingerprint=f"{archive_hash}:{info.CRC:08x}",
+                )
+            )
+
+        report = {
+            "day": day,
+            "storage_mode": "direct_to_tensor",
+            "total_episodes_seen": len(infos),
+            "excluded": sorted(
+                excluded, key=lambda item: str(item["episode_id"])
+            ),
+            "episodes_written": accepted,
+            "episodes_accepted": accepted,
+            "loose_json_files_written": 0,
+            "steps_total": steps_total,
+            "steps_usable": steps_usable,
+            "steps_masked": steps_masked,
+            "source_archive": str(archive),
+            "source_archive_sha256": archive_hash,
+        }
+        report_payloads[day] = report
+        reports[day] = {
+            "path": f"sanitization-reports/{day}.json",
+            "sha256": None,
+            "episodes_written": accepted,
+            "total_episodes_seen": len(infos),
+            "steps_total": steps_total,
+            "steps_usable": steps_usable,
+            "steps_masked": steps_masked,
+            "excluded_count": len(excluded),
+            "source_archive": str(archive),
+            "source_archive_sha256": archive_hash,
+        }
+        archives[day] = {
+            "path": str(archive),
+            "bytes": archive.stat().st_size,
+            "sha256": archive_hash,
+            "json_members": len(infos),
+        }
+
+    episodes.sort(key=lambda item: item.key)
+    full_count = len(episodes)
+    if max_episodes is not None:
+        if max_episodes <= 0:
+            raise CacheContractError("max_episodes must be positive")
+        episodes = episodes[:max_episodes]
+    if not episodes:
+        raise CacheContractError("source inventory is empty")
+    return episodes, reports, full_count, report_payloads, archives
+
+
 def source_inventory_hash(episodes: list[SourceEpisode]) -> str:
+    modes = {item.source_mode for item in episodes}
+    if len(modes) != 1:
+        raise CacheContractError("source inventory mixes storage modes")
+    if modes == {"raw_zip"}:
+        return _canonical_hash(
+            [
+                [
+                    item.day,
+                    item.filename,
+                    item.size,
+                    item.member,
+                    item.fingerprint,
+                ]
+                for item in episodes
+            ]
+        )
     return _canonical_hash(
         [[item.day, item.filename, item.size] for item in episodes]
     )
@@ -277,13 +536,32 @@ def _empty_arrays() -> dict[str, np.ndarray]:
     }
 
 
-def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
-    source, episode_index = job
-    try:
+def _load_source_episode(source: SourceEpisode) -> dict[str, Any]:
+    if source.member is None:
         with Path(source.path).open("rb") as handle:
             episode = json.load(handle)
         if not isinstance(episode, dict):
             raise ReplayContractError("episode root must be an object")
+        return episode
+
+    try:
+        raw = _raw_archive(source.path).read(source.member)
+    except (KeyError, OSError, RuntimeError, zipfile.BadZipFile) as exc:
+        raise ReplayContractError(f"cannot reread raw ZIP member: {exc}") from exc
+    episode, exclusion = sanitize_member(raw)
+    if episode is None:
+        raise ReplayContractError(
+            "raw episode no longer passes inventory sanitization: "
+            f"{exclusion.get('reason') if exclusion else 'unknown'}"
+        )
+    mask_episode(episode)
+    return episode
+
+
+def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
+    source, episode_index = job
+    try:
+        episode = _load_source_episode(source)
 
         skip_counts: Counter[str] = Counter(
             {reason: 0 for reason in DECLARED_SKIP_REASONS}
@@ -545,6 +823,7 @@ def _merge_histogram(
 def _manifest_identity(
     *,
     source_hash: str,
+    source_mode: str,
     days: tuple[str, ...],
     seed: int,
     validation_fraction: float,
@@ -552,7 +831,7 @@ def _manifest_identity(
     max_episodes: int | None,
     artifact_manifest_hash: str,
 ) -> dict[str, Any]:
-    return {
+    identity = {
         "schema": SCHEMA_NAME,
         "source_inventory_hash": source_hash,
         "days": list(days),
@@ -563,6 +842,9 @@ def _manifest_identity(
         "featurizer_version": FEATURIZER_VERSION,
         "artifact_manifest_hash": artifact_manifest_hash,
     }
+    if source_mode != "sanitized":
+        identity["source_mode"] = source_mode
+    return identity
 
 
 def verify_cache(root: str | Path, *, verify_hashes: bool = True) -> dict[str, Any]:
@@ -580,6 +862,18 @@ def verify_cache(root: str | Path, *, verify_hashes: bool = True) -> dict[str, A
         raise CacheContractError("split.json hash mismatch")
     if sha256_file(episode_path) != manifest["files"]["episode_table_sha256"]:
         raise CacheContractError("episode-table.json hash mismatch")
+    source = manifest.get("source") or {}
+    if source.get("mode") == "raw_zip":
+        for day, report in (source.get("reports") or {}).items():
+            report_path = cache_root / report["path"]
+            if not report_path.is_file():
+                raise CacheContractError(
+                    f"missing raw sanitization report for {day}: {report_path}"
+                )
+            if sha256_file(report_path) != report.get("sha256"):
+                raise CacheContractError(
+                    f"raw sanitization report SHA-256 mismatch for {day}"
+                )
 
     split = json.loads(split_path.read_text(encoding="utf-8"))
     split_without_hash = dict(split)
@@ -642,8 +936,9 @@ def verify_cache(root: str | Path, *, verify_hashes: bool = True) -> dict[str, A
 
 def build_cache(
     *,
-    sanitized_root: str | Path,
+    sanitized_root: str | Path | None,
     output_root: str | Path,
+    raw_root: str | Path | None = None,
     days: tuple[str, ...] = DEFAULT_DAYS,
     validation_fraction: float = DEFAULT_VALIDATION_FRACTION,
     seed: int = DEFAULT_SEED,
@@ -658,14 +953,21 @@ def build_cache(
     started = datetime.now(timezone.utc)
     started_clock = time.perf_counter()
     output = Path(output_root).resolve()
-    source_root = Path(sanitized_root).resolve()
+    if (sanitized_root is None) == (raw_root is None):
+        raise CacheContractError(
+            "provide exactly one source root: sanitized_root or raw_root"
+        )
+    source_mode = "raw_zip" if raw_root is not None else "sanitized"
+    source_root = Path(
+        raw_root if raw_root is not None else sanitized_root
+    ).resolve()
     if (
         output == source_root
         or output in source_root.parents
         or source_root in output.parents
     ):
         raise CacheContractError(
-            "cache output and sanitized source directories must not overlap"
+            "cache output and source directories must not overlap"
         )
     if target_shard_rows <= 0:
         raise CacheContractError("target_shard_rows must be positive")
@@ -674,12 +976,29 @@ def build_cache(
 
     artifact_manifest_hash = validate_artifact_manifest(artifact_manifest_path)
     validate_tables_against_manifest(tables_path, artifact_manifest_path)
-    episodes, report_summaries, full_inventory_count = inventory_source(
-        source_root, days, max_episodes=max_episodes
-    )
+    report_payloads: dict[str, dict[str, Any]] = {}
+    archives: dict[str, dict[str, Any]] = {}
+    if source_mode == "raw_zip":
+        (
+            episodes,
+            report_summaries,
+            full_inventory_count,
+            report_payloads,
+            archives,
+        ) = inventory_raw_source(
+            source_root,
+            days,
+            workers=workers,
+            max_episodes=max_episodes,
+        )
+    else:
+        episodes, report_summaries, full_inventory_count = inventory_source(
+            source_root, days, max_episodes=max_episodes
+        )
     inventory_hash = source_inventory_hash(episodes)
     identity = _manifest_identity(
         source_hash=inventory_hash,
+        source_mode=source_mode,
         days=days,
         seed=seed,
         validation_fraction=validation_fraction,
@@ -702,6 +1021,12 @@ def build_cache(
             f"output is non-empty but not exactly reusable; choose a new output: {output}"
         )
     output.mkdir(parents=True, exist_ok=True)
+
+    if source_mode == "raw_zip":
+        for day, report in report_payloads.items():
+            report_path = output / "sanitization-reports" / f"{day}.json"
+            _write_json_atomic(report_path, report)
+            report_summaries[day]["sha256"] = sha256_file(report_path)
 
     split = make_split(
         episodes,
@@ -801,13 +1126,17 @@ def build_cache(
         "featurizer_version": FEATURIZER_VERSION,
         "frozen_table_manifest_hash": artifact_manifest_hash,
         "source": {
-            "sanitized_root": str(source_root),
+            "mode": source_mode,
+            (
+                "raw_root" if source_mode == "raw_zip" else "sanitized_root"
+            ): str(source_root),
             "days": list(days),
             "inventory_hash": inventory_hash,
             "games_in_build": len(episodes),
             "games_discovered_before_limit": full_inventory_count,
             "max_episodes": max_episodes,
             "reports": report_summaries,
+            **({"archives": archives} if archives else {}),
         },
         "split": {
             "seed": seed,

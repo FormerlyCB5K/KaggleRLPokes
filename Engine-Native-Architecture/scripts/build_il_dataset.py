@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build the immutable six-day engine-native imitation cache."""
+"""Build an immutable engine-native imitation cache."""
 
 from __future__ import annotations
 
@@ -49,7 +49,24 @@ def parse_args() -> argparse.Namespace:
     )
     artifacts = ENGINE_ROOT / "artifacts"
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--source",
+        choices=("sanitized", "raw-zip"),
+        default="sanitized",
+        help=(
+            "read existing loose sanitized JSON, or sanitize daily raw ZIPs "
+            "in memory without writing loose episode files"
+        ),
+    )
     parser.add_argument("--sanitized-root", type=Path, default=default_source)
+    parser.add_argument(
+        "--raw-root",
+        type=Path,
+        default=REPOSITORY_ROOT
+        / "Imitation-Learning"
+        / "Top-ladder-data",
+        help="raw source root containing <day>/*.zip",
+    )
     parser.add_argument("--output-root", type=Path, default=DEFAULT_CACHE_ROOT)
     parser.add_argument("--days", type=_days, default=DEFAULT_DAYS)
     parser.add_argument(
@@ -93,7 +110,10 @@ def main() -> int:
             "--max-episodes is developer-only and requires a non-default output root"
         )
     manifest = build_cache(
-        sanitized_root=args.sanitized_root,
+        sanitized_root=(
+            args.sanitized_root if args.source == "sanitized" else None
+        ),
+        raw_root=args.raw_root if args.source == "raw-zip" else None,
         output_root=args.output_root,
         days=args.days,
         validation_fraction=args.validation_fraction,

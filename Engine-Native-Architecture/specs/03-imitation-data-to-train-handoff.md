@@ -33,7 +33,8 @@ Each day is expected at `<source-root>/<day>/`, with one compact
 
 “TEST” means this is the reduced six-day end-to-end corpus, not that all examples are
 evaluation examples. It still receives a deterministic game-level train/validation
-split. It must remain separate from any later 14-day production cache.
+split. It remains separate from the July 12-27 production raw-ZIP cache specified in
+[`05-raw-zip-production-cache.md`](05-raw-zip-production-cache.md).
 
 The v1 training objective is behavioral cloning of action choice only:
 

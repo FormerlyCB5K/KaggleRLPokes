@@ -44,16 +44,17 @@ from functools import partial
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from top_ladder_sanitization import mask_episode, sanitize_member
+
 DEFAULT_DATA_ROOT = REPO_ROOT / "Imitation-Learning" / "Top-ladder-data"
 # Repo-relative by default for portability (e.g. running unmodified on a
 # cluster). Override with --output-root if the repo sits inside a
 # cloud-synced folder (OneDrive/Dropbox/etc.) — see module docstring.
 DEFAULT_OUTPUT_ROOT = DEFAULT_DATA_ROOT / "sanitized"
 DEFAULT_WORKERS = max(1, min(16, (os.cpu_count() or 4) - 2))
-
-REQUIRED_EPISODE_KEYS = ("info", "rewards", "statuses", "steps")
-DONE_STATUSES = ["DONE", "DONE"]
-
 
 def _repo_path(path: Path) -> str:
     resolved = path.resolve()
@@ -80,57 +81,6 @@ def find_archive(data_root: Path, date: dt.date) -> Path | None:
         return None
     matches = sorted(p for p in day_dir.glob("*.zip") if date.isoformat() in p.name)
     return matches[0] if matches else None
-
-
-def sanitize_member(raw: bytes) -> tuple[dict | None, dict | None]:
-    """Parse and validate one episode. Returns (episode, exclusion) — exactly
-    one of the two is not None."""
-    try:
-        episode = json.loads(raw)
-    except (json.JSONDecodeError, UnicodeDecodeError):
-        return None, {"reason": "malformed_json"}
-
-    if not isinstance(episode, dict) or any(
-        key not in episode for key in REQUIRED_EPISODE_KEYS
-    ):
-        return None, {"reason": "malformed_json"}
-
-    statuses = episode.get("statuses")
-    if statuses != DONE_STATUSES:
-        return None, {"reason": "non_done_status", "statuses": statuses}
-
-    return episode, None
-
-
-def mask_episode(episode: dict) -> tuple[int, int, int]:
-    """Add select.usable in place for every non-null select with an option
-    list. Returns (steps_total, steps_usable, steps_masked)."""
-    steps_total = 0
-    steps_usable = 0
-    steps_masked = 0
-    for step in episode.get("steps") or []:
-        if not isinstance(step, list):
-            continue
-        for player_entry in step:
-            if not isinstance(player_entry, dict):
-                continue
-            observation = player_entry.get("observation")
-            if not isinstance(observation, dict):
-                continue
-            select = observation.get("select")
-            if not isinstance(select, dict):
-                continue
-            steps_total += 1
-            option = select.get("option")
-            if option is None:
-                continue
-            usable = len(option) != 1
-            select["usable"] = usable
-            if usable:
-                steps_usable += 1
-            else:
-                steps_masked += 1
-    return steps_total, steps_usable, steps_masked
 
 
 def _json_bytes(value: object) -> bytes:
