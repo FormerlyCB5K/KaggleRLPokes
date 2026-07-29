@@ -37,6 +37,7 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 out/
+match-logs/
 
 # OS
 .DS_Store
