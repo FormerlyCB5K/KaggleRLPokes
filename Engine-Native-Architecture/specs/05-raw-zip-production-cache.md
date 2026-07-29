@@ -73,6 +73,9 @@ read through the new path alongside newly downloaded days.
 The full tensor cache must be a new build in a new output directory. Adding days
 changes the source inventory, global split, episode indices, shard contents, and cache
 identity; the completed six-day cache remains an independent verified artifact.
+The cache directory may live directly under the raw root beside the requested day
+directories, as in the production command below. It must not be the raw root itself,
+contain the raw root, or be placed inside any requested day directory.
 
 ## Commands
 
@@ -98,10 +101,12 @@ default. `REQUIRED_GIB` may override the preflight only after measured cache siz
 
 ## Validation
 
-The focused fixture test builds the same accepted corpus through both storage paths.
+The focused fixture tests build the same accepted corpus through both storage paths.
 It verifies identical split assignments, totals, origins, and every cached tensor;
 checks malformed and non-DONE exclusions; confirms no loose episode JSON is written;
 exercises two-process raw inspection/building; and verifies report hash enforcement.
+They also verify that a sibling cache beneath the raw root is accepted while a cache
+inside a requested day directory is rejected.
 
 The full July 12-27 cluster build, its exact archive inventory, throughput, output size,
 and row totals remain pending and must be recorded only after the job runs.

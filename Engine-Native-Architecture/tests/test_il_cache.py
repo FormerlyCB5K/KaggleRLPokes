@@ -240,3 +240,48 @@ def test_raw_zip_mode_matches_loose_sanitized_cache(tmp_path) -> None:
         CacheContractError, match="sanitization report SHA-256 mismatch"
     ):
         verify_cache(raw_output)
+
+
+def test_raw_zip_cache_can_live_beside_requested_day_directories(
+    tmp_path,
+) -> None:
+    raw_root, _ = _write_raw_and_sanitized_equivalent(tmp_path)
+    artifacts = Path(__file__).resolve().parents[1] / "artifacts"
+    output = raw_root / "engine-native-cache"
+
+    manifest = build_cache(
+        sanitized_root=None,
+        raw_root=raw_root,
+        output_root=output,
+        days=("7-12",),
+        validation_fraction=0.25,
+        seed=20260728,
+        target_shard_rows=3,
+        workers=1,
+        tables_path=artifacts / "frozen_tables.pt",
+        artifact_manifest_path=artifacts / "installed-manifest.json",
+    )
+
+    assert manifest["source"]["raw_root"] == str(raw_root.resolve())
+    assert (output / "manifest.json").is_file()
+
+
+def test_cache_output_cannot_be_inside_requested_day_directory(
+    tmp_path,
+) -> None:
+    raw_root, _ = _write_raw_and_sanitized_equivalent(tmp_path)
+    artifacts = Path(__file__).resolve().parents[1] / "artifacts"
+
+    with pytest.raises(CacheContractError, match="must not overlap"):
+        build_cache(
+            sanitized_root=None,
+            raw_root=raw_root,
+            output_root=raw_root / "7-12" / "engine-native-cache",
+            days=("7-12",),
+            validation_fraction=0.25,
+            seed=20260728,
+            target_shard_rows=3,
+            workers=1,
+            tables_path=artifacts / "frozen_tables.pt",
+            artifact_manifest_path=artifacts / "installed-manifest.json",
+        )

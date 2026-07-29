@@ -961,10 +961,14 @@ def build_cache(
     source_root = Path(
         raw_root if raw_root is not None else sanitized_root
     ).resolve()
+    source_day_roots = tuple((source_root / day).resolve() for day in days)
     if (
         output == source_root
         or output in source_root.parents
-        or source_root in output.parents
+        or any(
+            output == source_day_root or source_day_root in output.parents
+            for source_day_root in source_day_roots
+        )
     ):
         raise CacheContractError(
             "cache output and source directories must not overlap"
