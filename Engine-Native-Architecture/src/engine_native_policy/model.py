@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 from typing import Mapping
 
 import torch
@@ -40,6 +41,33 @@ class ModelConfig:
     dropout: float = 0.0
     d_card: int = 64  # Deliberately dead, retained for friend-checkpoint compatibility.
     value_activation: str = "identity"
+
+    def validate(self) -> None:
+        positive = {
+            "d_model": self.d_model,
+            "n_layers": self.n_layers,
+            "n_heads": self.n_heads,
+            "d_ff": self.d_ff,
+            "d_stat": self.d_stat,
+            "d_eff": self.d_eff,
+            "d_num": self.d_num,
+            "d_card": self.d_card,
+        }
+        for name, value in positive.items():
+            if isinstance(value, bool) or int(value) != value or value < 1:
+                raise ValueError(f"{name} must be a positive integer")
+        if self.n_registers < 0:
+            raise ValueError("n_registers must be nonnegative")
+        if self.d_model % self.n_heads:
+            raise ValueError("d_model must be divisible by n_heads")
+        if self.d_num != LIVE_NUMERIC_WIDTH:
+            raise ValueError(
+                f"d_num is fixed by the flat schema at {LIVE_NUMERIC_WIDTH}"
+            )
+        if not math.isfinite(self.dropout) or not 0 <= self.dropout < 1:
+            raise ValueError("dropout must be finite and in [0, 1)")
+        if self.value_activation not in {"identity", "tanh"}:
+            raise ValueError("value_activation must be 'identity' or 'tanh'")
 
 
 @dataclass(frozen=True)
@@ -134,8 +162,7 @@ class EngineNativeNet(nn.Module):
     ) -> None:
         super().__init__()
         self.config = config or ModelConfig()
-        if self.config.value_activation not in {"identity", "tanh"}:
-            raise ValueError("value_activation must be 'identity' or 'tanh'")
+        self.config.validate()
         tables = tables or FrozenTables.placeholder()
         d = self.config.d_model
 

@@ -41,6 +41,8 @@ RUNTIME_MODULES = (
     "features.py",
     "featurize.py",
     "flat.py",
+    "engine_search.py",
+    "mcts.py",
     "model.py",
     "policy.py",
     "spec.py",
@@ -55,6 +57,7 @@ from engine_native_policy import (  # noqa: E402
     EngineNativeNet,
     FrozenTables,
     ModelConfig,
+    SearchConfig,
 )
 
 
@@ -118,6 +121,22 @@ def extract_model_config(payload: Any) -> ModelConfig:
         raise RuntimeError(f"checkpoint model_config is invalid: {exc}") from exc
 
 
+def extract_search_config(payload: Any) -> SearchConfig:
+    """Recover search behavior, explicitly disabled for old/IL checkpoints."""
+
+    if not isinstance(payload, Mapping) or payload.get("search_config") is None:
+        return SearchConfig(enabled=False)
+    raw = payload["search_config"]
+    if not isinstance(raw, Mapping):
+        raise RuntimeError("checkpoint search_config must be an object")
+    try:
+        config = SearchConfig(**dict(raw))
+        config.validate()
+        return config
+    except (TypeError, ValueError) as exc:
+        raise RuntimeError(f"checkpoint search_config is invalid: {exc}") from exc
+
+
 def _cpu_state_dict(
     state: Mapping[str, torch.Tensor],
 ) -> dict[str, torch.Tensor]:
@@ -174,6 +193,7 @@ def build_agent(
     output_dir: Path,
     tables_path: Path = DEFAULT_TABLES,
     agent_name: str | None = None,
+    search_config: SearchConfig | None = None,
 ) -> dict[str, Any]:
     checkpoint = checkpoint.expanduser().resolve()
     deck_path = deck_path.expanduser().resolve()
@@ -202,15 +222,17 @@ def build_agent(
     payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
     state, checkpoint_field = extract_state_dict(payload)
     model_config = extract_model_config(payload)
+    resolved_search = search_config or extract_search_config(payload)
+    resolved_search.validate()
+    if resolved_search.enabled and model_config.value_activation != "tanh":
+        raise RuntimeError(
+            "tree-search agents require a tanh-bounded value checkpoint"
+        )
     serving_state = _cpu_state_dict(state)
 
     network = EngineNativeNet(config=model_config, tables=tables)
     network.load_state_dict(serving_state, strict=True)
     parameter_count = network.parameter_count()
-    if parameter_count != 2_370_259:
-        raise RuntimeError(
-            f"unexpected model parameter count: {parameter_count:,}"
-        )
 
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     staging = output_dir.parent / (
@@ -233,6 +255,7 @@ def build_agent(
                 "format": "engine-native-agent-v1",
                 "state_dict": serving_state,
                 "model_config": vars(model_config),
+                "search_config": resolved_search.as_dict(),
             },
             staging / "model.pt",
         )
@@ -267,6 +290,7 @@ def build_agent(
             "model": {
                 "parameter_count": parameter_count,
                 "config": vars(model_config),
+                "search": resolved_search.as_dict(),
                 "runtime_modules": list(runtime_modules),
             },
         }
@@ -312,17 +336,49 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         "--name",
         help="Display name recorded in the generated manifest/README.",
     )
+    parser.add_argument(
+        "--tree-search",
+        choices=("true", "false"),
+        default=None,
+        help="Override checkpoint search behavior; omitted preserves metadata.",
+    )
+    parser.add_argument("--mcts-simulations", type=int, default=800)
+    parser.add_argument("--mcts-max-depth", type=int, default=32)
+    parser.add_argument("--mcts-c-puct", type=float, default=1.5)
+    parser.add_argument("--mcts-dirichlet-alpha", type=float, default=0.3)
+    parser.add_argument("--mcts-dirichlet-epsilon", type=float, default=0.25)
+    parser.add_argument("--mcts-temperature", type=float, default=1.0)
+    parser.add_argument("--mcts-per-decision-seconds", type=float, default=None)
+    parser.add_argument("--mcts-game-budget-seconds", type=float, default=None)
+    parser.add_argument("--mcts-seed", type=int, default=20260730)
     return parser.parse_args(argv)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parse_args(argv)
+    search_config = (
+        None
+        if args.tree_search is None
+        else SearchConfig(
+            enabled=args.tree_search == "true",
+            simulations=args.mcts_simulations,
+            max_depth=args.mcts_max_depth,
+            c_puct=args.mcts_c_puct,
+            dirichlet_alpha=args.mcts_dirichlet_alpha,
+            dirichlet_epsilon=args.mcts_dirichlet_epsilon,
+            temperature=args.mcts_temperature,
+            per_decision_seconds=args.mcts_per_decision_seconds,
+            game_budget_seconds=args.mcts_game_budget_seconds,
+            seed=args.mcts_seed,
+        )
+    )
     manifest = build_agent(
         checkpoint=args.checkpoint,
         deck_path=args.deck,
         output_dir=args.output_dir,
         tables_path=args.tables,
         agent_name=args.name,
+        search_config=search_config,
     )
     print(f"Created agent: {args.output_dir.resolve()}")
     print(

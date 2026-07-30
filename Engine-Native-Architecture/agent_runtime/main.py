@@ -41,6 +41,7 @@ from engine_native_policy import (
     EngineNativePolicy,
     FrozenTables,
     ModelConfig,
+    SearchConfig,
 )
 
 
@@ -84,7 +85,12 @@ def _load_policy() -> EngineNativePolicy:
         tables=tables,
     )
     network.load_state_dict(payload["state_dict"], strict=True)
-    return EngineNativePolicy(network, MY_DECK, device=_device())
+    return EngineNativePolicy(
+        network,
+        MY_DECK,
+        device=_device(),
+        search_config=SearchConfig(**payload.get("search_config", {})),
+    )
 
 
 def agent(obs_dict: dict) -> list[int]:

@@ -5,6 +5,7 @@ import torch
 
 from engine_native_policy.actions import select_options
 from engine_native_policy.model import EngineNativeNet
+from engine_native_policy.mcts import SearchConfig
 from engine_native_policy.policy import EngineNativePolicy
 
 from helpers import sample_deck, sample_observation
@@ -41,6 +42,34 @@ def test_serving_wrapper_returns_engine_option_indices() -> None:
         sample_deck(),
         allow_provisional_tables=True,
     )
+    choices = policy.choose(sample_observation())
+    assert len(choices) == 1
+    assert 0 <= choices[0] < 5
+
+
+def test_search_requires_bounded_value_head() -> None:
+    with pytest.raises(ValueError, match="tanh-bounded"):
+        EngineNativePolicy(
+            EngineNativeNet(),
+            sample_deck(),
+            allow_provisional_tables=True,
+            search_config=SearchConfig(enabled=True),
+        )
+
+
+def test_exhausted_game_budget_falls_back_to_raw_policy() -> None:
+    torch.manual_seed(3)
+    policy = EngineNativePolicy(
+        EngineNativeNet(),
+        sample_deck(),
+        allow_provisional_tables=True,
+    )
+    policy.search_config = SearchConfig(
+        enabled=True,
+        simulations=1,
+        game_budget_seconds=1.0,
+    )
+    policy._search_seconds_used = 1.0
     choices = policy.choose(sample_observation())
     assert len(choices) == 1
     assert 0 <= choices[0] < 5

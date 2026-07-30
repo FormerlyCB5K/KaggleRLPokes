@@ -30,6 +30,8 @@ from engine_native_policy.il.trainer import (  # noqa: E402
     TrainingConfig,
     run_training,
 )
+from engine_native_policy.model import ModelConfig  # noqa: E402
+from engine_native_policy.mcts import SearchConfig  # noqa: E402
 
 
 NO_EVALUATION = "NO EVALUATION PERFORMED FOR THIS RUN"
@@ -374,6 +376,14 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=256)
     parser.add_argument("--num-workers", type=int, default=4)
     parser.add_argument("--learning-rate", type=float, default=1e-3)
+    parser.add_argument("--model-width", type=int, default=224)
+    parser.add_argument("--model-layers", type=int, default=4)
+    parser.add_argument("--model-heads", type=int, default=4)
+    parser.add_argument("--model-feedforward-width", type=int, default=448)
+    parser.add_argument("--model-static-width", type=int, default=32)
+    parser.add_argument("--model-effect-width", type=int, default=48)
+    parser.add_argument("--model-registers", type=int, default=4)
+    parser.add_argument("--model-dropout", type=float, default=0.0)
     parser.add_argument(
         "--value-loss-weight",
         type=float,
@@ -383,6 +393,21 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
             "supervised-learning experiment."
         ),
     )
+    parser.add_argument(
+        "--tree-search",
+        type=_parse_bool,
+        default=False,
+        metavar="{true,false}",
+    )
+    parser.add_argument("--mcts-simulations", type=int, default=800)
+    parser.add_argument("--mcts-max-depth", type=int, default=32)
+    parser.add_argument("--mcts-c-puct", type=float, default=1.5)
+    parser.add_argument("--mcts-dirichlet-alpha", type=float, default=0.3)
+    parser.add_argument("--mcts-dirichlet-epsilon", type=float, default=0.25)
+    parser.add_argument("--mcts-temperature", type=float, default=1.0)
+    parser.add_argument("--mcts-per-decision-seconds", type=float, default=None)
+    parser.add_argument("--mcts-game-budget-seconds", type=float, default=None)
+    parser.add_argument("--mcts-seed", type=int, default=20260730)
     parser.add_argument(
         "--device", choices=("auto", "cpu", "cuda"), default="auto"
     )
@@ -464,6 +489,32 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         or args.value_loss_weight < 0
     ):
         parser.error("--value-loss-weight must be finite and non-negative")
+    try:
+        ModelConfig(
+            d_model=args.model_width,
+            n_layers=args.model_layers,
+            n_heads=args.model_heads,
+            d_ff=args.model_feedforward_width,
+            d_stat=args.model_static_width,
+            d_eff=args.model_effect_width,
+            n_registers=args.model_registers,
+            dropout=args.model_dropout,
+            value_activation="tanh",
+        ).validate()
+        SearchConfig(
+            enabled=args.tree_search,
+            simulations=args.mcts_simulations,
+            max_depth=args.mcts_max_depth,
+            c_puct=args.mcts_c_puct,
+            dirichlet_alpha=args.mcts_dirichlet_alpha,
+            dirichlet_epsilon=args.mcts_dirichlet_epsilon,
+            temperature=args.mcts_temperature,
+            per_decision_seconds=args.mcts_per_decision_seconds,
+            game_budget_seconds=args.mcts_game_budget_seconds,
+            seed=args.mcts_seed,
+        ).validate()
+    except ValueError as exc:
+        parser.error(str(exc))
     if args.evaluation_games <= 0:
         parser.error("--evaluation-games must be positive")
     if args.evaluation_max_actions <= 0:
@@ -477,6 +528,18 @@ def _new_record(args: argparse.Namespace, config_log: Path) -> dict[str, Any]:
         for key, value in vars(args).items()
     }
     switches["config_log"] = str(config_log)
+    search_config = SearchConfig(
+        enabled=args.tree_search,
+        simulations=args.mcts_simulations,
+        max_depth=args.mcts_max_depth,
+        c_puct=args.mcts_c_puct,
+        dirichlet_alpha=args.mcts_dirichlet_alpha,
+        dirichlet_epsilon=args.mcts_dirichlet_epsilon,
+        temperature=args.mcts_temperature,
+        per_decision_seconds=args.mcts_per_decision_seconds,
+        game_budget_seconds=args.mcts_game_budget_seconds,
+        seed=args.mcts_seed,
+    ).as_dict()
     return {
         "schema_version": "engine-native-training-run-v1",
         "model": {
@@ -493,9 +556,14 @@ def _new_record(args: argparse.Namespace, config_log: Path) -> dict[str, Any]:
             "value_activation": "tanh",
         },
         "tree_search": {
-            "enabled": False,
-            "mode": "disabled",
-            "reason": "imitation_learning_without_search",
+            **search_config,
+            "mode": (
+                "alpha_zero_mcts"
+                if args.tree_search
+                else "disabled"
+            ),
+            "boundary_policy": "conservative_public_information",
+            "multi_select": "policy_resolved_macro_action",
         },
         "switches": switches,
         "created_at_utc": _utc_now(),
@@ -562,6 +630,29 @@ def main(argv: Sequence[str] | None = None) -> int:
     record["updated_at_utc"] = _utc_now()
     _write_json_atomic(config_log, record)
 
+    search_config = SearchConfig(
+        enabled=args.tree_search,
+        simulations=args.mcts_simulations,
+        max_depth=args.mcts_max_depth,
+        c_puct=args.mcts_c_puct,
+        dirichlet_alpha=args.mcts_dirichlet_alpha,
+        dirichlet_epsilon=args.mcts_dirichlet_epsilon,
+        temperature=args.mcts_temperature,
+        per_decision_seconds=args.mcts_per_decision_seconds,
+        game_budget_seconds=args.mcts_game_budget_seconds,
+        seed=args.mcts_seed,
+    )
+    model_config = ModelConfig(
+        d_model=args.model_width,
+        n_layers=args.model_layers,
+        n_heads=args.model_heads,
+        d_ff=args.model_feedforward_width,
+        d_stat=args.model_static_width,
+        d_eff=args.model_effect_width,
+        n_registers=args.model_registers,
+        dropout=args.model_dropout,
+        value_activation="tanh",
+    )
     config = TrainingConfig(
         dataset_root=args.dataset_root,
         output_dir=args.out_dir,
@@ -572,6 +663,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         num_workers=args.num_workers,
         learning_rate=args.learning_rate,
         value_loss_weight=args.value_loss_weight,
+        model_config=model_config,
+        search_config=search_config,
         device=args.device,
         precision=args.precision,
         gradient_clip=args.gradient_clip,

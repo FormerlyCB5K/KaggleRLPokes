@@ -110,8 +110,18 @@ def test_combined_config_records_switches_summaries_and_no_evaluation(
     }
     assert record["tree_search"] == {
         "enabled": False,
+        "simulations": 800,
+        "max_depth": 32,
+        "c_puct": 1.5,
+        "dirichlet_alpha": 0.3,
+        "dirichlet_epsilon": 0.25,
+        "temperature": 1.0,
+        "per_decision_seconds": None,
+        "game_budget_seconds": None,
+        "seed": 20260730,
         "mode": "disabled",
-        "reason": "imitation_learning_without_search",
+        "boundary_policy": "conservative_public_information",
+        "multi_select": "policy_resolved_macro_action",
     }
     assert record["training"]["best_validation_loss"] == 0.805
     assert record["training"]["last_epoch"]["metrics"]["nll"] == 1.0

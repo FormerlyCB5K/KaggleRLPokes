@@ -35,7 +35,25 @@ EPOCHS="${EPOCHS:-100}"
 BATCH_SIZE="${BATCH_SIZE:-256}"
 NUM_WORKERS="${NUM_WORKERS:-8}"
 LEARNING_RATE="${LEARNING_RATE:-1e-4}"
+MODEL_WIDTH="${MODEL_WIDTH:-224}"
+MODEL_LAYERS="${MODEL_LAYERS:-4}"
+MODEL_HEADS="${MODEL_HEADS:-4}"
+MODEL_FEEDFORWARD_WIDTH="${MODEL_FEEDFORWARD_WIDTH:-448}"
+MODEL_STATIC_WIDTH="${MODEL_STATIC_WIDTH:-32}"
+MODEL_EFFECT_WIDTH="${MODEL_EFFECT_WIDTH:-48}"
+MODEL_REGISTERS="${MODEL_REGISTERS:-4}"
+MODEL_DROPOUT="${MODEL_DROPOUT:-0.0}"
 VALUE_LOSS_WEIGHT="${VALUE_LOSS_WEIGHT:-0.01}"
+TREE_SEARCH="${TREE_SEARCH:-false}"
+MCTS_SIMULATIONS="${MCTS_SIMULATIONS:-800}"
+MCTS_MAX_DEPTH="${MCTS_MAX_DEPTH:-32}"
+MCTS_C_PUCT="${MCTS_C_PUCT:-1.5}"
+MCTS_DIRICHLET_ALPHA="${MCTS_DIRICHLET_ALPHA:-0.3}"
+MCTS_DIRICHLET_EPSILON="${MCTS_DIRICHLET_EPSILON:-0.25}"
+MCTS_TEMPERATURE="${MCTS_TEMPERATURE:-1.0}"
+MCTS_PER_DECISION_SECONDS="${MCTS_PER_DECISION_SECONDS:-}"
+MCTS_GAME_BUDGET_SECONDS="${MCTS_GAME_BUDGET_SECONDS:-}"
+MCTS_SEED="${MCTS_SEED:-20260730}"
 DEVICE="${DEVICE:-cuda}"
 PRECISION="${PRECISION:-auto}"
 GRADIENT_CLIP="${GRADIENT_CLIP:-1.0}"
@@ -76,7 +94,25 @@ Training:
   --batch-size N
   --num-workers N
   --learning-rate FLOAT
+  --model-width N
+  --model-layers N
+  --model-heads N
+  --model-feedforward-width N
+  --model-static-width N
+  --model-effect-width N
+  --model-registers N
+  --model-dropout FLOAT
   --value-loss-weight FLOAT
+  --tree-search true|false
+  --mcts-simulations N
+  --mcts-max-depth N
+  --mcts-c-puct FLOAT
+  --mcts-dirichlet-alpha FLOAT
+  --mcts-dirichlet-epsilon FLOAT
+  --mcts-temperature FLOAT
+  --mcts-per-decision-seconds FLOAT
+  --mcts-game-budget-seconds FLOAT
+  --mcts-seed N
   --device auto|cpu|cuda
   --precision auto|fp32|fp16|bf16
   --gradient-clip FLOAT
@@ -122,7 +158,25 @@ while [ "$#" -gt 0 ]; do
         --batch-size) require_value "$@"; BATCH_SIZE="$2"; shift 2 ;;
         --num-workers) require_value "$@"; NUM_WORKERS="$2"; shift 2 ;;
         --learning-rate) require_value "$@"; LEARNING_RATE="$2"; shift 2 ;;
+        --model-width) require_value "$@"; MODEL_WIDTH="$2"; shift 2 ;;
+        --model-layers) require_value "$@"; MODEL_LAYERS="$2"; shift 2 ;;
+        --model-heads) require_value "$@"; MODEL_HEADS="$2"; shift 2 ;;
+        --model-feedforward-width) require_value "$@"; MODEL_FEEDFORWARD_WIDTH="$2"; shift 2 ;;
+        --model-static-width) require_value "$@"; MODEL_STATIC_WIDTH="$2"; shift 2 ;;
+        --model-effect-width) require_value "$@"; MODEL_EFFECT_WIDTH="$2"; shift 2 ;;
+        --model-registers) require_value "$@"; MODEL_REGISTERS="$2"; shift 2 ;;
+        --model-dropout) require_value "$@"; MODEL_DROPOUT="$2"; shift 2 ;;
         --value-loss-weight) require_value "$@"; VALUE_LOSS_WEIGHT="$2"; shift 2 ;;
+        --tree-search) require_value "$@"; TREE_SEARCH="$2"; shift 2 ;;
+        --mcts-simulations) require_value "$@"; MCTS_SIMULATIONS="$2"; shift 2 ;;
+        --mcts-max-depth) require_value "$@"; MCTS_MAX_DEPTH="$2"; shift 2 ;;
+        --mcts-c-puct) require_value "$@"; MCTS_C_PUCT="$2"; shift 2 ;;
+        --mcts-dirichlet-alpha) require_value "$@"; MCTS_DIRICHLET_ALPHA="$2"; shift 2 ;;
+        --mcts-dirichlet-epsilon) require_value "$@"; MCTS_DIRICHLET_EPSILON="$2"; shift 2 ;;
+        --mcts-temperature) require_value "$@"; MCTS_TEMPERATURE="$2"; shift 2 ;;
+        --mcts-per-decision-seconds) require_value "$@"; MCTS_PER_DECISION_SECONDS="$2"; shift 2 ;;
+        --mcts-game-budget-seconds) require_value "$@"; MCTS_GAME_BUDGET_SECONDS="$2"; shift 2 ;;
+        --mcts-seed) require_value "$@"; MCTS_SEED="$2"; shift 2 ;;
         --device) require_value "$@"; DEVICE="$2"; shift 2 ;;
         --precision) require_value "$@"; PRECISION="$2"; shift 2 ;;
         --gradient-clip) require_value "$@"; GRADIENT_CLIP="$2"; shift 2 ;;
@@ -165,7 +219,7 @@ if [[ ! "$RUN_NAME" =~ ^[A-Za-z0-9._-]+$ ]]; then
     echo "--run-name must contain only letters, numbers, dots, underscores, or hyphens." >&2
     exit 2
 fi
-for boolean_name in RESUME SKIP_CACHE_HASH_VERIFICATION EVALUATE; do
+for boolean_name in RESUME SKIP_CACHE_HASH_VERIFICATION EVALUATE TREE_SEARCH; do
     boolean_value="${!boolean_name}"
     case "$boolean_value" in
         1|yes|on) printf -v "$boolean_name" '%s' true ;;
@@ -206,7 +260,9 @@ echo "Cache: $CACHE_ROOT"
 echo "Output: $OUT_DIR"
 echo "Config log: $CONFIG_LOG"
 echo "Epochs: $EPOCHS; batch: $BATCH_SIZE; learning rate: $LEARNING_RATE"
-echo "Value loss weight: $VALUE_LOSS_WEIGHT; tree search: disabled"
+echo "Model: width=$MODEL_WIDTH layers=$MODEL_LAYERS heads=$MODEL_HEADS ff=$MODEL_FEEDFORWARD_WIDTH static=$MODEL_STATIC_WIDTH effect=$MODEL_EFFECT_WIDTH registers=$MODEL_REGISTERS dropout=$MODEL_DROPOUT"
+echo "Value loss weight: $VALUE_LOSS_WEIGHT"
+echo "Tree search: $TREE_SEARCH; simulations: $MCTS_SIMULATIONS; depth: $MCTS_MAX_DEPTH; c_puct: $MCTS_C_PUCT"
 echo "Evaluation: $EVALUATE; games: $EVALUATION_GAMES"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
@@ -220,7 +276,23 @@ TRAIN_ARGS=(
     --batch-size "$BATCH_SIZE"
     --num-workers "$NUM_WORKERS"
     --learning-rate "$LEARNING_RATE"
+    --model-width "$MODEL_WIDTH"
+    --model-layers "$MODEL_LAYERS"
+    --model-heads "$MODEL_HEADS"
+    --model-feedforward-width "$MODEL_FEEDFORWARD_WIDTH"
+    --model-static-width "$MODEL_STATIC_WIDTH"
+    --model-effect-width "$MODEL_EFFECT_WIDTH"
+    --model-registers "$MODEL_REGISTERS"
+    --model-dropout "$MODEL_DROPOUT"
     --value-loss-weight "$VALUE_LOSS_WEIGHT"
+    --tree-search "$TREE_SEARCH"
+    --mcts-simulations "$MCTS_SIMULATIONS"
+    --mcts-max-depth "$MCTS_MAX_DEPTH"
+    --mcts-c-puct "$MCTS_C_PUCT"
+    --mcts-dirichlet-alpha "$MCTS_DIRICHLET_ALPHA"
+    --mcts-dirichlet-epsilon "$MCTS_DIRICHLET_EPSILON"
+    --mcts-temperature "$MCTS_TEMPERATURE"
+    --mcts-seed "$MCTS_SEED"
     --device "$DEVICE"
     --precision "$PRECISION"
     --gradient-clip "$GRADIENT_CLIP"
@@ -243,6 +315,12 @@ TRAIN_ARGS=(
 )
 if [ -n "$MAX_OPTIMIZER_STEPS" ]; then
     TRAIN_ARGS+=(--max-optimizer-steps "$MAX_OPTIMIZER_STEPS")
+fi
+if [ -n "$MCTS_PER_DECISION_SECONDS" ]; then
+    TRAIN_ARGS+=(--mcts-per-decision-seconds "$MCTS_PER_DECISION_SECONDS")
+fi
+if [ -n "$MCTS_GAME_BUDGET_SECONDS" ]; then
+    TRAIN_ARGS+=(--mcts-game-budget-seconds "$MCTS_GAME_BUDGET_SECONDS")
 fi
 if [ -n "$INITIAL_CHECKPOINT" ]; then
     TRAIN_ARGS+=(--initial-checkpoint "$INITIAL_CHECKPOINT")

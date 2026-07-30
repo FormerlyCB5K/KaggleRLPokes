@@ -1,13 +1,11 @@
 # 06 - AlphaZero-Style Search Decisions
 
-Status: active design and staged-implementation record; value-learning gate approved
-by the user on 2026-07-30.
+Status: active implementation record; value-learning gate and MCTS implementation
+approved by the user on 2026-07-30.
 
-This file records decisions made during architecture discussion. The user authorized
-the gated terminal-outcome value-learning phase on 2026-07-30. Multi-selection search
-semantics remain deferred until MCTS implementation planning. Integration with the
-run-config system is also deferred until the user confirms that the concurrently
-developed config work is ready to extend.
+This file records decisions and their staged implementation. The user authorized the
+gated terminal-outcome value-learning phase and then the MCTS phase on 2026-07-30.
+Multi-selection semantics and config integration are now implemented as specified below.
 
 This work applies only to `Engine-Native-Architecture/` and its
 `Imitation-Learning/` data and training path. `Ceruledge-RL/` is deprecated.
@@ -18,8 +16,8 @@ This work applies only to `Engine-Native-Architecture/` and its
   network value evaluates nonterminal leaves.
 - Do not perform random rollouts.
 - Use one shared network body with policy and value heads.
-- The initial phase remains imitation learning. AlphaZero-style self-play fine-tuning is
-  a later phase, not part of the first implementation.
+- Imitation learning remains the initialization phase. AlphaZero-style self-play is a
+  separate subsequent pipeline and never rewrites the offline expert targets.
 - Search must be available when trained agents play, including training-time gameplay
   evaluation.
 - Do not run MCTS over the recorded imitation corpus to relabel or distill its expert
@@ -138,9 +136,9 @@ U(s,a) = c_puct * P(s,a) * sqrt(N(s)) / (1 + N(s,a))
   sampled outcome.
 - Do not introduce a `GameStateTracker`, `PrizeTracker`, hidden-card reconstruction,
   belief-state tracker, or determinization ensemble.
-- Keep boundary detection local and minimal. The exact pre-transition detection
-  mechanism remains an implementation-planning question because `search_step` may
-  automatically advance across hidden-state consumption.
+- Keep boundary detection local and minimal. The first implementation combines
+  pre-transition effect/END checks with post-step log, zone, prompt, and actor checks,
+  and backs up the last safe public-information value.
 - TODO after the conservative first version: revisit public-information inference that
   can safely narrow deck and facedown-Prize composition without accessing true hidden
   state. Do not block initial MCTS on this extension and do not introduce a general
@@ -158,9 +156,9 @@ U(s,a) = c_puct * P(s,a) * sqrt(N(s)) / (1 + N(s,a))
   deterministically, except that an immediate proven terminal win takes precedence.
 - Training and evaluation must have separate repetition and wall-clock budgets. Training
   may use more search than evaluation.
-- Kaggle play must respect the ten-minute total game budget. Search needs both a
-  per-decision limit and game-budget-aware time management; exact allocation remains for
-  implementation planning.
+- Kaggle play must respect the ten-minute total game budget. Search exposes both a
+  per-decision limit and a cumulative game search budget; exhaustion falls back to the
+  raw policy head.
 - MCTS repetitions, maximum depth, PUCT parameters, search temperatures/noise, wall-clock
   limits, and network hyperparameters must ultimately be batch-script switches and be
   logged by the config system.
@@ -205,10 +203,50 @@ Before the gate may be opened:
    checkpoint/resume behavior, and validation metrics; and
 5. the completed value-learning change and its evidence must be reviewed by the user.
 
-The shared MCTS runtime is now authorized. Self-play checkpoint-update semantics remain
-under discussion and must be locked before implementing the self-play orchestration.
+The shared MCTS runtime and self-play preparation are authorized. The initial self-play
+checkpoint policy is the AlphaZero/latest-network policy: each game pins one immutable
+hash of the current latest checkpoint from start to finish, the resulting training
+update becomes the next latest network, and there is no AlphaGo Zero 55% promotion
+gate. Periodic head-to-head evaluation remains diagnostic and does not gate promotion.
 
-## 11. Value-learning implementation awaiting user review
+## 12. Initial MCTS and self-play implementation
+
+The first implementation now includes:
+
+- a generic constant-`c_puct` neural MCTS with direct value leaves, exact terminal
+  scoring, root Dirichlet noise only in training, temperature-controlled root-visit
+  sampling in training, and greedy root visits in evaluation;
+- an engine-native bridge using only engine-provided legal options, `manual_coin=True`,
+  policy-resolved true multi-select macro-actions, and conservative local
+  hidden-information boundaries;
+- fresh trees per real decision, immediate root-terminal-win selection, configurable
+  simulation/depth/per-decision/cumulative-game budgets, and deterministic seeds;
+- search-enabled serving bundles that require a `tanh` value head and preserve every
+  resolved search switch in `model.pt` and the bundle manifest;
+- a latest-network self-play generator that pins the checkpoint per game, stores root
+  visit distributions and acting-player terminal outcomes in atomic per-game shards,
+  retains forced/multi-select positions as value-only examples, and records the exact
+  checkpoint hash for every game;
+- a replay-window trainer using equal policy/value coefficients of `1.0`, L2 coefficient
+  `1e-4`, a deterministic game-disjoint train/validation split, and no promotion gate;
+  and
+- cluster entry points and reference commands for imitation configuration, self-play
+  generation, replay training, and time-bounded Kaggle packaging.
+
+The meaningful network shape switches are model width, encoder layers, attention heads,
+feed-forward width, static/effect projection widths, register count, and dropout. They
+are available in the shared imitation batch entry point and logged in checkpoints and
+run configs. `d_num` remains fixed by the 2,239-field interchange schema and `d_card`
+remains a deliberately dead compatibility field, so neither is presented as a
+misleading training switch.
+
+The cumulative search budget is accounted across decisions by a serving policy instance.
+When exhausted, serving falls back to the raw policy head instead of exceeding the
+configured game budget. The reference Kaggle profile reserves two minutes of the
+ten-minute game limit by using a 480-second cumulative search cap; this is a configurable
+operational starting point rather than a paper-derived constant.
+
+## 11. Completed value-learning implementation
 
 The gated imitation-learning change is implemented as follows:
 
@@ -248,10 +286,9 @@ joint-loss gradients, value range, metrics, interrupted/resumed training equalit
 serving-bundle metadata, exact 2,370,259-parameter accounting, and unchanged golden
 reference outputs.
 
-The run-config/batch-script extension for MCTS remains unimplemented until the MCTS
-gate opens. Every search parameter listed in section 7 must then be exposed by the
-command line and batch entry point, written to the run config, and reflected in
-`cluster/COMMAND_EXAMPLES.txt`. The current imitation entry point already exposes and
-logs `value_loss_weight = 0.01`, records the no-shaping terminal-outcome contract, and
-records tree search as explicitly disabled. MCTS runs must replace that disabled block
-with the complete resolved search profile, including `c_puct`.
+The run-config/batch-script extension is implemented. Every current search parameter is
+exposed by the command line and batch entry points, written to run config, and reflected
+in `cluster/COMMAND_EXAMPLES.txt`. Imitation runs expose and log
+`value_loss_weight = 0.01`, record the no-shaping terminal-outcome contract, and record
+tree search explicitly as either disabled or with the complete resolved profile,
+including `c_puct`.

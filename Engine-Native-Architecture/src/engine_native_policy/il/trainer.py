@@ -10,7 +10,7 @@ import random
 import time
 import uuid
 from collections.abc import Callable, Mapping
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -21,6 +21,7 @@ from torch import nn
 
 from ..flat import decode_batch
 from ..model import EngineNativeNet, ModelConfig
+from ..mcts import SearchConfig
 from ..spec import OptionKind
 from ..tables import FrozenTables
 from .cache import sha256_file, verify_cache
@@ -43,6 +44,12 @@ class TrainingConfig:
     num_workers: int = 4
     learning_rate: float = 1e-3
     value_loss_weight: float = 0.01
+    model_config: ModelConfig = field(
+        default_factory=lambda: ModelConfig(value_activation="tanh")
+    )
+    search_config: SearchConfig = field(
+        default_factory=lambda: SearchConfig(enabled=False)
+    )
     device: str = "auto"
     precision: str = "auto"
     gradient_clip: float = 1.0
@@ -70,6 +77,12 @@ class TrainingConfig:
             or self.value_loss_weight < 0
         ):
             raise ValueError("value_loss_weight must be finite and nonnegative")
+        self.model_config.validate()
+        if self.model_config.value_activation != "tanh":
+            raise ValueError(
+                "imitation terminal-outcome training requires tanh value activation"
+            )
+        self.search_config.validate()
         if self.gradient_clip < 0:
             raise ValueError("gradient_clip must be nonnegative")
         if self.early_stopping_patience < 0:
@@ -459,6 +472,7 @@ def _checkpoint_payload(
             if isinstance(model, EngineNativeNet)
             else None
         ),
+        "search_config": dict(signature["search_config"]),
         "optimizer_state_dict": optimizer.state_dict(),
         "scaler_state_dict": scaler.state_dict(),
         "epoch": epoch,
@@ -492,6 +506,7 @@ def _best_payload(
             if isinstance(model, EngineNativeNet)
             else None
         ),
+        "search_config": dict(signature["search_config"]),
         "epoch": epoch,
         "global_step": global_step,
         "validation": dict(validation),
@@ -514,7 +529,9 @@ def _signature(
         "batch_size": config.batch_size,
         "learning_rate": config.learning_rate,
         "value_loss_weight": config.value_loss_weight,
-        "value_activation": "tanh",
+        "value_activation": config.model_config.value_activation,
+        "model_config": asdict(config.model_config),
+        "search_config": config.search_config.as_dict(),
         "precision": resolved_precision,
         "gradient_clip": config.gradient_clip,
         "seed": config.seed,
@@ -596,7 +613,7 @@ def run_training(
         model_factory(tables)
         if model_factory is not None
         else EngineNativeNet(
-            config=ModelConfig(value_activation="tanh"),
+            config=config.model_config,
             tables=tables,
         )
     ).to(device)
@@ -698,6 +715,7 @@ def run_training(
             if isinstance(model, EngineNativeNet)
             else None
         ),
+        "search_config": config.search_config.as_dict(),
         "signature": signature,
     }
     if config_path.is_file():

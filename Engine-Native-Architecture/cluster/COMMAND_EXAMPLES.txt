@@ -38,7 +38,16 @@ bash Engine-Native-Architecture/cluster/submit_top_rated_all_perspectives_il.sh 
   --batch-size 256 \
   --num-workers 8 \
   --learning-rate 1e-4 \
+  --model-width 224 \
+  --model-layers 4 \
+  --model-heads 4 \
+  --model-feedforward-width 448 \
+  --model-static-width 32 \
+  --model-effect-width 48 \
+  --model-registers 4 \
+  --model-dropout 0.0 \
   --value-loss-weight 0.01 \
+  --tree-search false \
   --device cuda \
   --precision auto \
   --gradient-clip 1.0 \
@@ -71,7 +80,16 @@ sbatch Engine-Native-Architecture/cluster/train_il_dataset.sbatch \
   --batch-size 256 \
   --num-workers 8 \
   --learning-rate 1e-4 \
+  --model-width 224 \
+  --model-layers 4 \
+  --model-heads 4 \
+  --model-feedforward-width 448 \
+  --model-static-width 32 \
+  --model-effect-width 48 \
+  --model-registers 4 \
+  --model-dropout 0.0 \
   --value-loss-weight 0.01 \
+  --tree-search false \
   --device cuda \
   --precision auto \
   --gradient-clip 1.0 \
@@ -232,15 +250,87 @@ echo "Smoke: $TEST_SMOKE_JOB (afterok:$TEST_BUILD_JOB)"
 echo "Train: $TEST_TRAIN_JOB (afterok:$TEST_SMOKE_JOB)"
 
 
-10. MANUAL CHECKPOINT EVALUATION
---------------------------------
+10. ALPHAZERO SELF-PLAY GENERATION AND LATEST-NETWORK UPDATE
+-------------------------------------------------------------
+
+# Start from a completed imitation checkpoint that has:
+#   value_activation=tanh
+# Package/evaluation search can be enabled explicitly at build time, but the
+# self-play trainer requires search-enabled metadata. To create that initial
+# checkpoint, run the IL command with --tree-search true and these switches.
+#
+# AlphaZero initial profile: 800 simulations, root Dirichlet noise during
+# self-play, visit sampling at temperature 1.0, no hard top-k pruning.
+
+REPLAY_ROOT="$PWD/Imitation-Learning/engine-native-selfplay/replay-v1"
+LATEST="$PWD/Imitation-Learning/engine-native-training/il-search-seed/checkpoint.best.pt"
+DECK="$PWD/Rising-Tide-Fixed-Metal-v15/deck.csv"
+
+GEN_JOB=$(sbatch --parsable \
+  Engine-Native-Architecture/cluster/generate_selfplay.sbatch \
+  --checkpoint "$LATEST" \
+  --deck "$DECK" \
+  --output-dir "$REPLAY_ROOT" \
+  --run-name selfplay-v1 \
+  --model-name "Engine Native AlphaZero v1" \
+  --model-description "Latest-network self-play; no promotion gate" \
+  --games 100 \
+  --mcts-simulations 800 \
+  --mcts-max-depth 32 \
+  --mcts-c-puct 1.5 \
+  --mcts-dirichlet-alpha 0.3 \
+  --mcts-dirichlet-epsilon 0.25 \
+  --mcts-temperature 1.0 \
+  --mcts-seed 20260730)
+GEN_JOB=${GEN_JOB%%;*}
+
+UPDATE_DIR="$PWD/Imitation-Learning/engine-native-selfplay/update-v1"
+TRAIN_JOB=$(sbatch --parsable \
+  --dependency="afterok:$GEN_JOB" \
+  Engine-Native-Architecture/cluster/train_selfplay.sbatch \
+  --replay-root "$REPLAY_ROOT" \
+  --out-dir "$UPDATE_DIR" \
+  --initial-checkpoint "$LATEST" \
+  --replay-window-games 500000 \
+  --validation-fraction 0.10 \
+  --epochs 1 \
+  --batch-size 256 \
+  --learning-rate 1e-3 \
+  --l2-weight 1e-4 \
+  --seed 20260730)
+TRAIN_JOB=${TRAIN_JOB%%;*}
+
+echo "Generate: $GEN_JOB"
+echo "Update: $TRAIN_JOB (afterok:$GEN_JOB)"
+
+# For the next cycle, point --checkpoint/--initial-checkpoint at:
+# "$UPDATE_DIR/checkpoint.latest.pt"
+# Each generated game pins one checkpoint hash from start to finish. The update
+# always becomes the next latest network; there is no 55% promotion gate.
+# Use --mcts-per-decision-seconds and --mcts-game-budget-seconds for bounded
+# generation. Kaggle packaging should normally reserve headroom within the
+# ten-minute game limit, for example 20 seconds per decision and 480 total.
+
+
+11. BUILD A SEARCH-ENABLED FOLDER AGENT AND EVALUATE
+-----------------------------------------------------
 
 # Package a checkpoint as a folder agent:
 python Engine-Native-Architecture/scripts/build_checkpoint_agent.py \
   --checkpoint "/path/to/checkpoint.best.pt" \
   --deck "$PWD/Rising-Tide-Fixed-Metal-v15/deck.csv" \
   --output-dir "$PWD/Imitation-Learning/checkpoint-agents/my-model" \
-  --name "My Model"
+  --name "My Model" \
+  --tree-search true \
+  --mcts-simulations 200 \
+  --mcts-max-depth 24 \
+  --mcts-c-puct 1.5 \
+  --mcts-dirichlet-alpha 0.3 \
+  --mcts-dirichlet-epsilon 0.25 \
+  --mcts-temperature 1.0 \
+  --mcts-per-decision-seconds 20 \
+  --mcts-game-budget-seconds 480 \
+  --mcts-seed 20260730
 
 # Run 100 side-alternating games:
 python evaluate_agents.py \
@@ -252,7 +342,7 @@ python evaluate_agents.py \
   --output "$PWD/match-logs/my-model-vs-archaludon.json"
 
 
-11. MONITOR JOBS AND FIND RESULTS
+12. MONITOR JOBS AND FIND RESULTS
 ---------------------------------
 
 squeue -u "$USER"
