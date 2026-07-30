@@ -393,6 +393,7 @@ def _write_log(
     started_at: str,
     bot_a: BotSource,
     bot_b: BotSource,
+    configured_decks: dict[str, Sequence[int]],
     requested_games: int,
     records: Sequence[GameResult],
     error: str | None = None,
@@ -404,8 +405,26 @@ def _write_log(
         "requested_games": requested_games,
         "completed_games": len(records),
         "bots": {
-            bot_a.name: {"folder": str(bot_a.folder), "entrypoint": str(bot_a.source)},
-            bot_b.name: {"folder": str(bot_b.folder), "entrypoint": str(bot_b.source)},
+            bot_a.name: {
+                "folder": str(bot_a.folder),
+                "entrypoint": str(bot_a.source),
+                "deck_source": (
+                    str(_deck_file(bot_a.folder))
+                    if _deck_file(bot_a.folder) is not None
+                    else f"{bot_a.source}:module_attribute"
+                ),
+                "configured_deck": list(configured_decks[bot_a.name]),
+            },
+            bot_b.name: {
+                "folder": str(bot_b.folder),
+                "entrypoint": str(bot_b.source),
+                "deck_source": (
+                    str(_deck_file(bot_b.folder))
+                    if _deck_file(bot_b.folder) is not None
+                    else f"{bot_b.source}:module_attribute"
+                ),
+                "configured_deck": list(configured_decks[bot_b.name]),
+            },
         },
         "games": [asdict(record) for record in records],
         "summary": summarize(records, bot_a.name, bot_b.name),
@@ -480,6 +499,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     output = output.expanduser().resolve()
     started_at = datetime.now(timezone.utc).isoformat()
     records: list[GameResult] = []
+    configured_decks = {
+        bot_a.name: bot_a.instantiate("deck-inspection-a").configured_deck,
+        bot_b.name: bot_b.instantiate("deck-inspection-b").configured_deck,
+    }
+    _clear_agent_modules((bot_a.folder, bot_b.folder))
 
     print(f"Bot A: {bot_a.name} ({bot_a.folder})")
     print(f"Bot B: {bot_b.name} ({bot_b.folder})")
@@ -504,13 +528,22 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f"{result.elapsed_seconds:.2f}s",
                 flush=True,
             )
-            _write_log(output, started_at, bot_a, bot_b, args.games, records)
+            _write_log(
+                output,
+                started_at,
+                bot_a,
+                bot_b,
+                configured_decks,
+                args.games,
+                records,
+            )
     except BaseException as exc:
         _write_log(
             output,
             started_at,
             bot_a,
             bot_b,
+            configured_decks,
             args.games,
             records,
             error=f"{type(exc).__name__}: {exc}",

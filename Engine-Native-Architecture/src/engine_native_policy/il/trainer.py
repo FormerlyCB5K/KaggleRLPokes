@@ -20,15 +20,15 @@ import torch
 from torch import nn
 
 from ..flat import decode_batch
-from ..model import EngineNativeNet
+from ..model import EngineNativeNet, ModelConfig
 from ..spec import OptionKind
 from ..tables import FrozenTables
 from .cache import sha256_file, verify_cache
 from .dataset import make_dataloader
-from .losses import LossBreakdown, batch_metrics, supervised_nll
+from .losses import LossBreakdown, batch_metrics, supervised_loss
 
 
-CHECKPOINT_VERSION = 1
+CHECKPOINT_VERSION = 2
 TIME_LIMIT_EXIT_CODE = 75
 
 
@@ -42,6 +42,7 @@ class TrainingConfig:
     batch_size: int = 256
     num_workers: int = 4
     learning_rate: float = 1e-3
+    value_loss_weight: float = 0.01
     device: str = "auto"
     precision: str = "auto"
     gradient_clip: float = 1.0
@@ -64,6 +65,11 @@ class TrainingConfig:
             raise ValueError("num_workers must be nonnegative")
         if self.learning_rate <= 0:
             raise ValueError("learning_rate must be positive")
+        if (
+            not math.isfinite(self.value_loss_weight)
+            or self.value_loss_weight < 0
+        ):
+            raise ValueError("value_loss_weight must be finite and nonnegative")
         if self.gradient_clip < 0:
             raise ValueError("gradient_clip must be nonnegative")
         if self.early_stopping_patience < 0:
@@ -160,8 +166,10 @@ def _fresh_loss_totals() -> dict[str, float | int]:
     return {
         "single_loss_sum": 0.0,
         "multi_loss_sum": 0.0,
+        "value_loss_sum": 0.0,
         "single_count": 0,
         "multi_count": 0,
+        "value_count": 0,
         "batches": 0,
         "elapsed_seconds": 0.0,
         "peak_cuda_memory_bytes": 0,
@@ -177,26 +185,43 @@ def _add_loss(
     totals["multi_loss_sum"] += float(
         breakdown.multi_loss_sum.detach().float().cpu()
     )
+    totals["value_loss_sum"] += float(
+        breakdown.value_loss_sum.detach().float().cpu()
+    )
     totals["single_count"] += breakdown.single_count
     totals["multi_count"] += breakdown.multi_count
+    totals["value_count"] += breakdown.value_count
     totals["batches"] += 1
 
 
-def _loss_summary(totals: Mapping[str, float | int]) -> dict[str, float | int]:
+def _loss_summary(
+    totals: Mapping[str, float | int], *, value_loss_weight: float
+) -> dict[str, float | int]:
     single_count = int(totals["single_count"])
     multi_count = int(totals["multi_count"])
     total_count = single_count + multi_count
     single_sum = float(totals["single_loss_sum"])
     multi_sum = float(totals["multi_loss_sum"])
+    value_sum = float(totals["value_loss_sum"])
+    value_count = int(totals["value_count"])
     elapsed = float(totals["elapsed_seconds"])
+    policy_nll = (
+        (single_sum + multi_sum) / total_count if total_count else 0.0
+    )
+    value_mse = value_sum / value_count if value_count else 0.0
     return {
         "examples": total_count,
         "batches": int(totals["batches"]),
-        "nll": (single_sum + multi_sum) / total_count if total_count else 0.0,
+        "loss": policy_nll + value_loss_weight * value_mse,
+        "nll": policy_nll,
+        "policy_nll": policy_nll,
+        "value_mse": value_mse,
+        "value_loss_weight": value_loss_weight,
         "single_nll": single_sum / single_count if single_count else 0.0,
         "multi_nll": multi_sum / multi_count if multi_count else 0.0,
         "single_count": single_count,
         "multi_count": multi_count,
+        "value_count": value_count,
         "elapsed_seconds": elapsed,
         "examples_per_second": total_count / elapsed if elapsed else 0.0,
         "peak_cuda_memory_bytes": int(totals["peak_cuda_memory_bytes"]),
@@ -215,6 +240,11 @@ def _fresh_validation_totals() -> dict[str, Any]:
         "multi_true_positive": 0,
         "multi_false_positive": 0,
         "multi_false_negative": 0,
+        "value_mae_sum": 0.0,
+        "value_prediction_sum": 0.0,
+        "value_target_sum": 0.0,
+        "value_decisive_count": 0,
+        "value_sign_correct": 0,
         "single_by_option_type": {},
     }
 
@@ -236,10 +266,18 @@ def _add_validation_metrics(
         "multi_true_positive",
         "multi_false_positive",
         "multi_false_negative",
+        "value_count",
+        "value_mse_sum",
+        "value_mae_sum",
+        "value_prediction_sum",
+        "value_target_sum",
+        "value_decisive_count",
+        "value_sign_correct",
     ):
         destination = {
             "single_nll_sum": "single_loss_sum",
             "multi_nll_sum": "multi_loss_sum",
+            "value_mse_sum": "value_loss_sum",
         }.get(name, name)
         totals[destination] += metrics[name]
     totals["batches"] += 1
@@ -254,8 +292,12 @@ def _safe_ratio(numerator: int | float, denominator: int | float) -> float:
     return float(numerator) / float(denominator) if denominator else 0.0
 
 
-def _validation_summary(totals: Mapping[str, Any]) -> dict[str, Any]:
-    summary = _loss_summary(totals)
+def _validation_summary(
+    totals: Mapping[str, Any], *, value_loss_weight: float
+) -> dict[str, Any]:
+    summary = _loss_summary(
+        totals, value_loss_weight=value_loss_weight
+    )
     single_count = int(totals["single_count"])
     multi_count = int(totals["multi_count"])
     true_positive = int(totals["multi_true_positive"])
@@ -303,6 +345,22 @@ def _validation_summary(totals: Mapping[str, Any]) -> dict[str, Any]:
                 else 0.0
             ),
             "single_by_option_type": by_type,
+            "value_mae": _safe_ratio(
+                totals["value_mae_sum"], totals["value_count"]
+            ),
+            "value_sign_accuracy": _safe_ratio(
+                totals["value_sign_correct"],
+                totals["value_decisive_count"],
+            ),
+            "value_decisive_count": int(
+                totals["value_decisive_count"]
+            ),
+            "value_prediction_mean": _safe_ratio(
+                totals["value_prediction_sum"], totals["value_count"]
+            ),
+            "value_target_mean": _safe_ratio(
+                totals["value_target_sum"], totals["value_count"]
+            ),
         }
     )
     return summary
@@ -315,6 +373,7 @@ def evaluate(
     *,
     device: torch.device,
     autocast_dtype: torch.dtype | None,
+    value_loss_weight: float,
 ) -> dict[str, Any]:
     was_training = model.training
     model.eval()
@@ -332,14 +391,21 @@ def evaluate(
             raise RuntimeError("validation option-mask counts disagree with cache")
         with _autocast(device, autocast_dtype):
             output = model(decoded)
-            metrics = batch_metrics(output, device_batch, decoded)
+            metrics = batch_metrics(
+                output,
+                device_batch,
+                decoded,
+                value_loss_weight=value_loss_weight,
+            )
         _add_validation_metrics(totals, metrics)
     totals["elapsed_seconds"] = time.perf_counter() - started
     if device.type == "cuda":
         totals["peak_cuda_memory_bytes"] = torch.cuda.max_memory_allocated(device)
     if was_training:
         model.train()
-    return _validation_summary(totals)
+    return _validation_summary(
+        totals, value_loss_weight=value_loss_weight
+    )
 
 
 def _capture_rng() -> dict[str, Any]:
@@ -372,6 +438,7 @@ def _checkpoint_payload(
     global_step: int,
     epoch_totals: Mapping[str, Any],
     baseline: Mapping[str, Any],
+    best_validation_loss: float,
     best_validation_nll: float,
     epochs_without_improvement: int,
     history: list[dict[str, Any]],
@@ -381,6 +448,11 @@ def _checkpoint_payload(
         "checkpoint_version": CHECKPOINT_VERSION,
         "signature": dict(signature),
         "model_state_dict": model.state_dict(),
+        "model_config": (
+            asdict(model.config)
+            if isinstance(model, EngineNativeNet)
+            else None
+        ),
         "optimizer_state_dict": optimizer.state_dict(),
         "scaler_state_dict": scaler.state_dict(),
         "epoch": epoch,
@@ -388,6 +460,7 @@ def _checkpoint_payload(
         "global_step": global_step,
         "epoch_totals": dict(epoch_totals),
         "baseline": dict(baseline),
+        "best_validation_loss": best_validation_loss,
         "best_validation_nll": best_validation_nll,
         "epochs_without_improvement": epochs_without_improvement,
         "history": history,
@@ -408,6 +481,11 @@ def _best_payload(
         "checkpoint_version": CHECKPOINT_VERSION,
         "signature": dict(signature),
         "state_dict": model.state_dict(),
+        "model_config": (
+            asdict(model.config)
+            if isinstance(model, EngineNativeNet)
+            else None
+        ),
         "epoch": epoch,
         "global_step": global_step,
         "validation": dict(validation),
@@ -429,6 +507,8 @@ def _signature(
         "epochs": config.epochs,
         "batch_size": config.batch_size,
         "learning_rate": config.learning_rate,
+        "value_loss_weight": config.value_loss_weight,
+        "value_activation": "tanh",
         "precision": resolved_precision,
         "gradient_clip": config.gradient_clip,
         "seed": config.seed,
@@ -509,7 +589,10 @@ def run_training(
     model = (
         model_factory(tables)
         if model_factory is not None
-        else EngineNativeNet(tables=tables)
+        else EngineNativeNet(
+            config=ModelConfig(value_activation="tanh"),
+            tables=tables,
+        )
     ).to(device)
     if initial_checkpoint is not None:
         _load_initial_checkpoint(model, initial_checkpoint)
@@ -543,6 +626,7 @@ def run_training(
     global_step = 0
     epoch_totals = _fresh_loss_totals()
     baseline: dict[str, Any] | None = None
+    best_validation_loss = math.inf
     best_validation_nll = math.inf
     epochs_without_improvement = 0
     history: list[dict[str, Any]] = []
@@ -568,6 +652,7 @@ def run_training(
         global_step = int(state["global_step"])
         epoch_totals = dict(state["epoch_totals"])
         baseline = dict(state["baseline"])
+        best_validation_loss = float(state["best_validation_loss"])
         best_validation_nll = float(state["best_validation_nll"])
         epochs_without_improvement = int(state["epochs_without_improvement"])
         history = list(state["history"])
@@ -575,8 +660,8 @@ def run_training(
         _restore_rng(state["rng"], device)
         print(
             f"Resumed epoch={epoch} next_batch={next_batch} "
-            f"global_step={global_step} best_validation_nll="
-            f"{best_validation_nll:.6f}",
+            f"global_step={global_step} best_validation_loss="
+            f"{best_validation_loss:.6f}",
             flush=True,
         )
     elif config.resume:
@@ -602,6 +687,11 @@ def run_training(
             "split": manifest["split"],
         },
         "model_parameters": sum(parameter.numel() for parameter in model.parameters()),
+        "model_config": (
+            asdict(model.config)
+            if isinstance(model, EngineNativeNet)
+            else None
+        ),
         "signature": signature,
     }
     if config_path.is_file():
@@ -617,6 +707,7 @@ def run_training(
             "status": "finished",
             "epoch": epoch,
             "global_step": global_step,
+            "best_validation_loss": best_validation_loss,
             "best_validation_nll": best_validation_nll,
             "output_dir": str(output_dir),
         }
@@ -634,6 +725,7 @@ def run_training(
                 global_step=global_step,
                 epoch_totals=totals,
                 baseline=baseline or {},
+                best_validation_loss=best_validation_loss,
                 best_validation_nll=best_validation_nll,
                 epochs_without_improvement=epochs_without_improvement,
                 history=history,
@@ -652,6 +744,7 @@ def run_training(
             validation_loader,
             device=device,
             autocast_dtype=autocast_dtype,
+            value_loss_weight=config.value_loss_weight,
         )
         history.append(
             {
@@ -662,6 +755,7 @@ def run_training(
                 "recorded_utc": datetime.now(timezone.utc).isoformat(),
             }
         )
+        best_validation_loss = float(baseline["loss"])
         best_validation_nll = float(baseline["nll"])
         _torch_atomic(
             best_path,
@@ -675,7 +769,9 @@ def run_training(
         )
         save_latest(finished_value=False, totals=epoch_totals)
         print(
-            f"[baseline] validation_nll={baseline['nll']:.6f} "
+            f"[baseline] validation_loss={baseline['loss']:.6f} "
+            f"policy_nll={baseline['nll']:.6f} "
+            f"value_mse={baseline['value_mse']:.6f} "
             f"single_top1={baseline['single_top1_accuracy']:.4f} "
             f"multi_exact={baseline['multi_exact_set_accuracy']:.4f}",
             flush=True,
@@ -710,8 +806,11 @@ def run_training(
             optimizer.zero_grad(set_to_none=True)
             with _autocast(device, autocast_dtype):
                 output = model(decoded)
-                breakdown = supervised_nll(
-                    output, device_batch, decoded["opt_mask"]
+                breakdown = supervised_loss(
+                    output,
+                    device_batch,
+                    decoded["opt_mask"],
+                    value_loss_weight=config.value_loss_weight,
                 )
             if not bool(torch.isfinite(breakdown.loss)):
                 raise RuntimeError("training loss became non-finite")
@@ -742,11 +841,16 @@ def run_training(
                 )
                 progress_totals = dict(epoch_totals)
                 progress_totals["elapsed_seconds"] = elapsed
-                progress = _loss_summary(progress_totals)
+                progress = _loss_summary(
+                    progress_totals,
+                    value_loss_weight=config.value_loss_weight,
+                )
                 print(
                     f"[epoch {epoch + 1}/{config.epochs} "
                     f"batch {next_batch}/{total_batches}] "
-                    f"step={global_step} nll={progress['nll']:.6f} "
+                    f"step={global_step} loss={progress['loss']:.6f} "
+                    f"policy_nll={progress['nll']:.6f} "
+                    f"value_mse={progress['value_mse']:.6f} "
                     f"throughput={progress['examples_per_second']:.1f} examples/s",
                     flush=True,
                 )
@@ -781,6 +885,7 @@ def run_training(
                     "epoch": epoch,
                     "next_batch": next_batch,
                     "global_step": global_step,
+                    "best_validation_loss": best_validation_loss,
                     "best_validation_nll": best_validation_nll,
                     "output_dir": str(output_dir),
                 }
@@ -792,18 +897,23 @@ def run_training(
             raise RuntimeError(
                 f"epoch ended at batch {next_batch}, expected {total_batches}"
             )
-        train_summary = _loss_summary(epoch_totals)
+        train_summary = _loss_summary(
+            epoch_totals,
+            value_loss_weight=config.value_loss_weight,
+        )
 
         validation = evaluate(
             model,
             validation_loader,
             device=device,
             autocast_dtype=autocast_dtype,
+            value_loss_weight=config.value_loss_weight,
         )
-        improved = float(validation["nll"]) < (
-            best_validation_nll - config.early_stopping_min_delta
+        improved = float(validation["loss"]) < (
+            best_validation_loss - config.early_stopping_min_delta
         )
         if improved:
+            best_validation_loss = float(validation["loss"])
             best_validation_nll = float(validation["nll"])
             epochs_without_improvement = 0
             _torch_atomic(
@@ -827,6 +937,7 @@ def run_training(
                 "train": train_summary,
                 "validation": validation,
                 "improved": improved,
+                "best_validation_loss": best_validation_loss,
                 "best_validation_nll": best_validation_nll,
                 "epochs_without_improvement": epochs_without_improvement,
                 "recorded_utc": datetime.now(timezone.utc).isoformat(),
@@ -834,11 +945,13 @@ def run_training(
         )
         print(
             f"[epoch {epoch + 1}/{config.epochs}] "
-            f"train_nll={train_summary['nll']:.6f} "
-            f"validation_nll={validation['nll']:.6f} "
+            f"train_loss={train_summary['loss']:.6f} "
+            f"validation_loss={validation['loss']:.6f} "
+            f"policy_nll={validation['nll']:.6f} "
+            f"value_mse={validation['value_mse']:.6f} "
             f"single_top1={validation['single_top1_accuracy']:.4f} "
             f"multi_exact={validation['multi_exact_set_accuracy']:.4f} "
-            f"best={best_validation_nll:.6f}",
+            f"best={best_validation_loss:.6f}",
             flush=True,
         )
 
@@ -861,6 +974,7 @@ def run_training(
                 "epoch": epoch,
                 "next_batch": next_batch,
                 "global_step": global_step,
+                "best_validation_loss": best_validation_loss,
                 "best_validation_nll": best_validation_nll,
                 "output_dir": str(output_dir),
             }
@@ -869,6 +983,7 @@ def run_training(
         "status": "finished",
         "epochs_completed": epoch,
         "global_step": global_step,
+        "best_validation_loss": best_validation_loss,
         "best_validation_nll": best_validation_nll,
         "early_stopped": (
             epoch < config.epochs

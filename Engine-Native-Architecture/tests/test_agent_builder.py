@@ -6,7 +6,7 @@ from pathlib import Path
 
 import torch
 
-from engine_native_policy import EngineNativeNet, FrozenTables
+from engine_native_policy import EngineNativeNet, FrozenTables, ModelConfig
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -34,6 +34,7 @@ def test_extract_state_dict_accepts_trainer_checkpoint_shapes() -> None:
         "model_state_dict",
     )
     assert builder.extract_state_dict(state) == (state, "bare_state_dict")
+    assert builder.extract_model_config({"state_dict": state}) == ModelConfig()
 
 
 def test_build_agent_emits_strict_serving_bundle(tmp_path: Path) -> None:
@@ -59,6 +60,7 @@ def test_build_agent_emits_strict_serving_bundle(tmp_path: Path) -> None:
     assert manifest["schema_version"] == "engine-native-agent-v1"
     assert manifest["source_checkpoint"]["state_field"] == "state_dict"
     assert manifest["model"]["parameter_count"] == 2_370_259
+    assert manifest["model"]["config"]["value_activation"] == "identity"
     assert (output / "main.py").is_file()
     assert (output / "deck.csv").is_file()
     assert (output / "model.pt").is_file()
@@ -67,5 +69,37 @@ def test_build_agent_emits_strict_serving_bundle(tmp_path: Path) -> None:
     assert (output / "engine_native_policy" / "policy.py").is_file()
 
     serving = torch.load(output / "model.pt", map_location="cpu", weights_only=True)
-    reloaded = EngineNativeNet(tables=tables)
+    reloaded = EngineNativeNet(
+        config=ModelConfig(**serving["model_config"]), tables=tables
+    )
     reloaded.load_state_dict(serving["state_dict"], strict=True)
+
+
+def test_build_agent_preserves_tanh_value_activation(tmp_path: Path) -> None:
+    builder = _load_builder()
+    tables_path = PROJECT / "artifacts" / "frozen_tables.pt"
+    tables = FrozenTables.load(tables_path)
+    config = ModelConfig(value_activation="tanh")
+    network = EngineNativeNet(config=config, tables=tables)
+    checkpoint = tmp_path / "checkpoint.best.pt"
+    torch.save(
+        {
+            "state_dict": network.state_dict(),
+            "model_config": vars(config),
+        },
+        checkpoint,
+    )
+    deck_path = tmp_path / "deck.csv"
+    deck_path.write_text("".join(f"{card_id}\n" for card_id in range(1, 61)))
+    output = tmp_path / "generated-agent"
+
+    manifest = builder.build_agent(
+        checkpoint=checkpoint,
+        deck_path=deck_path,
+        output_dir=output,
+        tables_path=tables_path,
+    )
+
+    assert manifest["model"]["config"]["value_activation"] == "tanh"
+    serving = torch.load(output / "model.pt", map_location="cpu", weights_only=True)
+    assert serving["model_config"]["value_activation"] == "tanh"

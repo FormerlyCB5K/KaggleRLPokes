@@ -51,7 +51,11 @@ RUNTIME_MODULES = (
 sys.path.insert(0, str(REPOSITORY_ROOT))
 sys.path.insert(0, str(SOURCE_ROOT))
 
-from engine_native_policy import EngineNativeNet, FrozenTables  # noqa: E402
+from engine_native_policy import (  # noqa: E402
+    EngineNativeNet,
+    FrozenTables,
+    ModelConfig,
+)
 
 
 def _sha256(path: Path) -> str:
@@ -98,6 +102,20 @@ def extract_state_dict(payload: Any) -> tuple[Mapping[str, torch.Tensor], str]:
         "checkpoint contains neither state_dict nor model_state_dict "
         "and is not a bare tensor state dict"
     )
+
+
+def extract_model_config(payload: Any) -> ModelConfig:
+    """Recover model behavior metadata, defaulting old checkpoints to legacy parity."""
+
+    if not isinstance(payload, Mapping) or payload.get("model_config") is None:
+        return ModelConfig()
+    raw = payload["model_config"]
+    if not isinstance(raw, Mapping):
+        raise RuntimeError("checkpoint model_config must be an object")
+    try:
+        return ModelConfig(**dict(raw))
+    except TypeError as exc:
+        raise RuntimeError(f"checkpoint model_config is invalid: {exc}") from exc
 
 
 def _cpu_state_dict(
@@ -183,9 +201,10 @@ def build_agent(
     # This intentionally loads only a trusted user/model checkpoint.
     payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
     state, checkpoint_field = extract_state_dict(payload)
+    model_config = extract_model_config(payload)
     serving_state = _cpu_state_dict(state)
 
-    network = EngineNativeNet(tables=tables)
+    network = EngineNativeNet(config=model_config, tables=tables)
     network.load_state_dict(serving_state, strict=True)
     parameter_count = network.parameter_count()
     if parameter_count != 2_370_259:
@@ -213,6 +232,7 @@ def build_agent(
             {
                 "format": "engine-native-agent-v1",
                 "state_dict": serving_state,
+                "model_config": vars(model_config),
             },
             staging / "model.pt",
         )
@@ -246,6 +266,7 @@ def build_agent(
             },
             "model": {
                 "parameter_count": parameter_count,
+                "config": vars(model_config),
                 "runtime_modules": list(runtime_modules),
             },
         }

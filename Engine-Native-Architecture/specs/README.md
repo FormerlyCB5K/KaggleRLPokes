@@ -21,6 +21,14 @@ Specifications in this folder govern only `Engine-Native-Architecture/`.
   two-pass direct raw-ZIP sanitization and tensor-cache path for July 12-27. It avoids
   loose sanitized episode JSON while preserving spec 03's global split and cache
   semantics. The full cluster build remains pending.
+- [`06-alpha-zero-search-decisions.md`](06-alpha-zero-search-decisions.md) - active
+  design record for AlphaZero-style PUCT, terminal-outcome value learning,
+  deterministic-public search boundaries, simple terminal handling, and search-budget
+  controls. Its gated imitation phase is implemented with cache schema v2, `tanh`
+  terminal-outcome learning, a joint policy/value objective, value metrics, and
+  exact-resume checkpoint support. A hard gate still forbids all MCTS/self-play coding
+  until this implementation and its validation evidence are reviewed and explicitly
+  approved by the user.
 
 ## Superseded
 

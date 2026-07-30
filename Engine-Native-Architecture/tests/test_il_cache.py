@@ -141,7 +141,24 @@ def test_cache_build_split_manifest_and_exact_reuse(tmp_path) -> None:
     assert set(payload) == set(SHARD_DTYPES)
     assert payload["features"].dtype == torch.float32
     assert payload["multi_target"].dtype == torch.bool
+    assert payload["value_target"].dtype == torch.float32
+    assert set(payload["value_target"].tolist()) == {-1.0, 1.0}
     assert payload["origin"].dtype == torch.int32
+
+    all_rows = [
+        _split_payload(output, manifest, split_name)
+        for split_name in ("train", "validation")
+    ]
+    origins = torch.cat([rows["origin"] for rows in all_rows])
+    values = torch.cat([rows["value_target"] for rows in all_rows])
+    assert torch.equal(
+        values[origins[:, 1] == 0],
+        torch.full_like(values[origins[:, 1] == 0], -1.0),
+    )
+    assert torch.equal(
+        values[origins[:, 1] == 1],
+        torch.full_like(values[origins[:, 1] == 1], 1.0),
+    )
 
     project_artifacts = Path(__file__).resolve().parents[1] / "artifacts"
     reused = build_cache(

@@ -3,6 +3,13 @@
 Status: implemented and locally validated; full six-day cluster training pending,
 2026-07-28.
 
+Value-learning amendment, 2026-07-30: this document preserves the original policy-only
+trainer baseline. Active imitation training now follows spec 06's gated extension:
+policy NLL plus `0.01 * terminal-outcome value MSE`, matching AlphaGo Zero's supervised
+learning experiment, with `tanh` values, combined-loss checkpoint selection, and cache
+schema v2. Statements below excluding value learning or selecting only by NLL are
+superseded to that narrow extent.
+
 ## Purpose
 
 Train the exact engine-native policy from the immutable tensor cache defined by

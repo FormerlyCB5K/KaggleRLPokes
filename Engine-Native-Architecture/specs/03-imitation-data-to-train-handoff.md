@@ -4,6 +4,12 @@ Status: implemented; user-reported uncapped six-day cache and CUDA acceptance pa
 2026-07-28. Full optimization is specified separately in
 [`04-behavior-cloning-trainer.md`](04-behavior-cloning-trainer.md).
 
+Value-learning amendment, 2026-07-30: this document remains the historical v1 policy
+cache contract. Active imitation training now follows spec 06's
+`engine-native-il-v2` extension, which adds acting-perspective terminal outcomes while
+leaving every expert policy target unchanged. Any statement below forbidding a value
+target is superseded only to that narrow extent.
+
 This handoff defines the shortest correct path from the already-sanitized TEST ladder
 replays to supervised batches for the engine-native policy. It covers extraction,
 immutable tensor caching, game-level splitting, data loading, tensor preparation,

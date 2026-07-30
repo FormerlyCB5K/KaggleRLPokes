@@ -39,7 +39,7 @@ from .replay import (
 from .targets import TargetContractError, build_target
 
 
-SCHEMA_NAME = "engine-native-il-v1"
+SCHEMA_NAME = "engine-native-il-v2"
 SPLIT_SCHEMA_VERSION = 1
 DEFAULT_DAYS = ("7-12", "7-13", "7-14", "7-23", "7-24", "7-25")
 DEFAULT_SEED = 20260728
@@ -54,6 +54,7 @@ SHARD_DTYPES: dict[str, torch.dtype] = {
     "n_options": torch.uint8,
     "min_count": torch.uint8,
     "max_count": torch.uint8,
+    "value_target": torch.float32,
     "origin": torch.int32,
 }
 SHARD_WIDTHS: dict[str, tuple[int, ...]] = {
@@ -64,6 +65,7 @@ SHARD_WIDTHS: dict[str, tuple[int, ...]] = {
     "n_options": (),
     "min_count": (),
     "max_count": (),
+    "value_target": (),
     "origin": (3,),
 }
 
@@ -532,6 +534,7 @@ def _empty_arrays() -> dict[str, np.ndarray]:
         "n_options": np.empty((0,), dtype=np.uint8),
         "min_count": np.empty((0,), dtype=np.uint8),
         "max_count": np.empty((0,), dtype=np.uint8),
+        "value_target": np.empty((0,), dtype=np.float32),
         "origin": np.empty((0, 3), dtype=np.int32),
     }
 
@@ -572,6 +575,7 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
             "min_count": Counter(),
             "max_count": Counter(),
             "selected_count": Counter(),
+            "value_target": Counter(),
         }
         single_count = 0
         multi_count = 0
@@ -593,6 +597,7 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
             columns["n_options"].append(target.n_options)
             columns["min_count"].append(target.min_count)
             columns["max_count"].append(target.max_count)
+            columns["value_target"].append(decision.value_target)
             columns["origin"].append(
                 [episode_index, decision.player, decision.response_step]
             )
@@ -602,6 +607,7 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
             histograms["min_count"][target.min_count] += 1
             histograms["max_count"][target.max_count] += 1
             histograms["selected_count"][target.selected_count] += 1
+            histograms["value_target"][int(decision.value_target)] += 1
 
         validate_skip_counts(skip_counts)
         if not columns["features"]:
@@ -621,6 +627,9 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
                 "n_options": np.asarray(columns["n_options"], dtype=np.uint8),
                 "min_count": np.asarray(columns["min_count"], dtype=np.uint8),
                 "max_count": np.asarray(columns["max_count"], dtype=np.uint8),
+                "value_target": np.asarray(
+                    columns["value_target"], dtype=np.float32
+                ),
                 "origin": np.asarray(columns["origin"], dtype=np.int32),
             }
         return EpisodeRows(
@@ -695,12 +704,25 @@ def validate_shard_payload(payload: Any, *, expected_rows: int | None = None) ->
     minimum = payload["min_count"].to(torch.int64)
     maximum = payload["max_count"].to(torch.int64)
     is_multi = payload["is_multi"]
+    value_target = payload["value_target"]
     if not bool(((n_options >= 2) & (n_options <= MAX_OPTIONS)).all()):
         raise CacheContractError("shard contains invalid n_options")
     if not bool(((minimum >= 0) & (minimum <= maximum) & (maximum <= n_options)).all()):
         raise CacheContractError("shard contains invalid cardinality bounds")
     if not torch.equal(is_multi, maximum > 1):
         raise CacheContractError("is_multi disagrees with max_count")
+    if not bool(torch.isfinite(value_target).all()):
+        raise CacheContractError("shard contains a non-finite value target")
+    if not bool(
+        (
+            (value_target == -1.0)
+            | (value_target == 0.0)
+            | (value_target == 1.0)
+        ).all()
+    ):
+        raise CacheContractError(
+            "value_target must contain only terminal outcomes -1, 0, or 1"
+        )
 
     n_start, _ = FIELD_OFFSETS["n_options"]
     mask_start, mask_end = FIELD_OFFSETS["opt_mask"]
@@ -1062,6 +1084,7 @@ def build_cache(
         "min_count": Counter(),
         "max_count": Counter(),
         "selected_count": Counter(),
+        "value_target": Counter(),
     }
     entity_overflow_count = 0
 
@@ -1116,7 +1139,7 @@ def build_cache(
     elapsed = time.perf_counter() - started_clock
     manifest = {
         "schema": SCHEMA_NAME,
-        "schema_version": 1,
+        "schema_version": 2,
         "identity": identity,
         "tensor_schema": {
             name: {

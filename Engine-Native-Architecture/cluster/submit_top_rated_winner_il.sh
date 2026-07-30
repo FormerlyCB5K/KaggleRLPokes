@@ -16,7 +16,8 @@ fi
 
 TRAIN_JOB=$(sbatch --parsable \
     --dependency="afterok:$BUILD_JOB" \
-    "$TRAIN_SCRIPT")
+    "$TRAIN_SCRIPT" \
+    "$@")
 TRAIN_JOB=${TRAIN_JOB%%;*}
 if [[ ! "$TRAIN_JOB" =~ ^[0-9]+$ ]]; then
     echo "Training submission did not return a numeric job ID: $TRAIN_JOB" >&2

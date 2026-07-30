@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections import Counter
 from collections.abc import Iterator
 from dataclasses import dataclass
@@ -31,6 +32,7 @@ class ReplayDecision:
     deck: tuple[int, ...]
     player: int
     response_step: int
+    value_target: float
 
 
 def _is_integer(value: Any) -> bool:
@@ -42,6 +44,38 @@ def _player_entry(step: Any, player: int) -> dict[str, Any] | None:
         return None
     entry = step[player]
     return entry if isinstance(entry, dict) else None
+
+
+def terminal_outcomes(
+    episode: dict[str, Any], *, n_players: int = 2
+) -> tuple[float, ...]:
+    """Return win/draw/loss labels derived from the recorded final rewards."""
+
+    rewards = episode.get("rewards")
+    if not isinstance(rewards, list) or len(rewards) != n_players:
+        raise ReplayContractError(
+            f"episode.rewards must contain exactly {n_players} values"
+        )
+    numeric: list[float] = []
+    for player, reward in enumerate(rewards):
+        if (
+            isinstance(reward, bool)
+            or not isinstance(reward, (int, float))
+            or not math.isfinite(float(reward))
+        ):
+            raise ReplayContractError(
+                f"episode.rewards[{player}] must be a finite number"
+            )
+        numeric.append(float(reward))
+    highest = max(numeric)
+    lowest = min(numeric)
+    if highest == lowest:
+        return tuple(0.0 for _ in numeric)
+    if n_players != 2:
+        raise ReplayContractError(
+            "decisive terminal outcomes currently require exactly two players"
+        )
+    return tuple(1.0 if reward == highest else -1.0 for reward in numeric)
 
 
 def extract_submitted_decks(
@@ -91,6 +125,7 @@ def iter_episode_decisions(
 
     counts = skip_counts if skip_counts is not None else Counter()
     decks = extract_submitted_decks(episode, n_players=n_players)
+    outcomes = terminal_outcomes(episode, n_players=n_players)
     steps = episode.get("steps")
     assert isinstance(steps, list)
 
@@ -139,6 +174,7 @@ def iter_episode_decisions(
                 deck=decks[player],
                 player=player,
                 response_step=response_step,
+                value_target=outcomes[player],
             )
 
 

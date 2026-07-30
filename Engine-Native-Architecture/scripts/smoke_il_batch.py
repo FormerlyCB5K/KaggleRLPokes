@@ -17,10 +17,15 @@ REPOSITORY_ROOT = ENGINE_ROOT.parent
 sys.path.insert(0, str(ENGINE_ROOT / "src"))
 sys.path.insert(0, str(REPOSITORY_ROOT))
 
-from engine_native_policy import EngineNativeNet, FrozenTables, decode_batch  # noqa: E402
+from engine_native_policy import (  # noqa: E402
+    EngineNativeNet,
+    FrozenTables,
+    ModelConfig,
+    decode_batch,
+)
 from engine_native_policy.il.cache import DEFAULT_SEED, verify_cache  # noqa: E402
 from engine_native_policy.il.dataset import make_dataloader  # noqa: E402
-from engine_native_policy.il.losses import batch_metrics, supervised_nll  # noqa: E402
+from engine_native_policy.il.losses import batch_metrics, supervised_loss  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -113,7 +118,10 @@ def main() -> int:
         raise RuntimeError("validation sampler is not deterministic")
 
     tables = FrozenTables.load(args.tables)
-    network = EngineNativeNet(tables=tables).to(device)
+    network = EngineNativeNet(
+        config=ModelConfig(value_activation="tanh"),
+        tables=tables,
+    ).to(device)
     if args.checkpoint is not None:
         checkpoint = torch.load(
             args.checkpoint, map_location="cpu", weights_only=True
@@ -132,7 +140,7 @@ def main() -> int:
     network.train()
     optimizer.zero_grad(set_to_none=True)
     train_output = network(decoded)
-    train_loss = supervised_nll(
+    train_loss = supervised_loss(
         train_output, train_batch, decoded["opt_mask"]
     )
     if not bool(torch.isfinite(train_loss.loss)):
@@ -161,7 +169,7 @@ def main() -> int:
     network.eval()
     with torch.inference_mode():
         validation_output = network(validation_decoded)
-        validation_loss = supervised_nll(
+        validation_loss = supervised_loss(
             validation_output,
             validation_batch,
             validation_decoded["opt_mask"],

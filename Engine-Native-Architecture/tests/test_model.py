@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+import pytest
 import torch
 
 from engine_native_policy.featurize import featurize
 from engine_native_policy.flat import decode_batch, encode
-from engine_native_policy.model import EngineNativeNet
+from engine_native_policy.model import EngineNativeNet, ModelConfig
 from engine_native_policy.tables import FrozenTables
 
 from helpers import sample_deck, sample_observation
@@ -70,6 +71,26 @@ def test_forward_shapes_masks_and_finite_live_outputs() -> None:
     assert torch.isneginf(output.logits[0, 5:]).all()
     assert torch.equal(output.incl[0, 5:], torch.full((59,), -30.0))
     assert torch.isfinite(output.value).all()
+
+
+def test_imitation_value_activation_is_bounded_without_changing_parameters() -> None:
+    torch.manual_seed(1)
+    net = EngineNativeNet(
+        config=ModelConfig(value_activation="tanh")
+    ).eval()
+    with torch.no_grad():
+        net.value[-1].weight.zero_()
+        net.value[-1].bias.fill_(20.0)
+        output = net(make_batch())
+    assert net.parameter_count() == 2_370_259
+    assert torch.all(output.value <= 1.0)
+    assert torch.all(output.value >= -1.0)
+    torch.testing.assert_close(output.value, torch.ones_like(output.value))
+
+
+def test_unknown_value_activation_is_rejected() -> None:
+    with pytest.raises(ValueError, match="value_activation"):
+        EngineNativeNet(config=ModelConfig(value_activation="sigmoid"))
 
 
 def test_zero_initialized_gates_film_and_oracle_projection() -> None:

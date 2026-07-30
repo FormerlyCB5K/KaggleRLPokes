@@ -1,7 +1,8 @@
-"""Behavior-cloning likelihood and distribution-specific metrics."""
+"""Joint expert-policy and terminal-outcome imitation objectives."""
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any
 
@@ -14,20 +15,28 @@ from ..model import PolicyOutput
 @dataclass(frozen=True)
 class LossBreakdown:
     loss: torch.Tensor
+    policy_loss: torch.Tensor
+    value_loss: torch.Tensor
     single_loss_sum: torch.Tensor
     multi_loss_sum: torch.Tensor
+    value_loss_sum: torch.Tensor
     single_count: int
     multi_count: int
+    value_count: int
 
 
-def supervised_nll(
+def supervised_loss(
     output: PolicyOutput,
     batch: dict[str, torch.Tensor],
     option_mask: torch.Tensor,
+    *,
+    value_loss_weight: float = 0.01,
 ) -> LossBreakdown:
-    """Average one categorical or joint-Bernoulli NLL per decision."""
+    """Average policy NLL plus weighted terminal-outcome MSE per decision."""
 
     device = output.logits.device
+    if not math.isfinite(value_loss_weight) or value_loss_weight < 0:
+        raise ValueError("value_loss_weight must be finite and nonnegative")
     is_multi = batch["is_multi"].to(device=device, dtype=torch.bool)
     option_mask = option_mask.to(device=device, dtype=torch.bool)
     n_options = batch["n_options"].to(device=device, dtype=torch.int64)
@@ -71,12 +80,55 @@ def supervised_nll(
     count = int(is_multi.numel())
     if count == 0:
         raise ValueError("cannot compute a loss for an empty batch")
+    if output.value.shape != (count,):
+        raise ValueError("model value-head shape disagrees with batch size")
+    value_target = batch["value_target"].to(
+        device=device, dtype=output.value.dtype
+    )
+    if value_target.shape != (count,):
+        raise ValueError("value_target shape disagrees with batch size")
+    if not bool(torch.isfinite(value_target).all()):
+        raise ValueError("value_target must be finite")
+    if not bool(
+        (
+            (value_target == -1.0)
+            | (value_target == 0.0)
+            | (value_target == 1.0)
+        ).all()
+    ):
+        raise ValueError("value_target must contain only -1, 0, or 1")
+
+    policy_loss = (single_sum + multi_sum) / count
+    value_losses = F.mse_loss(output.value, value_target, reduction="none")
+    value_sum = value_losses.sum()
+    value_loss = value_sum / count
     return LossBreakdown(
-        loss=(single_sum + multi_sum) / count,
+        loss=policy_loss + value_loss_weight * value_loss,
+        policy_loss=policy_loss,
+        value_loss=value_loss,
         single_loss_sum=single_sum,
         multi_loss_sum=multi_sum,
+        value_loss_sum=value_sum,
         single_count=int(single_rows.sum().item()),
         multi_count=int(multi_rows.sum().item()),
+        value_count=count,
+    )
+
+
+def supervised_nll(
+    output: PolicyOutput,
+    batch: dict[str, torch.Tensor],
+    option_mask: torch.Tensor,
+    *,
+    value_loss_weight: float = 0.01,
+) -> LossBreakdown:
+    """Compatibility alias for the joint supervised objective."""
+
+    return supervised_loss(
+        output,
+        batch,
+        option_mask,
+        value_loss_weight=value_loss_weight,
     )
 
 
@@ -84,11 +136,18 @@ def batch_metrics(
     output: PolicyOutput,
     batch: dict[str, torch.Tensor],
     decoded: dict[str, torch.Tensor],
+    *,
+    value_loss_weight: float = 0.01,
 ) -> dict[str, Any]:
     """Return additive metrics for later aggregation across validation batches."""
 
     option_mask = decoded["opt_mask"].to(torch.bool)
-    breakdown = supervised_nll(output, batch, option_mask)
+    breakdown = supervised_loss(
+        output,
+        batch,
+        option_mask,
+        value_loss_weight=value_loss_weight,
+    )
     is_multi = batch["is_multi"].to(
         device=output.logits.device, dtype=torch.bool
     )
@@ -98,6 +157,13 @@ def batch_metrics(
         "multi_count": breakdown.multi_count,
         "single_nll_sum": float(breakdown.single_loss_sum.detach().cpu()),
         "multi_nll_sum": float(breakdown.multi_loss_sum.detach().cpu()),
+        "value_mse_sum": float(breakdown.value_loss_sum.detach().cpu()),
+        "value_mae_sum": 0.0,
+        "value_prediction_sum": 0.0,
+        "value_target_sum": 0.0,
+        "value_count": breakdown.value_count,
+        "value_decisive_count": 0,
+        "value_sign_correct": 0,
         "single_top1_correct": 0,
         "single_top3_correct": 0,
         "single_top3_count": 0,
@@ -109,6 +175,24 @@ def batch_metrics(
         "multi_false_negative": 0,
         "single_by_option_type": {},
     }
+    values = output.value.detach()
+    value_targets = batch["value_target"].to(
+        device=values.device, dtype=values.dtype
+    )
+    result["value_mae_sum"] = float(
+        (values - value_targets).abs().sum().cpu()
+    )
+    result["value_prediction_sum"] = float(values.sum().cpu())
+    result["value_target_sum"] = float(value_targets.sum().cpu())
+    decisive = value_targets != 0
+    result["value_decisive_count"] = int(decisive.sum().item())
+    if bool(decisive.any()):
+        result["value_sign_correct"] = int(
+            (
+                torch.sign(values[decisive])
+                == torch.sign(value_targets[decisive])
+            ).sum().item()
+        )
 
     if bool(single.any()):
         logits = output.logits[single]

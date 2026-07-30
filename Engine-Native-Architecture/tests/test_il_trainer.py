@@ -20,6 +20,7 @@ class TinyPolicy(nn.Module):
         super().__init__()
         self.policy = nn.Parameter(torch.zeros(64))
         self.include = nn.Parameter(torch.zeros(64))
+        self.value = nn.Parameter(torch.zeros(()))
 
     def forward(self, batch: dict[str, torch.Tensor]) -> PolicyOutput:
         mask = batch["opt_mask"].to(torch.bool)
@@ -28,7 +29,7 @@ class TinyPolicy(nn.Module):
         logits = logits.masked_fill(~mask, float("-inf"))
         include = self.include.unsqueeze(0).expand(rows, -1)
         include = include.masked_fill(~mask, -30.0)
-        value = logits.new_zeros(rows)
+        value = torch.tanh(self.value).expand(rows)
         return PolicyOutput(
             logits=logits,
             incl=include,
@@ -104,6 +105,12 @@ def test_full_trainer_resume_matches_uninterrupted_run(tmp_path) -> None:
         assert torch.equal(resumed_state["model_state_dict"][name], expected)
     assert resumed_state["global_step"] == uninterrupted_state["global_step"]
     assert len(resumed_state["history"]) == 3
+    assert "best_validation_loss" in resumed_state
+    assert "value_loss_sum" in resumed_state["epoch_totals"]
+    assert resumed_state["signature"]["value_activation"] == "tanh"
+    assert resumed_state["signature"]["value_loss_weight"] == 0.01
+    assert resumed_state["history"][-1]["validation"]["value_mse"] >= 0
+    assert resumed_state["history"][-1]["validation"]["value_mae"] >= 0
     assert (resumed_output / "checkpoint.best.pt").is_file()
     assert (resumed_output / "training-summary.json").is_file()
 

@@ -39,6 +39,7 @@ class ModelConfig:
     n_registers: int = N_REGISTERS
     dropout: float = 0.0
     d_card: int = 64  # Deliberately dead, retained for friend-checkpoint compatibility.
+    value_activation: str = "identity"
 
 
 @dataclass(frozen=True)
@@ -133,6 +134,8 @@ class EngineNativeNet(nn.Module):
     ) -> None:
         super().__init__()
         self.config = config or ModelConfig()
+        if self.config.value_activation not in {"identity", "tanh"}:
+            raise ValueError("value_activation must be 'identity' or 'tanh'")
         tables = tables or FrozenTables.placeholder()
         d = self.config.d_model
 
@@ -200,6 +203,11 @@ class EngineNativeNet(nn.Module):
     @staticmethod
     def _card_lookup(card_id: torch.Tensor, table: torch.Tensor) -> torch.Tensor:
         return F.embedding(card_id.remainder(CARD_VOCAB_SIZE), table)
+
+    def _activate_value(self, value: torch.Tensor) -> torch.Tensor:
+        if self.config.value_activation == "tanh":
+            return torch.tanh(value)
+        return value
 
     def forward(self, batch: Mapping[str, torch.Tensor]) -> PolicyOutput:
         card_table = self.card.static_table()
@@ -313,10 +321,16 @@ class EngineNativeNet(nn.Module):
                 dim=1
             ).clamp(min=1.0)
             value_input = summary + self.ora_proj(oracle_pool)
-            value_fog = self.value(summary.detach()).squeeze(-1)
-            value = self.value(value_input).squeeze(-1)
+            value_fog = self._activate_value(
+                self.value(summary.detach()).squeeze(-1)
+            )
+            value = self._activate_value(
+                self.value(value_input).squeeze(-1)
+            )
         else:
-            value = self.value(value_input).squeeze(-1)
+            value = self._activate_value(
+                self.value(value_input).squeeze(-1)
+            )
             value_fog = value.detach()
         return PolicyOutput(
             logits=logits,

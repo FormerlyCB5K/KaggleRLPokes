@@ -40,6 +40,7 @@ from engine_native_policy import (
     EngineNativeNet,
     EngineNativePolicy,
     FrozenTables,
+    ModelConfig,
 )
 
 
@@ -75,10 +76,13 @@ def _device() -> torch.device:
 
 def _load_policy() -> EngineNativePolicy:
     tables = FrozenTables.load(ROOT / "frozen_tables.pt")
-    network = EngineNativeNet(tables=tables)
     payload = torch.load(ROOT / "model.pt", map_location="cpu", weights_only=True)
     if payload.get("format") != "engine-native-agent-v1":
         raise RuntimeError("model.pt is not an engine-native-agent-v1 payload")
+    network = EngineNativeNet(
+        config=ModelConfig(**payload.get("model_config", {})),
+        tables=tables,
+    )
     network.load_state_dict(payload["state_dict"], strict=True)
     return EngineNativePolicy(network, MY_DECK, device=_device())
 

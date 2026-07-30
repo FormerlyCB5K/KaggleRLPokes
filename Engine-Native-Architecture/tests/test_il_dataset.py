@@ -29,6 +29,8 @@ def test_dataset_dtypes_shapes_and_last_partial_batch(tmp_path) -> None:
     assert first["is_multi"].dtype == torch.bool
     assert first["single_target"].dtype == torch.int64
     assert first["multi_target"].shape == (3, 64)
+    assert first["value_target"].shape == (3,)
+    assert first["value_target"].dtype == torch.float32
     assert first["origin"].shape == (3, 3)
 
 

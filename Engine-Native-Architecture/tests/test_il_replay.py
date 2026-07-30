@@ -9,6 +9,7 @@ from engine_native_policy.il.replay import (
     ReplayContractError,
     extract_submitted_decks,
     iter_episode_decisions,
+    terminal_outcomes,
 )
 
 from il_helpers import sample_episode
@@ -26,6 +27,12 @@ def test_decks_are_found_and_actions_pair_with_previous_observation() -> None:
     assert decisions[0].response_step == 1
     assert decisions[0].observation_json["select"]["maxCount"] == 1
     assert decisions[0].action == (0,)
+    assert [decision.value_target for decision in decisions] == [
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+    ]
     assert decisions[2].response_step == 2
     assert decisions[2].observation_json["select"]["maxCount"] == 2
     assert decisions[2].action == (0, 1)
@@ -63,3 +70,23 @@ def test_option_overflow_is_counted_and_not_emitted() -> None:
     decisions = list(iter_episode_decisions(episode, skip_counts=counts))
     assert counts["option_overflow"] == 1
     assert len(decisions) == 3
+
+
+def test_terminal_outcomes_are_acting_perspective_and_draw_safe() -> None:
+    episode = sample_episode()
+    episode["rewards"] = [8, 3]
+    assert terminal_outcomes(episode) == (1.0, -1.0)
+
+    episode["rewards"] = [-2, -2]
+    assert terminal_outcomes(episode) == (0.0, 0.0)
+
+
+@pytest.mark.parametrize(
+    "rewards",
+    (None, [1], [1, None], [1, float("nan")], [True, False]),
+)
+def test_invalid_terminal_rewards_are_rejected(rewards) -> None:
+    episode = sample_episode()
+    episode["rewards"] = rewards
+    with pytest.raises(ReplayContractError, match="rewards"):
+        terminal_outcomes(episode)

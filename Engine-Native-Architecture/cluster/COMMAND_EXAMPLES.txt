@@ -1,0 +1,272 @@
+ENGINE-NATIVE CLUSTER COMMAND EXAMPLES
+======================================
+
+This is the copy/paste command reference for the active engine-native data,
+training, and evaluation jobs.
+
+Maintenance rule:
+Whenever a script name, command-line switch, default dataset, default deck,
+path, or workflow changes, update this file in the same commit.
+
+
+0. START HERE
+-------------
+
+cd /gpfs/u/barn/MINF/MINFlshm/RL/KaggleRLPokes
+git pull --ff-only origin master
+
+# Needed only for direct Python commands; every sbatch activates it itself:
+source "$PWD/../myenv/bin/activate"
+
+# Display every available training switch without submitting a job:
+bash Engine-Native-Architecture/cluster/train_il_dataset.sbatch --help
+
+
+1. BUILD AND TRAIN THE FULL TOP-10% ALL-PERSPECTIVES DATASET
+------------------------------------------------------------
+
+# This submits the data build and a dependent training job.
+# Evaluation defaults to 100 games against sample-archaludon, using the
+# Rising-Tide-Fixed-Metal-v15 deck and checkpoint.best.pt.
+
+bash Engine-Native-Architecture/cluster/submit_top_rated_all_perspectives_il.sh \
+  --run-name all-perspectives-v2 \
+  --model-name "All Perspectives v2" \
+  --model-description "Top 10% by floor rating, both players included" \
+  --seed 20260730 \
+  --epochs 100 \
+  --batch-size 256 \
+  --num-workers 8 \
+  --learning-rate 1e-4 \
+  --value-loss-weight 0.01 \
+  --device cuda \
+  --precision auto \
+  --gradient-clip 1.0 \
+  --early-stopping-patience 5 \
+  --early-stopping-min-delta 1e-4 \
+  --max-runtime-minutes 300 \
+  --max-resubmits 2 \
+  --evaluate true \
+  --evaluation-games 100 \
+  --evaluation-opponent-folder "$PWD/sample-archaludon" \
+  --evaluation-own-deck "$PWD/Rising-Tide-Fixed-Metal-v15/deck.csv" \
+  --evaluation-checkpoint best
+
+# The combined record will be:
+# config/all-perspectives-v2/seed-20260730.json
+
+
+2. TRAIN ANY EXISTING ENGINE-NATIVE CACHE
+-----------------------------------------
+
+# DATASET is the suffix after "engine-native-cache-".
+
+sbatch Engine-Native-Architecture/cluster/train_il_dataset.sbatch \
+  --dataset top-rated-winner-2026-07-12-to-2026-07-27 \
+  --run-name winner-full-v2 \
+  --model-name "Winner Full v2" \
+  --model-description "Top 10% by floor rating, winner labels only" \
+  --seed 20260730 \
+  --epochs 100 \
+  --batch-size 256 \
+  --num-workers 8 \
+  --learning-rate 1e-4 \
+  --value-loss-weight 0.01 \
+  --device cuda \
+  --precision auto \
+  --gradient-clip 1.0 \
+  --early-stopping-patience 5 \
+  --early-stopping-min-delta 1e-4 \
+  --checkpoint-every-steps 250 \
+  --log-every-steps 50 \
+  --max-runtime-minutes 300 \
+  --max-resubmits 2 \
+  --resume true \
+  --skip-cache-hash-verification true \
+  --evaluate true \
+  --evaluation-games 100 \
+  --evaluation-opponent-folder "$PWD/sample-archaludon" \
+  --evaluation-own-deck "$PWD/Rising-Tide-Fixed-Metal-v15/deck.csv" \
+  --evaluation-checkpoint best \
+  --evaluation-max-actions 20000
+
+# Use a unique --run-name for a genuinely new training configuration.
+# Reusing a completed run name resumes or reports that existing run.
+
+
+3. EVALUATION OPTIONS
+---------------------
+
+# Do not evaluate:
+--evaluate false
+
+# Evaluate against a different folder bot:
+--evaluate true \
+--evaluation-opponent-folder "$PWD/path/to/another-agent"
+
+# Override the opponent's deck.csv without modifying its source folder:
+--evaluation-opponent-deck "$PWD/path/to/opponent-deck.csv"
+
+# Use another deck for the trained model:
+--evaluation-own-deck "$PWD/path/to/our-deck.csv"
+
+# Use the latest checkpoint instead of the best-validation checkpoint:
+--evaluation-checkpoint latest
+
+# If evaluation is disabled, the combined config JSON contains exactly:
+# "NO EVALUATION PERFORMED FOR THIS RUN"
+
+
+4. BUILD THE FULL TOP-10% WINNER-ONLY DATASET
+---------------------------------------------
+
+BUILD_JOB=$(sbatch --parsable \
+  --export=ALL,DATASET=top-rated-winner-2026-07-12-to-2026-07-27,SCORE_COLUMN=min_score,FRACTION=0.10,PERSPECTIVES=winner \
+  "$PWD/Engine-Native-Architecture/cluster/FULL_build_top_rated_winner_il.sbatch")
+BUILD_JOB=${BUILD_JOB%%;*}
+echo "Build job: $BUILD_JOB"
+
+
+5. BUILD THE FULL TOP-10% ALL-PERSPECTIVES DATASET ONLY
+-------------------------------------------------------
+
+BUILD_JOB=$(sbatch --parsable \
+  --export=ALL,DATASET=top-rated-all-perspectives-2026-07-12-to-2026-07-27,SCORE_COLUMN=min_score,FRACTION=0.10,PERSPECTIVES=all \
+  "$PWD/Engine-Native-Architecture/cluster/FULL_build_top_rated_winner_il.sbatch")
+BUILD_JOB=${BUILD_JOB%%;*}
+echo "Build job: $BUILD_JOB"
+
+# The selected sanitized data will be:
+# Imitation-Learning/Top-ladder-data/<DATASET>/
+#
+# The tensor cache will be:
+# Imitation-Learning/Top-ladder-data/engine-native-cache-<DATASET>/
+#
+# Use a new DATASET name for a new build. To intentionally replace selected
+# replay folders, add OVERWRITE_SELECTED=1 to --export after checking the path.
+
+
+6. BUILD A TOP-10% DATASET AND TRAIN AFTER IT SUCCEEDS
+------------------------------------------------------
+
+DATASET=top-rated-winner-2026-07-12-to-2026-07-27
+RUN_NAME=winner-full-v3
+
+BUILD_JOB=$(sbatch --parsable \
+  --export=ALL,DATASET="$DATASET",SCORE_COLUMN=min_score,FRACTION=0.10,PERSPECTIVES=winner \
+  "$PWD/Engine-Native-Architecture/cluster/FULL_build_top_rated_winner_il.sbatch")
+BUILD_JOB=${BUILD_JOB%%;*}
+
+TRAIN_JOB=$(sbatch --parsable \
+  --dependency="afterok:$BUILD_JOB" \
+  "$PWD/Engine-Native-Architecture/cluster/train_il_dataset.sbatch" \
+  --dataset "$DATASET" \
+  --run-name "$RUN_NAME" \
+  --model-name "Winner Full v3" \
+  --model-description "Full July 12-27 top 10%, winner labels" \
+  --seed 20260730 \
+  --epochs 100 \
+  --learning-rate 1e-4 \
+  --value-loss-weight 0.01 \
+  --early-stopping-patience 5 \
+  --evaluate true)
+TRAIN_JOB=${TRAIN_JOB%%;*}
+
+echo "Build job: $BUILD_JOB"
+echo "Training job: $TRAIN_JOB (afterok:$BUILD_JOB)"
+
+
+7. BUILD THE COMPLETE JULY 12-27 CACHE WITHOUT TOP-10% FILTERING
+----------------------------------------------------------------
+
+sbatch Engine-Native-Architecture/cluster/FULL_build_il_dataset.sbatch
+
+# Output dataset suffix for later --dataset:
+# full-2026-07-12-to-2026-07-27
+
+
+8. THREE-DAY WINNER DATASET AND TRAINING
+----------------------------------------
+
+# Build July 23-25 and train only if the build succeeds:
+bash Engine-Native-Architecture/cluster/submit_top_rated_winner_il.sh \
+  --run-name winner-three-days-v2 \
+  --model-name "Winner Three Days v2" \
+  --model-description "July 23-25 top 10%, winner labels" \
+  --evaluate true
+
+# Build only:
+sbatch Engine-Native-Architecture/cluster/build_top_rated_winner_il.sbatch
+
+# Train only, retaining the historical profile defaults:
+sbatch Engine-Native-Architecture/cluster/train_top_rated_winner_il.sbatch \
+  --run-name winner-three-days-v2 \
+  --model-name "Winner Three Days v2" \
+  --model-description "July 23-25 top 10%, winner labels" \
+  --evaluate true
+
+
+9. SIX-DAY TEST CACHE, INPUT SMOKE, AND TRAINING
+------------------------------------------------
+
+TEST_BUILD_JOB=$(sbatch --parsable \
+  Engine-Native-Architecture/cluster/TEST_build_il_dataset.sbatch)
+TEST_BUILD_JOB=${TEST_BUILD_JOB%%;*}
+
+TEST_SMOKE_JOB=$(sbatch --parsable \
+  --dependency="afterok:$TEST_BUILD_JOB" \
+  Engine-Native-Architecture/cluster/TEST_smoke_il_train.sbatch)
+TEST_SMOKE_JOB=${TEST_SMOKE_JOB%%;*}
+
+TEST_TRAIN_JOB=$(sbatch --parsable \
+  --dependency="afterok:$TEST_SMOKE_JOB" \
+  Engine-Native-Architecture/cluster/TEST_train_il.sbatch \
+  --run-name test-six-days-v2 \
+  --model-name "Six-Day Test v2" \
+  --model-description "Six-day accepted replay cache test" \
+  --evaluate false)
+TEST_TRAIN_JOB=${TEST_TRAIN_JOB%%;*}
+
+echo "Build: $TEST_BUILD_JOB"
+echo "Smoke: $TEST_SMOKE_JOB (afterok:$TEST_BUILD_JOB)"
+echo "Train: $TEST_TRAIN_JOB (afterok:$TEST_SMOKE_JOB)"
+
+
+10. MANUAL CHECKPOINT EVALUATION
+--------------------------------
+
+# Package a checkpoint as a folder agent:
+python Engine-Native-Architecture/scripts/build_checkpoint_agent.py \
+  --checkpoint "/path/to/checkpoint.best.pt" \
+  --deck "$PWD/Rising-Tide-Fixed-Metal-v15/deck.csv" \
+  --output-dir "$PWD/Imitation-Learning/checkpoint-agents/my-model" \
+  --name "My Model"
+
+# Run 100 side-alternating games:
+python evaluate_agents.py \
+  "$PWD/Imitation-Learning/checkpoint-agents/my-model" \
+  "$PWD/sample-archaludon" \
+  100 \
+  --name-a "My Model" \
+  --name-b "sample-archaludon" \
+  --output "$PWD/match-logs/my-model-vs-archaludon.json"
+
+
+11. MONITOR JOBS AND FIND RESULTS
+---------------------------------
+
+squeue -u "$USER"
+
+# Replace JOB_ID:
+scontrol show job JOB_ID
+sacct -j JOB_ID --format=JobID,JobName,State,Elapsed,ExitCode
+
+# Follow a job's output; replace JOB_NAME and JOB_ID:
+tail -f "logs/JOB_NAME-JOB_ID.out"
+
+# Combined run records:
+find config -maxdepth 3 -type f -name '*.json' -print
+
+# Checkpoints and detailed evaluation:
+find Imitation-Learning/engine-native-training -name 'checkpoint.best.pt' -print
+find Imitation-Learning/engine-native-training -path '*/evaluation/results.json' -print
