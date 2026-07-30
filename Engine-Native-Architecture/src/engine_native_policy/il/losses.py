@@ -22,6 +22,7 @@ class LossBreakdown:
     value_loss_sum: torch.Tensor
     single_count: int
     multi_count: int
+    value_only_count: int
     value_count: int
 
 
@@ -45,7 +46,8 @@ def supervised_loss(
     if output.logits.shape != option_mask.shape or output.incl.shape != option_mask.shape:
         raise ValueError("model option-head shapes disagree with option mask")
 
-    single_rows = ~is_multi
+    value_only_rows = (~is_multi) & (n_options == 1)
+    single_rows = (~is_multi) & (n_options > 1)
     multi_rows = is_multi
     zero = output.logits.new_zeros(())
 
@@ -98,7 +100,12 @@ def supervised_loss(
     ):
         raise ValueError("value_target must contain only -1, 0, or 1")
 
-    policy_loss = (single_sum + multi_sum) / count
+    policy_count = int(single_rows.sum().item() + multi_rows.sum().item())
+    policy_loss = (
+        (single_sum + multi_sum) / policy_count
+        if policy_count
+        else zero
+    )
     value_losses = F.mse_loss(output.value, value_target, reduction="none")
     value_sum = value_losses.sum()
     value_loss = value_sum / count
@@ -111,6 +118,7 @@ def supervised_loss(
         value_loss_sum=value_sum,
         single_count=int(single_rows.sum().item()),
         multi_count=int(multi_rows.sum().item()),
+        value_only_count=int(value_only_rows.sum().item()),
         value_count=count,
     )
 
@@ -151,10 +159,14 @@ def batch_metrics(
     is_multi = batch["is_multi"].to(
         device=output.logits.device, dtype=torch.bool
     )
-    single = ~is_multi
+    n_options = batch["n_options"].to(
+        device=output.logits.device, dtype=torch.int64
+    )
+    single = (~is_multi) & (n_options > 1)
     result: dict[str, Any] = {
         "single_count": breakdown.single_count,
         "multi_count": breakdown.multi_count,
+        "value_only_count": breakdown.value_only_count,
         "single_nll_sum": float(breakdown.single_loss_sum.detach().cpu()),
         "multi_nll_sum": float(breakdown.multi_loss_sum.detach().cpu()),
         "value_mse_sum": float(breakdown.value_loss_sum.detach().cpu()),
@@ -202,10 +214,8 @@ def batch_metrics(
         predictions = logits.argmax(dim=1)
         correct = predictions == targets
         result["single_top1_correct"] = int(correct.sum().item())
-        n_options = batch["n_options"].to(
-            device=logits.device, dtype=torch.int64
-        )[single]
-        eligible = n_options >= 3
+        single_n_options = n_options[single]
+        eligible = single_n_options >= 3
         if bool(eligible.any()):
             top3 = logits[eligible].topk(3, dim=1).indices
             expected = targets[eligible].unsqueeze(1)

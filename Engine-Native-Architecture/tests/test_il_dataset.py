@@ -22,7 +22,7 @@ def test_dataset_dtypes_shapes_and_last_partial_batch(tmp_path) -> None:
         verify_hashes=True,
     )
     batches = list(loader)
-    assert [batch["features"].shape[0] for batch in batches] == [3, 1]
+    assert [batch["features"].shape[0] for batch in batches] == [3, 3]
     first = batches[0]
     assert first["features"].shape == (3, 2239)
     assert first["features"].dtype == torch.float32
@@ -52,7 +52,7 @@ def test_train_sampler_is_seeded_and_validation_order_is_fixed(tmp_path) -> None
         validation, batch_size=4, shuffle=False, seed=1
     )
     fixed.set_epoch(10)
-    assert list(fixed) == [list(range(len(validation)))]
+    assert list(fixed) == [list(range(4)), list(range(4, len(validation)))]
 
 
 def test_train_sampler_resumes_without_yielding_prior_batches(tmp_path) -> None:

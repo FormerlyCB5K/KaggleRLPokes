@@ -6,9 +6,10 @@ Status: implemented; user-reported uncapped six-day cache and CUDA acceptance pa
 
 Value-learning amendment, 2026-07-30: this document remains the historical v1 policy
 cache contract. Active imitation training now follows spec 06's
-`engine-native-il-v2` extension, which adds acting-perspective terminal outcomes while
-leaving every expert policy target unchanged. Any statement below forbidding a value
-target is superseded only to that narrow extent.
+`engine-native-il-v3` extension, which adds acting-perspective terminal outcomes and
+retains forced one-option decisions as value-only rows. Expert policy targets remain
+unchanged, and forced rows contribute no policy loss. Any statement below forbidding a
+value target or excluding forced decisions is superseded only to that narrow extent.
 
 This handoff defines the shortest correct path from the already-sanitized TEST ladder
 replays to supervised batches for the engine-native policy. It covers extraction,
@@ -216,7 +217,7 @@ Field semantics:
 | `is_multi` | `select.maxCount > 1` |
 | `single_target` | Selected option index for single rows; `-100` for multi rows |
 | `multi_target` | 64-wide multi-hot selected-option target; all false for single rows |
-| `n_options` | Number of live engine options, 2 through 64 |
+| `n_options` | Number of live engine options, 1 through 64 |
 | `min_count` / `max_count` | Unnormalized source cardinality bounds |
 | `origin[:, 0]` | Index into `episode-table.json` |
 | `origin[:, 1]` | Acting player index |
@@ -555,7 +556,8 @@ run be treated as unblocked.
 - Use tensor-only `.pt` shards rather than custom examples or another data framework.
 - Use one exact game-level 90/10 split.
 - Use ordinary maximum likelihood with no class reweighting.
-- Exclude forced decisions.
+- Retain forced one-option decisions for value learning, but exclude them from policy
+  loss and policy metrics.
 - Skip representational option overflow and count it.
 - Do not produce a replay-derived value label.
 - Do not depend on game logs, state trackers, or engine re-simulation.

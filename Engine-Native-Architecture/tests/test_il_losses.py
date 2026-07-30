@@ -188,3 +188,52 @@ def test_default_loss_uses_alphago_zero_supervised_value_weight() -> None:
     assert float(result.loss.detach()) == pytest.approx(
         float(result.policy_loss.detach()) + 0.01
     )
+
+
+def test_forced_choice_trains_value_only_and_has_no_policy_gradient() -> None:
+    logits = torch.tensor([[0.0, -float("inf")]], requires_grad=True)
+    incl = torch.zeros((1, 2), requires_grad=True)
+    values = torch.tensor([0.0], requires_grad=True)
+    batch = {
+        "is_multi": torch.tensor([False]),
+        "single_target": torch.tensor([0]),
+        "multi_target": torch.zeros((1, 2), dtype=torch.bool),
+        "n_options": torch.tensor([1], dtype=torch.uint8),
+        "value_target": torch.tensor([1.0]),
+    }
+    result = supervised_loss(
+        _output(logits, incl, values),
+        batch,
+        torch.tensor([[True, False]]),
+    )
+    assert result.single_count == 0
+    assert result.multi_count == 0
+    assert result.value_only_count == 1
+    assert float(result.policy_loss.detach()) == 0.0
+    result.loss.backward()
+    assert logits.grad is None
+    assert incl.grad is None
+    assert values.grad is not None
+    assert torch.count_nonzero(values.grad) == 1
+
+
+def test_forced_choice_does_not_dilute_policy_loss_in_mixed_batch() -> None:
+    logits = torch.tensor([[0.0, 0.0], [0.0, -float("inf")]])
+    incl = torch.zeros((2, 2))
+    batch = {
+        "is_multi": torch.tensor([False, False]),
+        "single_target": torch.tensor([0, 0]),
+        "multi_target": torch.zeros((2, 2), dtype=torch.bool),
+        "n_options": torch.tensor([2, 1], dtype=torch.uint8),
+        "value_target": torch.tensor([0.0, 0.0]),
+    }
+    result = supervised_loss(
+        _output(logits, incl),
+        batch,
+        torch.tensor([[True, True], [True, False]]),
+    )
+    assert float(result.policy_loss.detach()) == pytest.approx(
+        float(torch.log(torch.tensor(2.0)))
+    )
+    assert result.single_count == 1
+    assert result.value_only_count == 1

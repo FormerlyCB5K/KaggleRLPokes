@@ -122,9 +122,12 @@ def test_cache_build_split_manifest_and_exact_reuse(tmp_path) -> None:
     assert not set(split["train"]) & set(split["validation"])
     assert len(split["train"]) == 3
     assert len(split["validation"]) == 1
-    assert manifest["totals"]["examples"] == 16
+    assert manifest["schema"] == "engine-native-il-v3"
+    assert manifest["schema_version"] == 3
+    assert manifest["totals"]["examples"] == 24
     assert manifest["totals"]["single"] == 8
     assert manifest["totals"]["multi"] == 8
+    assert manifest["totals"]["value_only"] == 8
     assert set(manifest["skip_counts_by_day"]["7-12"]) == {
         "no_action",
         "no_current",
@@ -151,6 +154,8 @@ def test_cache_build_split_manifest_and_exact_reuse(tmp_path) -> None:
     ]
     origins = torch.cat([rows["origin"] for rows in all_rows])
     values = torch.cat([rows["value_target"] for rows in all_rows])
+    n_options = torch.cat([rows["n_options"] for rows in all_rows])
+    assert int((n_options == 1).sum()) == 8
     assert torch.equal(
         values[origins[:, 1] == 0],
         torch.full_like(values[origins[:, 1] == 0], -1.0),

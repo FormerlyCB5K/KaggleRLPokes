@@ -17,6 +17,10 @@ def observation_json(
     observation = asdict(sample_observation(max_count=max_count))
     observation["current"]["yourIndex"] = player
     observation["select"]["usable"] = usable
+    if not usable:
+        observation["select"]["option"] = observation["select"]["option"][:1]
+        observation["select"]["minCount"] = 1
+        observation["select"]["maxCount"] = 1
     return observation
 
 

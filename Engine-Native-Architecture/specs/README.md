@@ -24,11 +24,10 @@ Specifications in this folder govern only `Engine-Native-Architecture/`.
 - [`06-alpha-zero-search-decisions.md`](06-alpha-zero-search-decisions.md) - active
   design record for AlphaZero-style PUCT, terminal-outcome value learning,
   deterministic-public search boundaries, simple terminal handling, and search-budget
-  controls. Its gated imitation phase is implemented with cache schema v2, `tanh`
+  controls. Its gated imitation phase is implemented with cache schema v3, `tanh`
   terminal-outcome learning, a joint policy/value objective, value metrics, and
-  exact-resume checkpoint support. A hard gate still forbids all MCTS/self-play coding
-  until this implementation and its validation evidence are reviewed and explicitly
-  approved by the user.
+  exact-resume checkpoint support. The user approved the value phase and opened the
+  MCTS runtime gate; self-play checkpoint-update semantics remain under discussion.
 
 ## Superseded
 

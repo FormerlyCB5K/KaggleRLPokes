@@ -49,8 +49,8 @@ def build_target(
     if not isinstance(options, list):
         raise TargetContractError("select.option must be a list")
     n_options = len(options)
-    if not 2 <= n_options <= MAX_OPTIONS:
-        raise TargetContractError(f"n_options must be in [2, {MAX_OPTIONS}], got {n_options}")
+    if not 1 <= n_options <= MAX_OPTIONS:
+        raise TargetContractError(f"n_options must be in [1, {MAX_OPTIONS}], got {n_options}")
 
     selected = tuple(
         _integer(value, name=f"selected[{index}]")

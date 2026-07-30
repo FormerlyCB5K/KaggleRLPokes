@@ -23,7 +23,7 @@ def test_decks_are_found_and_actions_pair_with_previous_observation() -> None:
 
     counts = Counter()
     decisions = list(iter_episode_decisions(episode, skip_counts=counts))
-    assert len(decisions) == 4
+    assert len(decisions) == 6
     assert decisions[0].response_step == 1
     assert decisions[0].observation_json["select"]["maxCount"] == 1
     assert decisions[0].action == (0,)
@@ -32,11 +32,15 @@ def test_decks_are_found_and_actions_pair_with_previous_observation() -> None:
         1.0,
         -1.0,
         1.0,
+        -1.0,
+        1.0,
     ]
     assert decisions[2].response_step == 2
     assert decisions[2].observation_json["select"]["maxCount"] == 2
     assert decisions[2].action == (0, 1)
-    assert counts["unusable"] == 2
+    assert decisions[4].observation_json["select"]["usable"] is False
+    assert len(decisions[4].observation_json["select"]["option"]) == 1
+    assert counts["unusable"] == 0
 
 
 def test_deck_submission_can_appear_at_any_step() -> None:
@@ -69,7 +73,7 @@ def test_option_overflow_is_counted_and_not_emitted() -> None:
     counts = Counter()
     decisions = list(iter_episode_decisions(episode, skip_counts=counts))
     assert counts["option_overflow"] == 1
-    assert len(decisions) == 3
+    assert len(decisions) == 5
 
 
 def test_terminal_outcomes_are_acting_perspective_and_draw_safe() -> None:

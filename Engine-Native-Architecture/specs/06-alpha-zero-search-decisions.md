@@ -1,6 +1,7 @@
 # 06 - AlphaZero-Style Search Decisions
 
-Status: active design and staged-implementation record, 2026-07-30.
+Status: active design and staged-implementation record; value-learning gate approved
+by the user on 2026-07-30.
 
 This file records decisions made during architecture discussion. The user authorized
 the gated terminal-outcome value-learning phase on 2026-07-30. Multi-selection search
@@ -68,20 +69,20 @@ and validation criteria for this extension remain future work.
 
 ## 3. Tree policy
 
-Use the AlphaZero PUCT form:
+Use the original AlphaGo Zero/AlphaZero constant-`c_puct` PUCT form:
 
 ```text
 argmax_a [ Q(s,a) + U(s,a) ]
 
-U(s,a) = C(s) * P(s,a) * sqrt(N(s)) / (1 + N(s,a))
-
-C(s) = log((1 + N(s) + c_base) / c_base) + c_init
+U(s,a) = c_puct * P(s,a) * sqrt(N(s)) / (1 + N(s,a))
 ```
 
 - `P(s,a)` is the policy prior over the engine's legal options.
 - `Q(s,a)` is the backed-up mean outcome value.
 - `N(s)` and `N(s,a)` are parent and edge visit counts.
-- `c_base` and `c_init` must be configurable and logged.
+- `c_puct` must be configurable and logged. The papers did not publish a universal
+  numeric value, so the initial default must be validated empirically rather than
+  silently borrowing the later dynamic `c_base`/`c_init` formula.
 - Root Dirichlet noise and visit-temperature sampling are training-play exploration
   controls only. Evaluation and Kaggle play use no root noise.
 
@@ -140,12 +141,19 @@ C(s) = log((1 + N(s) + c_base) / c_base) + c_init
 - Keep boundary detection local and minimal. The exact pre-transition detection
   mechanism remains an implementation-planning question because `search_step` may
   automatically advance across hidden-state consumption.
+- TODO after the conservative first version: revisit public-information inference that
+  can safely narrow deck and facedown-Prize composition without accessing true hidden
+  state. Do not block initial MCTS on this extension and do not introduce a general
+  tracker as part of the first version.
 
 ## 7. Search output and budgets
 
 - Root visit counts define the search policy.
 - Training gameplay may sample from visit counts using a configurable temperature and
   may use configurable root Dirichlet noise.
+- Use AlphaZero's initial search profile: 800 simulations for training, moves sampled
+  from root visit counts, root Dirichlet exploration during self-play, and greedy
+  highest-visit play during evaluation. All values remain configurable.
 - Validation, evaluation, and Kaggle play choose the highest-visit root action
   deterministically, except that an immediate proven terminal win takes precedence.
 - Training and evaluation must have separate repetition and wall-clock budgets. Training
@@ -180,10 +188,11 @@ MCTS visits, or perform offline search distillation. The self-play stage, when a
 later, will generate its own `(state, root visit distribution, terminal outcome)`
 training examples.
 
-## 10. Hard implementation gate
+## 10. Implementation gate
 
-MCTS and self-play coding is gated on completion and review of terminal-outcome value
-learning in the imitation pipeline.
+MCTS and self-play coding was gated on completion and review of terminal-outcome value
+learning in the imitation pipeline. The user reviewed and opened this gate on
+2026-07-30.
 
 Before the gate may be opened:
 
@@ -196,29 +205,23 @@ Before the gate may be opened:
    checkpoint/resume behavior, and validation metrics; and
 5. the completed value-learning change and its evidence must be reviewed by the user.
 
-Until the user explicitly approves that review and lifts this gate:
-
-- do not implement the shared MCTS runtime;
-- do not implement MCTS inference/search integration;
-- do not implement self-play data generation or self-play training;
-- do not add placeholder MCTS modules, scripts, tests, or config switches; and
-- do not treat completion of automated tests alone as permission to proceed.
-
-Architecture discussion and implementation planning may continue while the gate is
-closed, but MCTS/self-play source changes may not begin.
+The shared MCTS runtime is now authorized. Self-play checkpoint-update semantics remain
+under discussion and must be locked before implementing the self-play orchestration.
 
 ## 11. Value-learning implementation awaiting user review
 
 The gated imitation-learning change is implemented as follows:
 
-- cache schema `engine-native-il-v2` adds one scalar `float32 value_target` to every
-  decision row;
+- cache schema `engine-native-il-v3` adds one scalar `float32 value_target` to every
+  decision row and retains forced one-option decisions;
 - the label is derived once from the episode's final two-player rewards and attached
   from the acting player's perspective: higher reward `+1`, equal rewards `0`, lower
   reward `-1`;
 - malformed, missing, non-finite, or non-numeric rewards are hard errors rather than
   silently producing a label;
 - the existing categorical and joint-Bernoulli expert policy targets are unchanged;
+- forced one-option rows contribute value MSE but are excluded from policy loss and
+  policy metrics, so they send no gradient to either policy head;
 - imitation-created models use `ModelConfig(value_activation="tanh")`, while the
   default legacy/reference construction retains identity activation so the supplied
   golden checkpoint remains exactly reproducible;
@@ -235,19 +238,20 @@ The gated imitation-learning change is implemented as follows:
 - folder-agent bundles preserve the checkpoint's value activation so dashboards and
   later search consumers evaluate the trained value consistently.
 
-This is an intentional cache-schema break. Existing `engine-native-il-v1` caches do not
-contain outcomes and must be rebuilt before value-head training.
+This is an intentional cache-schema break. Existing `engine-native-il-v1` and
+`engine-native-il-v2` caches must be rebuilt before the current value-head training.
 
-Focused validation on 2026-07-30 passed all 70 tests under
+Focused validation on 2026-07-30 passed all 75 tests under
 `Engine-Native-Architecture/tests`, including acting-perspective and draw targets,
-invalid-reward rejection, cache target validation, joint-loss gradients, value range,
-metrics, interrupted/resumed training equality, serving-bundle metadata, exact
-2,370,259-parameter accounting, and unchanged golden reference outputs.
+invalid-reward rejection, forced-choice value-only gradients, cache target validation,
+joint-loss gradients, value range, metrics, interrupted/resumed training equality,
+serving-bundle metadata, exact 2,370,259-parameter accounting, and unchanged golden
+reference outputs.
 
 The run-config/batch-script extension for MCTS remains unimplemented until the MCTS
 gate opens. Every search parameter listed in section 7 must then be exposed by the
 command line and batch entry point, written to the run config, and reflected in
 `cluster/COMMAND_EXAMPLES.txt`. The current imitation entry point already exposes and
 logs `value_loss_weight = 0.01`, records the no-shaping terminal-outcome contract, and
-records tree search as explicitly disabled. The MCTS gate remains closed until the user
-reviews this implementation and explicitly opens it.
+records tree search as explicitly disabled. MCTS runs must replace that disabled block
+with the complete resolved search profile, including `c_puct`.

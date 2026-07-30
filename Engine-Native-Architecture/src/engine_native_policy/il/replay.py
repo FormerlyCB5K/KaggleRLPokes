@@ -121,7 +121,7 @@ def iter_episode_decisions(
     skip_counts: Counter[str] | None = None,
     n_players: int = 2,
 ) -> Iterator[ReplayDecision]:
-    """Yield all usable decisions and count every declared non-example category."""
+    """Yield policy/value rows plus forced-choice value-only rows."""
 
     counts = skip_counts if skip_counts is not None else Counter()
     decks = extract_submitted_decks(episode, n_players=n_players)
@@ -156,16 +156,16 @@ def iter_episode_decisions(
             if not isinstance(select, dict):
                 counts["no_select"] += 1
                 continue
-            if select.get("usable", True) is False:
-                counts["unusable"] += 1
-                continue
             options = select.get("option")
             n_options = len(options) if isinstance(options, list) else 0
-            if n_options < 2:
+            if n_options < 1:
                 counts["fewer_than_two_options"] += 1
                 continue
             if n_options > 64:
                 counts["option_overflow"] += 1
+                continue
+            if select.get("usable", True) is False and n_options != 1:
+                counts["unusable"] += 1
                 continue
 
             yield ReplayDecision(

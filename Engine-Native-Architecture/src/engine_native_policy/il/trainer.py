@@ -169,6 +169,7 @@ def _fresh_loss_totals() -> dict[str, float | int]:
         "value_loss_sum": 0.0,
         "single_count": 0,
         "multi_count": 0,
+        "value_only_count": 0,
         "value_count": 0,
         "batches": 0,
         "elapsed_seconds": 0.0,
@@ -190,6 +191,7 @@ def _add_loss(
     )
     totals["single_count"] += breakdown.single_count
     totals["multi_count"] += breakdown.multi_count
+    totals["value_only_count"] += breakdown.value_only_count
     totals["value_count"] += breakdown.value_count
     totals["batches"] += 1
 
@@ -199,18 +201,20 @@ def _loss_summary(
 ) -> dict[str, float | int]:
     single_count = int(totals["single_count"])
     multi_count = int(totals["multi_count"])
-    total_count = single_count + multi_count
+    policy_count = single_count + multi_count
+    value_only_count = int(totals["value_only_count"])
     single_sum = float(totals["single_loss_sum"])
     multi_sum = float(totals["multi_loss_sum"])
     value_sum = float(totals["value_loss_sum"])
     value_count = int(totals["value_count"])
     elapsed = float(totals["elapsed_seconds"])
     policy_nll = (
-        (single_sum + multi_sum) / total_count if total_count else 0.0
+        (single_sum + multi_sum) / policy_count if policy_count else 0.0
     )
     value_mse = value_sum / value_count if value_count else 0.0
     return {
-        "examples": total_count,
+        "examples": value_count,
+        "policy_count": policy_count,
         "batches": int(totals["batches"]),
         "loss": policy_nll + value_loss_weight * value_mse,
         "nll": policy_nll,
@@ -221,9 +225,10 @@ def _loss_summary(
         "multi_nll": multi_sum / multi_count if multi_count else 0.0,
         "single_count": single_count,
         "multi_count": multi_count,
+        "value_only_count": value_only_count,
         "value_count": value_count,
         "elapsed_seconds": elapsed,
-        "examples_per_second": total_count / elapsed if elapsed else 0.0,
+        "examples_per_second": value_count / elapsed if elapsed else 0.0,
         "peak_cuda_memory_bytes": int(totals["peak_cuda_memory_bytes"]),
     }
 
@@ -255,6 +260,7 @@ def _add_validation_metrics(
     for name in (
         "single_count",
         "multi_count",
+        "value_only_count",
         "single_nll_sum",
         "multi_nll_sum",
         "single_top1_correct",

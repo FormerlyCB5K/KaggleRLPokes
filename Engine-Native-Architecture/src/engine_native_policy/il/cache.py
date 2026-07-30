@@ -39,7 +39,7 @@ from .replay import (
 from .targets import TargetContractError, build_target
 
 
-SCHEMA_NAME = "engine-native-il-v2"
+SCHEMA_NAME = "engine-native-il-v3"
 SPLIT_SCHEMA_VERSION = 1
 DEFAULT_DAYS = ("7-12", "7-13", "7-14", "7-23", "7-24", "7-25")
 DEFAULT_SEED = 20260728
@@ -101,6 +101,7 @@ class EpisodeRows:
     histograms: dict[str, dict[int, int]]
     single_count: int
     multi_count: int
+    value_only_count: int
     entity_overflow_count: int
 
     @property
@@ -579,6 +580,7 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
         }
         single_count = 0
         multi_count = 0
+        value_only_count = 0
         entity_overflow_count = 0
 
         for decision in iter_episode_decisions(
@@ -601,7 +603,10 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
             columns["origin"].append(
                 [episode_index, decision.player, decision.response_step]
             )
-            single_count += int(not target.is_multi)
+            value_only_count += int(target.n_options == 1)
+            single_count += int(
+                not target.is_multi and target.n_options > 1
+            )
             multi_count += int(target.is_multi)
             histograms["n_options"][target.n_options] += 1
             histograms["min_count"][target.min_count] += 1
@@ -642,6 +647,7 @@ def _process_episode(job: tuple[SourceEpisode, int]) -> EpisodeRows:
             },
             single_count=single_count,
             multi_count=multi_count,
+            value_only_count=value_only_count,
             entity_overflow_count=entity_overflow_count,
         )
     except (ReplayContractError, TargetContractError, OSError, ValueError) as exc:
@@ -705,7 +711,7 @@ def validate_shard_payload(payload: Any, *, expected_rows: int | None = None) ->
     maximum = payload["max_count"].to(torch.int64)
     is_multi = payload["is_multi"]
     value_target = payload["value_target"]
-    if not bool(((n_options >= 2) & (n_options <= MAX_OPTIONS)).all()):
+    if not bool(((n_options >= 1) & (n_options <= MAX_OPTIONS)).all()):
         raise CacheContractError("shard contains invalid n_options")
     if not bool(((minimum >= 0) & (minimum <= maximum) & (maximum <= n_options)).all()):
         raise CacheContractError("shard contains invalid cardinality bounds")
@@ -1105,10 +1111,12 @@ def build_cache(
         totals_by_split[split_name]["games"] += 1
         totals_by_split[split_name]["single"] += result.single_count
         totals_by_split[split_name]["multi"] += result.multi_count
+        totals_by_split[split_name]["value_only"] += result.value_only_count
         examples_by_day[source.day][split_name] += result.n_rows
         examples_by_day[source.day][f"{split_name}_games"] += 1
         examples_by_day[source.day]["single"] += result.single_count
         examples_by_day[source.day]["multi"] += result.multi_count
+        examples_by_day[source.day]["value_only"] += result.value_only_count
         skips_by_day[source.day].update(result.skip_counts)
         for name, values in result.histograms.items():
             _merge_histogram(histograms[name], values)
@@ -1139,7 +1147,7 @@ def build_cache(
     elapsed = time.perf_counter() - started_clock
     manifest = {
         "schema": SCHEMA_NAME,
-        "schema_version": 2,
+        "schema_version": 3,
         "identity": identity,
         "tensor_schema": {
             name: {
@@ -1179,6 +1187,10 @@ def build_cache(
             ),
             "multi": sum(
                 totals_by_split[name]["multi"]
+                for name in ("train", "validation")
+            ),
+            "value_only": sum(
+                totals_by_split[name]["value_only"]
                 for name in ("train", "validation")
             ),
             "by_split": {
