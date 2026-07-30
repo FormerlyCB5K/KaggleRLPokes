@@ -24,6 +24,7 @@ DATASET="${DATASET:-top-rated-winner-2026-07-12-to-2026-07-27}"
 DAYS="${DAYS:-7-12,7-13,7-14,7-15,7-16,7-17,7-18,7-19,7-20,7-21,7-22,7-23,7-24,7-25,7-26,7-27}"
 FRACTION="${FRACTION:-0.10}"
 SCORE_COLUMN="${SCORE_COLUMN:-min_score}"
+PERSPECTIVES="${PERSPECTIVES:-winner}"
 REQUIRED_GIB="${REQUIRED_GIB:-60}"
 OVERWRITE_SELECTED="${OVERWRITE_SELECTED:-0}"
 WORKERS="${SLURM_CPUS_PER_TASK:-16}"
@@ -34,6 +35,10 @@ if [[ ! "$DATASET" =~ ^[A-Za-z0-9._-]+$ ]]; then
 fi
 if [[ "$SCORE_COLUMN" != "min_score" && "$SCORE_COLUMN" != "avg_score" ]]; then
     echo "SCORE_COLUMN must be min_score or avg_score." >&2
+    exit 2
+fi
+if [[ "$PERSPECTIVES" != "winner" && "$PERSPECTIVES" != "all" ]]; then
+    echo "PERSPECTIVES must be winner or all." >&2
     exit 2
 fi
 if [[ "$OVERWRITE_SELECTED" != "0" && "$OVERWRITE_SELECTED" != "1" ]]; then
@@ -73,6 +78,7 @@ done
 echo "Top-rated full-corpus build ${SLURM_JOB_ID:-manual} started at $(date)"
 echo "Days: $DAYS"
 echo "Ranking: $SCORE_COLUMN; fraction: $FRACTION"
+echo "Supervised perspectives: $PERSPECTIVES"
 echo "Selected sanitized replays: $SELECTED_ROOT"
 echo "Tensor cache: $CACHE_ROOT"
 
@@ -91,6 +97,7 @@ PREPARE_ARGS=(
     --days "$DAYS"
     --fraction "$FRACTION"
     --score-column "$SCORE_COLUMN"
+    --perspectives "$PERSPECTIVES"
     --workers "$WORKERS"
 )
 if [ "$OVERWRITE_SELECTED" = "1" ]; then

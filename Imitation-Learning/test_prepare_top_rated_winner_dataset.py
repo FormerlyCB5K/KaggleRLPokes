@@ -91,6 +91,33 @@ def test_winner_filter_preserves_both_decks_and_blanks_loser_actions() -> None:
     assert prepared["steps"][0][0]["observation"]["select"]["usable"] is True
 
 
+def test_all_perspectives_preserves_both_players_actions() -> None:
+    episode = _episode(1, [1, -1])
+    prepared, result = prepare_episode(
+        json.dumps(episode).encode(),
+        selection=_selection(1),
+        score_column="min_score",
+        perspective_mode="all",
+    )
+    assert prepared is not None
+    assert result["outcome"] == "decisive"
+    assert result["supervised_players"] == [0, 1]
+    assert result["filtered_actions"] == 0
+    assert prepared["steps"][1][0]["action"] == [0]
+    assert prepared["steps"][1][1]["action"] == [1]
+    assert prepared["dataset_selection"] == {
+        "schema": "top-rated-all-perspectives-replays-v1",
+        "score_column": "min_score",
+        "perspective_mode": "all",
+        "selection_rank": 1,
+        "avg_score": 900.0,
+        "min_score": 850.0,
+        "sum_score": 1800.0,
+        "outcome": "decisive",
+        "supervised_players": [0, 1],
+    }
+
+
 def test_draw_keeps_both_perspectives_and_non_numeric_result_is_excluded() -> None:
     draw, draw_result = prepare_episode(
         json.dumps(_episode(1, [0, 0])).encode(),

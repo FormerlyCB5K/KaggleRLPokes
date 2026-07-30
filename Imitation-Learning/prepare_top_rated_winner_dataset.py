@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-"""Prepare a compact, top-rated, winner-perspective replay corpus.
+"""Prepare a compact, top-rated replay corpus with selectable perspectives.
 
 For each requested daily raw archive, this script:
 
 1. ranks manifest rows by ``min_score`` (the lower-rated player in the game);
 2. selects the top ``ceil(fraction * manifest rows)`` games deterministically;
 3. applies the existing DONE-status and forced-choice sanitization contract;
-4. keeps only the winning player's non-deck actions for decisive games;
-5. keeps both perspectives for numeric draws; and
+4. keeps either the winner's actions or both players' actions;
+5. always keeps both perspectives for numeric draws; and
 6. excludes malformed, non-DONE, or non-numeric-result episodes.
 
 The complete observations and both submitted decks remain in every written replay.
@@ -46,9 +46,14 @@ DEFAULT_OUTPUT_ROOT = DEFAULT_DATA_ROOT / "top-rated-winner-three-days"
 DEFAULT_DAYS = ("7-23", "7-24", "7-25")
 DEFAULT_FRACTION = 0.10
 DEFAULT_SCORE_COLUMN = "min_score"
+DEFAULT_PERSPECTIVE_MODE = "winner"
 DEFAULT_WORKERS = max(1, min(16, (os.cpu_count() or 4) - 2))
-REPORT_SCHEMA = "top-rated-winner-replays-v1"
+REPORT_SCHEMAS = {
+    "winner": "top-rated-winner-replays-v1",
+    "all": "top-rated-all-perspectives-replays-v1",
+}
 SCORE_COLUMNS = ("min_score", "avg_score")
+PERSPECTIVE_MODES = tuple(REPORT_SCHEMAS)
 
 
 class PreparationError(RuntimeError):
@@ -217,9 +222,14 @@ def prepare_episode(
     *,
     selection: dict[str, Any],
     score_column: str,
+    perspective_mode: str = DEFAULT_PERSPECTIVE_MODE,
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
     """Sanitize and label one selected episode."""
 
+    if perspective_mode not in PERSPECTIVE_MODES:
+        raise PreparationError(
+            f"perspective_mode must be one of {', '.join(PERSPECTIVE_MODES)}"
+        )
     episode, exclusion = sanitize_member(raw)
     if episode is None:
         return None, dict(exclusion or {"reason": "malformed_json"})
@@ -232,13 +242,15 @@ def prepare_episode(
         perspectives = (0, 1)
     else:
         outcome = "decisive"
-        perspectives = (0 if rewards[0] > rewards[1] else 1,)
+        winner = 0 if rewards[0] > rewards[1] else 1
+        perspectives = (0, 1) if perspective_mode == "all" else (winner,)
 
     filtered_actions = restrict_episode_to_perspectives(episode, perspectives)
     steps_total, steps_usable, steps_masked = mask_episode(episode)
     episode["dataset_selection"] = {
-        "schema": REPORT_SCHEMA,
+        "schema": REPORT_SCHEMAS[perspective_mode],
         "score_column": score_column,
+        "perspective_mode": perspective_mode,
         "selection_rank": int(selection["selection_rank"]),
         "avg_score": float(selection["avg_score"]),
         "min_score": float(selection["min_score"]),
@@ -272,6 +284,7 @@ def _process_selection(
     *,
     output_dir: str,
     score_column: str,
+    perspective_mode: str,
 ) -> dict[str, Any]:
     assert _worker_bundle is not None
     episode_id = int(selection["episode_id"])
@@ -294,6 +307,7 @@ def _process_selection(
         raw,
         selection=selection,
         score_column=score_column,
+        perspective_mode=perspective_mode,
     )
     if episode is None:
         return {**result, **disposition}
@@ -335,11 +349,16 @@ def process_day(
     output_root: Path,
     fraction: float = DEFAULT_FRACTION,
     score_column: str = DEFAULT_SCORE_COLUMN,
+    perspective_mode: str = DEFAULT_PERSPECTIVE_MODE,
     workers: int = DEFAULT_WORKERS,
     overwrite: bool = False,
 ) -> dict[str, Any]:
     if workers < 1:
         raise PreparationError("workers must be positive")
+    if perspective_mode not in PERSPECTIVE_MODES:
+        raise PreparationError(
+            f"perspective_mode must be one of {', '.join(PERSPECTIVE_MODES)}"
+        )
     archive = _find_archive(data_root, day)
     with zipfile.ZipFile(archive) as bundle:
         rows = _read_manifest(bundle, day=day)
@@ -360,6 +379,7 @@ def process_day(
                         selection,
                         output_dir=str(staging),
                         score_column=score_column,
+                        perspective_mode=perspective_mode,
                     )
                     for selection in selected
                 ]
@@ -378,6 +398,7 @@ def process_day(
                             _process_selection,
                             output_dir=str(staging),
                             score_column=score_column,
+                            perspective_mode=perspective_mode,
                         ),
                         selected,
                         chunksize=4,
@@ -387,13 +408,14 @@ def process_day(
         written = [item for item in results if item.get("written")]
         excluded = [item for item in results if not item.get("written")]
         report = {
-            "schema": REPORT_SCHEMA,
+            "schema": REPORT_SCHEMAS[perspective_mode],
             "day": day,
             "source_archive": _repo_path(archive),
             "selection": {
                 "fraction": fraction,
                 "rounding": "ceil",
                 "score_column": score_column,
+                "perspective_mode": perspective_mode,
                 "tie_break": [
                     (
                         "avg_score_desc"
@@ -441,6 +463,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         choices=SCORE_COLUMNS,
         default=DEFAULT_SCORE_COLUMN,
     )
+    parser.add_argument(
+        "--perspectives",
+        choices=PERSPECTIVE_MODES,
+        default=DEFAULT_PERSPECTIVE_MODE,
+        help="Use winner actions only, or actions from both players.",
+    )
     parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS)
     parser.add_argument(
         "--overwrite",
@@ -464,6 +492,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             fraction=args.fraction,
             score_column=args.score_column,
+            perspective_mode=args.perspectives,
             workers=args.workers,
             overwrite=args.overwrite,
         )
@@ -483,6 +512,7 @@ def main(argv: list[str] | None = None) -> int:
                 "output_root": str(output_root),
                 "days": list(args.days),
                 "score_column": args.score_column,
+                "perspective_mode": args.perspectives,
                 "fraction": args.fraction,
                 "games_written": sum(item["episodes_written"] for item in summaries),
                 "decisive_games": sum(
