@@ -41,10 +41,16 @@ The reference-compatible Python and imitation-data milestone is implemented:
 - direct sanitized-replay extraction with complete multi-selection labels;
 - deterministic game splitting and immutable tensor-only PyTorch shards;
 - mmap-backed shard-aware loading, supervised losses, and validation metrics;
+- acting-perspective terminal-outcome labels and forced-choice value-only rows in cache
+  schema v3;
+- joint expert-policy and bounded `tanh` value-head training with separate metrics;
 - a finite real-model train-input smoke command;
 - a full mixed-precision behavior-cloning trainer with complete validation, atomic
-  best/latest checkpoints, and exact mid-epoch resume; and
-- an automatically continued six-day SLURM training entry point.
+  best/latest checkpoints, and exact mid-epoch resume;
+- an automatically continued six-day SLURM training entry point;
+- AlphaZero-style policy/value MCTS with no rollouts and conservative
+  imperfect-information boundaries; and
+- latest-network self-play replay generation and equal-weight policy/value training.
 
 The user reported that the six-day uncapped cluster cache and CUDA smoke completed
 successfully. The full six-day optimization run remains pending.
@@ -54,7 +60,12 @@ deferred architecture phases and
 [`specs/03-imitation-data-to-train-handoff.md`](specs/03-imitation-data-to-train-handoff.md)
 for the implemented data contract, and
 [`specs/04-behavior-cloning-trainer.md`](specs/04-behavior-cloning-trainer.md)
-for full optimizer and checkpoint semantics.
+for full optimizer and checkpoint semantics. The staged value-learning and
+AlphaZero-style search decisions are recorded in
+[`specs/06-alpha-zero-search-decisions.md`](specs/06-alpha-zero-search-decisions.md).
+The value-learning review gate was lifted on 2026-07-30; the initial MCTS runtime,
+serving integration, self-play generator, replay trainer, cluster jobs, and config
+logging are implemented.
 
 ## Engine-first rule
 
@@ -79,6 +90,9 @@ hidden-information boundary, and validation test.
 - `specs/` - architecture contracts, decisions, and implementation phases.
 - `src/engine_native_policy/` - the new implementation package.
 - `src/engine_native_policy/il/` - replay, target, cache, loader, loss, and trainer.
+- `src/engine_native_policy/mcts.py` / `engine_search.py` - generic search and native
+  public-information boundary bridge.
+- `src/engine_native_policy/selfplay*.py` - game shards, replay windows, and updates.
 - `artifacts/` - retained real tables, schemas, checkpoint, and golden fixtures.
 - `scripts/` - local cache construction, smoke, and full-training entry points.
 - `cluster/` - isolated six-day cache, smoke, and full-training SLURM jobs.
