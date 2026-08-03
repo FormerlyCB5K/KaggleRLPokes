@@ -27,6 +27,7 @@ SCORE_COLUMN="${SCORE_COLUMN:-min_score}"
 PERSPECTIVES="${PERSPECTIVES:-winner}"
 REQUIRED_GIB="${REQUIRED_GIB:-60}"
 OVERWRITE_SELECTED="${OVERWRITE_SELECTED:-0}"
+REUSE_SELECTED="${REUSE_SELECTED:-1}"
 WORKERS="${SLURM_CPUS_PER_TASK:-16}"
 
 if [[ ! "$DATASET" =~ ^[A-Za-z0-9._-]+$ ]]; then
@@ -43,6 +44,10 @@ if [[ "$PERSPECTIVES" != "winner" && "$PERSPECTIVES" != "all" ]]; then
 fi
 if [[ "$OVERWRITE_SELECTED" != "0" && "$OVERWRITE_SELECTED" != "1" ]]; then
     echo "OVERWRITE_SELECTED must be 0 or 1." >&2
+    exit 2
+fi
+if [[ "$REUSE_SELECTED" != "0" && "$REUSE_SELECTED" != "1" ]]; then
+    echo "REUSE_SELECTED must be 0 or 1." >&2
     exit 2
 fi
 
@@ -81,6 +86,7 @@ echo "Ranking: $SCORE_COLUMN; fraction: $FRACTION"
 echo "Supervised perspectives: $PERSPECTIVES"
 echo "Selected sanitized replays: $SELECTED_ROOT"
 echo "Tensor cache: $CACHE_ROOT"
+echo "Reuse completed selected days: $REUSE_SELECTED"
 
 AVAILABLE_KB=$(df -Pk "$RAW_ROOT" | awk 'NR==2 {print $4}')
 REQUIRED_KB=$((REQUIRED_GIB * 1024 * 1024))
@@ -102,10 +108,31 @@ PREPARE_ARGS=(
 )
 if [ "$OVERWRITE_SELECTED" = "1" ]; then
     PREPARE_ARGS+=(--overwrite)
+elif [ "$REUSE_SELECTED" = "1" ]; then
+    PREPARE_ARGS+=(--reuse-existing)
 fi
 
 python -u Imitation-Learning/prepare_top_rated_winner_dataset.py \
     "${PREPARE_ARGS[@]}"
+
+# The tensor builder can leave a non-empty directory without a manifest if a
+# job is interrupted. Preserve that partial output for inspection, then allow
+# the retry to start from a clean destination. Completed caches retain their
+# manifest and are validated/reused by build_il_dataset.py below.
+if [ -d "$CACHE_ROOT" ] && [ ! -f "$CACHE_ROOT/manifest.json" ] && \
+        [ -n "$(find "$CACHE_ROOT" -mindepth 1 -print -quit)" ]; then
+    RAW_REAL=$(realpath "$RAW_ROOT")
+    CACHE_REAL=$(realpath -m "$CACHE_ROOT")
+    CACHE_NAME=$(basename "$CACHE_REAL")
+    if [ "$(dirname "$CACHE_REAL")" != "$RAW_REAL" ] || \
+            [[ "$CACHE_NAME" != engine-native-cache-* ]]; then
+        echo "Refusing to move unsafe incomplete cache path: $CACHE_REAL" >&2
+        exit 1
+    fi
+    PARTIAL_CACHE="$RAW_ROOT/.incomplete-$CACHE_NAME-${SLURM_JOB_ID:-manual}-$(date +%s)"
+    mv -- "$CACHE_REAL" "$PARTIAL_CACHE"
+    echo "Moved incomplete tensor cache to recoverable path: $PARTIAL_CACHE"
+fi
 
 python -u Engine-Native-Architecture/scripts/build_il_dataset.py \
     --source sanitized \

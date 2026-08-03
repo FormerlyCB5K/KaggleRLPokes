@@ -342,6 +342,108 @@ def _replace_day_directory(
     os.replace(staging, destination)
 
 
+def _load_reusable_day(
+    destination: Path,
+    *,
+    day: str,
+    archive: Path,
+    rows: list[dict[str, Any]],
+    selected: list[dict[str, Any]],
+    fraction: float,
+    score_column: str,
+    perspective_mode: str,
+) -> dict[str, Any]:
+    """Return a completed existing day only when it matches this request."""
+
+    report_path = destination / "report.json"
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise PreparationError(
+            f"existing output day is incomplete or unreadable: {destination}; "
+            "pass --overwrite to rebuild it"
+        ) from exc
+    if not isinstance(report, dict):
+        raise PreparationError(
+            f"existing output day has an invalid report: {destination}; "
+            "pass --overwrite to rebuild it"
+        )
+
+    selection = report.get("selection")
+    expected_summary = {
+        "fraction": fraction,
+        "rounding": "ceil",
+        "score_column": score_column,
+        "perspective_mode": perspective_mode,
+        "manifest_episodes": len(rows),
+        "selected_episodes": len(selected),
+        "cutoff_score": float(selected[-1][score_column]),
+    }
+    reusable = (
+        report.get("schema") == REPORT_SCHEMAS[perspective_mode]
+        and report.get("day") == day
+        and report.get("source_archive") == _repo_path(archive)
+        and isinstance(selection, dict)
+        and all(selection.get(key) == value for key, value in expected_summary.items())
+    )
+
+    results = report.get("episodes", [])
+    excluded = report.get("excluded", [])
+    if not isinstance(results, list) or not isinstance(excluded, list):
+        reusable = False
+        combined: list[Any] = []
+    else:
+        combined = results + excluded
+
+    expected_by_rank = {
+        int(item["selection_rank"]): item for item in selected
+    }
+    if len(combined) != len(selected):
+        reusable = False
+    else:
+        seen_ranks: set[int] = set()
+        for item in combined:
+            if not isinstance(item, dict):
+                reusable = False
+                break
+            rank = item.get("selection_rank")
+            if not isinstance(rank, int) or isinstance(rank, bool):
+                reusable = False
+                break
+            expected = expected_by_rank.get(rank)
+            if expected is None or rank in seen_ranks:
+                reusable = False
+                break
+            seen_ranks.add(rank)
+            for key in ("episode_id", "avg_score", "min_score", "sum_score"):
+                if item.get(key) != expected[key]:
+                    reusable = False
+                    break
+
+    written_ids: set[int] = set()
+    for item in results:
+        episode_id = item.get("episode_id") if isinstance(item, dict) else None
+        if (
+            item.get("written") is not True
+            or not isinstance(episode_id, int)
+            or isinstance(episode_id, bool)
+        ):
+            reusable = False
+            continue
+        written_ids.add(episode_id)
+    expected_files = {"report.json", *(f"{episode_id}.json" for episode_id in written_ids)}
+    actual_files = {path.name for path in destination.glob("*.json") if path.is_file()}
+    if actual_files != expected_files:
+        reusable = False
+
+    if not reusable:
+        raise PreparationError(
+            f"existing output day does not exactly match the requested selection: "
+            f"{destination}; pass --overwrite to rebuild it"
+        )
+    return report
+
+
 def process_day(
     *,
     day: str,
@@ -352,6 +454,7 @@ def process_day(
     perspective_mode: str = DEFAULT_PERSPECTIVE_MODE,
     workers: int = DEFAULT_WORKERS,
     overwrite: bool = False,
+    reuse_existing: bool = False,
 ) -> dict[str, Any]:
     if workers < 1:
         raise PreparationError("workers must be positive")
@@ -368,6 +471,17 @@ def process_day(
 
     output_root.mkdir(parents=True, exist_ok=True)
     destination = output_root / day
+    if destination.exists() and reuse_existing and not overwrite:
+        return _load_reusable_day(
+            destination,
+            day=day,
+            archive=archive,
+            rows=rows,
+            selected=selected,
+            fraction=fraction,
+            score_column=score_column,
+            perspective_mode=perspective_mode,
+        )
     staging = output_root / f".{day}.{uuid.uuid4().hex}.tmp"
     staging.mkdir()
     try:
@@ -475,6 +589,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Atomically replace existing selected day directories.",
     )
+    parser.add_argument(
+        "--reuse-existing",
+        action="store_true",
+        help=(
+            "Resume a prior run by reusing completed day directories only when "
+            "their report and selected files exactly match this request."
+        ),
+    )
     return parser.parse_args(argv)
 
 
@@ -495,6 +617,7 @@ def main(argv: list[str] | None = None) -> int:
             perspective_mode=args.perspectives,
             workers=args.workers,
             overwrite=args.overwrite,
+            reuse_existing=args.reuse_existing,
         )
         summaries.append(report)
         print(

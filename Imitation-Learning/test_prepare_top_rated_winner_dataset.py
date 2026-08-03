@@ -6,10 +6,13 @@ import sys
 import zipfile
 from pathlib import Path
 
+import pytest
+
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from prepare_top_rated_winner_dataset import (  # noqa: E402
+    PreparationError,
     prepare_episode,
     process_day,
     select_manifest_rows,
@@ -187,3 +190,23 @@ def test_process_day_writes_ranked_report_and_atomic_day(tmp_path) -> None:
     assert not (output / "7-23" / "10.json").exists()
     persisted = json.loads((output / "7-23" / "report.json").read_text())
     assert persisted["schema"] == "top-rated-winner-replays-v1"
+
+    reused = process_day(
+        day="7-23",
+        data_root=data_root,
+        output_root=output,
+        fraction=0.20,
+        workers=1,
+        reuse_existing=True,
+    )
+    assert reused == report
+
+    with pytest.raises(PreparationError, match="does not exactly match"):
+        process_day(
+            day="7-23",
+            data_root=data_root,
+            output_root=output,
+            fraction=0.30,
+            workers=1,
+            reuse_existing=True,
+        )
