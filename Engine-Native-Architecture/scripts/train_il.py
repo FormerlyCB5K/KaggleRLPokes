@@ -35,6 +35,17 @@ from engine_native_policy.mcts import SearchConfig  # noqa: E402
 
 
 NO_EVALUATION = "NO EVALUATION PERFORMED FOR THIS RUN"
+EVALUATION_SWITCHES = frozenset(
+    {
+        "evaluate",
+        "evaluation_games",
+        "evaluation_opponent_folder",
+        "evaluation_opponent_deck",
+        "evaluation_own_deck",
+        "evaluation_checkpoint",
+        "evaluation_max_actions",
+    }
+)
 DEFAULT_DATASET_ROOT = (
     REPOSITORY_ROOT
     / "Imitation-Learning"
@@ -566,6 +577,7 @@ def _new_record(args: argparse.Namespace, config_log: Path) -> dict[str, Any]:
             "multi_select": "policy_resolved_macro_action",
         },
         "switches": switches,
+        "switch_updates": [],
         "created_at_utc": _utc_now(),
         "updated_at_utc": _utc_now(),
         "state": "created",
@@ -601,11 +613,48 @@ def _load_or_create_record(
         raise RuntimeError(
             f"{config_log}: model name or description does not match this run"
         )
-    if existing.get("switches") != expected["switches"]:
-        raise RuntimeError(
-            f"{config_log}: command-line switches do not match this run"
+    existing_switches = existing.get("switches")
+    expected_switches = expected["switches"]
+    if not isinstance(existing_switches, dict):
+        raise RuntimeError(f"{config_log}: run record has invalid switches")
+    switch_changes = {
+        key: {
+            "recorded": existing_switches.get(key),
+            "requested": expected_switches.get(key),
+        }
+        for key in sorted(set(existing_switches) | set(expected_switches))
+        if existing_switches.get(key) != expected_switches.get(key)
+    }
+    if not switch_changes:
+        return existing
+
+    prior_evaluation = existing.get("evaluation")
+    evaluation_completed = (
+        isinstance(prior_evaluation, dict)
+        and prior_evaluation.get("status") == "completed"
+    )
+    if set(switch_changes).issubset(EVALUATION_SWITCHES) and not evaluation_completed:
+        changed_at = _utc_now()
+        existing["switches"] = expected_switches
+        updates = existing.setdefault("switch_updates", [])
+        if not isinstance(updates, list):
+            raise RuntimeError(f"{config_log}: run record has invalid switch_updates")
+        updates.append(
+            {
+                "changed_at_utc": changed_at,
+                "scope": "post_training_evaluation",
+                "changes": switch_changes,
+            }
         )
-    return existing
+        existing["evaluation"] = expected["evaluation"]
+        existing["updated_at_utc"] = changed_at
+        return existing
+
+    raise RuntimeError(
+        f"{config_log}: command-line switches do not match this run; "
+        "use the recorded switches or a new --run-name. Differences:\n"
+        f"{json.dumps(switch_changes, indent=2, sort_keys=True)}"
+    )
 
 
 def main(argv: Sequence[str] | None = None) -> int:

@@ -110,6 +110,10 @@ sbatch Engine-Native-Architecture/cluster/train_il_dataset.sbatch \
 
 # Use a unique --run-name for a genuinely new training configuration.
 # Reusing a completed run name resumes or reports that existing run.
+# Before evaluation completes, evaluation-only switches (for example, changing
+# --evaluation-own-deck) may be corrected on a retry. The combined config keeps
+# an audited old/new switch history. Training, model, and MCTS switches remain
+# immutable for a run name and seed.
 
 
 3. EVALUATION OPTIONS

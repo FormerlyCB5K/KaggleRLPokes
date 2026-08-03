@@ -5,6 +5,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 
 PROJECT = Path(__file__).resolve().parents[1]
 SCRIPT_PATH = PROJECT / "scripts" / "train_il.py"
@@ -176,3 +178,137 @@ def test_combined_config_records_evaluation_results(
     assert record["evaluation"]["settings"]["requested_games"] == 100
     assert record["evaluation"]["results"]["completed_games"] == 100
     assert record["runtime"]["evaluation_seconds"] == 1.25
+
+
+def test_pending_run_allows_audited_evaluation_switch_update(tmp_path: Path) -> None:
+    script = _load_script()
+    config_log = tmp_path / "config" / "run.json"
+    old_deck = tmp_path / "old-deck.csv"
+    new_deck = tmp_path / "new-deck.csv"
+    old_args = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--evaluate",
+            "true",
+            "--evaluation-own-deck",
+            str(old_deck),
+        ]
+    )
+    script._write_json_atomic(
+        config_log,
+        script._new_record(old_args, config_log.resolve()),
+    )
+
+    new_args = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--evaluate",
+            "true",
+            "--evaluation-own-deck",
+            str(new_deck),
+        ]
+    )
+    record = script._load_or_create_record(new_args, config_log.resolve())
+
+    assert record["switches"]["evaluation_own_deck"] == str(new_deck.resolve())
+    assert record["evaluation"] == {
+        "status": "pending_training_completion",
+        "requested_games": 100,
+    }
+    assert record["switch_updates"] == [
+        {
+            "changed_at_utc": record["switch_updates"][0]["changed_at_utc"],
+            "scope": "post_training_evaluation",
+            "changes": {
+                "evaluation_own_deck": {
+                    "recorded": str(old_deck.resolve()),
+                    "requested": str(new_deck.resolve()),
+                }
+            },
+        }
+    ]
+
+
+def test_training_switch_mismatch_reports_the_differences(tmp_path: Path) -> None:
+    script = _load_script()
+    config_log = tmp_path / "config" / "run.json"
+    original = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--learning-rate",
+            "1e-4",
+        ]
+    )
+    script._write_json_atomic(
+        config_log,
+        script._new_record(original, config_log.resolve()),
+    )
+    changed = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--learning-rate",
+            "2e-4",
+        ]
+    )
+
+    with pytest.raises(RuntimeError, match='"learning_rate"'):
+        script._load_or_create_record(changed, config_log.resolve())
+
+
+def test_completed_evaluation_cannot_be_redefined(tmp_path: Path) -> None:
+    script = _load_script()
+    config_log = tmp_path / "config" / "run.json"
+    original = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--evaluate",
+            "true",
+            "--evaluation-games",
+            "10",
+        ]
+    )
+    record = script._new_record(original, config_log.resolve())
+    record["evaluation"] = {"status": "completed"}
+    script._write_json_atomic(config_log, record)
+    changed = script.parse_args(
+        [
+            "--dataset-root",
+            str(tmp_path / "dataset"),
+            "--out-dir",
+            str(tmp_path / "output"),
+            "--config-log",
+            str(config_log),
+            "--evaluate",
+            "true",
+            "--evaluation-games",
+            "20",
+        ]
+    )
+
+    with pytest.raises(RuntimeError, match='"evaluation_games"'):
+        script._load_or_create_record(changed, config_log.resolve())
