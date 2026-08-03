@@ -275,7 +275,7 @@ def test_training_switch_mismatch_reports_the_differences(tmp_path: Path) -> Non
         script._load_or_create_record(changed, config_log.resolve())
 
 
-def test_completed_evaluation_cannot_be_redefined(tmp_path: Path) -> None:
+def test_completed_evaluation_is_archived_before_reevaluation(tmp_path: Path) -> None:
     script = _load_script()
     config_log = tmp_path / "config" / "run.json"
     original = script.parse_args(
@@ -293,7 +293,11 @@ def test_completed_evaluation_cannot_be_redefined(tmp_path: Path) -> None:
         ]
     )
     record = script._new_record(original, config_log.resolve())
-    record["evaluation"] = {"status": "completed"}
+    prior_evaluation = {
+        "status": "completed",
+        "results": {"completed_games": 10},
+    }
+    record["evaluation"] = prior_evaluation
     script._write_json_atomic(config_log, record)
     changed = script.parse_args(
         [
@@ -310,5 +314,38 @@ def test_completed_evaluation_cannot_be_redefined(tmp_path: Path) -> None:
         ]
     )
 
-    with pytest.raises(RuntimeError, match='"evaluation_games"'):
-        script._load_or_create_record(changed, config_log.resolve())
+    updated = script._load_or_create_record(changed, config_log.resolve())
+
+    assert updated["switches"]["evaluation_games"] == 20
+    assert updated["evaluation"] == {
+        "status": "pending_training_completion",
+        "requested_games": 20,
+    }
+    assert updated["evaluation_history"] == [
+        {
+            "archived_at_utc": updated["evaluation_history"][0][
+                "archived_at_utc"
+            ],
+            "switches": {
+                key: record["switches"].get(key)
+                for key in sorted(script.EVALUATION_SWITCHES)
+            },
+            "evaluation": prior_evaluation,
+        }
+    ]
+
+
+def test_reevaluation_uses_a_distinct_detailed_log(tmp_path: Path) -> None:
+    script = _load_script()
+    evaluation_dir = tmp_path / "evaluation"
+    evaluation_dir.mkdir()
+
+    assert script._next_evaluation_log_path(evaluation_dir) == (
+        evaluation_dir / "results.json"
+    )
+    (evaluation_dir / "results.json").write_text("{}", encoding="utf-8")
+
+    next_log = script._next_evaluation_log_path(evaluation_dir)
+    assert next_log.parent == evaluation_dir
+    assert next_log.name.startswith("results-")
+    assert next_log.suffix == ".json"

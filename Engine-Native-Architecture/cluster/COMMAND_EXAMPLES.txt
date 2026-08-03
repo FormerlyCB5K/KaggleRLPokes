@@ -110,10 +110,10 @@ sbatch Engine-Native-Architecture/cluster/train_il_dataset.sbatch \
 
 # Use a unique --run-name for a genuinely new training configuration.
 # Reusing a completed run name resumes or reports that existing run.
-# Before evaluation completes, evaluation-only switches (for example, changing
-# --evaluation-own-deck) may be corrected on a retry. The combined config keeps
-# an audited old/new switch history. Training, model, and MCTS switches remain
-# immutable for a run name and seed.
+# Evaluation-only switches (for example, changing --evaluation-own-deck) may be
+# changed on a retry. Prior completed/failed evaluations and old/new switches
+# remain in the combined config history, and each evaluation keeps a distinct
+# results*.json log. Training, model, and MCTS switches remain immutable.
 
 
 3. EVALUATION OPTIONS
@@ -363,4 +363,4 @@ find config -maxdepth 3 -type f -name '*.json' -print
 
 # Checkpoints and detailed evaluation:
 find Imitation-Learning/engine-native-training -name 'checkpoint.best.pt' -print
-find Imitation-Learning/engine-native-training -path '*/evaluation/results.json' -print
+find Imitation-Learning/engine-native-training -path '*/evaluation/results*.json' -print

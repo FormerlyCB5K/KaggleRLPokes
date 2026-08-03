@@ -242,6 +242,14 @@ def _copy_agent_with_deck(
     return destination
 
 
+def _next_evaluation_log_path(evaluation_dir: Path) -> Path:
+    first_log = evaluation_dir / "results.json"
+    if not first_log.exists():
+        return first_log
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    return evaluation_dir / f"results-{run_id}.json"
+
+
 def _run_evaluation(
     args: argparse.Namespace,
     *,
@@ -265,8 +273,8 @@ def _run_evaluation(
 
     evaluation_dir = output_dir / "evaluation"
     evaluation_dir.mkdir(parents=True, exist_ok=True)
-    detailed_log = evaluation_dir / "results.json"
     started_at = _utc_now()
+    detailed_log = _next_evaluation_log_path(evaluation_dir)
     timer = time.perf_counter()
 
     with tempfile.TemporaryDirectory(
@@ -578,6 +586,7 @@ def _new_record(args: argparse.Namespace, config_log: Path) -> dict[str, Any]:
         },
         "switches": switches,
         "switch_updates": [],
+        "evaluation_history": [],
         "created_at_utc": _utc_now(),
         "updated_at_utc": _utc_now(),
         "state": "created",
@@ -629,12 +638,27 @@ def _load_or_create_record(
         return existing
 
     prior_evaluation = existing.get("evaluation")
-    evaluation_completed = (
-        isinstance(prior_evaluation, dict)
-        and prior_evaluation.get("status") == "completed"
-    )
-    if set(switch_changes).issubset(EVALUATION_SWITCHES) and not evaluation_completed:
+    if set(switch_changes).issubset(EVALUATION_SWITCHES):
         changed_at = _utc_now()
+        if isinstance(prior_evaluation, dict) and prior_evaluation.get("status") in {
+            "completed",
+            "failed",
+        }:
+            history = existing.setdefault("evaluation_history", [])
+            if not isinstance(history, list):
+                raise RuntimeError(
+                    f"{config_log}: run record has invalid evaluation_history"
+                )
+            history.append(
+                {
+                    "archived_at_utc": changed_at,
+                    "switches": {
+                        key: existing_switches.get(key)
+                        for key in sorted(EVALUATION_SWITCHES)
+                    },
+                    "evaluation": prior_evaluation,
+                }
+            )
         existing["switches"] = expected_switches
         updates = existing.setdefault("switch_updates", [])
         if not isinstance(updates, list):
